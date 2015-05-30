@@ -1,4 +1,4 @@
-package com.example.lachlan.myfirstapp.code;
+package com.example.lachlan.myfirstapp;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.lachlan.myfirstapp.R;
+import com.example.lachlan.myfirstapp.code.Location;
 
 import java.util.ArrayList;
 import java.util.List;

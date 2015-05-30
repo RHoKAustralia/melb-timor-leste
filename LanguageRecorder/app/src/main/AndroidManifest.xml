@@ -86,7 +86,7 @@
                 android:value="com.example.lachlan.myfirstapp.HomeActivity" />
         </activity>
         <activity
-            android:name=".code.SubDistrictActivity"
+            android:name=".SubDistrictActivity"
             android:label="@string/title_activity_sub_district"
             android:parentActivityName=".MunicipalityActivity" >
             <meta-data
@@ -94,12 +94,12 @@
                 android:value="com.example.lachlan.myfirstapp.MunicipalityActivity" />
         </activity>
         <activity
-            android:name=".code.VillageActivity"
+            android:name=".VillageActivity"
             android:label="@string/title_activity_village"
-            android:parentActivityName=".code.SubDistrictActivity" >
+            android:parentActivityName=".SubDistrictActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.code.SubDistrictActivity" />
+                android:value=".SubDistrictActivity" />
         </activity>
     </application>
 

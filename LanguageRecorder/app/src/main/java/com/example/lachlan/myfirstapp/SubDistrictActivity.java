@@ -1,4 +1,4 @@
-package com.example.lachlan.myfirstapp.code;
+package com.example.lachlan.myfirstapp;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
