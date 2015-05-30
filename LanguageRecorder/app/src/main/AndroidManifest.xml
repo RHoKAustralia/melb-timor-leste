@@ -23,7 +23,7 @@
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:label="@string/home_title"  >
+            android:label="@string/home_title" >
         </activity>
         <activity
             android:name=".CaptureActivity"
@@ -43,8 +43,8 @@
         </activity>
         <activity
             android:name=".PersonActivity"
-            android:parentActivityName=".HomeActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:parentActivityName=".HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lachlan.myfirstapp.HomeActivity" />
@@ -73,9 +73,97 @@
                 android:value="com.example.lachlan.myfirstapp.HomeActivity" />
         </activity>
         <activity
-            android:parentActivityName=".PersonActivity"
             android:name=".PersonDeleteActivity"
-            android:label="@string/delete_person_title" >
+            android:label="@string/delete_person_title"
+            android:parentActivityName=".PersonActivity" >
+        </activity>
+        <activity
+            android:name=".util.NameCaptureActivity"
+            android:label="@string/title_activity_name_capture"
+            android:parentActivityName=".HomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".util.AgeCaptureActivity"
+            android:label="@string/title_activity_age_capture"
+            android:parentActivityName=".util.NameCaptureActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.util.NameCaptureActivity" />
+        </activity>
+        <activity
+            android:name=".util.GenderCaptureActivity"
+            android:label="@string/title_activity_gender_capture"
+            android:parentActivityName=".util.AgeCaptureActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.util.AgeCaptureActivity" />
+        </activity>
+        <activity
+            android:name=".util.HomeCaptureActivity"
+            android:label="@string/title_activity_home_capture"
+            android:parentActivityName=".util.GenderCaptureActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.util.GenderCaptureActivity" />
+        </activity>
+        <activity
+            android:name=".util.YearsInHomeCaptureActivity"
+            android:label="@string/title_activity_years_in_home_capture"
+            android:parentActivityName=".util.HomeCaptureActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.util.HomeCaptureActivity" />
+        </activity>
+        <activity
+            android:name=".activity_occupation_capture"
+            android:label="@string/title_activity_activity_occupation_capture"
+            android:parentActivityName=".util.AgeCaptureActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.util.AgeCaptureActivity" />
+        </activity>
+        <activity
+            android:name=".occupation_activity"
+            android:label="@string/title_activity_occupation_activity"
+            android:parentActivityName=".util.AgeCaptureActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.util.AgeCaptureActivity" />
+        </activity>
+        <activity
+            android:name=".OccupationCaptureActivity"
+            android:label="@string/title_activity_occupation_capture" >
+        </activity>
+        <activity
+            android:name=".EducationActivity"
+            android:label="@string/title_activity_education" >
+        </activity>
+        <activity
+            android:name=".SpokenLanguageActivity"
+            android:label="@string/title_activity_spoken_language" >
+        </activity>
+        <activity
+            android:name=".MoreLanguagesActivity"
+            android:label="@string/title_activity_more_languages" >
+        </activity>
+        <activity
+            android:name=".HowLongLivedActivity"
+            android:label="@string/title_activity_how_long_lived" >
+        </activity>
+        <activity
+            android:name=".DistrictBornActivity"
+            android:label="@string/title_activity_district_born" >
+        </activity>
+        <activity
+            android:name=".SubDistrictBornActivity"
+            android:label="@string/title_activity_sub_district_born" >
+        </activity>
+        <activity
+            android:name=".VillageBornActivity"
+            android:label="@string/title_activity_village_born" >
         </activity>
     </application>
 
