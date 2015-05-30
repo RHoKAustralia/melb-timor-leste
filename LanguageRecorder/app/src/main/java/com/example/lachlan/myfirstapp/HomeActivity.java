@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.lachlan.myfirstapp.code.DatabaseHelper;
 import com.example.lachlan.myfirstapp.code.Person;
+import com.example.lachlan.myfirstapp.util.NameCaptureActivity;
 
 
 public class HomeActivity extends ActionBarActivity {
@@ -132,14 +133,14 @@ public class HomeActivity extends ActionBarActivity {
     }
 
     public void newPersonButton(android.view.View view) {
-        Intent intent = new Intent(this, PersonActivity.class);
+        Intent intent = new Intent(this, NameCaptureActivity.class);
         startActivity(intent);
     }
 
     public void editPersonButton(android.view.View view) {
         Person p = (Person)selectPersonSpinner.getSelectedItem();
         if (p != null) {
-            Intent intent = new Intent(this, PersonActivity.class);
+            Intent intent = new Intent(this, NameCaptureActivity.class);
             intent.putExtra(INTENT_PERSONID, p.personid);
             startActivity(intent);
         }

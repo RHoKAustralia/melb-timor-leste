@@ -109,6 +109,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lachlan.myfirstapp.util.GenderCaptureActivity" />
         </activity>
+        <activity
+            android:name=".util.YearsInHomeCaptureActivity"
+            android:label="@string/title_activity_years_in_home_capture"
+            android:parentActivityName=".util.HomeCaptureActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.util.HomeCaptureActivity" />
+        </activity>
     </application>
 
 </manifest>

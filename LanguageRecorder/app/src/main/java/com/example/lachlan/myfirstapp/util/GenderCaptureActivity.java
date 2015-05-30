@@ -14,6 +14,8 @@ import com.example.lachlan.myfirstapp.code.Person;
 
 public class GenderCaptureActivity extends ActionBarActivity {
 
+    public final static String INTENT_PERSONID = "com.example.lachlan.myfirstapp.personid";
+
     String maleText;
     String femaleText;
     private boolean editMode;
@@ -67,6 +69,9 @@ public class GenderCaptureActivity extends ActionBarActivity {
 
     public void nextPersonButton(android.view.View view) {
         Intent intent = new Intent(this, HomeCaptureActivity.class);
+        if(editMode) {
+            intent.putExtra(INTENT_PERSONID, personId);
+        }
         //intent.putExtra
         startActivity(intent);
     }

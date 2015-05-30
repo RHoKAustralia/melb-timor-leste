@@ -69,6 +69,9 @@ public class NameCaptureActivity extends ActionBarActivity {
 
     public void nextPersonButton(android.view.View view) {
         Intent intent = new Intent(this, AgeCaptureActivity.class);
+        if(editMode) {
+
+        }
         //intent.putExtra
         startActivity(intent);
     }

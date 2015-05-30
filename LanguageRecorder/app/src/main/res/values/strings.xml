@@ -77,6 +77,8 @@
     <string name="title_activity_age_capture">AgeCaptureActivity</string>
     <string name="title_activity_gender_capture">GenderCaptureActivity</string>
     <string name="title_activity_home_capture">HomeCaptureActivity</string>
+    <string name="INTENT_PERSONID">com.example.lachlan.myfirstapp.personid</string>
+    <string name="title_activity_years_in_home_capture">YearsInHomeCaptureActivity</string>
 
 
 </resources>

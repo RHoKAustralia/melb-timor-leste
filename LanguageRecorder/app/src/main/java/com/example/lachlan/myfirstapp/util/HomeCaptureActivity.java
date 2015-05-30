@@ -1,13 +1,24 @@
 package com.example.lachlan.myfirstapp.util;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
+import com.example.lachlan.myfirstapp.HomeActivity;
 import com.example.lachlan.myfirstapp.R;
+import com.example.lachlan.myfirstapp.code.DatabaseHelper;
+import com.example.lachlan.myfirstapp.code.Person;
 
 public class HomeCaptureActivity extends ActionBarActivity {
+
+    private final static String INTENT_PERSONID = "com.example.lachlan.myfirstapp.personid";
+
+    private int personId;
+    private boolean editMode;
+    private EditText homeEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +46,30 @@ public class HomeCaptureActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void populatePersonDetails() {
+        Intent intent = getIntent();
+        personId = intent.getIntExtra(HomeActivity.INTENT_PERSONID, -1);
+        String windowTitle = getResources().getString(R.string.person_title);
+
+        if (personId != -1) {
+            editMode = true;
+            windowTitle = getResources().getString(R.string.person_title_edit);
+
+            DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+            Person person = db.getPerson(personId);
+            if (person != null) {
+                homeEditText.setText(person.livesin);
+            }
+        }
+    }
+
+    public void nextPersonButton(android.view.View view) {
+        Intent intent = new Intent(this, YearsInHomeCaptureActivity.class);
+        if (editMode) {
+            intent.putExtra(INTENT_PERSONID, personId);
+        }
+        startActivity(intent);
     }
 }
