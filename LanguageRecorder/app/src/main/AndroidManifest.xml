@@ -23,7 +23,7 @@
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:label="@string/home_title"  >
+            android:label="@string/home_title" >
         </activity>
         <activity
             android:name=".CaptureActivity"
@@ -43,8 +43,8 @@
         </activity>
         <activity
             android:name=".PersonActivity"
-            android:parentActivityName=".HomeActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:parentActivityName=".HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lachlan.myfirstapp.HomeActivity" />
@@ -73,9 +73,17 @@
                 android:value="com.example.lachlan.myfirstapp.HomeActivity" />
         </activity>
         <activity
-            android:parentActivityName=".PersonActivity"
             android:name=".PersonDeleteActivity"
-            android:label="@string/delete_person_title" >
+            android:label="@string/delete_person_title"
+            android:parentActivityName=".PersonActivity" >
+        </activity>
+        <activity
+            android:name=".MunicipalityActivity"
+            android:label="@string/title_activity_location"
+            android:parentActivityName=".HomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.HomeActivity" />
         </activity>
     </application>
 
