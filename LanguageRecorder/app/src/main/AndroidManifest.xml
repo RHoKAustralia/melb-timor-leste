@@ -117,6 +117,54 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lachlan.myfirstapp.util.HomeCaptureActivity" />
         </activity>
+        <activity
+            android:name=".activity_occupation_capture"
+            android:label="@string/title_activity_activity_occupation_capture"
+            android:parentActivityName=".util.AgeCaptureActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.util.AgeCaptureActivity" />
+        </activity>
+        <activity
+            android:name=".occupation_activity"
+            android:label="@string/title_activity_occupation_activity"
+            android:parentActivityName=".util.AgeCaptureActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.util.AgeCaptureActivity" />
+        </activity>
+        <activity
+            android:name=".OccupationCaptureActivity"
+            android:label="@string/title_activity_occupation_capture" >
+        </activity>
+        <activity
+            android:name=".EducationActivity"
+            android:label="@string/title_activity_education" >
+        </activity>
+        <activity
+            android:name=".SpokenLanguageActivity"
+            android:label="@string/title_activity_spoken_language" >
+        </activity>
+        <activity
+            android:name=".MoreLanguagesActivity"
+            android:label="@string/title_activity_more_languages" >
+        </activity>
+        <activity
+            android:name=".HowLongLivedActivity"
+            android:label="@string/title_activity_how_long_lived" >
+        </activity>
+        <activity
+            android:name=".DistrictBornActivity"
+            android:label="@string/title_activity_district_born" >
+        </activity>
+        <activity
+            android:name=".SubDistrictBornActivity"
+            android:label="@string/title_activity_sub_district_born" >
+        </activity>
+        <activity
+            android:name=".VillageBornActivity"
+            android:label="@string/title_activity_village_born" >
+        </activity>
     </application>
 
 </manifest>

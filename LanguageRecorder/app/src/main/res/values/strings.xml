@@ -79,6 +79,16 @@
     <string name="title_activity_home_capture">HomeCaptureActivity</string>
     <string name="INTENT_PERSONID">com.example.lachlan.myfirstapp.personid</string>
     <string name="title_activity_years_in_home_capture">YearsInHomeCaptureActivity</string>
+    <string name="title_activity_activity_occupation_capture">activity_occupation_capture</string>
+    <string name="title_activity_occupation_activity">occupation_activity</string>
+    <string name="title_activity_occupation_capture">OccupationCaptureActivity</string>
+    <string name="title_activity_education">EducationActivity</string>
+    <string name="title_activity_spoken_language">SpokenLanguageActivity</string>
+    <string name="title_activity_more_languages">MoreLanguagesActivity</string>
+    <string name="title_activity_how_long_lived">HowLongLivedActivity</string>
+    <string name="title_activity_district_born">DistrictBornActivity</string>
+    <string name="title_activity_sub_district_born">SubDistrictBornActivity</string>
+    <string name="title_activity_village_born">VillageBornActivity</string>
 
 
 </resources>
