@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="districts">
+        <item
+            district="Ainaro District"
+            subdistrict="Ainaro"
+            village="Ainaro"
+            />
+        <item
+            district="Ainaro District"
+            subdistrict="Ainaro"
+            village="Suro-Craic"
+            />
+        <item
+            district="Ainaro District"
+            subdistrict="Ainaro"
+            village="Soro"
+            />
+        <item
+            district="Ainaro District"
+            subdistrict="Ainaro"
+            village="Manutasi"
+            />
+        <item
+            district="Ainaro District"
+            subdistrict="Ainaro"
+            village="Cassa"
+            />
+        <item
+            district="Ainaro District"
+            subdistrict="Ainaro"
+            village="Mau-Ulu"
+            />
+        <item
+            district="Ainaro District"
+            subdistrict="Ainaro"
+            village="Mau-Nuno"
+            />
+    </array>
+</resources>
