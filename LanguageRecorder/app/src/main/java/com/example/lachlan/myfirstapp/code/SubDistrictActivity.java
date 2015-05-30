@@ -1,4 +1,4 @@
-package com.example.lachlan.myfirstapp;
+package com.example.lachlan.myfirstapp.code;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -7,29 +7,29 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.lachlan.myfirstapp.code.Location;
+import com.example.lachlan.myfirstapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class MunicipalityActivity extends ActionBarActivity {
-    Spinner man_spinner;
-    private ArrayAdapter<String> aaMunicipalities;
-    private List<String> municipalities;
+public class SubDistrictActivity extends ActionBarActivity {
+    Spinner sd_spinner;
+    private ArrayAdapter<String> aaSubDistricts;
+    private List<String> subDistricts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Which municipality are you in?");
-        setContentView(R.layout.activity_municipality);
-        populateMunicipalities();
+        setTitle("Which district are you in?");
+        setContentView(R.layout.activity_sub_district);
+        //todo: How do we get the municipality from the previous screen?
+        populateSubDistricts("blah");
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_municipality, menu);
+        getMenuInflater().inflate(R.menu.menu_sub_district, menu);
         return true;
     }
 
@@ -48,20 +48,23 @@ public class MunicipalityActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void populateMunicipalities() {
-        String municipality;
-        man_spinner = (Spinner) findViewById(R.id.spinner);
-        municipalities = new ArrayList<String>();
+    private void populateSubDistricts(String _municipality) {
+        String subDistrict, municipality;
+        sd_spinner = (Spinner) findViewById(R.id.spinner);
+        subDistricts = new ArrayList<String>();
         String[] locs = locations();
         for (int i = 0; i < locations().length; i++) {
             municipality = locs[i].split("|")[0];
-            municipalities.add(municipality);
+            if (_municipality.equals(municipality)) {
+                subDistrict = locs[i].split("|")[1];
+                subDistricts.add(subDistrict);
+            }
         }
-        aaMunicipalities = new ArrayAdapter<String>(this,
+        aaSubDistricts = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, locs);
-        aaMunicipalities
+        aaSubDistricts
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        man_spinner.setAdapter(aaMunicipalities);
+        sd_spinner.setAdapter(aaSubDistricts);
     }
 
     private String[] locations() {

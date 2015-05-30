@@ -74,6 +74,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_location">LocationActivity</string>
+    <string name="title_activity_sub_district">SubDistrictActivity</string>
+    <string name="title_activity_village">VillageActivity</string>
 
 
 </resources>

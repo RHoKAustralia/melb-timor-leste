@@ -85,6 +85,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lachlan.myfirstapp.HomeActivity" />
         </activity>
+        <activity
+            android:name=".code.SubDistrictActivity"
+            android:label="@string/title_activity_sub_district"
+            android:parentActivityName=".MunicipalityActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.MunicipalityActivity" />
+        </activity>
+        <activity
+            android:name=".code.VillageActivity"
+            android:label="@string/title_activity_village"
+            android:parentActivityName=".code.SubDistrictActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.code.SubDistrictActivity" />
+        </activity>
     </application>
 
 </manifest>
