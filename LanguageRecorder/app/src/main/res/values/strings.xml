@@ -89,6 +89,9 @@
     <string name="title_activity_district_born">DistrictBornActivity</string>
     <string name="title_activity_sub_district_born">SubDistrictBornActivity</string>
     <string name="title_activity_village_born">VillageBornActivity</string>
+    <string name="title_activity_location">LocationActivity</string>
+    <string name="title_activity_sub_district">SubDistrictActivity</string>
+    <string name="title_activity_village">VillageActivity</string>
 
 
 </resources>
