@@ -1,0 +1,85 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingTop="10dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <TextView android:id="@+id/capturetitle"
+        android:text="Capturing for: "
+        android:paddingBottom="0px"
+        android:layout_marginBottom="0px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/myimageview" />
+
+    <EditText android:id="@+id/edit_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:hint="@string/capture_word_hint"></EditText>
+
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/audiobuttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:id="@+id/recordbutton"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:text="@string/capture_record_button"
+            android:onClick="recordButton">
+
+        </Button>
+        <Button
+            android:id="@+id/playbutton"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:text="@string/capture_play_button"
+            android:onClick="playButton"></Button>
+        <Button
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:text="@string/capture_stop_button"
+            android:id="@+id/stopbutton"
+            android:onClick="stopButton"
+            >
+
+        </Button>
+    </LinearLayout>
+   <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:onClick="backButton"
+            android:id="@+id/backbutton"
+            android:text="@string/capture_back_button"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"></Button>
+        <Button
+            android:onClick="nextButton"
+            android:id="@+id/nextbutton"
+            android:text="@string/capture_next_button"
+            android:layout_alignParentRight="true"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"></Button>
+    </LinearLayout>
+
+</LinearLayout>
+</ScrollView>

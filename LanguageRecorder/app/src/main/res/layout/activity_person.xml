@@ -1,0 +1,264 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.lachlan.myfirstapp.PersonActivity">
+
+    <TextView android:text="@string/person_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:singleLine="true"
+        android:hint=""
+        android:imeOptions="actionDone"
+        android:inputType="textNoSuggestions"
+        android:layout_marginBottom="10px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+       <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+           <TextView android:text="@string/person_age_label"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+
+           <EditText
+               android:id="@+id/ageEditText"
+               android:singleLine="true"
+               android:inputType="number"
+               android:imeOptions="actionDone"
+               android:layout_marginBottom="10px"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView android:text="@string/person_gender_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:layout_marginBottom="20px"
+                android:id="@+id/gender_spinner"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView android:text="@string/person_livesin_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:nextFocusDown="@+id/locationYearsEditText"
+                android:id="@+id/locationEditText"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:layout_marginBottom="10px"
+                android:inputType="textNoSuggestions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+
+            <TextView android:text="@string/person_livesinfor_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/locationYearsEditText"
+                android:nextFocusDown="@+id/autocomplete_first_language"
+                android:singleLine="true"
+                android:inputType="number"
+                android:imeOptions="actionDone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <TextView android:text="@string/person_firstlanguage_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/autocomplete_first_language"
+                android:nextFocusDown="@+id/autocomplete_second_language"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <TextView android:text="@string/person_secondlanguage_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/autocomplete_second_language"
+                android:nextFocusDown="@+id/autocomplete_third_language"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <TextView android:text="@string/person_thirdlanguage_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/autocomplete_third_language"
+                android:nextFocusDown="@+id/autocomplete_other_languages"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <TextView android:text="@string/person_otherlanguages_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/autocomplete_other_languages"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView android:text="@string/person_mylocation_label"
+        android:id="@+id/mylocation"
+        android:layout_marginTop="20px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+
+        android:layout_marginTop="20px"
+        android:text="@string/person_education_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:layout_marginBottom="20px"
+        android:id="@+id/educated_to_spinner"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_marginTop="20px"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="okButton"
+        android:text="@string/person_ok_button" ></Button>
+
+    <Button
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/delete_button"
+        android:onClick="deleteButton"
+        android:layout_alignParentRight="true"
+        android:text="@string/person_delete_button" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+</ScrollView>

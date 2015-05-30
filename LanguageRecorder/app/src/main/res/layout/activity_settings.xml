@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    tools:context="com.example.lachlan.myfirstapp.SettingsActivity">
+
+    <TextView android:id="@+id/total_disk_space_label"
+        android:textSize="10pt"
+        android:text="@string/settings_disk_size_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView android:id="@+id/total_disk_space_free_label"
+        android:textSize="10pt"
+        android:text="@string/settings_disk_free_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button android:id="@+id/connect_dropbox_button"
+            android:text="Connect to dropbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="connectToDropBox"/>
+
+        <Button android:id="@+id/upload_file_button"
+            android:text="Upload file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="uploadFile"/>
+
+    </LinearLayout>
+
+    <TextView android:id="@+id/dropbox_access_token"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
