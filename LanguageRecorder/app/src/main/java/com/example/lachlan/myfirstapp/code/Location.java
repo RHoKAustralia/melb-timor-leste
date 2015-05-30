@@ -18,5 +18,12 @@ public class Location {
         village = _village;
     }
 
+    public Location(String _loc) {
+        String[] loc = _loc.split("|");
+        municipality = loc[0];
+        subdistrict = loc[1];
+        village = loc[2];
+    }
+
     public String toString() { return village + ", " + subdistrict + ", " + municipality; };
 }
