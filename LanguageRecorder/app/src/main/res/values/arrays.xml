@@ -9,4 +9,47 @@
         <item>Ainaro District|Ainaro|Mau-Ulu</item>
         <item>Ainaro District|Ainaro|Mau-Nuno</item>
     </string-array>
+
+    <string-array name="study_languages">
+        <item>Tetum Prasa</item>
+        <item>Tetum Terik</item>
+        <item>Adabe</item>
+        <item>Atauran</item>
+        <item>Baikenu</item>
+        <item>Bekais</item>
+        <item>Bunak</item>
+        <item>Dadu\'a</item>
+        <item>Fataluku</item>
+        <item>Galoli</item>
+        <item>Habun</item>
+        <item>Idalaka</item>
+        <item>Idate</item>
+        <item>Isni</item>
+        <item>Kairui</item>
+        <item>Kawaimina</item>
+        <item>Kemak</item>
+        <item>Lakalei</item>
+        <item>Lolein</item>
+        <item>Makalero</item>
+        <item>Sa\'ani</item>
+        <item>Makasai</item>
+        <item>Makuva</item>
+        <item>Mambai</item>
+        <item>Midiki</item>
+        <item>Nanaek</item>
+        <item>Naueti</item>
+        <item>Rahesuk</item>
+        <item>Raklungu</item>
+        <item>Resuk</item>
+        <item>Tokodede</item>
+        <item>Waima\'a</item>
+    </string-array>
+
+    <string-array name="dummy_studies">
+        <item>Study 1</item>
+        <item>Study 2</item>
+        <item>Study 3</item>
+        <item>Study 4</item>
+        <item>Study 5</item>
+    </string-array>
 </resources>
