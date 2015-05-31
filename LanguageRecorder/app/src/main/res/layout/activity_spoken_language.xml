@@ -36,5 +36,5 @@
         android:layout_alignParentEnd="true"
         android:textColor="@android:color/white"
         android:background="#ff00a887"
-        android:onClick="nextButtonClick" />
+        android:onClick="loadStudyActivity" />
 </RelativeLayout>
