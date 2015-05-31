@@ -189,6 +189,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".SubDistrictActivity" />
         </activity>
+        <activity
+            android:name=".StudyActivity"
+            android:label="@string/title_activity_study"
+            android:parentActivityName=".SpokenLanguageActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.SpokenLanguageActivity" />
+        </activity>
     </application>
 
 </manifest>

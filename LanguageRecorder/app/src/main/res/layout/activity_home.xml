@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:text="@string/home_start_capturing_button"
             android:id="@+id/stopbutton"
-            android:onClick="startButton"
+            android:onClick="loadLanguageActivity"
 
             />
         <Button
