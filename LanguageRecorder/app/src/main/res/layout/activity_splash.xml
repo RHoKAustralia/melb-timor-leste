@@ -5,7 +5,7 @@
     android:gravity="center"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:background="#000000"
+    android:background="#00A887"
     tools:context="com.example.lachlan.myfirstapp.SplashActivity">
 
         <LinearLayout
@@ -27,11 +27,11 @@
                 android:layout_height="wrap_content" />
 
             <Button
-                android:layout_width="96dp"
+                android:layout_width="134dp"
                 android:layout_height="wrap_content"
                 android:text="@string/splash_start_button"
-                android:onClick="startButton"
-                />
+                android:onClick="loadLanguageActivity"
+                android:singleLine="false" />
         </LinearLayout>
 
 </RelativeLayout>

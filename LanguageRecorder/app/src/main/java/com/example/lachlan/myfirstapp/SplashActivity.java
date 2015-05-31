@@ -46,10 +46,10 @@ public class SplashActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void startButton(android.view.View view) {
-        Intent intent = new Intent(this, HomeActivity.class);
+    public void loadLanguageActivity(android.view.View view) {
+        Intent intent = new Intent(this, SpokenLanguageActivity.class);
+        intent.putExtra("LANGUAGE_QUESTION", "Which language do you want to research?");
         startActivity(intent);
-
     }
 
 }
