@@ -27,7 +27,7 @@ public class MunicipalityActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Select municipality");
+        setTitle("Select municipality for study " + selectedStudy());
         setContentView(R.layout.activity_municipality);
         populateMunicipalities();
     }
@@ -81,6 +81,15 @@ public class MunicipalityActivity extends ActionBarActivity {
             m.add(new Municipality(this, l.municipality));
         }
         return m;
+    }
+
+    private String selectedStudy() {
+        Bundle extras = getIntent().getExtras();
+        String value = "";
+        if (extras != null) {
+            value = extras.getString("STUDY");
+        }
+        return value;
     }
 
     public void loadSubDistrictActivity(android.view.View view) {
