@@ -23,7 +23,7 @@ public class Municipality {
         Set<SubDistrict> subs = new HashSet<SubDistrict>();
         for (Location loc : locations()) {
             if (loc.municipality.equals(name)) {
-                subs.add(new SubDistrict(context, this, loc.subdistrict));
+                subs.add(new SubDistrict(context, loc.municipality, loc.subdistrict));
             }
         }
         return subs;

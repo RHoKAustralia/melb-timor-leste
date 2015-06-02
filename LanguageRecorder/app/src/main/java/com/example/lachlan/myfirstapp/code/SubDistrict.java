@@ -11,11 +11,10 @@ import java.util.Set;
  * Created by craig on 30/05/15.
  */
 public class SubDistrict {
-    public String name;
-    public Municipality municipality;
+    public String name, municipality;
     private Context context;
 
-    public SubDistrict(Context current, Municipality _municipality, String _name) {
+    public SubDistrict(Context current, String _municipality, String _name) {
         context = current;
         municipality = _municipality;
         name = _name;
@@ -24,8 +23,8 @@ public class SubDistrict {
     public Set<Village> villages() {
         Set<Village> vils = new HashSet<Village>();
         for (Location loc : locations()) {
-            if ((loc.municipality.equals(municipality.name)) && (loc.subdistrict.equals(name))) {
-                vils.add(new Village(context, this.municipality, this, loc.village));
+            if ((loc.municipality.equals(municipality)) && (loc.subdistrict.equals(name))) {
+                vils.add(new Village(context, loc.municipality, loc.subdistrict, loc.village));
             }
         }
         return vils;

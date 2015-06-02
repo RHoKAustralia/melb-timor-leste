@@ -19,7 +19,7 @@ public class Location {
     }
 
     public Location(String _loc) {
-        String[] loc = _loc.split("|");
+        String[] loc = _loc.split("\\|");
         municipality = loc[0];
         subdistrict = loc[1];
         village = loc[2];
