@@ -55,7 +55,6 @@ public class SpokenLanguageActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     public void loadStudyActivity(android.view.View view) {
         Intent intent = new Intent(this, StudyActivity.class);
         intent.putExtra("LANGUAGE", selectedLanguage);
