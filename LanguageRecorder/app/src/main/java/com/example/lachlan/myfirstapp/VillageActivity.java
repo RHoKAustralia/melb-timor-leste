@@ -1,30 +1,37 @@
 package com.example.lachlan.myfirstapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.lachlan.myfirstapp.R;
 import com.example.lachlan.myfirstapp.code.Location;
+import com.example.lachlan.myfirstapp.code.SubDistrict;
+import com.example.lachlan.myfirstapp.code.Village;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class VillageActivity extends ActionBarActivity {
-    Spinner v_spinner;
-    private ArrayAdapter<String> aaVillages;
-    private List<String> villages;
+    private String selectedVillage = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Which district are you in?");
+        setTitle("Select village for " + selectedSubDistrict());
         setContentView(R.layout.activity_village);
-        //todo: How do we get the municipality and sub district from the previous screen?
-        populateVillages("blah", "blah");
+        populateVillages();
     }
 
     @Override
@@ -49,21 +56,53 @@ public class VillageActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void populateVillages(String _municipality, String _subDistrict) {
-        v_spinner = (Spinner) findViewById(R.id.spinner);
-        villages = new ArrayList<String>();
-        String[] locs = locations();
-        for (int i = 0; i < locs.length; i++) {
-            Location loc = new Location(locs[i]);
-            if ((_municipality.equals(loc.municipality)) && (_subDistrict.equals(loc.subdistrict))) {
-                villages.add(loc.village);
+    private void populateVillages() {
+        ListView lvVillages = (ListView) findViewById(R.id.village_list);
+        ArrayList<String> list = new ArrayList<String>();
+        for (Village v : villages()) {
+            if (!list.contains(v.name)) {
+                list.add(v.name);
             }
         }
-        aaVillages = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, locs);
-        aaVillages
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        v_spinner.setAdapter(aaVillages);
+        Collections.sort(list);
+        ArrayAdapter<String> aaSubDistricts = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, list);
+        aaSubDistricts
+                .setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+        lvVillages.setAdapter(aaSubDistricts);
+        lvVillages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedVillage = (String) parent.getItemAtPosition(position);
+            }
+        });
+    }
+
+    private ArrayList<Village> villages() {
+        Location l;
+        ArrayList<Village> m = new ArrayList<>();
+        for (String loc : locations()) {
+            l = new Location(loc);
+            if (l.subdistrict.equals(selectedSubDistrict())) {
+                m.add(new Village(this, l.municipality, l.subdistrict, l.village));
+            }
+        }
+        return m;
+    }
+
+    public void loadVillageActivity(android.view.View view) {
+        Intent intent = new Intent(this, VillageActivity.class);
+        intent.putExtra("VILLAGE", selectedVillage);
+        startActivity(intent);
+    }
+
+    private String selectedSubDistrict() {
+        Bundle extras = getIntent().getExtras();
+        String value = "";
+        if (extras != null) {
+            value = extras.getString("SUB_DISTRICT");
+        }
+        return value;
     }
 
     private String[] locations() {
