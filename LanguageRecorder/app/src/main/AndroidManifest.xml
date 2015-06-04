@@ -50,21 +50,6 @@
                 android:value="com.example.lachlan.myfirstapp.HomeActivity" />
         </activity>
         <activity
-            android:name="com.dropbox.client2.android.AuthActivity"
-            android:configChanges="orientation|keyboard"
-            android:launchMode="singleTask" >
-            <intent-filter>
-
-                <!-- Change this to be db- followed by your app key -->
-                <data android:scheme="db-3gn74ckos6jhrop" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".UploadActivity"
             android:label="@string/upload_title"
             android:parentActivityName=".HomeActivity" >

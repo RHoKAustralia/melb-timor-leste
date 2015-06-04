@@ -2,8 +2,10 @@ package com.example.lachlan.myfirstapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,6 +57,26 @@ public class SpokenLanguageActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onSaveInstanceState (Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        //outState.putInt("selectedperson", selectedItem);
+    }
+
+    protected void onRestoreInstanceState (Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+     /*   if (savedInstanceState != null) {
+            int selectedItem = savedInstanceState.getInt("selectedperson");
+            selectPersonSpinner.setSelection(selectedItem);
+        }*/
+    }
+
+
+
+    public void languageSelected() {
+
+    }
 
     public void loadStudyActivity(android.view.View view) {
         Intent intent = new Intent(this, StudyActivity.class);
@@ -67,6 +89,9 @@ public class SpokenLanguageActivity extends ActionBarActivity {
         String value = "";
         if (extras != null) {
             value = extras.getString("LANGUAGE_QUESTION");
+        } else {
+            //TODO when pressing the UP button on the "select study" activity,
+            // the intent is null, so the "extras" is  null. Needs to be fixed somehow
         }
         return value;
     }
@@ -77,7 +102,7 @@ public class SpokenLanguageActivity extends ActionBarActivity {
         for (String lang : studyLanguages()) {
             languages.add(lang);
         }
-        ArrayAdapter<String> aaLanguages = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> aaLanguages = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, languages);
         aaLanguages
                 .setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
@@ -86,8 +111,12 @@ public class SpokenLanguageActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedLanguage = (String) parent.getItemAtPosition(position);
+                //Log.i("languageapp", selectedLanguage);
+                view.setSelected(true);
             }
         });
+
+        lvLanguages.setItemsCanFocus(true);
     }
 
     private String[] studyLanguages() {

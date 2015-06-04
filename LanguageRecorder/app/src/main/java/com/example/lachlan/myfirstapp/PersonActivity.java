@@ -198,12 +198,12 @@ public class PersonActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onSaveInstanceState (Bundle outState) {
+/*    public void onSaveInstanceState (Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putInt("editingperson", personId);
     }
-
+*/
 
 
     public void deleteButton(android.view.View view) {

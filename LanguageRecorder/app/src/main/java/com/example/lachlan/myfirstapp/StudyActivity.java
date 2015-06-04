@@ -49,6 +49,12 @@ public class StudyActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
     public void loadMunicipalityActivity(android.view.View view) {
         Intent intent = new Intent(this, MunicipalityActivity.class);
         intent.putExtra("STUDY", selectedStudy);
