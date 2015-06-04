@@ -9,6 +9,7 @@
     tools:context="com.example.lachlan.myfirstapp.VillageActivity">
 
     <ListView
+        android:listSelector="@drawable/list_item_selector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/village_list"
