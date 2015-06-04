@@ -15,7 +15,11 @@ import com.example.lachlan.myfirstapp.code.Location;
 import com.example.lachlan.myfirstapp.code.Municipality;
 import com.example.lachlan.myfirstapp.code.SubDistrict;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -58,8 +62,11 @@ public class MunicipalityActivity extends ActionBarActivity {
         ListView lvMunicipalities = (ListView) findViewById(R.id.municipality_list);
         ArrayList<String> list = new ArrayList<String>();
         for (Municipality mun : municipalities()) {
-            list.add(mun.name);
+            if (!list.contains(mun.name)) {
+                list.add(mun.name);
+            }
         }
+        Collections.sort(list);
         ArrayAdapter<String> aaMunicipalities = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, list);
         aaMunicipalities
@@ -68,14 +75,15 @@ public class MunicipalityActivity extends ActionBarActivity {
         lvMunicipalities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                view.setSelected(!view.isSelected());
                 selectedMunicipality = (String) parent.getItemAtPosition(position);
             }
         });
     }
 
-    private Set<Municipality> municipalities() {
+    private ArrayList<Municipality> municipalities() {
         Location l;
-        Set<Municipality> m = new HashSet<Municipality>();
+        ArrayList<Municipality> m = new ArrayList<Municipality>();
         for (String loc : locations()) {
             l = new Location(loc);
             m.add(new Municipality(this, l.municipality));

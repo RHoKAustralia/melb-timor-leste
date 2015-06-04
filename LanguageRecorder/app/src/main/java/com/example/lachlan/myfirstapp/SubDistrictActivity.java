@@ -18,6 +18,8 @@ import com.example.lachlan.myfirstapp.code.SubDistrict;
 import com.example.lachlan.myfirstapp.code.Village;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -59,8 +61,11 @@ public class SubDistrictActivity extends ActionBarActivity {
         ListView lvSubDistricts = (ListView) findViewById(R.id.subdistrict_list);
         ArrayList<String> list = new ArrayList<String>();
         for (SubDistrict sd : subDistricts()) {
-            list.add(sd.name);
+            if (!list.contains(sd.name)) {
+                list.add(sd.name);
+            }
         }
+        Collections.sort(list);
         ArrayAdapter<String> aaSubDistricts = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, list);
         aaSubDistricts
@@ -74,12 +79,14 @@ public class SubDistrictActivity extends ActionBarActivity {
         });
     }
 
-    private Set<SubDistrict> subDistricts() {
+    private ArrayList<SubDistrict> subDistricts() {
         Location l;
-        Set<SubDistrict> m = new HashSet<SubDistrict>();
+        ArrayList<SubDistrict> m = new ArrayList<>();
         for (String loc : locations()) {
             l = new Location(loc);
-            m.add(new SubDistrict(this, l.municipality, l.subdistrict));
+            if (l.municipality.equals(selectedMunicipality())) {
+                m.add(new SubDistrict(this, l.municipality, l.subdistrict));
+            }
         }
         return m;
     }

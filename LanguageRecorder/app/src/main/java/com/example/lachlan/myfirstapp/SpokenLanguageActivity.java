@@ -60,23 +60,14 @@ public class SpokenLanguageActivity extends ActionBarActivity {
     @Override
     public void onSaveInstanceState (Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        //outState.putInt("selectedperson", selectedItem);
     }
 
     protected void onRestoreInstanceState (Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-     /*   if (savedInstanceState != null) {
-            int selectedItem = savedInstanceState.getInt("selectedperson");
-            selectPersonSpinner.setSelection(selectedItem);
-        }*/
     }
 
 
 
-    public void languageSelected() {
-
-    }
 
     public void loadStudyActivity(android.view.View view) {
         Intent intent = new Intent(this, StudyActivity.class);
