@@ -2,36 +2,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:background="#00A887"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.lachlan.myfirstapp.SplashActivity">
 
-        <LinearLayout
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="@dimen/splash_logo_width"
+        android:layout_height="@dimen/splash_logo_height"
+        android:paddingLeft="@dimen/splash_logo_padding"
+        android:paddingRight="@dimen/splash_logo_padding"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/splashLogoImageView"
+        android:contentDescription="@string/app_name"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/splashLogoImageView" />
+    <TextView android:text="@string/splash_title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#00A887"
+        android:textSize="16pt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/splash_title"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/splashLogoImageView"
+        />
 
-            <TextView android:text="@string/splash_title"
-                android:textColor="#ffffff"
-                android:paddingBottom="20px"
-                android:textSize="12pt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:layout_width="134dp"
-                android:layout_height="wrap_content"
-                android:text="@string/splash_start_button"
-                android:onClick="loadLanguageActivity"
-                android:singleLine="false" />
-        </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/splash_start_button"
+        android:onClick="loadLanguageActivity"
+        android:singleLine="true"
+        android:background="#00A887"
+        android:textColor="#FFFFFF"
+        android:textSize="12pt"
+        android:id="@+id/splash_start_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:clickable="true" />
 
 </RelativeLayout>

@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">Language Recorder</string>
+    <string name="app_name">Local Linguist</string>
 
+    <!-- Splash screen settings -->
     <string name="splash_title">Local Linguist</string>
-    <string name="splash_start_button">Memulakan</string>
+    <string name="splash_start_button">Komesa</string>
+
+    <!-- Button settings -->
     <string name="next_button">Next</string>
 
     <string name="home_title">Home</string>
