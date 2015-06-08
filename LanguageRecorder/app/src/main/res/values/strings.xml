@@ -97,6 +97,8 @@
     <string name="title_activity_sub_district">SubDistrictActivity</string>
     <string name="title_activity_village">VillageActivity</string>
     <string name="title_activity_study">StudyActivity</string>
+    <string name="title_activity_home_new">HomeNew</string>
+    <string name="title_activity_interview_name">InterviewNameActivity</string>
 
 
 </resources>

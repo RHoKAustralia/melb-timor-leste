@@ -129,6 +129,9 @@
         <activity
             android:name=".SpokenLanguageActivity"
             android:label="@string/title_activity_spoken_language" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.HomeNewActivity" />
         </activity>
         <activity
             android:name=".MoreLanguagesActivity"
@@ -181,6 +184,18 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lachlan.myfirstapp.SpokenLanguageActivity" />
+        </activity>
+        <activity
+            android:name=".HomeNewActivity"
+            android:label="@string/title_activity_home_new" >
+        </activity>
+        <activity
+            android:name=".interview.InterviewNameActivity"
+            android:label="Halo entrevista ho ema foun"
+            android:parentActivityName=".HomeNewActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.HomeNewActivity" />
         </activity>
     </application>
 
