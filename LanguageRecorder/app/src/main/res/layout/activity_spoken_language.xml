@@ -6,7 +6,7 @@
     android:paddingRight="0px"
     android:paddingTop="16px"
     android:paddingBottom="0px"
-    tools:context="com.example.lachlan.myfirstapp.SpokenLanguageActivity">
+    tools:context="org.rhok.linguist.SpokenLanguageActivity">
 
     <TextView
         android:gravity="center_horizontal"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lachlan.myfirstapp" >
+    package="org.rhok.linguist" >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -31,7 +31,7 @@
             android:parentActivityName=".HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.HomeActivity" />
+                android:value="org.rhok.linguist.HomeActivity" />
         </activity>
         <activity
             android:name=".SettingsActivity"
@@ -47,7 +47,7 @@
             android:parentActivityName=".HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.HomeActivity" />
+                android:value="org.rhok.linguist.HomeActivity" />
         </activity>
         <activity
             android:name=".UploadActivity"
@@ -55,7 +55,7 @@
             android:parentActivityName=".HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.HomeActivity" />
+                android:value="org.rhok.linguist.HomeActivity" />
         </activity>
         <activity
             android:name=".PersonDeleteActivity"
@@ -68,7 +68,7 @@
             android:parentActivityName=".HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.HomeActivity" />
+                android:value="org.rhok.linguist.HomeActivity" />
         </activity>
         <activity
             android:name=".util.AgeCaptureActivity"
@@ -76,7 +76,7 @@
             android:parentActivityName=".util.NameCaptureActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.util.NameCaptureActivity" />
+                android:value="org.rhok.linguist.util.NameCaptureActivity" />
         </activity>
         <activity
             android:name=".util.GenderCaptureActivity"
@@ -84,7 +84,7 @@
             android:parentActivityName=".util.AgeCaptureActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.util.AgeCaptureActivity" />
+                android:value="org.rhok.linguist.util.AgeCaptureActivity" />
         </activity>
         <activity
             android:name=".util.HomeCaptureActivity"
@@ -92,7 +92,7 @@
             android:parentActivityName=".util.GenderCaptureActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.util.GenderCaptureActivity" />
+                android:value="org.rhok.linguist.util.GenderCaptureActivity" />
         </activity>
         <activity
             android:name=".util.YearsInHomeCaptureActivity"
@@ -100,7 +100,7 @@
             android:parentActivityName=".util.HomeCaptureActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.util.HomeCaptureActivity" />
+                android:value="org.rhok.linguist.util.HomeCaptureActivity" />
         </activity>
         <activity
             android:name=".activity_occupation_capture"
@@ -108,7 +108,7 @@
             android:parentActivityName=".util.AgeCaptureActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.util.AgeCaptureActivity" />
+                android:value="org.rhok.linguist.util.AgeCaptureActivity" />
         </activity>
         <activity
             android:name=".occupation_activity"
@@ -116,7 +116,7 @@
             android:parentActivityName=".util.AgeCaptureActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.util.AgeCaptureActivity" />
+                android:value="org.rhok.linguist.util.AgeCaptureActivity" />
         </activity>
         <activity
             android:name=".OccupationCaptureActivity"
@@ -131,7 +131,7 @@
             android:label="@string/title_activity_spoken_language" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.HomeNewActivity" />
+                android:value="org.rhok.linguist.HomeNewActivity" />
         </activity>
         <activity
             android:name=".MoreLanguagesActivity"
@@ -159,7 +159,7 @@
             android:parentActivityName=".HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.HomeActivity" />
+                android:value="org.rhok.linguist.HomeActivity" />
         </activity>
         <activity
             android:name=".SubDistrictActivity"
@@ -167,7 +167,7 @@
             android:parentActivityName=".MunicipalityActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.MunicipalityActivity" />
+                android:value="org.rhok.linguist.MunicipalityActivity" />
         </activity>
         <activity
             android:name=".VillageActivity"
@@ -183,7 +183,7 @@
             android:parentActivityName=".SpokenLanguageActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.SpokenLanguageActivity" />
+                android:value="org.rhok.linguist.SpokenLanguageActivity" />
         </activity>
         <activity
             android:name=".HomeNewActivity"
@@ -195,7 +195,7 @@
             android:parentActivityName=".HomeNewActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.HomeNewActivity" />
+                android:value="org.rhok.linguist.HomeNewActivity" />
         </activity>
         <activity
             android:name=".interview.InterviewAgeActivity"
@@ -203,7 +203,7 @@
             android:parentActivityName=".HomeNewActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.lachlan.myfirstapp.HomeNewActivity" />
+                android:value="org.rhok.linguist.HomeNewActivity" />
         </activity>
         <activity
             android:name=".interview.InterviewGenderActivity"

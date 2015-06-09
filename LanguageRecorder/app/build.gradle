@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.example.lachlan.myfirstapp"
+        applicationId "org.rhok.linguist"
         minSdkVersion 8
         targetSdkVersion 22
         versionCode 1

@@ -7,7 +7,7 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:paddingBottom="16dp"
-    tools:context="com.example.lachlan.myfirstapp.SettingsActivity">
+    tools:context="org.rhok.linguist.SettingsActivity">
 
     <TextView android:id="@+id/total_disk_space_label"
         android:textSize="10pt"
