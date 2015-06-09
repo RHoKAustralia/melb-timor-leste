@@ -205,6 +205,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lachlan.myfirstapp.HomeNewActivity" />
         </activity>
+        <activity
+            android:name=".interview.InterviewGenderActivity"
+            android:label="@string/title_activity_interview_gender" >
+        </activity>
     </application>
 
 </manifest>
