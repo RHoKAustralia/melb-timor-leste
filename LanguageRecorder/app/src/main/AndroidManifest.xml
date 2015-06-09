@@ -197,6 +197,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lachlan.myfirstapp.HomeNewActivity" />
         </activity>
+        <activity
+            android:name=".interview.InterviewAgeActivity"
+            android:label="@string/title_activity_interview_age"
+            android:parentActivityName=".HomeNewActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lachlan.myfirstapp.HomeNewActivity" />
+        </activity>
     </application>
 
 </manifest>

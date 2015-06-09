@@ -1,9 +1,11 @@
 package com.example.lachlan.myfirstapp.code;
 
+import java.io.Serializable;
+
 /**
  * Created by lachlan on 7/05/2015.
  */
-public class Person {
+public class Person implements Serializable {
 
     public int personid = 0;
     public String name = "";

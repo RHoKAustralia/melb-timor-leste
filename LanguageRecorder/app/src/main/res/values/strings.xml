@@ -99,6 +99,7 @@
     <string name="title_activity_study">StudyActivity</string>
     <string name="title_activity_home_new">HomeNew</string>
     <string name="title_activity_interview_name">InterviewNameActivity</string>
+    <string name="title_activity_interview_age">InterviewAgeActivity</string>
 
 
 </resources>
