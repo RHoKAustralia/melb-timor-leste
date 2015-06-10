@@ -63,60 +63,12 @@
             android:parentActivityName=".PersonActivity" >
         </activity>
         <activity
-            android:name=".util.NameCaptureActivity"
-            android:label="@string/title_activity_name_capture"
-            android:parentActivityName=".HomeActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.HomeActivity" />
-        </activity>
-        <activity
-            android:name=".util.AgeCaptureActivity"
-            android:label="@string/title_activity_age_capture"
-            android:parentActivityName=".util.NameCaptureActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.util.NameCaptureActivity" />
-        </activity>
-        <activity
-            android:name=".util.GenderCaptureActivity"
-            android:label="@string/title_activity_gender_capture"
-            android:parentActivityName=".util.AgeCaptureActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.util.AgeCaptureActivity" />
-        </activity>
-        <activity
-            android:name=".util.HomeCaptureActivity"
-            android:label="@string/title_activity_home_capture"
-            android:parentActivityName=".util.GenderCaptureActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.util.GenderCaptureActivity" />
-        </activity>
-        <activity
             android:name=".util.YearsInHomeCaptureActivity"
             android:label="@string/title_activity_years_in_home_capture"
             android:parentActivityName=".util.HomeCaptureActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.rhok.linguist.util.HomeCaptureActivity" />
-        </activity>
-        <activity
-            android:name=".activity_occupation_capture"
-            android:label="@string/title_activity_activity_occupation_capture"
-            android:parentActivityName=".util.AgeCaptureActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.util.AgeCaptureActivity" />
-        </activity>
-        <activity
-            android:name=".occupation_activity"
-            android:label="@string/title_activity_occupation_activity"
-            android:parentActivityName=".util.AgeCaptureActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.util.AgeCaptureActivity" />
         </activity>
         <activity
             android:name=".OccupationCaptureActivity"
@@ -208,6 +160,14 @@
         <activity
             android:name=".interview.InterviewGenderActivity"
             android:label="@string/title_activity_interview_gender" >
+        </activity>
+        <activity
+            android:name=".interview.InterviewOccupationActivity"
+            android:label="@string/title_activity_interview_occupation" >
+        </activity>
+        <activity
+            android:name=".interview.InterviewEducationActivity"
+            android:label="@string/title_activity_interview_education" >
         </activity>
     </application>
 

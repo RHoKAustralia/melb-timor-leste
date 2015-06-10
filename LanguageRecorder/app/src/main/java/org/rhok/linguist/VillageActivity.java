@@ -66,7 +66,8 @@ public class VillageActivity extends ActionBarActivity {
             }
         }
 
-        ListViewPopulator.populate(this, R.id.village_list, list, new AdapterView.OnItemClickListener() {
+        ListViewPopulator.populate(this, R.id.village_list, list, true,
+                new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedVillage = (String) parent.getItemAtPosition(position);

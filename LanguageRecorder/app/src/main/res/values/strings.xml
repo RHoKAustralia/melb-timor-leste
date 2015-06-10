@@ -101,6 +101,8 @@
     <string name="title_activity_interview_name">InterviewNameActivity</string>
     <string name="title_activity_interview_age">InterviewAgeActivity</string>
     <string name="title_activity_interview_gender">InterviewGenderActivity</string>
+    <string name="title_activity_interview_occupation">InterviewOccupation</string>
+    <string name="title_activity_interview_education">InterviewEducationActivity</string>
 
 
 </resources>

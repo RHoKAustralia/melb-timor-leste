@@ -17,6 +17,7 @@ public class Person implements Serializable {
     public String secondlanguage = "";
     public String thirdlanguage = "";
     public String otherlanguages = "";
+    public String occupation = "";
     public String education = "";
     public Double latitude;
     public Double longitude;
@@ -59,6 +60,7 @@ public class Person implements Serializable {
         addField(sb, "secondlanguage", this.secondlanguage, true, true);
         addField(sb, "thirdlanguage", this.thirdlanguage, true, true);
         addField(sb, "otherlanguages", this.otherlanguages, true, true);
+        addField(sb, "occupation", this.occupation, true, true);
         addField(sb, "education", this.education, true, true);
         addField(sb, "latitude", this.latitude, false, true);
         addField(sb, "longitude", this.longitude, false, true);

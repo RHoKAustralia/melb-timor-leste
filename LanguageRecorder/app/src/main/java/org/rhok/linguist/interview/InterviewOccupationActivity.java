@@ -19,27 +19,27 @@ import org.rhok.linguist.code.Person;
 
 import java.util.ArrayList;
 
-public class InterviewGenderActivity extends ActionBarActivity {
+public class InterviewOccupationActivity extends ActionBarActivity {
 
     private Person _person;
-    private String selectedGender;
+    private String selectedOccupation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_interview_gender);
+        setContentView(R.layout.activity_interview_occupation);
 
         Intent intent = getIntent();
         _person = (Person) intent.getSerializableExtra("person");
 
-        populateGenders();
+        populateOccupations();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_interview_gender, menu);
+        getMenuInflater().inflate(R.menu.menu_interview_occupation, menu);
         return true;
     }
 
@@ -59,27 +59,27 @@ public class InterviewGenderActivity extends ActionBarActivity {
     }
 
 
-    private void populateGenders() {
+    private void populateOccupations() {
 
-        ListViewPopulator.populate(this, R.id.genderListView, R.array.genders, true,
+        ListViewPopulator.populate(this, R.id.occupationListView, R.array.occupations, true,
                 new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedGender = (String) parent.getItemAtPosition(position);
+                selectedOccupation = (String) parent.getItemAtPosition(position);
             }
         });
     }
 
     public void continueButtonClick(android.view.View view) {
 
-        if (selectedGender == null) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please select a gender", Toast.LENGTH_SHORT);
+        if (selectedOccupation == null) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please select an occupation", Toast.LENGTH_SHORT);
             toast.show();
         }
         else {
-            _person.gender = selectedGender;
+            _person.occupation = selectedOccupation;
 
-            Intent intent = new Intent(this, InterviewOccupationActivity.class);
+            Intent intent = new Intent(this, InterviewEducationActivity.class);
             intent.putExtra("person", _person);
             startActivity(intent);
         }

@@ -91,14 +91,16 @@ public class SpokenLanguageActivity extends ActionBarActivity {
 
     private void populateLanguages() {
 
-        ListViewPopulator.populate(this, R.id.language_list, R.array.study_languages, new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedLanguage = (String) parent.getItemAtPosition(position);
-                //Log.i("languageapp", selectedLanguage);
-                view.setSelected(true);
+        ListViewPopulator.populate(this, R.id.language_list, R.array.study_languages, true,
+            new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    selectedLanguage = (String) parent.getItemAtPosition(position);
+                    //Log.i("languageapp", selectedLanguage);
+                    view.setSelected(true);
+                }
             }
-        });
+        );
 
     }
 

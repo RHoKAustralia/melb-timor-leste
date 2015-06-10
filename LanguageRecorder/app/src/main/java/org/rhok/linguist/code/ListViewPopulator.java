@@ -13,26 +13,28 @@ import java.util.Arrays;
  */
 public class ListViewPopulator {
 
-    public static void populate(Activity activity, int viewId, int arrayId, AdapterView.OnItemClickListener listener) {
+    public static void populate(Activity activity, int viewId, int arrayId, boolean sort, AdapterView.OnItemClickListener listener) {
 
         String[] items = activity.getResources().getStringArray(arrayId);
 
-        populate(activity, viewId, items, listener);
+        populate(activity, viewId, items, sort, listener);
     }
 
-    public static void populate(Activity activity, int viewId, ArrayList<String> list, AdapterView.OnItemClickListener listener) {
+    public static void populate(Activity activity, int viewId, ArrayList<String> list, boolean sort, AdapterView.OnItemClickListener listener) {
 
         String[] items = new String[list.size()];
         items = list.toArray(items);
 
-        populate(activity, viewId, items, listener);
+        populate(activity, viewId, items, sort, listener);
     }
 
 
-    public static void populate(Activity activity, int viewId, String[] items, AdapterView.OnItemClickListener listener) {
+    public static void populate(Activity activity, int viewId, String[] items, boolean sort, AdapterView.OnItemClickListener listener) {
         ListView lvStudies = (ListView) activity.findViewById(viewId);
 
-        Arrays.sort(items);
+        if (sort) {
+            Arrays.sort(items);
+        }
 
         ArrayAdapter<String> aaStudies = new ArrayAdapter<String>(
                 activity, android.R.layout.simple_list_item_1, items);

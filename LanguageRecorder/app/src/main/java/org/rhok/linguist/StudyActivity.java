@@ -64,12 +64,14 @@ public class StudyActivity extends ActionBarActivity {
 
     private void populateStudies() {
 
-        ListViewPopulator.populate(this, R.id.study_list, R.array.dummy_studies, new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedStudy = (String) parent.getItemAtPosition(position);
+        ListViewPopulator.populate(this, R.id.study_list, R.array.dummy_studies, true,
+            new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    selectedStudy = (String) parent.getItemAtPosition(position);
+                }
             }
-        });
+        );
 
 
     }
