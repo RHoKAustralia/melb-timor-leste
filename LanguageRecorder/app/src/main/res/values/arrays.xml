@@ -445,6 +445,11 @@
         <item>Viqueque|Lacluta|Dilor</item>
     </string-array>
 
+    <string-array name="genders">
+        <item>Mane</item>
+        <item>Feto</item>
+    </string-array>
+
     <string-array name="study_languages">
         <item>Tetum Prasa</item>
         <item>Tetum Terik</item>

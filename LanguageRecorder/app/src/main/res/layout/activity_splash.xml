@@ -13,6 +13,7 @@
         android:layout_height="@dimen/splash_logo_height"
         android:paddingLeft="@dimen/splash_logo_padding"
         android:paddingRight="@dimen/splash_logo_padding"
+        android:paddingTop="40px"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

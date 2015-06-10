@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import org.rhok.linguist.interview.InterviewNameActivity;
-import org.rhok.linguist.util.NameCaptureActivity;
 
 
 public class HomeNewActivity extends ActionBarActivity {

@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.Person;
-import org.rhok.linguist.util.NameCaptureActivity;
 
 
 public class HomeActivity extends ActionBarActivity {
@@ -133,16 +132,16 @@ public class HomeActivity extends ActionBarActivity {
     }
 
     public void newPersonButton(android.view.View view) {
-        Intent intent = new Intent(this, NameCaptureActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, NameCaptureActivity.class);
+        //startActivity(intent);
     }
 
     public void editPersonButton(android.view.View view) {
         Person p = (Person)selectPersonSpinner.getSelectedItem();
         if (p != null) {
-            Intent intent = new Intent(this, NameCaptureActivity.class);
-            intent.putExtra(INTENT_PERSONID, p.personid);
-            startActivity(intent);
+            //Intent intent = new Intent(this, NameCaptureActivity.class);
+            //intent.putExtra(INTENT_PERSONID, p.personid);
+            //startActivity(intent);
         }
     }
 

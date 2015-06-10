@@ -58,9 +58,7 @@ public class InterviewGenderActivity extends ActionBarActivity {
 
     private void populateGenders() {
         ListView lvStudies = (ListView) findViewById(R.id.genderListView);
-        ArrayList<String> genders = new ArrayList<String>();
-        genders.add("Mane");
-        genders.add("Feto");
+        String[] genders = getResources().getStringArray(R.array.genders);
 
         ArrayAdapter<String> aaStudies = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, genders);
