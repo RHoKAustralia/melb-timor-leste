@@ -1,5 +1,6 @@
 package org.rhok.linguist.interview;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Person;
 
 import java.util.ArrayList;
@@ -56,17 +58,10 @@ public class InterviewGenderActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     private void populateGenders() {
-        ListView lvStudies = (ListView) findViewById(R.id.genderListView);
-        String[] genders = getResources().getStringArray(R.array.genders);
 
-        ArrayAdapter<String> aaStudies = new ArrayAdapter<String>(
-                this, android.R.layout.simple_list_item_1, genders);
-
-        aaStudies.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-
-        lvStudies.setAdapter(aaStudies);
-        lvStudies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ListViewPopulator.populate(this, R.id.genderListView, R.array.genders, new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedGender = (String) parent.getItemAtPosition(position);

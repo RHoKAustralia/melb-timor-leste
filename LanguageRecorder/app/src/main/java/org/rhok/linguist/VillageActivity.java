@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Location;
 import org.rhok.linguist.code.SubDistrict;
 import org.rhok.linguist.code.Village;
@@ -64,18 +65,15 @@ public class VillageActivity extends ActionBarActivity {
                 list.add(v.name);
             }
         }
-        Collections.sort(list);
-        ArrayAdapter<String> aaSubDistricts = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, list);
-        aaSubDistricts
-                .setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-        lvVillages.setAdapter(aaSubDistricts);
-        lvVillages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        ListViewPopulator.populate(this, R.id.village_list, list, new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedVillage = (String) parent.getItemAtPosition(position);
             }
-        });
+        } );
+
+
     }
 
     private ArrayList<Village> villages() {

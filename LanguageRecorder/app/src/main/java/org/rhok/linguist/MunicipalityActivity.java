@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Location;
 import org.rhok.linguist.code.Municipality;
 import org.rhok.linguist.code.SubDistrict;
@@ -66,19 +67,16 @@ public class MunicipalityActivity extends ActionBarActivity {
                 list.add(mun.name);
             }
         }
-        Collections.sort(list);
-        ArrayAdapter<String> aaMunicipalities = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, list);
-        aaMunicipalities
-                .setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-        lvMunicipalities.setAdapter(aaMunicipalities);
-        lvMunicipalities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        ListViewPopulator.populate(this, R.id.municipality_list, list, new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view.setSelected(!view.isSelected());
                 selectedMunicipality = (String) parent.getItemAtPosition(position);
             }
         });
+
+
     }
 
     private ArrayList<Municipality> municipalities() {

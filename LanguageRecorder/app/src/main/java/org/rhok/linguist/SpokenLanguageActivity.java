@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.rhok.linguist.code.ListViewPopulator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -88,17 +90,8 @@ public class SpokenLanguageActivity extends ActionBarActivity {
     }
 
     private void populateLanguages() {
-        ListView lvLanguages = (ListView) findViewById(R.id.language_list);
-        ArrayList<String> languages = new ArrayList<String>();
-        for (String lang : studyLanguages()) {
-            languages.add(lang);
-        }
-        final ArrayAdapter<String> aaLanguages = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, languages);
-        aaLanguages
-                .setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-        lvLanguages.setAdapter(aaLanguages);
-        lvLanguages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        ListViewPopulator.populate(this, R.id.language_list, R.array.study_languages, new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedLanguage = (String) parent.getItemAtPosition(position);
@@ -107,12 +100,7 @@ public class SpokenLanguageActivity extends ActionBarActivity {
             }
         });
 
-        lvLanguages.setItemsCanFocus(true);
     }
 
-    private String[] studyLanguages() {
-        String[] languages = getResources().getStringArray(R.array.study_languages);
-        Arrays.sort(languages);
-        return languages;
-    }
+
 }

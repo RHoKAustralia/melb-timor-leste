@@ -450,6 +450,14 @@
         <item>Feto</item>
     </string-array>
 
+    <string-array name="occupations">
+        <item>To\'os na\'in</item>
+        <item>Mestre / Mestra</item>
+        <item>Governu</item>
+        <item>Loja na\'in</item>
+        <item>xofér</item>
+    </string-array>
+
     <string-array name="study_languages">
         <item>Tetum Prasa</item>
         <item>Tetum Terik</item>

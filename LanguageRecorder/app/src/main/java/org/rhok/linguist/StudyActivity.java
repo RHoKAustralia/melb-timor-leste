@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Municipality;
 
 import java.util.ArrayList;
@@ -62,29 +63,17 @@ public class StudyActivity extends ActionBarActivity {
     }
 
     private void populateStudies() {
-        ListView lvStudies = (ListView) findViewById(R.id.study_list);
-        ArrayList<String> studies = new ArrayList<String>();
-        for (String lang : studies()) {
-            studies.add(lang);
-        }
-        ArrayAdapter<String> aaStudies = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, studies);
-        aaStudies
-                .setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-        lvStudies.setAdapter(aaStudies);
-        lvStudies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        ListViewPopulator.populate(this, R.id.study_list, R.array.dummy_studies, new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedStudy = (String) parent.getItemAtPosition(position);
             }
         });
+
+
     }
 
-    private String[] studies() {
-        String[] list = getResources().getStringArray(R.array.dummy_studies);
-        Arrays.sort(list);
-        return list;
-    }
 
 
     private String selectedLanguage() {
