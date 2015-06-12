@@ -86,27 +86,11 @@
                 android:value="org.rhok.linguist.HomeNewActivity" />
         </activity>
         <activity
-            android:name=".MoreLanguagesActivity"
-            android:label="@string/title_activity_more_languages" >
-        </activity>
-        <activity
             android:name=".HowLongLivedActivity"
             android:label="@string/title_activity_how_long_lived" >
         </activity>
         <activity
-            android:name=".DistrictBornActivity"
-            android:label="@string/title_activity_district_born" >
-        </activity>
-        <activity
-            android:name=".SubDistrictBornActivity"
-            android:label="@string/title_activity_sub_district_born" >
-        </activity>
-        <activity
-            android:name=".VillageBornActivity"
-            android:label="@string/title_activity_village_born" >
-        </activity>
-        <activity
-            android:name=".MunicipalityActivity"
+            android:name=".location.MunicipalityActivity"
             android:label="@string/title_activity_location"
             android:parentActivityName=".HomeActivity" >
             <meta-data
@@ -114,20 +98,20 @@
                 android:value="org.rhok.linguist.HomeActivity" />
         </activity>
         <activity
-            android:name=".SubDistrictActivity"
+            android:name=".location.SubDistrictActivity"
             android:label="@string/title_activity_sub_district"
-            android:parentActivityName=".MunicipalityActivity" >
+            android:parentActivityName=".location.MunicipalityActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.MunicipalityActivity" />
+                android:value=".location.MunicipalityActivity" />
         </activity>
         <activity
-            android:name=".VillageActivity"
+            android:name=".location.VillageActivity"
             android:label="@string/title_activity_village"
-            android:parentActivityName=".SubDistrictActivity" >
+            android:parentActivityName=".location.SubDistrictActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SubDistrictActivity" />
+                android:value=".location.SubDistrictActivity" />
         </activity>
         <activity
             android:name=".StudyActivity"
@@ -168,6 +152,18 @@
         <activity
             android:name=".interview.InterviewEducationActivity"
             android:label="@string/title_activity_interview_education" >
+        </activity>
+        <activity
+            android:name=".interview.InterviewMoreLanguagesActivity"
+            android:label="@string/title_activity_interview_more_languages" >
+        </activity>
+        <activity
+            android:name=".interview.InterviewLivedLifeActivity"
+            android:label="@string/title_activity_interview_lived_life" >
+        </activity>
+        <activity
+            android:name=".interview.InterviewLivedLengthActivity"
+            android:label="@string/title_activity_interview_lived_length" >
         </activity>
     </application>
 

@@ -103,6 +103,9 @@
     <string name="title_activity_interview_gender">InterviewGenderActivity</string>
     <string name="title_activity_interview_occupation">InterviewOccupation</string>
     <string name="title_activity_interview_education">InterviewEducationActivity</string>
+    <string name="title_activity_interview_more_languages">InterviewMoreLanguagesActivity</string>
+    <string name="title_activity_interview_lived_life">InterviewLivedLifeActivity</string>
+    <string name="title_activity_interview_lived_length">InterviewLivedLengthActivity</string>
 
 
 </resources>

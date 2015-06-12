@@ -7,14 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import org.rhok.linguist.code.ListViewPopulator;
-import org.rhok.linguist.code.Municipality;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import org.rhok.linguist.location.MunicipalityActivity;
 
 
 public class StudyActivity extends ActionBarActivity {

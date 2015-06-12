@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.SpokenLanguageActivity;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Person;
 
@@ -63,11 +64,11 @@ public class InterviewEducationActivity extends ActionBarActivity {
 
         ListViewPopulator.populate(this, R.id.educationListView, R.array.education, false,
                 new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedEducation = (String) parent.getItemAtPosition(position);
-            }
-        });
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        selectedEducation = (String) parent.getItemAtPosition(position);
+                    }
+                });
     }
 
     public void continueButtonClick(android.view.View view) {
@@ -75,15 +76,22 @@ public class InterviewEducationActivity extends ActionBarActivity {
         if (selectedEducation == null) {
             Toast toast = Toast.makeText(getApplicationContext(), "Please select an occupation", Toast.LENGTH_SHORT);
             toast.show();
-        }
-        else {
+        } else {
             _person.education = selectedEducation;
 
-            Intent intent = new Intent(this, InterviewEducationActivity.class);
-            intent.putExtra("person", _person);
+            Intent intent = new Intent(this, SpokenLanguageActivity.class);
+            intent.putExtra("LANGUAGE_QUESTION",
+                    "Ita nia lian primeiru mak saida? (primary language)");
+            intent.putExtra("NEXT_ACTIVITY", "MoreLanguages");
+            intent.putExtra("Person", _person);
+            intent.putExtra("LanguageNumber", 1);
             startActivity(intent);
         }
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+    }
 }

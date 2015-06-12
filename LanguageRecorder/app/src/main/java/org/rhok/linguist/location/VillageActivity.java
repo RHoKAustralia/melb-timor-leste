@@ -1,4 +1,4 @@
-package org.rhok.linguist;
+package org.rhok.linguist.location;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -7,25 +7,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 
+import org.rhok.linguist.HomeNewActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Location;
-import org.rhok.linguist.code.SubDistrict;
 import org.rhok.linguist.code.Village;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class VillageActivity extends ActionBarActivity {
     private String selectedVillage = "";
+    private String from = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +27,7 @@ public class VillageActivity extends ActionBarActivity {
         setTitle("Select village for " + selectedSubDistrict());
         setContentView(R.layout.activity_village);
         populateVillages();
+        from = getIntent().getExtras().getString("from");
     }
 
     @Override
@@ -106,5 +101,22 @@ public class VillageActivity extends ActionBarActivity {
 
     private String[] locations() {
         return getResources().getStringArray(R.array.locations);
+    }
+
+
+    public void nextButtonClick(View view) {
+
+        if (from == null) {
+            // we have just come from the Setup section, so let's
+            // go back to the home page
+            Intent intent = new Intent(this, HomeNewActivity.class);
+            startActivity(intent);
+        } else {
+
+            // we have just come from the User Details section,
+            // so save them and take them to the home page
+            Intent intent = new Intent(this, HomeNewActivity.class);
+            startActivity(intent);
+        }
     }
 }

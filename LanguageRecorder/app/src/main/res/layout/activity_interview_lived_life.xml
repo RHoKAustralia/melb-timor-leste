@@ -4,13 +4,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="org.rhok.linguist.MoreLanguagesActivity">
+    tools:context="org.rhok.linguist.interview.InterviewLivedLifeActivity">
 
     <TextView
+        android:layout_marginTop="16pt"
+        android:layout_marginLeft="16pt"
+        android:layout_marginRight="16pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Do you speak another language?"
+        android:text="Ita hela iha Bauro husi moris to'o agora?"
         android:id="@+id/textView5"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -18,22 +21,25 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yes"
+        android:text="Sin"
         android:id="@+id/yesButton"
+        android:onClick="yesButtonClick"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:textColor="@android:color/white"
         android:background="#ff00a887" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No"
+        android:text="Lae"
         android:id="@+id/noButton"
+        android:onClick="noButtonClick"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:background="@android:color/holo_red_light"
         android:textColor="@android:color/white" />
+
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package org.rhok.linguist;
+package org.rhok.linguist.location;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -7,33 +7,40 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
+import android.widget.TextView;
 
+import org.rhok.linguist.R;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Location;
 import org.rhok.linguist.code.Municipality;
-import org.rhok.linguist.code.SubDistrict;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 
 public class MunicipalityActivity extends ActionBarActivity {
     private String selectedMunicipality = "";
+    private String from = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Select municipality for study " + selectedStudy());
         setContentView(R.layout.activity_municipality);
+
+        Intent intent = getIntent();
+        from = intent.getExtras().getString("from");
+
+        TextView textView = (TextView) findViewById(R.id.municipalityQuestionTextView);
+
+        if (from == null) {
+            setTitle("Select municipality for study " + selectedStudy());
+            textView.setText("Ita hela iha Munisípiu ida-ne'ebé?");
+
+        } else {
+            setTitle("Halo entrevista ho ema foun");
+            textView.setText("Ita moris iha munisípiu ida-ne'ebé?");
+        }
+
         populateMunicipalities();
     }
 
@@ -101,6 +108,7 @@ public class MunicipalityActivity extends ActionBarActivity {
     public void loadSubDistrictActivity(android.view.View view) {
         Intent intent = new Intent(this, SubDistrictActivity.class);
         intent.putExtra("MUNICIPALITY", selectedMunicipality);
+        intent.putExtra("from", from);
         startActivity(intent);
     }
 

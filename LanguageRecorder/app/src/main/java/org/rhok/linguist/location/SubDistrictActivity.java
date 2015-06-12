@@ -1,4 +1,4 @@
-package org.rhok.linguist;
+package org.rhok.linguist.location;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -7,26 +7,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Location;
-import org.rhok.linguist.code.Municipality;
 import org.rhok.linguist.code.SubDistrict;
-import org.rhok.linguist.code.Village;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class SubDistrictActivity extends ActionBarActivity {
     private String selectedSubDistrict = "";
+    private String from = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +26,7 @@ public class SubDistrictActivity extends ActionBarActivity {
         setTitle("Select sub-district for " + selectedMunicipality());
         setContentView(R.layout.activity_sub_district);
         populateSubDistricts();
+        from = getIntent().getExtras().getString("from");
     }
 
     @Override
@@ -93,6 +86,7 @@ public class SubDistrictActivity extends ActionBarActivity {
     public void loadVillageActivity(android.view.View view) {
         Intent intent = new Intent(this, VillageActivity.class);
         intent.putExtra("SUB_DISTRICT", selectedSubDistrict);
+        intent.putExtra("from", from);
         startActivity(intent);
     }
 

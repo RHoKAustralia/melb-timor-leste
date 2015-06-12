@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,31 +14,23 @@
         android:layout_height="@dimen/splash_logo_height"
         android:paddingLeft="@dimen/splash_logo_padding"
         android:paddingRight="@dimen/splash_logo_padding"
-        android:paddingTop="40px"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_marginTop="200px"
         android:id="@+id/splashLogoImageView"
         android:contentDescription="@string/app_name"/>
 
     <TextView android:text="@string/splash_title"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:textColor="#00A887"
         android:textSize="16pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/splash_title"
-        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_below="@+id/splashLogoImageView"
         />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/splash_start_button"
         android:onClick="loadLanguageActivity"
@@ -47,10 +40,6 @@
         android:textSize="12pt"
         android:id="@+id/splash_start_button"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:clickable="true" />
 
 </RelativeLayout>

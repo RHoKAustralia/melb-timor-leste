@@ -1,30 +1,26 @@
 package org.rhok.linguist;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.rhok.linguist.code.ListViewPopulator;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import org.rhok.linguist.code.Person;
+import org.rhok.linguist.interview.InterviewLivedLifeActivity;
+import org.rhok.linguist.interview.InterviewMoreLanguagesActivity;
 
 
 public class SpokenLanguageActivity extends ActionBarActivity {
+
     private String selectedLanguage = "";
+    private String nextActivity = "";
+    private int languageNumber;
+    private Person _person;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +31,12 @@ public class SpokenLanguageActivity extends ActionBarActivity {
         TextView question = (TextView)findViewById(R.id.language_question);
         question.setText(languageQuestion());
         populateLanguages();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            nextActivity = extras.getString("NEXT_ACTIVITY");
+            _person = (Person) extras.getSerializable("Person");
+        }
     }
 
     @Override
@@ -72,9 +74,35 @@ public class SpokenLanguageActivity extends ActionBarActivity {
 
 
     public void loadStudyActivity(android.view.View view) {
-        Intent intent = new Intent(this, StudyActivity.class);
-        intent.putExtra("LANGUAGE", selectedLanguage);
-        startActivity(intent);
+
+        if (nextActivity.equals("Study")) {
+            Intent intent = new Intent(this, StudyActivity.class);
+            intent.putExtra("LANGUAGE", selectedLanguage);
+            startActivity(intent);
+        }
+        if (nextActivity.equals("MoreLanguages")) {
+
+            Intent intent = new Intent(this, InterviewMoreLanguagesActivity.class);
+
+            languageNumber = getIntent().getExtras().getInt("LanguageNumber");
+            if (languageNumber == 1) {
+                _person.firstlanguage = selectedLanguage;
+            }
+            if (languageNumber == 2) {
+                _person.secondlanguage = selectedLanguage;
+            }
+            if (languageNumber == 3) {
+                _person.thirdlanguage = selectedLanguage;
+            }
+            if (languageNumber == 4) {
+                _person.otherlanguages = selectedLanguage;
+
+                intent = new Intent(this, InterviewLivedLifeActivity.class);
+            }
+            intent.putExtra("Person", _person);
+            intent.putExtra("LastLanguageNumber", languageNumber);
+            startActivity(intent);
+        }
     }
 
     private String languageQuestion() {
