@@ -39,20 +39,6 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Kontinua ->"
-        android:onClick="continueButtonClick"
-        android:singleLine="true"
-        android:background="#00A887"
-        android:textColor="#FFFFFF"
-        android:textSize="12pt"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:clickable="true" />
+    <Button style="@style/nextButtonStyle" />
 
 </RelativeLayout>

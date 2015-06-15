@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.ListViewPopulator;
@@ -23,8 +24,10 @@ public class SubDistrictActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Select sub-district for " + selectedMunicipality());
         setContentView(R.layout.activity_sub_district);
+
+        TextView whichDistrictTextView = (TextView) findViewById(R.id.whichDistrictTextView);
+        whichDistrictTextView.setText("Select sub-district for " + selectedMunicipality());
         populateSubDistricts();
         from = getIntent().getExtras().getString("from");
     }
@@ -83,7 +86,7 @@ public class SubDistrictActivity extends ActionBarActivity {
         return m;
     }
 
-    public void loadVillageActivity(android.view.View view) {
+    public void nextButtonClick(android.view.View view) {
         Intent intent = new Intent(this, VillageActivity.class);
         intent.putExtra("SUB_DISTRICT", selectedSubDistrict);
         intent.putExtra("from", from);

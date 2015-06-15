@@ -70,7 +70,7 @@ public class InterviewOccupationActivity extends ActionBarActivity {
         });
     }
 
-    public void continueButtonClick(android.view.View view) {
+    public void nextButtonClick(android.view.View view) {
 
         if (selectedOccupation == null) {
             Toast toast = Toast.makeText(getApplicationContext(), "Please select an occupation", Toast.LENGTH_SHORT);

@@ -51,7 +51,7 @@ public class StudyActivity extends ActionBarActivity {
         return true;
     }
 
-    public void loadMunicipalityActivity(android.view.View view) {
+    public void nextButtonClick(android.view.View view) {
         Intent intent = new Intent(this, MunicipalityActivity.class);
         intent.putExtra("STUDY", selectedStudy);
         startActivity(intent);

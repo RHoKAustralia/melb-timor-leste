@@ -73,7 +73,7 @@ public class SpokenLanguageActivity extends ActionBarActivity {
 
 
 
-    public void loadStudyActivity(android.view.View view) {
+    public void nextButtonClick(android.view.View view) {
 
         if (nextActivity.equals("Study")) {
             Intent intent = new Intent(this, StudyActivity.class);

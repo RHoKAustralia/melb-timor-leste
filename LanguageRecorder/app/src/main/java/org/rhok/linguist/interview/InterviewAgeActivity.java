@@ -40,7 +40,7 @@ public class InterviewAgeActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void continueButtonClick(android.view.View view) {
+    public void nextButtonClick(android.view.View view) {
 
         EditText editText = (EditText)findViewById(R.id.ageEditText);
         String age = editText.getText().toString();

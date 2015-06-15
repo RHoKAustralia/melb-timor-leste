@@ -43,7 +43,7 @@ public class InterviewNameActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void continueButtonClick(android.view.View view) {
+    public void nextButtonClick(android.view.View view) {
 
         EditText editText = (EditText)findViewById(R.id.nameEditText);
         String name = editText.getText().toString();

@@ -49,7 +49,7 @@ public class InterviewLivedLengthActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void continueButtonClick(View view) {
+    public void nextButtonClick(View view) {
         EditText editText = (EditText)findViewById(R.id.longLivedEditText);
         String longLived = editText.getText().toString();
 

@@ -70,7 +70,7 @@ public class InterviewGenderActivity extends ActionBarActivity {
         });
     }
 
-    public void continueButtonClick(android.view.View view) {
+    public void nextButtonClick(android.view.View view) {
 
         if (selectedGender == null) {
             Toast toast = Toast.makeText(getApplicationContext(), "Please select a gender", Toast.LENGTH_SHORT);

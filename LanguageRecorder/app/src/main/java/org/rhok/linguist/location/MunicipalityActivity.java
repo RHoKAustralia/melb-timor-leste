@@ -105,7 +105,7 @@ public class MunicipalityActivity extends ActionBarActivity {
         return value;
     }
 
-    public void loadSubDistrictActivity(android.view.View view) {
+    public void nextButtonClick(android.view.View view) {
         Intent intent = new Intent(this, SubDistrictActivity.class);
         intent.putExtra("MUNICIPALITY", selectedMunicipality);
         intent.putExtra("from", from);

@@ -66,10 +66,10 @@ public class HomeCaptureActivity extends ActionBarActivity {
     }
 
     public void nextPersonButton(android.view.View view) {
-        Intent intent = new Intent(this, YearsInHomeCaptureActivity.class);
+        //..Intent intent = new Intent(this, YearsInHomeCaptureActivity.class);
         if (editMode) {
-            intent.putExtra(INTENT_PERSONID, personId);
+          //  intent.putExtra(INTENT_PERSONID, personId);
         }
-        startActivity(intent);
+        //startActivity(intent);
     }
 }
