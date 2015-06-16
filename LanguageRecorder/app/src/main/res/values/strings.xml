@@ -106,6 +106,10 @@
     <string name="title_activity_interview_more_languages">InterviewMoreLanguagesActivity</string>
     <string name="title_activity_interview_lived_life">InterviewLivedLifeActivity</string>
     <string name="title_activity_interview_lived_length">InterviewLivedLengthActivity</string>
+    <string name="title_activity_recording_audio">RecordingAudioActivity</string>
+    <string name="title_activity_recording_instructions">RecordingInstructionsActivity</string>
+    <string name="title_activity_recording_listen">RecordingListenActivity</string>
+    <string name="title_activity_recording_transcribe">RecordingTranscribeActivity</string>
 
 
 </resources>

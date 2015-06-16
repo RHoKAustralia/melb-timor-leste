@@ -2,35 +2,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="org.rhok.linguist.interview.InterviewGenderActivity">
+    tools:context="org.rhok.linguist.recording.RecordingInstructionsActivity">
 
     <LinearLayout
-        android:paddingLeft="16px"
-        android:paddingRight="16px"
-        android:paddingTop="16px"
-        android:orientation="vertical"
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16px"
+        android:layout_marginRight="16px"
+        android:layout_weight="1">
 
         <TextView
-            android:paddingBottom="40px"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="Rekaman ne'e di'ak ka lae?"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Ita mane ka feto? (Gender?)"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <ListView
+            android:id="@+id/questionText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:listSelector="@drawable/list_item_selector"
-            android:id="@+id/genderListView" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
-    <Button style="@style/nextButtonStyle" />
+    <Button style="@style/noButtonStyle" />
+
+    <Button style="@style/yesButtonStyle" />
+
 
 </RelativeLayout>

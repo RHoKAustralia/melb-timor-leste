@@ -17,6 +17,34 @@
     <!-- Backward-compatible version of ?android:attr/buttonBarButtonStyle -->
     <style name="ButtonBarButton" />
 
+    <style name="activityStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="contentContainerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_margin">16px</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="contentHeaderStyle" parent="android:TextAppearance.Large">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">16px</item>
+    </style>
+
+    <style name="listViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">16px</item>
+        <item name="android:listSelector">@drawable/list_item_selector</item>
+    </style>
+
     <style name="buttonStyle">
         <item name="android:textSize">8pt</item>
         <item name="android:layout_alignParentBottom">true</item>

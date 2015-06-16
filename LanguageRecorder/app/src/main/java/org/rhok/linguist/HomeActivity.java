@@ -34,6 +34,7 @@ public class HomeActivity extends ActionBarActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, people);
         selectPersonSpinner.setAdapter(adapter);
 
+
         Intent intent = getIntent();
         String message = intent.getStringExtra(PersonActivity.INTENT_PERSONSAVED);
 

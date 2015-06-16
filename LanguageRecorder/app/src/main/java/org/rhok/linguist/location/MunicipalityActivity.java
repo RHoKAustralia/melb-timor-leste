@@ -33,11 +33,11 @@ public class MunicipalityActivity extends ActionBarActivity {
         TextView textView = (TextView) findViewById(R.id.municipalityQuestionTextView);
 
         if (from == null) {
-            setTitle("Select municipality for study " + selectedStudy());
+            //setTitle("Select municipality for study " + selectedStudy());
             textView.setText("Ita hela iha Munisípiu ida-ne'ebé?");
 
         } else {
-            setTitle("Halo entrevista ho ema foun");
+            //setTitle("Halo entrevista ho ema foun");
             textView.setText("Ita moris iha munisípiu ida-ne'ebé?");
         }
 

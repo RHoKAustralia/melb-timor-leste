@@ -53,6 +53,18 @@
             android:id="@+id/start_interview_button"
             android:clickable="true" />
 
+        <Button
+            android:layout_marginTop="20px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Recording"
+            android:onClick="startRecordingButton"
+            android:background="#5538c7"
+            android:textColor="#FFFFFF"
+            android:textSize="10pt"
+            android:id="@+id/start_recording_button"
+            android:clickable="true" />
+
 
     </LinearLayout>
 

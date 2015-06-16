@@ -14,7 +14,6 @@
         android:layout_height="@dimen/splash_logo_height"
         android:paddingLeft="@dimen/splash_logo_padding"
         android:paddingRight="@dimen/splash_logo_padding"
-        android:layout_marginTop="200px"
         android:id="@+id/splashLogoImageView"
         android:contentDescription="@string/app_name"/>
 

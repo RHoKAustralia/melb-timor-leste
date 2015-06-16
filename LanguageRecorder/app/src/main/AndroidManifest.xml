@@ -63,35 +63,15 @@
             android:parentActivityName=".PersonActivity" >
         </activity>
         <activity
-            android:name=".util.YearsInHomeCaptureActivity"
-            android:label="@string/title_activity_years_in_home_capture"
-            android:parentActivityName=".util.HomeCaptureActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.util.HomeCaptureActivity" />
-        </activity>
-        <activity
-            android:name=".OccupationCaptureActivity"
-            android:label="@string/title_activity_occupation_capture" >
-        </activity>
-        <activity
-            android:name=".EducationActivity"
-            android:label="@string/title_activity_education" >
-        </activity>
-        <activity
             android:name=".SpokenLanguageActivity"
-            android:label="@string/title_activity_spoken_language" >
+            android:label="Select Language" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.rhok.linguist.HomeNewActivity" />
         </activity>
         <activity
-            android:name=".HowLongLivedActivity"
-            android:label="@string/title_activity_how_long_lived" >
-        </activity>
-        <activity
             android:name=".location.MunicipalityActivity"
-            android:label="@string/title_activity_location"
+            android:label="Select Municipality"
             android:parentActivityName=".HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -99,7 +79,7 @@
         </activity>
         <activity
             android:name=".location.SubDistrictActivity"
-            android:label="@string/title_activity_sub_district"
+            android:label="Select Sub District"
             android:parentActivityName=".location.MunicipalityActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -107,7 +87,7 @@
         </activity>
         <activity
             android:name=".location.VillageActivity"
-            android:label="@string/title_activity_village"
+            android:label="Select Village"
             android:parentActivityName=".location.SubDistrictActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -115,7 +95,7 @@
         </activity>
         <activity
             android:name=".StudyActivity"
-            android:label="@string/title_activity_study"
+            android:label="Select Study"
             android:parentActivityName=".SpokenLanguageActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -164,6 +144,22 @@
         <activity
             android:name=".interview.InterviewLivedLengthActivity"
             android:label="@string/title_activity_interview_lived_length" >
+        </activity>
+        <activity
+            android:name=".recording.RecordingAudioActivity"
+            android:label="Recording" >
+        </activity>
+        <activity
+            android:name=".recording.RecordingInstructionsActivity"
+            android:label="Recording" >
+        </activity>
+        <activity
+            android:name=".recording.RecordingListenActivity"
+            android:label="Recording" >
+        </activity>
+        <activity
+            android:name=".recording.RecordingTranscribeActivity"
+            android:label="@string/title_activity_recording_transcribe" >
         </activity>
     </application>
 

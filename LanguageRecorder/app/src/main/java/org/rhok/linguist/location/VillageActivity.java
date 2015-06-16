@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.rhok.linguist.HomeNewActivity;
 import org.rhok.linguist.R;
@@ -24,9 +25,13 @@ public class VillageActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Select village for " + selectedSubDistrict());
         setContentView(R.layout.activity_village);
+
+        TextView whichVillageTextView = (TextView) findViewById(R.id.whichVillageTextView);
+        whichVillageTextView.setText("Select village for " + selectedSubDistrict());
+
         populateVillages();
+
         from = getIntent().getExtras().getString("from");
     }
 

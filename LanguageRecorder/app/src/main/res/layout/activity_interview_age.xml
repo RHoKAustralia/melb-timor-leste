@@ -9,16 +9,16 @@
     tools:context="org.rhok.linguist.interview.InterviewAgeActivity">
 
     <LinearLayout
-        android:paddingLeft="40px"
-        android:paddingRight="40px"
-        android:paddingTop="40px"
+        android:paddingLeft="16px"
+        android:paddingRight="16px"
+        android:paddingTop="16px"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Ita-nia titan hira? (What is your age?)"
+            android:text="Ita-nia tinan hira? (What is your age?)"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

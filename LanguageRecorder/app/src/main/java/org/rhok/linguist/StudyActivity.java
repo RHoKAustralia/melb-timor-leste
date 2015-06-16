@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.location.MunicipalityActivity;
@@ -19,7 +20,10 @@ public class StudyActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study);
-        setTitle("Select study for " + selectedLanguage());
+
+        TextView whichStudy = (TextView)findViewById(R.id.whichStudyTextView);
+        whichStudy.setText("Which " + selectedLanguage() + " study would you like to use?");
+
         populateStudies();
     }
 

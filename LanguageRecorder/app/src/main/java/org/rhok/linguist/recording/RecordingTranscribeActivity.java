@@ -1,30 +1,32 @@
-package org.rhok.linguist;
+package org.rhok.linguist.recording;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
+import android.widget.ImageView;
 
-import org.rhok.linguist.interview.InterviewNameActivity;
-import org.rhok.linguist.recording.RecordingInstructionsActivity;
+import org.rhok.linguist.HomeNewActivity;
+import org.rhok.linguist.R;
 
-
-public class HomeNewActivity extends ActionBarActivity {
+public class RecordingTranscribeActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_new);
+        setContentView(R.layout.activity_recording_transcribe);
+
+        ImageView imageView = (ImageView)findViewById(R.id.captureImageView);
+        imageView.setImageResource(R.drawable.goat);
+
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home_new, menu);
+        getMenuInflater().inflate(R.menu.menu_recording_transcribe, menu);
         return true;
     }
 
@@ -43,21 +45,9 @@ public class HomeNewActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void loadLanguageActivity(android.view.View view) {
-        Intent intent = new Intent(this, SpokenLanguageActivity.class);
-        intent.putExtra("LANGUAGE_QUESTION", "Which language do you want to research?");
-        intent.putExtra("NEXT_ACTIVITY", "Study");
+    public void nextButtonClick(android.view.View view) {
+        Intent intent = new Intent(this, HomeNewActivity.class);
         startActivity(intent);
     }
 
-    public void startInterviewButton(android.view.View view) {
-
-        Intent intent = new Intent(this, InterviewNameActivity.class);
-        startActivity(intent);
-    }
-
-    public void startRecordingButton(View view) {
-        Intent intent = new Intent(this, RecordingInstructionsActivity.class);
-        startActivity(intent);
-    }
 }

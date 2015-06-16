@@ -1,30 +1,19 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="0px"
-    android:paddingRight="0px"
-    android:paddingTop="16px"
-    android:paddingBottom="0px"
+    style="@style/activityStyle"
     tools:context="org.rhok.linguist.SpokenLanguageActivity">
 
-    <TextView
-        android:gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="What is your first language?"
-        android:id="@+id/language_question"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <LinearLayout style="@style/contentContainerStyle">
 
-    <ListView
-        android:listSelector="@drawable/list_item_selector"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/language_list"
-        android:layout_below="@+id/language_question" />
+        <TextView style="@style/contentHeaderStyle"
+            android:text="What is your first language?"
+            android:id="@+id/language_question" />
+
+        <ListView style="@style/listViewStyle"
+            android:id="@+id/language_list" />
+
+    </LinearLayout>
 
     <Button style="@style/nextButtonStyle" />
 
-</RelativeLayout>
+</LinearLayout>

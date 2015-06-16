@@ -1,0 +1,29 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.rhok.linguist.recording.RecordingInstructionsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16px"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="Hatudu dezeñu ba ema ida, depois rekam nia koalia liafuan ne'e iha ninia lian."
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/questionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <Button style="@style/nextButtonStyle" />
+
+</LinearLayout>

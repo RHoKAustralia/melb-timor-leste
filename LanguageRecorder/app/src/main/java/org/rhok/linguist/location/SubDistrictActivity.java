@@ -28,6 +28,7 @@ public class SubDistrictActivity extends ActionBarActivity {
 
         TextView whichDistrictTextView = (TextView) findViewById(R.id.whichDistrictTextView);
         whichDistrictTextView.setText("Select sub-district for " + selectedMunicipality());
+
         populateSubDistricts();
         from = getIntent().getExtras().getString("from");
     }
