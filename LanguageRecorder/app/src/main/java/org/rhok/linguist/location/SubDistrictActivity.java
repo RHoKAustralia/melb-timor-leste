@@ -14,10 +14,11 @@ import org.rhok.linguist.R;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Location;
 import org.rhok.linguist.code.SubDistrict;
+import org.rhok.linguist.interview.BaseInterviewActivity;
 
 import java.util.ArrayList;
 
-public class SubDistrictActivity extends ActionBarActivity {
+public class SubDistrictActivity extends BaseInterviewActivity {
     private String selectedSubDistrict = "";
     private String from = null;
 
@@ -33,27 +34,6 @@ public class SubDistrictActivity extends ActionBarActivity {
         from = getIntent().getExtras().getString("from");
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_sub_district, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     private void populateSubDistricts() {
         ListView lvSubDistricts = (ListView) findViewById(R.id.subdistrict_list);

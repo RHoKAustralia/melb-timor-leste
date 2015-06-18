@@ -11,11 +11,12 @@ import android.widget.TextView;
 
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Person;
+import org.rhok.linguist.interview.BaseInterviewActivity;
 import org.rhok.linguist.interview.InterviewLivedLifeActivity;
 import org.rhok.linguist.interview.InterviewMoreLanguagesActivity;
 
 
-public class SpokenLanguageActivity extends ActionBarActivity {
+public class SpokenLanguageActivity extends BaseInterviewActivity {
 
     private String selectedLanguage = "";
     private String nextActivity = "";
@@ -27,7 +28,7 @@ public class SpokenLanguageActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spoken_language);
         setTitle("Select Language");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView question = (TextView)findViewById(R.id.language_question);
         question.setText(languageQuestion());
         populateLanguages();
@@ -37,28 +38,6 @@ public class SpokenLanguageActivity extends ActionBarActivity {
             nextActivity = extras.getString("NEXT_ACTIVITY");
             _person = (Person) extras.getSerializable("Person");
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_spoken_language, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

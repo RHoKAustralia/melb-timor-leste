@@ -9,38 +9,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.SplashActivity;
 import org.rhok.linguist.SpokenLanguageActivity;
 import org.rhok.linguist.code.Person;
 
-public class InterviewNameActivity extends ActionBarActivity {
+public class InterviewNameActivity extends BaseInterviewActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interview_name);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_interview_name, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void nextButtonClick(android.view.View view) {

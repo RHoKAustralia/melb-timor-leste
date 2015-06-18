@@ -9,9 +9,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.SplashActivity;
 import org.rhok.linguist.code.Person;
 
-public class InterviewAgeActivity extends ActionBarActivity {
+public class InterviewAgeActivity extends BaseInterviewActivity {
 
     private Person _person;
 
@@ -24,21 +25,6 @@ public class InterviewAgeActivity extends ActionBarActivity {
         _person = (Person) intent.getSerializableExtra("person");
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_interview_age, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     public void nextButtonClick(android.view.View view) {
 

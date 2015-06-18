@@ -15,8 +15,10 @@ import android.widget.TextView;
 
 import org.rhok.linguist.HomeNewActivity;
 import org.rhok.linguist.R;
+import org.rhok.linguist.SplashActivity;
+import org.rhok.linguist.interview.BaseInterviewActivity;
 
-public class RecordingAudioActivity extends ActionBarActivity {
+public class RecordingAudioActivity extends BaseInterviewActivity {
 
     TextView recordingQuestionTextView;
     TextView recordingMessageTextView;
@@ -29,6 +31,7 @@ public class RecordingAudioActivity extends ActionBarActivity {
     EditText transcribeEditText;
     ImageView imageView;
 
+    private int pictureCount = 1;
     private boolean transcribing = false;
 
     @Override
@@ -58,31 +61,6 @@ public class RecordingAudioActivity extends ActionBarActivity {
 
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_recording_audio, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private int pictureCount = 1;
-
     public void nextButtonClick(android.view.View view) {
 
         if (!transcribing) {
@@ -102,7 +80,7 @@ public class RecordingAudioActivity extends ActionBarActivity {
             pictureCount++;
 
             if (pictureCount == 4) {
-                Intent intent = new Intent(this, HomeNewActivity.class);
+                Intent intent = new Intent(this, SplashActivity.class);
                 startActivity(intent);
             }
             else {

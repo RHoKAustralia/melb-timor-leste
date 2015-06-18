@@ -12,7 +12,7 @@ import org.rhok.linguist.SpokenLanguageActivity;
 import org.rhok.linguist.code.Person;
 import org.rhok.linguist.location.MunicipalityActivity;
 
-public class InterviewMoreLanguagesActivity extends ActionBarActivity {
+public class InterviewMoreLanguagesActivity extends BaseInterviewActivity {
 
     private Person _person;
     private int _lastLanguageNumber;
@@ -25,29 +25,6 @@ public class InterviewMoreLanguagesActivity extends ActionBarActivity {
         Bundle extras = getIntent().getExtras();
         _person = (Person) extras.getSerializable("Person");
         _lastLanguageNumber = extras.getInt("LastLanguageNumber");
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_interview_more_languages, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void noButtonClick(View view)

@@ -14,11 +14,12 @@ import org.rhok.linguist.R;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Location;
 import org.rhok.linguist.code.Municipality;
+import org.rhok.linguist.interview.BaseInterviewActivity;
 
 import java.util.ArrayList;
 
 
-public class MunicipalityActivity extends ActionBarActivity {
+public class MunicipalityActivity extends BaseInterviewActivity {
     private String selectedMunicipality = "";
     private String from = null;
 
@@ -44,27 +45,6 @@ public class MunicipalityActivity extends ActionBarActivity {
         populateMunicipalities();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_municipality, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     private void populateMunicipalities() {
         ListView lvMunicipalities = (ListView) findViewById(R.id.municipality_list);
