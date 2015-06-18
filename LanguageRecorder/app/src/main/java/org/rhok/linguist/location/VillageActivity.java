@@ -14,7 +14,10 @@ import org.rhok.linguist.HomeNewActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Location;
+import org.rhok.linguist.code.Person;
 import org.rhok.linguist.code.Village;
+import org.rhok.linguist.interview.InterviewLivedLifeActivity;
+import org.rhok.linguist.recording.RecordingInstructionsActivity;
 
 import java.util.ArrayList;
 
@@ -114,13 +117,14 @@ public class VillageActivity extends ActionBarActivity {
         if (from == null) {
             // we have just come from the Setup section, so let's
             // go back to the home page
-            Intent intent = new Intent(this, HomeNewActivity.class);
+            Intent intent = new Intent(this, InterviewLivedLifeActivity.class);
+            //TODO fix this!
+            intent.putExtra("Person", new Person());
             startActivity(intent);
         } else {
 
-            // we have just come from the User Details section,
-            // so save them and take them to the home page
-            Intent intent = new Intent(this, HomeNewActivity.class);
+            // we have just come from the second interview section
+            Intent intent = new Intent(this, RecordingInstructionsActivity.class);
             startActivity(intent);
         }
     }

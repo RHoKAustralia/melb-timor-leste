@@ -1,35 +1,19 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    style="@style/activityStyle"
     tools:context="org.rhok.linguist.interview.InterviewAgeActivity">
 
-    <LinearLayout
-        android:paddingLeft="16px"
-        android:paddingRight="16px"
-        android:paddingTop="16px"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <LinearLayout style="@style/contentContainerStyle">
 
-        <TextView
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Ita-nia tinan hira? (What is your age?)"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <TextView style="@style/contentHeaderStyle"
+            android:text="Ita-nia tinan hira? (What is your age?)" />
 
         <EditText
             android:id="@+id/ageEditText"
             android:singleLine="true"
             android:hint=""
-            android:layout_marginTop="40px"
             android:inputType="number"
             android:imeOptions="actionDone"
-            android:layout_marginBottom="10px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -41,4 +25,4 @@
 
     <Button style="@style/nextButtonStyle" />
 
-</RelativeLayout>
+</LinearLayout>

@@ -17,7 +17,6 @@
             android:label="@string/splash_title" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -107,43 +106,35 @@
         </activity>
         <activity
             android:name=".interview.InterviewNameActivity"
-            android:label="Halo entrevista ho ema foun"
-            android:parentActivityName=".HomeNewActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.HomeNewActivity" />
+            android:label="Interview" >
         </activity>
         <activity
             android:name=".interview.InterviewAgeActivity"
-            android:label="@string/title_activity_interview_age"
-            android:parentActivityName=".HomeNewActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.HomeNewActivity" />
+            android:label="Interview">
         </activity>
         <activity
             android:name=".interview.InterviewGenderActivity"
-            android:label="@string/title_activity_interview_gender" >
+            android:label="Interview" >
         </activity>
         <activity
             android:name=".interview.InterviewOccupationActivity"
-            android:label="@string/title_activity_interview_occupation" >
+            android:label="Interview" >
         </activity>
         <activity
             android:name=".interview.InterviewEducationActivity"
-            android:label="@string/title_activity_interview_education" >
+            android:label="Interview" >
         </activity>
         <activity
             android:name=".interview.InterviewMoreLanguagesActivity"
-            android:label="@string/title_activity_interview_more_languages" >
+            android:label="Interview" >
         </activity>
         <activity
             android:name=".interview.InterviewLivedLifeActivity"
-            android:label="@string/title_activity_interview_lived_life" >
+            android:label="Interview" >
         </activity>
         <activity
             android:name=".interview.InterviewLivedLengthActivity"
-            android:label="@string/title_activity_interview_lived_length" >
+            android:label="Interview" >
         </activity>
         <activity
             android:name=".recording.RecordingAudioActivity"

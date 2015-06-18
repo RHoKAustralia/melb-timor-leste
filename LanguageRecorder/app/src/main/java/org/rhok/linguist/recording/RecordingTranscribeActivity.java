@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import org.rhok.linguist.HomeNewActivity;
 import org.rhok.linguist.R;
+import org.rhok.linguist.SplashActivity;
 
 public class RecordingTranscribeActivity extends ActionBarActivity {
 
@@ -46,7 +47,7 @@ public class RecordingTranscribeActivity extends ActionBarActivity {
     }
 
     public void nextButtonClick(android.view.View view) {
-        Intent intent = new Intent(this, HomeNewActivity.class);
+        Intent intent = new Intent(this, SplashActivity.class);
         startActivity(intent);
     }
 

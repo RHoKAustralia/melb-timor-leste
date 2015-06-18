@@ -10,6 +10,7 @@ import android.view.View;
 import org.rhok.linguist.location.MunicipalityActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.Person;
+import org.rhok.linguist.recording.RecordingInstructionsActivity;
 
 public class InterviewLivedLifeActivity extends ActionBarActivity {
 
@@ -57,7 +58,7 @@ public class InterviewLivedLifeActivity extends ActionBarActivity {
     public void yesButtonClick(View view) {
         _person.livesinyears = null;
 
-        Intent intent = new Intent(this, MunicipalityActivity.class);
+        Intent intent = new Intent(this, RecordingInstructionsActivity.class);
         intent.putExtra("Person", _person);
         intent.putExtra("from", "born");
         startActivity(intent);

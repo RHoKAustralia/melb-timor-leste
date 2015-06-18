@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import org.rhok.linguist.interview.InterviewNameActivity;
+
 
 public class SplashActivity extends ActionBarActivity {
 
@@ -18,8 +20,8 @@ public class SplashActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        //ActionBar actionBar = getSupportActionBar();
+        //actionBar.hide();
 
         ImageView imageView = (ImageView) findViewById(R.id.splashLogoImageView);
         imageView.setImageResource(R.drawable.splash_logo);
@@ -30,7 +32,7 @@ public class SplashActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_splash, menu);
+        getMenuInflater().inflate(R.menu.menu_splash, menu);
         return true;
     }
 
@@ -49,8 +51,8 @@ public class SplashActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void loadLanguageActivity(android.view.View view) {
-        Intent intent = new Intent(this, HomeNewActivity.class);
+    public void nextButtonClick(android.view.View view) {
+        Intent intent = new Intent(this, InterviewNameActivity.class);
         //intent.putExtra("LANGUAGE_QUESTION", "Which language do you want to research?");
         startActivity(intent);
     }

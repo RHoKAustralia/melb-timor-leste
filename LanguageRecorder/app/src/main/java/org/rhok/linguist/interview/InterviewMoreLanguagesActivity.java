@@ -10,6 +10,7 @@ import android.view.View;
 import org.rhok.linguist.R;
 import org.rhok.linguist.SpokenLanguageActivity;
 import org.rhok.linguist.code.Person;
+import org.rhok.linguist.location.MunicipalityActivity;
 
 public class InterviewMoreLanguagesActivity extends ActionBarActivity {
 
@@ -51,7 +52,7 @@ public class InterviewMoreLanguagesActivity extends ActionBarActivity {
 
     public void noButtonClick(View view)
     {
-        Intent intent = new Intent(this, InterviewLivedLifeActivity.class);
+        Intent intent = new Intent(this, MunicipalityActivity.class);
         intent.putExtra("Person", _person);
         startActivity(intent);
     }
