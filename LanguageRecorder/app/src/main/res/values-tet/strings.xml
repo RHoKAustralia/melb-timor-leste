@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Tetum Language Recorder</string>
+
+    <string name="interview_name">Ita-nia naran saida?</string>
+    <string name="interview_age">Ita-nia tinan hira?</string>
+
+</resources>

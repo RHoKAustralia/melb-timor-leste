@@ -6,7 +6,7 @@
     <LinearLayout style="@style/contentContainerStyle">
 
         <TextView style="@style/contentHeaderStyle"
-            android:text="Ita-nia naran saida?" />
+            android:text="@string/interview_name" />
 
         <EditText
             android:id="@+id/nameEditText"

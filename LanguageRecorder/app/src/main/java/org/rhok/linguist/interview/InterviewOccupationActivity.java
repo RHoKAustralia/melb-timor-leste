@@ -33,6 +33,8 @@ public class InterviewOccupationActivity extends BaseInterviewActivity {
         _person = (Person) intent.getSerializableExtra("person");
 
         populateOccupations();
+
+        setTitle("Interview - Occupation");
     }
 
     private void populateOccupations() {

@@ -1,16 +1,12 @@
 package org.rhok.linguist.location;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.rhok.linguist.HomeNewActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Location;
@@ -37,6 +33,8 @@ public class VillageActivity extends BaseInterviewActivity {
         populateVillages();
 
         from = getIntent().getExtras().getString("from");
+
+        setTitle("Interview - Village");
     }
 
     private void populateVillages() {

@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import org.rhok.linguist.HomeNewActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.SplashActivity;
 import org.rhok.linguist.interview.BaseInterviewActivity;

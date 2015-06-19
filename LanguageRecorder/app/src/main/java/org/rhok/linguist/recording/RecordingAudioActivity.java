@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.rhok.linguist.HomeNewActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.SplashActivity;
 import org.rhok.linguist.interview.BaseInterviewActivity;

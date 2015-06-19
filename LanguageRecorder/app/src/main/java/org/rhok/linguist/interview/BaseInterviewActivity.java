@@ -1,12 +1,19 @@
 package org.rhok.linguist.interview;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.rhok.linguist.AppSettingsActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.SplashActivity;
+
+import java.util.Locale;
 
 /**
  * Created by lachlan on 18/06/2015.
@@ -32,8 +39,36 @@ public class BaseInterviewActivity extends ActionBarActivity {
             Intent intent = new Intent(this, SplashActivity.class);
             startActivity(intent);
         }
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, AppSettingsActivity.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        Configuration config = getBaseContext().getResources().getConfiguration();
+        Boolean tetumEnabled = settings.getBoolean("pref_tetum", false);
+        String localeName = (tetumEnabled ? "tet" : "en");
+
+        if (!config.locale.getLanguage().equals(localeName))
+        {
+            Locale locale = new Locale(localeName);
+            Locale.setDefault(locale);
+
+            config.setLocale(locale);
+//            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+            this.recreate();
+        }
+
+
     }
 
 }

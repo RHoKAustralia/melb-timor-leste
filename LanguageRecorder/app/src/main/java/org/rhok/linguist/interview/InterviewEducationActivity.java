@@ -34,6 +34,8 @@ public class InterviewEducationActivity extends ActionBarActivity {
         _person = (Person) intent.getSerializableExtra("person");
 
         populateEducations();
+
+        setTitle("Interview - Education");
     }
 
 

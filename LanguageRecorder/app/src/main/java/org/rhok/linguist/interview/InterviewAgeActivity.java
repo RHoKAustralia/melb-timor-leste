@@ -23,6 +23,8 @@ public class InterviewAgeActivity extends BaseInterviewActivity {
 
         Intent intent = getIntent();
         _person = (Person) intent.getSerializableExtra("person");
+
+        setTitle("Interview - Age");
     }
 
 

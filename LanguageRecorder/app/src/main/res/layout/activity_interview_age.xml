@@ -6,7 +6,7 @@
     <LinearLayout style="@style/contentContainerStyle">
 
         <TextView style="@style/contentHeaderStyle"
-            android:text="Ita-nia tinan hira? (What is your age?)" />
+            android:text="@string/interview_age" />
 
         <EditText
             android:id="@+id/ageEditText"

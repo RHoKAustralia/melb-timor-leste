@@ -11,12 +11,14 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:name="org.rhok.linguist.MyApplication">
         <activity
             android:name=".SplashActivity"
             android:label="@string/splash_title" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -71,19 +73,15 @@
         </activity>
         <activity
             android:name=".location.SubDistrictActivity"
-            android:label="Select Sub District">
+            android:label="Select Sub District" >
         </activity>
         <activity
             android:name=".location.VillageActivity"
-            android:label="Select Village">
+            android:label="Select Village" >
         </activity>
         <activity
             android:name=".StudyActivity"
-            android:label="Select Study">
-        </activity>
-        <activity
-            android:name=".HomeNewActivity"
-            android:label="@string/title_activity_home_new" >
+            android:label="Select Study" >
         </activity>
         <activity
             android:name=".interview.InterviewNameActivity"
@@ -91,7 +89,7 @@
         </activity>
         <activity
             android:name=".interview.InterviewAgeActivity"
-            android:label="Interview">
+            android:label="Interview" >
         </activity>
         <activity
             android:name=".interview.InterviewGenderActivity"
@@ -132,6 +130,10 @@
         <activity
             android:name=".recording.RecordingTranscribeActivity"
             android:label="@string/title_activity_recording_transcribe" >
+        </activity>
+        <activity
+            android:name=".AppSettingsActivity"
+            android:label="@string/title_activity_app_settings" >
         </activity>
     </application>
 

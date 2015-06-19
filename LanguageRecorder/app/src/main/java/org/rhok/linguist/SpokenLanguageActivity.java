@@ -38,6 +38,8 @@ public class SpokenLanguageActivity extends BaseInterviewActivity {
             nextActivity = extras.getString("NEXT_ACTIVITY");
             _person = (Person) extras.getSerializable("Person");
         }
+
+        setTitle("Interview - Language");
     }
 
     @Override

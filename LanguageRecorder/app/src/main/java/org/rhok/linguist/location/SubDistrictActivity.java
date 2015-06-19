@@ -32,6 +32,8 @@ public class SubDistrictActivity extends BaseInterviewActivity {
 
         populateSubDistricts();
         from = getIntent().getExtras().getString("from");
+
+        setTitle("Interview - District");
     }
 
 
