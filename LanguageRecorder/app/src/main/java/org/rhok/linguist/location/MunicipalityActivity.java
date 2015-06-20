@@ -33,18 +33,17 @@ public class MunicipalityActivity extends BaseInterviewActivity {
 
         TextView textView = (TextView) findViewById(R.id.municipalityQuestionTextView);
 
+        String question = "";
         if (from == null) {
-            //setTitle("Select municipality for study " + selectedStudy());
-            textView.setText("Ita hela iha Munisípiu ida-ne'ebé?");
-
-        } else {
-            //setTitle("Halo entrevista ho ema foun");
-            textView.setText("Ita moris iha munisípiu ida-ne'ebé?");
+            question = getResources().getString(R.string.interview_municipality_lives);
+        }
+        else {
+            question = getResources().getString(R.string.interview_municipality_born);
         }
 
-        populateMunicipalities();
+        textView.setText(question);
 
-        //setTitle("Interview - Municipality");
+        populateMunicipalities();
     }
 
 

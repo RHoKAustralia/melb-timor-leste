@@ -38,7 +38,7 @@
             android:layout_marginTop="0px"
             android:gravity="center_horizontal"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Ne'e saida iha Idalaka?"
+            android:text="@string/interview_audio_recording"
             android:id="@+id/recordingQuestionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -49,7 +49,7 @@
             android:gravity="center_horizontal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#ff0000"
-            android:text="Recording"
+            android:text="@string/interview_recording"
             android:id="@+id/recordingMessageTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -58,7 +58,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textAlignment="center"
-            android:text="Rekaman ne'e di'ak ka lae?"
+            android:text="@string/interview_recording_ok"
             android:visibility="gone"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/recordOkTextView"
@@ -71,7 +71,7 @@
             android:layout_marginTop="0px"
             android:gravity="center_horizontal"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Ita hakerek liafuan ne'e oinsá?"
+            android:text="@string/interview_transcribe"
             android:id="@+id/transcribeTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

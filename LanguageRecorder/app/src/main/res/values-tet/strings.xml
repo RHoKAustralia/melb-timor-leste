@@ -4,7 +4,24 @@
     <string name="interview_title">Entrevista</string>
     <string name="interview_name">Ita-nia naran saida?</string>
     <string name="interview_age">Ita-nia tinan hira?</string>
-    <string name="interview_age_years">(tinan)</string>
+    <string name="interview_years">(tinan)</string>
+    <string name="interview_gender">Ita mane ka feto?</string>
+    <string name="interview_occupation">Ita-nia servisu saida?</string>
+    <string name="interview_education">Ita eskola to\'o iha nivel saida?</string>
+    <string name="interview_primarylanguage">Ita nia lian primeiru mak saida?</string>
+    <string name="interview_morelanguages">Ita mós ko\'alia lian seluk?</string>
+
+    <string name="interview_municipality_lives">Ita hela iha Munisípiu ida-ne\'ebé?</string>
+    <string name="interview_municipality_born">Ita moris iha munisípiu ida-ne\'ebé?</string>
+
+    <string name="interview_lived_life">Ita hela iha Bauro husi moris to\'o agora?</string>
+    <string name="interview_lived_length">Ita hela iha Bauro tinan hira ona?</string>
+
+    <string name="interview_audio_instructions">Hatudu dezeñu ba ema ida, depois rekam nia koalia liafuan ne\'e iha ninia lian.</string>
+    <string name="interview_audio_recording">Ne\'e saida iha Idalaka?</string>
+    <string name="interview_recording">Rekaman</string>
+    <string name="interview_recording_ok">Rekaman ne\'e di\'ak ka lae?</string>
+    <string name="interview_transcribe">Ita hakerek liafuan ne\'e oinsá?</string>
 
     <string name="next_button">Kontinua</string>
     <string name="yes_button">Sin</string>

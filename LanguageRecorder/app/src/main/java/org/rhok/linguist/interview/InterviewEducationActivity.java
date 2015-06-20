@@ -81,9 +81,9 @@ public class InterviewEducationActivity extends ActionBarActivity {
         } else {
             _person.education = selectedEducation;
 
+            String question = getResources().getString(R.string.interview_primarylanguage);
             Intent intent = new Intent(this, SpokenLanguageActivity.class);
-            intent.putExtra("LANGUAGE_QUESTION",
-                    "Ita nia lian primeiru mak saida? (primary language)");
+            intent.putExtra("LANGUAGE_QUESTION", question);
             intent.putExtra("NEXT_ACTIVITY", "MoreLanguages");
             intent.putExtra("Person", _person);
             intent.putExtra("LanguageNumber", 1);

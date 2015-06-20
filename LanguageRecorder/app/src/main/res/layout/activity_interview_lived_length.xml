@@ -6,7 +6,7 @@
     <LinearLayout style="@style/contentContainerStyle">
 
         <TextView style="@style/contentHeaderStyle"
-            android:text="Ita hela iha Bauro tinan hira ona? (how many years in current village?)" />
+            android:text="@string/interview_lived_length" />
 
         <EditText
             android:id="@+id/longLivedEditText"
@@ -19,7 +19,7 @@
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(tinan)" />
+            android:text="@string/interview_years" />
 
     </LinearLayout>
 

@@ -7,7 +7,7 @@
         style="@style/contentContainerStyle">
 
         <TextView style="@style/contentHeaderStyle"
-            android:text="Ita hela iha Bauro husi moris to'o agora?"
+            android:text="@string/interview_lived_life"
             android:id="@+id/textView5" />
 
     </LinearLayout>

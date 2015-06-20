@@ -7,7 +7,7 @@
 
         <TextView style="@style/contentHeaderStyle"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Ita eskola to'o iha nivel saida? (Education?)" />
+            android:text="@string/interview_education" />
 
         <ListView style="@style/listViewStyle"
             android:id="@+id/educationListView" />

@@ -7,7 +7,7 @@
         style="@style/contentContainerStyle">
 
         <TextView style="@style/contentHeaderStyle"
-            android:text="Do you speak another language?"
+            android:text="@string/interview_morelanguages"
             android:id="@+id/textView5" />
 
     </LinearLayout>

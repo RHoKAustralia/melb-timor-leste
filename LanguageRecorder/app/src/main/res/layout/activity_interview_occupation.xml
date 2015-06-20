@@ -6,7 +6,7 @@
     <LinearLayout style="@style/contentContainerStyle">
 
         <TextView style="@style/contentHeaderStyle"
-            android:text="Ita-nia servisu saida? (Occupation?)"
+            android:text="@string/interview_occupation"
             android:id="@+id/occupationQuestion" />
 
         <ListView style="@style/listViewStyle"

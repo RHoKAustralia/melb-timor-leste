@@ -7,7 +7,24 @@
     <string name="interview_title">Interview</string>
     <string name="interview_name">What is your name?</string>
     <string name="interview_age">What is your age?</string>
-    <string name="interview_age_years">(years)</string>
+    <string name="interview_years">(years)</string>
+    <string name="interview_gender">What is your gender?</string>
+    <string name="interview_occupation">What is your occupation?</string>
+    <string name="interview_education">What is your education?</string>
+    <string name="interview_primarylanguage">What is your primary language?</string>
+    <string name="interview_morelanguages">Do you speak another language?</string>
+
+    <string name="interview_municipality_lives">What municipality do you live in?</string>
+    <string name="interview_municipality_born">What municipality were you born in?</string>
+
+    <string name="interview_lived_life">Have you lived here your whole life?</string>
+    <string name="interview_lived_length">How many years in current village?</string>
+
+    <string name="interview_audio_instructions">Please say the word for the picture you see on the screen.</string>
+    <string name="interview_audio_recording">What is the word for this?</string>
+    <string name="interview_recording">Recording</string>
+    <string name="interview_recording_ok">Is this recording ok?</string>
+    <string name="interview_transcribe">What is the transcription for this word?</string>
 
     <!-- Button settings -->
     <string name="next_button">Next</string>

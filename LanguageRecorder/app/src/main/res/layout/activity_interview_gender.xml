@@ -6,7 +6,7 @@
     <LinearLayout style="@style/contentContainerStyle">
 
         <TextView style="@style/contentHeaderStyle"
-            android:text="Ita mane ka feto? (Gender?)" />
+            android:text="@string/interview_gender" />
 
         <ListView style="@style/listViewStyle"
             android:id="@+id/genderListView" />
