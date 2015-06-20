@@ -34,7 +34,7 @@ public class InterviewGenderActivity extends BaseInterviewActivity {
 
         populateGenders();
 
-        setTitle("Interview - Gender");
+        //setTitle("Interview - Gender");
     }
 
 

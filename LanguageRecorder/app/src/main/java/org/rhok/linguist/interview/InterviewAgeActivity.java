@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,10 +22,15 @@ public class InterviewAgeActivity extends BaseInterviewActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interview_age);
 
+        EditText editText = (EditText)findViewById(R.id.ageEditText);
+        if (editText.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+
         Intent intent = getIntent();
         _person = (Person) intent.getSerializableExtra("person");
 
-        setTitle("Interview - Age");
+//        setTitle("Interview - Age");
     }
 
 

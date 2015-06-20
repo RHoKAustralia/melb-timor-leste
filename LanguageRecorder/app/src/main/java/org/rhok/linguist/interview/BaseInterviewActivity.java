@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import org.rhok.linguist.AppSettingsActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.SplashActivity;
+import org.rhok.linguist.util.LocaleHelper;
 
 import java.util.Locale;
 
@@ -51,23 +52,9 @@ public class BaseInterviewActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        Configuration config = getBaseContext().getResources().getConfiguration();
-        Boolean tetumEnabled = settings.getBoolean("pref_tetum", false);
-        String localeName = (tetumEnabled ? "tet" : "en");
-
-        if (!config.locale.getLanguage().equals(localeName))
-        {
-            Locale locale = new Locale(localeName);
-            Locale.setDefault(locale);
-
-            config.setLocale(locale);
-//            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-
+        if (LocaleHelper.updateLocale(getBaseContext(), this)) {
             this.recreate();
         }
-
 
     }
 

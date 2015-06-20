@@ -24,7 +24,7 @@ public class InterviewLivedLifeActivity extends BaseInterviewActivity {
         Bundle extras = getIntent().getExtras();
         _person = (Person) extras.getSerializable("Person");
 
-        setTitle("Interview - Lived");
+        //setTitle("Interview - Lived");
     }
 
     public void noButtonClick(View view) {

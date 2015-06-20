@@ -26,7 +26,7 @@ public class InterviewMoreLanguagesActivity extends BaseInterviewActivity {
         _person = (Person) extras.getSerializable("Person");
         _lastLanguageNumber = extras.getInt("LastLanguageNumber");
 
-        setTitle("Interview - Language");
+        //setTitle("Interview - Language");
     }
 
     public void noButtonClick(View view)

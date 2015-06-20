@@ -25,7 +25,7 @@ public class InterviewLivedLengthActivity extends BaseInterviewActivity {
         Bundle extras = getIntent().getExtras();
         _person = (Person) extras.getSerializable("Person");
 
-        setTitle("Interview - Lived");
+        //setTitle("Interview - Lived");
     }
 
 

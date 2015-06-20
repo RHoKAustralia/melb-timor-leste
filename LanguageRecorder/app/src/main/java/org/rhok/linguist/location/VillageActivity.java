@@ -34,7 +34,7 @@ public class VillageActivity extends BaseInterviewActivity {
 
         from = getIntent().getExtras().getString("from");
 
-        setTitle("Interview - Village");
+        //setTitle("Interview - Village");
     }
 
     private void populateVillages() {

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -34,7 +35,11 @@ public class InterviewNameActivity extends BaseInterviewActivity {
 */
         setContentView(R.layout.activity_interview_name);
 
-        setTitle("Interview - Name");
+        EditText editText = (EditText)findViewById(R.id.nameEditText);
+        if (editText.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+        //setTitle("Interview - Name");
 
 
     }

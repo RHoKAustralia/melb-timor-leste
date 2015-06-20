@@ -1,6 +1,7 @@
 package org.rhok.linguist;
 
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import org.rhok.linguist.interview.InterviewNameActivity;
+import org.rhok.linguist.util.LocaleHelper;
 
 
 public class SplashActivity extends ActionBarActivity {
@@ -22,9 +24,6 @@ public class SplashActivity extends ActionBarActivity {
         setContentView(R.layout.activity_splash);
         //ActionBar actionBar = getSupportActionBar();
         //actionBar.hide();
-
-        ImageView imageView = (ImageView) findViewById(R.id.splashLogoImageView);
-        imageView.setImageResource(R.drawable.splash_logo);
 
     }
 
@@ -51,6 +50,18 @@ public class SplashActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (LocaleHelper.updateLocale(getBaseContext(), this)) {
+            this.recreate();
+        }
+
+    }
+
 
     public void nextButtonClick(android.view.View view) {
         Intent intent = new Intent(this, InterviewNameActivity.class);

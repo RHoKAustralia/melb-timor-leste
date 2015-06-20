@@ -34,7 +34,7 @@ public class InterviewOccupationActivity extends BaseInterviewActivity {
 
         populateOccupations();
 
-        setTitle("Interview - Occupation");
+        //setTitle("Interview - Occupation");
     }
 
     private void populateOccupations() {

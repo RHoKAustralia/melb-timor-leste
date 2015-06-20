@@ -44,7 +44,7 @@ public class MunicipalityActivity extends BaseInterviewActivity {
 
         populateMunicipalities();
 
-        setTitle("Interview - Municipality");
+        //setTitle("Interview - Municipality");
     }
 
 

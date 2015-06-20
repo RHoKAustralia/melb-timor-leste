@@ -35,7 +35,7 @@ public class InterviewEducationActivity extends ActionBarActivity {
 
         populateEducations();
 
-        setTitle("Interview - Education");
+        //setTitle("Interview - Education");
     }
 
 

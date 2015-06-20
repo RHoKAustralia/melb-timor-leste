@@ -2,14 +2,18 @@
     <string name="app_name">Local Linguist</string>
 
     <!-- Splash screen settings -->
-    <string name="splash_title">Local Linguist</string>
     <string name="splash_start_button">Komesa</string>
 
+    <string name="interview_title">Interview</string>
     <string name="interview_name">What is your name?</string>
     <string name="interview_age">What is your age?</string>
+    <string name="interview_age_years">(years)</string>
 
     <!-- Button settings -->
     <string name="next_button">Next</string>
+    <string name="start_button">Start</string>
+    <string name="yes_button">Yes</string>
+    <string name="no_button">No</string>
 
     <string name="home_title">Home</string>
     <string name="home_select_person">Person selection</string>

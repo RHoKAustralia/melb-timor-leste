@@ -1,30 +1,37 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/activityStyle"
-    tools:context="org.rhok.linguist.SplashActivity">
+    tools:context="org.rhok.linguist.SplashActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout style="@style/contentContainerStyle">
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/splashLogoImageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/splash_logo_padding"
             android:paddingRight="@dimen/splash_logo_padding"
-            android:id="@+id/splashLogoImageView"
-            android:contentDescription="@string/app_name" />
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:src="@drawable/splash_logo" />
 
-        <TextView android:text="@string/splash_title"
+        <TextView android:text="@string/app_name"
             android:textColor="#00A887"
-            android:layout_weight="1"
+            android:paddingTop="@dimen/splash_logo_padding"
+            android:layout_below="@+id/splashLogoImageView"
             android:textSize="16pt"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:id="@+id/splash_title"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <Button style="@style/nextButtonStyle" android:text="Start" />
+    <Button style="@style/nextButtonStyle" android:text="@string/start_button" />
 
-</LinearLayout>
+</RelativeLayout>
