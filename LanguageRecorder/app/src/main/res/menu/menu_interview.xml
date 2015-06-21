@@ -5,10 +5,10 @@
 
     <item android:id="@+id/action_cancel" android:title="Cancel Interview"
         android:orderInCategory="100" app:showAsAction="never" />
-
+<!--
     <item android:id="@+id/action_upload" android:title="Upload"
         android:orderInCategory="101" app:showAsAction="never" />
-
+-->
     <item android:id="@+id/action_settings" android:title="Settings"
         android:orderInCategory="105" app:showAsAction="never" />
 

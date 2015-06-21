@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.rhok.linguist.location.MunicipalityActivity;
@@ -25,6 +27,18 @@ public class InterviewLivedLengthActivity extends BaseInterviewActivity {
         Bundle extras = getIntent().getExtras();
         _person = (Person) extras.getSerializable("Person");
 
+        String question = getResources()
+                .getString(R.string.interview_lived_length)
+                .replace("##village##", _person.livesVillage);
+
+        TextView livedLifeTextView = (TextView) findViewById(R.id.livedLengthQuestion);
+        livedLifeTextView.setText(question);
+
+        EditText editText = (EditText)findViewById(R.id.longLivedEditText);
+        if (editText.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+
         //setTitle("Interview - Lived");
     }
 
@@ -42,8 +56,8 @@ public class InterviewLivedLengthActivity extends BaseInterviewActivity {
             _person.livesinyears = Integer.parseInt(longLived);
 
             Intent intent = new Intent(this, MunicipalityActivity.class);
-            intent.putExtra("person", _person);
-            intent.putExtra("from", "livedlength");
+            intent.putExtra("Person", _person);
+            intent.putExtra("mode", "born");
             startActivity(intent);
         }
     }

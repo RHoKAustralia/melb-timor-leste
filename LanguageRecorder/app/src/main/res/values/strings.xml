@@ -14,11 +14,19 @@
     <string name="interview_primarylanguage">What is your primary language?</string>
     <string name="interview_morelanguages">Do you speak another language?</string>
 
-    <string name="interview_municipality_lives">What municipality do you live in?</string>
-    <string name="interview_municipality_born">What municipality were you born in?</string>
 
-    <string name="interview_lived_life">Have you lived here your whole life?</string>
-    <string name="interview_lived_length">How many years in current village?</string>
+
+    <string name="interview_municipality_lives">What municipality do you live in?</string>
+    <string name="interview_district_lives">In ##municipality##, what district do you live?</string>
+    <string name="interview_village_lives">In ##district##, what village do you live?</string>
+
+    <string name="interview_lived_life">Have you lived in ##village## your whole life?</string>
+
+    <string name="interview_municipality_born">What municipality were you born in?</string>
+    <string name="interview_district_born">In ##municipality##, what district were you born in?</string>
+    <string name="interview_village_born">In ##district##, what village were you born in?</string>
+
+    <string name="interview_lived_length">How many years have you lived in ##village##?</string>
 
     <string name="interview_audio_instructions">Please say the word for the picture you see on the screen.</string>
     <string name="interview_audio_recording">What is the word for this?</string>

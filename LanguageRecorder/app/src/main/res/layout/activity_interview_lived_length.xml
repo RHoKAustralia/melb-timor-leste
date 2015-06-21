@@ -6,7 +6,8 @@
     <LinearLayout style="@style/contentContainerStyle">
 
         <TextView style="@style/contentHeaderStyle"
-            android:text="@string/interview_lived_length" />
+            android:id="@+id/livedLengthQuestion"
+            android:text="@string/interview_lived_length"  />
 
         <EditText
             android:id="@+id/longLivedEditText"

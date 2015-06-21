@@ -19,6 +19,15 @@ public class Person implements Serializable {
     public String otherlanguages = "";
     public String occupation = "";
     public String education = "";
+
+    public String livesMunicipality;
+    public String livesDistrict;
+    public String livesVillage;
+    public Boolean livedWholeLife;
+    public String bornMunicipality;
+    public String bornDistrict;
+    public String bornVillage;
+
     public Double latitude;
     public Double longitude;
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import org.rhok.linguist.location.MunicipalityActivity;
 import org.rhok.linguist.R;
@@ -24,6 +25,14 @@ public class InterviewLivedLifeActivity extends BaseInterviewActivity {
         Bundle extras = getIntent().getExtras();
         _person = (Person) extras.getSerializable("Person");
 
+        String question =
+                getResources()
+                        .getString(R.string.interview_lived_life)
+                        .replace("##village##", _person.livesVillage);
+
+        TextView livedLifeTextView = (TextView) findViewById(R.id.interview_lived_life);
+        livedLifeTextView.setText(question);
+
         //setTitle("Interview - Lived");
     }
 
@@ -39,7 +48,7 @@ public class InterviewLivedLifeActivity extends BaseInterviewActivity {
 
         Intent intent = new Intent(this, RecordingInstructionsActivity.class);
         intent.putExtra("Person", _person);
-        intent.putExtra("from", "born");
+        intent.putExtra("mode", "born");
         startActivity(intent);
     }
 }

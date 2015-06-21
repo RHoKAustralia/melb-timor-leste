@@ -14,6 +14,7 @@ import org.rhok.linguist.R;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Location;
 import org.rhok.linguist.code.Municipality;
+import org.rhok.linguist.code.Person;
 import org.rhok.linguist.interview.BaseInterviewActivity;
 
 import java.util.ArrayList;
@@ -21,20 +22,23 @@ import java.util.ArrayList;
 
 public class MunicipalityActivity extends BaseInterviewActivity {
     private String selectedMunicipality = "";
-    private String from = null;
+    private String mode = null;
+    private Person _person;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_municipality);
 
-        Intent intent = getIntent();
-        from = intent.getExtras().getString("from");
+        Bundle extras = getIntent().getExtras();
+
+        mode = extras.getString("mode");
+        _person = (Person) extras.getSerializable("Person");
 
         TextView textView = (TextView) findViewById(R.id.municipalityQuestionTextView);
 
         String question = "";
-        if (from == null) {
+        if (mode.equals("lives")) {
             question = getResources().getString(R.string.interview_municipality_lives);
         }
         else {
@@ -77,19 +81,18 @@ public class MunicipalityActivity extends BaseInterviewActivity {
         return m;
     }
 
-    private String selectedStudy() {
-        Bundle extras = getIntent().getExtras();
-        String value = "";
-        if (extras != null) {
-            value = extras.getString("STUDY");
-        }
-        return value;
-    }
-
     public void nextButtonClick(android.view.View view) {
+
+        if (mode.equals("lives")) {
+            _person.livesMunicipality = selectedMunicipality;
+        }
+        else {
+            _person.bornMunicipality = selectedMunicipality;
+        }
+
         Intent intent = new Intent(this, SubDistrictActivity.class);
-        intent.putExtra("MUNICIPALITY", selectedMunicipality);
-        intent.putExtra("from", from);
+        intent.putExtra("Person", _person);
+        intent.putExtra("mode", mode);
         startActivity(intent);
     }
 

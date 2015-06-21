@@ -19,22 +19,43 @@ import org.rhok.linguist.recording.RecordingInstructionsActivity;
 import java.util.ArrayList;
 
 public class VillageActivity extends BaseInterviewActivity {
-    private String selectedVillage = "";
-    private String from = null;
+
+    private String selectedDistrict = null;
+    private String selectedVillage = null;
+    private String mode = null;
+    private Person _person = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_village);
 
+        Bundle extras = getIntent().getExtras();
+
+        mode = extras.getString("mode");
+        _person = (Person) extras.getSerializable("Person");
+
+        int questionTextId = 0;
+
+        if (mode.equals("lives")) {
+            selectedDistrict = _person.livesDistrict;
+            questionTextId = R.string.interview_village_lives;
+        }
+        if (mode.equals("born")) {
+            selectedDistrict = _person.bornDistrict;
+            questionTextId = R.string.interview_village_born;
+        }
+
         TextView whichVillageTextView = (TextView) findViewById(R.id.whichVillageTextView);
-        whichVillageTextView.setText("Select village for " + selectedSubDistrict());
+
+        String whichVillage =
+                getResources()
+                        .getString(questionTextId)
+                        .replace("##district##", selectedDistrict );
+
+        whichVillageTextView.setText(whichVillage);
 
         populateVillages();
-
-        from = getIntent().getExtras().getString("from");
-
-        //setTitle("Interview - Village");
     }
 
     private void populateVillages() {
@@ -62,27 +83,13 @@ public class VillageActivity extends BaseInterviewActivity {
         ArrayList<Village> m = new ArrayList<>();
         for (String loc : locations()) {
             l = new Location(loc);
-            if (l.subdistrict.equals(selectedSubDistrict())) {
+            if (l.subdistrict.equals(selectedDistrict)) {
                 m.add(new Village(this, l.municipality, l.subdistrict, l.village));
             }
         }
         return m;
     }
 
-    public void loadVillageActivity(android.view.View view) {
-        Intent intent = new Intent(this, VillageActivity.class);
-        intent.putExtra("VILLAGE", selectedVillage);
-        startActivity(intent);
-    }
-
-    private String selectedSubDistrict() {
-        Bundle extras = getIntent().getExtras();
-        String value = "";
-        if (extras != null) {
-            value = extras.getString("SUB_DISTRICT");
-        }
-        return value;
-    }
 
     private String[] locations() {
         return getResources().getStringArray(R.array.locations);
@@ -91,18 +98,19 @@ public class VillageActivity extends BaseInterviewActivity {
 
     public void nextButtonClick(View view) {
 
-        if (from == null) {
-            // we have just come from the Setup section, so let's
-            // go back to the home page
-            Intent intent = new Intent(this, InterviewLivedLifeActivity.class);
-            //TODO fix this!
-            intent.putExtra("Person", new Person());
-            startActivity(intent);
-        } else {
+        Intent intent = null;
 
-            // we have just come from the second interview section
-            Intent intent = new Intent(this, RecordingInstructionsActivity.class);
-            startActivity(intent);
+        if (mode.equals("lives")) {
+            _person.livesVillage = selectedVillage;
+            intent = new Intent(this, InterviewLivedLifeActivity.class);
         }
+        else {
+            _person.bornVillage = selectedVillage;
+            intent = new Intent(this, RecordingInstructionsActivity.class);
+        }
+
+        intent.putExtra("Person", _person);
+
+        startActivity(intent);
     }
 }

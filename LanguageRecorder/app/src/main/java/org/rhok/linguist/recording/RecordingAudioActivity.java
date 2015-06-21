@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -125,6 +126,10 @@ public class RecordingAudioActivity extends BaseInterviewActivity {
         transcribeEditText.setVisibility(View.VISIBLE);
         transcribeTextView.setVisibility(View.VISIBLE);
         nextButton.setVisibility(View.VISIBLE);
+
+        if (transcribeEditText.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
 
         transcribing = true;
     }

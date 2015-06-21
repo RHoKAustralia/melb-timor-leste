@@ -28,7 +28,7 @@ public class SpokenLanguageActivity extends BaseInterviewActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spoken_language);
         setTitle("Select Language");
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         TextView question = (TextView)findViewById(R.id.language_question);
         question.setText(languageQuestion());
         populateLanguages();

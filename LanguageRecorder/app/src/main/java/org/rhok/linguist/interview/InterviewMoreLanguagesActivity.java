@@ -33,6 +33,7 @@ public class InterviewMoreLanguagesActivity extends BaseInterviewActivity {
     {
         Intent intent = new Intent(this, MunicipalityActivity.class);
         intent.putExtra("Person", _person);
+        intent.putExtra("mode", "lives");
         startActivity(intent);
     }
 

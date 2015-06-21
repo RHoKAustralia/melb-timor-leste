@@ -8,7 +8,7 @@
 
         <TextView style="@style/contentHeaderStyle"
             android:text="@string/interview_lived_life"
-            android:id="@+id/textView5" />
+            android:id="@+id/interview_lived_life" />
 
     </LinearLayout>
 

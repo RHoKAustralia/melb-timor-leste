@@ -12,10 +12,15 @@
     <string name="interview_morelanguages">Ita mós ko\'alia lian seluk?</string>
 
     <string name="interview_municipality_lives">Ita hela iha Munisípiu ida-ne\'ebé?</string>
-    <string name="interview_municipality_born">Ita moris iha munisípiu ida-ne\'ebé?</string>
+    <string name="interview_district_lives">Iha ##municipality##, ita hela iha sub-distritu ida-ne\'ebé?</string>
+    <string name="interview_village_lives">Iha ##district##, ita hela iha suku ida-ne\'ebé?</string>
 
-    <string name="interview_lived_life">Ita hela iha Bauro husi moris to\'o agora?</string>
-    <string name="interview_lived_length">Ita hela iha Bauro tinan hira ona?</string>
+    <string name="interview_municipality_born">Ita moris iha munisípiu ida-ne\'ebé?</string>
+    <string name="interview_district_born">Iha ##municipality##, ita moris iha sub-distritu ida-ne\'ebé?</string>
+    <string name="interview_village_born">Iha ##district##, ita hela iha suku ida-ne\'ebé?</string>
+
+    <string name="interview_lived_life">Ita hela iha ##village## husi moris to\'o agora?</string>
+    <string name="interview_lived_length">Ita hela iha ##village## tinan hira ona?</string>
 
     <string name="interview_audio_instructions">Hatudu dezeñu ba ema ida, depois rekam nia koalia liafuan ne\'e iha ninia lian.</string>
     <string name="interview_audio_recording">Ne\'e saida iha Idalaka?</string>
