@@ -8,28 +8,25 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
     public int personid = 0;
-    public String name = "";
-    public Integer age;
-    public String gender = "";
-    public String livesin = "";
-    public Integer livesinyears;
-    public String firstlanguage = "";
-    public String secondlanguage = "";
-    public String thirdlanguage = "";
-    public String otherlanguages = "";
-    public String occupation = "";
-    public String education = "";
 
-    public String livesMunicipality;
-    public String livesDistrict;
-    public String livesVillage;
+    public String name;
+    public Integer age;
+    public String gender;
+    public String occupation;
+    public String education;
+    public String firstLanguage;
+    public String secondLanguage;
+    public String thirdLanguage;
+    public String fourthLanguage;
+    public String livesInMunicipality;
+    public String livesInDistrict;
+    public String livesInVillage;
     public Boolean livedWholeLife;
+    public Integer livesInYears;
     public String bornMunicipality;
     public String bornDistrict;
     public String bornVillage;
 
-    public Double latitude;
-    public Double longitude;
 
     public PersonWord[] Words;
 
@@ -37,29 +34,56 @@ public class Person implements Serializable {
 
     }
 
-    public Person( int _id, String _name, Integer _age, String _gender, String _livesin,
-                   Integer _livesinyears, String _firstlanguage, String _secondlanguage,
-                   String _thirdlanguage, String _otherlanguages, String _education,
-                   Double _latitude, Double _longitude)
+    public Person (String _name) {
+        name = _name;
+    }
+
+    public Person( int _id,
+                   String _name,
+                   Integer _age,
+                   String _gender,
+                   String _occupation,
+                   String _education,
+                   String _firstLanguage,
+                   String _secondLanguage,
+                   String _thirdLanguage,
+                   String _fourthLanguage,
+                   String _livesInMunicipality,
+                   String _livesInDistrict,
+                   String _livesInVillage,
+                   Boolean _livedWholeLife,
+                   Integer _livesInYears,
+                   String _bornMunicipality,
+                   String _bornDistrict,
+                   String _bornVillage
+                 )
     {
         personid = _id;
         name = _name;
         age = _age;
         gender = _gender;
-        livesin = _livesin;
-        livesinyears = _livesinyears;
-        firstlanguage = _firstlanguage;
-        secondlanguage = _secondlanguage;
-        thirdlanguage = _thirdlanguage;
-        otherlanguages = _otherlanguages;
+        occupation = _occupation;
         education = _education;
-        latitude = _latitude;
-        longitude = _longitude;
+        firstLanguage = _firstLanguage;
+        secondLanguage = _secondLanguage;
+        thirdLanguage = _thirdLanguage;
+        fourthLanguage = _fourthLanguage;
+        livesInMunicipality = _livesInMunicipality;
+        livesInDistrict = _livesInDistrict;
+        livesInVillage = _livesInVillage;
+        livedWholeLife = _livedWholeLife;
+        livesInYears = _livesInYears;
+        bornMunicipality = _bornMunicipality;
+        bornDistrict = _bornDistrict;
+        bornVillage = _bornVillage;
+
     }
 
     public String getAsJson(PersonWord[] words) {
         StringBuilder sb = new StringBuilder();
-        sb.append("{");
+
+        //TODO find a JSON serialisation library
+        /*sb.append("{");
         addField(sb, "name", this.name, true, true);
         addField(sb, "age", this.age, false, true);
         addField(sb, "gender", this.gender, true, true);
@@ -94,7 +118,7 @@ public class Person implements Serializable {
             }
         }
         sb.append("]");
-        sb.append("}");
+        sb.append("}");*/
         return sb.toString();
     }
 

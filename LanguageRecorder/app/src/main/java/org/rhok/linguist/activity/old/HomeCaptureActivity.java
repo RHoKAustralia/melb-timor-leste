@@ -59,7 +59,7 @@ public class HomeCaptureActivity extends ActionBarActivity {
             DatabaseHelper db = new DatabaseHelper(getApplicationContext());
             Person person = db.getPerson(personId);
             if (person != null) {
-                homeEditText.setText(person.livesin);
+//                homeEditText.setText(person.livesin);
             }
         }
     }

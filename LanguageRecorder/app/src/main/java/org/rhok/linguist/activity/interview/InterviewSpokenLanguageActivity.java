@@ -52,16 +52,16 @@ public class InterviewSpokenLanguageActivity extends BaseInterviewActivity {
 
             languageNumber = getIntent().getExtras().getInt("LanguageNumber");
             if (languageNumber == 1) {
-                _person.firstlanguage = selectedLanguage;
+                _person.firstLanguage = selectedLanguage;
             }
             if (languageNumber == 2) {
-                _person.secondlanguage = selectedLanguage;
+                _person.secondLanguage = selectedLanguage;
             }
             if (languageNumber == 3) {
-                _person.thirdlanguage = selectedLanguage;
+                _person.thirdLanguage = selectedLanguage;
             }
             if (languageNumber == 4) {
-                _person.otherlanguages = selectedLanguage;
+                _person.fourthLanguage = selectedLanguage;
 
                 intent = new Intent(this, InterviewMunicipalityActivity.class);
                 intent.putExtra("mode", "lives");

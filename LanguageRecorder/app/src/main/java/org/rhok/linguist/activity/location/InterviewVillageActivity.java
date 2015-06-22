@@ -38,7 +38,7 @@ public class InterviewVillageActivity extends BaseInterviewActivity {
         int questionTextId = 0;
 
         if (mode.equals("lives")) {
-            selectedDistrict = _person.livesDistrict;
+            selectedDistrict = _person.livesInDistrict;
             questionTextId = R.string.interview_village_lives;
         }
         if (mode.equals("born")) {
@@ -101,7 +101,7 @@ public class InterviewVillageActivity extends BaseInterviewActivity {
         Intent intent = null;
 
         if (mode.equals("lives")) {
-            _person.livesVillage = selectedVillage;
+            _person.livesInVillage = selectedVillage;
             intent = new Intent(this, InterviewLivedLifeActivity.class);
         }
         else {

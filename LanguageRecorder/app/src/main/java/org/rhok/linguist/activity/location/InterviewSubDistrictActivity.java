@@ -35,7 +35,7 @@ public class InterviewSubDistrictActivity extends BaseInterviewActivity {
         int questionTextId = 0;
 
         if (mode.equals("lives")) {
-            selectedMunicipality = _person.livesMunicipality;
+            selectedMunicipality = _person.livesInMunicipality;
             questionTextId = R.string.interview_district_lives;
         }
         if (mode.equals("born")) {
@@ -91,7 +91,7 @@ public class InterviewSubDistrictActivity extends BaseInterviewActivity {
     public void nextButtonClick(android.view.View view) {
         Intent intent = new Intent(this, InterviewVillageActivity.class);
         if (mode.equals("lives")) {
-            _person.livesDistrict = selectedSubDistrict;
+            _person.livesInDistrict = selectedSubDistrict;
         }
         else {
             _person.bornDistrict = selectedSubDistrict;

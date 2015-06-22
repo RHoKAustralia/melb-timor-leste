@@ -26,7 +26,7 @@ public class InterviewLivedLengthActivity extends BaseInterviewActivity {
 
         String question = getResources()
                 .getString(R.string.interview_lived_length)
-                .replace("##village##", _person.livesVillage);
+                .replace("##village##", _person.livesInVillage);
 
         TextView livedLifeTextView = (TextView) findViewById(R.id.livedLengthQuestion);
         livedLifeTextView.setText(question);
@@ -48,7 +48,7 @@ public class InterviewLivedLengthActivity extends BaseInterviewActivity {
             toast.show();
         }
         else {
-            _person.livesinyears = Integer.parseInt(longLived);
+            _person.livesInYears = Integer.parseInt(longLived);
 
             Intent intent = new Intent(this, InterviewMunicipalityActivity.class);
             intent.putExtra("Person", _person);

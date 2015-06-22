@@ -139,16 +139,16 @@ public class PersonActivity extends ActionBarActivity {
                 if (person.gender.equalsIgnoreCase(femaleText)) {
                     genderSpinner.setSelection(2);
                 }
-                locationEditText.setText(person.livesin);
+//                locationEditText.setText(person.livesInDistrict);
 
-                if (person.livesinyears != null) {
+  /*              if (person.livesinyears != null) {
                     locationYearsEditText.setText(String.valueOf(person.livesinyears));
                 }
                 firstLanguageAutocomplete.setText(person.firstlanguage);
                 secondLanguageAutocomplete.setText(person.secondlanguage);
                 thirdLanguageAutocomplete.setText(person.thirdlanguage);
                 otherLanguagesAutocomplete.setText(person.otherlanguages);
-                if (person.education.equalsIgnoreCase(primaryText)) {
+    */            if (person.education.equalsIgnoreCase(primaryText)) {
                     educatedToSpinner.setSelection(1);
                 }
                 if (person.education.equalsIgnoreCase(secondaryText)) {
@@ -157,17 +157,7 @@ public class PersonActivity extends ActionBarActivity {
                 if (person.education.equalsIgnoreCase(universityText)) {
                     educatedToSpinner.setSelection(3);
                 }
-                if (person.latitude != null && person.longitude != null) {
 
-                    String myLocation = getResources().getString(R.string.person_mylocation_label);
-
-                    latitude = person.latitude;
-                    longitude = person.longitude;
-
-                    mylocationTextView.setText(myLocation + ": Lat "
-                            + person.latitude + ", Long " + person.longitude);
-
-                }
             }
         } else {
             deleteButton.setVisibility(View.INVISIBLE);
@@ -245,7 +235,7 @@ public class PersonActivity extends ActionBarActivity {
         if (ageText.trim().length() > 0) {
             person.age = Integer.parseInt(ageText);
         }
-        if (livesInYears.trim().length() > 0) {
+/*        if (livesInYears.trim().length() > 0) {
             person.livesinyears = Integer.parseInt(livesInYears);
         }
         person.gender = genderSpinner.getSelectedItem().toString();
@@ -257,7 +247,7 @@ public class PersonActivity extends ActionBarActivity {
         person.education = educatedToSpinner.getSelectedItem().toString();
         person.latitude = latitude;
         person.longitude = longitude;
-
+*/
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         String message;
 

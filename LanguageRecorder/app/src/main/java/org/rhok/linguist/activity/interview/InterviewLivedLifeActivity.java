@@ -24,7 +24,7 @@ public class InterviewLivedLifeActivity extends BaseInterviewActivity {
         String question =
                 getResources()
                         .getString(R.string.interview_lived_life)
-                        .replace("##village##", _person.livesVillage);
+                        .replace("##village##", _person.livesInVillage);
 
         TextView livedLifeTextView = (TextView) findViewById(R.id.interview_lived_life);
         livedLifeTextView.setText(question);
@@ -38,7 +38,7 @@ public class InterviewLivedLifeActivity extends BaseInterviewActivity {
     }
 
     public void yesButtonClick(View view) {
-        _person.livesinyears = null;
+        _person.livesInYears = null;
 
         Intent intent = new Intent(this, RecordingInstructionsActivity.class);
         intent.putExtra("Person", _person);

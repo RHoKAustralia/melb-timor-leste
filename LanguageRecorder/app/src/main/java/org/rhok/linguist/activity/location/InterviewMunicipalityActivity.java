@@ -81,7 +81,7 @@ public class InterviewMunicipalityActivity extends BaseInterviewActivity {
     public void nextButtonClick(android.view.View view) {
 
         if (mode.equals("lives")) {
-            _person.livesMunicipality = selectedMunicipality;
+            _person.livesInMunicipality = selectedMunicipality;
         }
         else {
             _person.bornMunicipality = selectedMunicipality;
