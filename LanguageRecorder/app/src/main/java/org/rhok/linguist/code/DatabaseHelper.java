@@ -5,10 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+
+import org.rhok.linguist.code.entity.Person;
+import org.rhok.linguist.code.entity.PersonWord;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.List;
 
 /**

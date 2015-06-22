@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="org.rhok.linguist.SplashActivity"
+    tools:context="org.rhok.linguist.activity.common.SplashActivity"
     android:layout_margin="@dimen/app_window_padding"
     android:layout_width="match_parent"
     android:layout_height="match_parent">

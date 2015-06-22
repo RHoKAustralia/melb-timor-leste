@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/activityStyle"
-    tools:context="org.rhok.linguist.old.StudyActivity">
+    tools:context="org.rhok.linguist.activity.old.StudyActivity">
 
     <LinearLayout style="@style/contentContainerStyle">
 
