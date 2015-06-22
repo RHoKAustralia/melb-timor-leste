@@ -21,13 +21,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
+        <item name="android:layout_margin">@dimen/app_window_padding</item>
     </style>
 
     <style name="contentContainerStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:layout_margin">16px</item>
         <item name="android:layout_weight">1</item>
     </style>
 

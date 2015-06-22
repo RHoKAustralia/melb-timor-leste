@@ -1,4 +1,4 @@
-package org.rhok.linguist;
+package org.rhok.linguist.old;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -9,8 +9,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import org.rhok.linguist.R;
 import org.rhok.linguist.code.ListViewPopulator;
-import org.rhok.linguist.location.MunicipalityActivity;
+import org.rhok.linguist.location.InterviewMunicipalityActivity;
 
 
 public class StudyActivity extends ActionBarActivity {
@@ -56,7 +57,7 @@ public class StudyActivity extends ActionBarActivity {
     }
 
     public void nextButtonClick(android.view.View view) {
-        Intent intent = new Intent(this, MunicipalityActivity.class);
+        Intent intent = new Intent(this, InterviewMunicipalityActivity.class);
         intent.putExtra("STUDY", selectedStudy);
         startActivity(intent);
     }

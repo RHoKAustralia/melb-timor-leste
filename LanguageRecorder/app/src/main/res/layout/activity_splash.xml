@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="org.rhok.linguist.SplashActivity"
+    android:layout_margin="@dimen/app_window_padding"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,15 +14,12 @@
             android:id="@+id/splashLogoImageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/splash_logo_padding"
-            android:paddingRight="@dimen/splash_logo_padding"
             android:scaleType="fitStart"
             android:adjustViewBounds="true"
             android:src="@drawable/splash_logo" />
 
         <TextView android:text="@string/app_name"
             android:textColor="#00A887"
-            android:paddingTop="@dimen/splash_logo_padding"
             android:layout_below="@+id/splashLogoImageView"
             android:textSize="16pt"
             android:layout_width="match_parent"

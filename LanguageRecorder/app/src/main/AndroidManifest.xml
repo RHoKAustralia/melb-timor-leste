@@ -23,64 +23,64 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".old.HomeActivity"
             android:label="@string/home_title" >
         </activity>
         <activity
-            android:name=".CaptureActivity"
+            android:name=".old.CaptureActivity"
             android:label="@string/capture_title"
-            android:parentActivityName=".HomeActivity" >
+            android:parentActivityName=".old.HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.HomeActivity" />
+                android:value=".old.HomeActivity" />
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".old.SettingsActivity"
             android:label="@string/settings_title"
-            android:parentActivityName=".HomeActivity" >
+            android:parentActivityName=".old.HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CaptureActivity" />
+                android:value=".old.CaptureActivity" />
         </activity>
         <activity
-            android:name=".PersonActivity"
+            android:name=".old.PersonActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".HomeActivity" >
+            android:parentActivityName=".old.HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.HomeActivity" />
+                android:value=".old.HomeActivity" />
         </activity>
         <activity
-            android:name=".UploadActivity"
+            android:name=".old.UploadActivity"
             android:label="@string/upload_title"
-            android:parentActivityName=".HomeActivity" >
+            android:parentActivityName=".old.HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.rhok.linguist.HomeActivity" />
+                android:value=".old.HomeActivity" />
         </activity>
         <activity
-            android:name=".PersonDeleteActivity"
+            android:name=".old.PersonDeleteActivity"
             android:label="@string/delete_person_title"
-            android:parentActivityName=".PersonActivity" >
+            android:parentActivityName=".old.PersonActivity" >
         </activity>
         <activity
-            android:name=".SpokenLanguageActivity"
+            android:name=".interview.InterviewSpokenLanguageActivity"
             android:label="Select Language" >
         </activity>
         <activity
-            android:name=".location.MunicipalityActivity"
+            android:name=".location.InterviewMunicipalityActivity"
             android:label="Select Municipality" >
         </activity>
         <activity
-            android:name=".location.SubDistrictActivity"
+            android:name=".location.InterviewSubDistrictActivity"
             android:label="Select Sub District" >
         </activity>
         <activity
-            android:name=".location.VillageActivity"
+            android:name=".location.InterviewVillageActivity"
             android:label="Select Village" >
         </activity>
         <activity
-            android:name=".StudyActivity"
+            android:name=".old.StudyActivity"
             android:label="Select Study" >
         </activity>
         <activity
@@ -122,14 +122,6 @@
         <activity
             android:name=".recording.RecordingInstructionsActivity"
             android:label="Recording" >
-        </activity>
-        <activity
-            android:name=".recording.RecordingListenActivity"
-            android:label="Recording" >
-        </activity>
-        <activity
-            android:name=".recording.RecordingTranscribeActivity"
-            android:label="@string/title_activity_recording_transcribe" >
         </activity>
         <activity
             android:name=".AppSettingsActivity"

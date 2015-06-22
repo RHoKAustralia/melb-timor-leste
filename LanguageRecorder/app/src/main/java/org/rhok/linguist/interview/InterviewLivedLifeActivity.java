@@ -1,14 +1,10 @@
 package org.rhok.linguist.interview;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import org.rhok.linguist.location.MunicipalityActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.Person;
 import org.rhok.linguist.recording.RecordingInstructionsActivity;
@@ -32,8 +28,6 @@ public class InterviewLivedLifeActivity extends BaseInterviewActivity {
 
         TextView livedLifeTextView = (TextView) findViewById(R.id.interview_lived_life);
         livedLifeTextView.setText(question);
-
-        //setTitle("Interview - Lived");
     }
 
     public void noButtonClick(View view) {

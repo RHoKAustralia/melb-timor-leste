@@ -18,7 +18,7 @@ import org.rhok.linguist.recording.RecordingInstructionsActivity;
 
 import java.util.ArrayList;
 
-public class VillageActivity extends BaseInterviewActivity {
+public class InterviewVillageActivity extends BaseInterviewActivity {
 
     private String selectedDistrict = null;
     private String selectedVillage = null;
@@ -28,7 +28,7 @@ public class VillageActivity extends BaseInterviewActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_village);
+        setContentView(R.layout.activity_location_village);
 
         Bundle extras = getIntent().getExtras();
 

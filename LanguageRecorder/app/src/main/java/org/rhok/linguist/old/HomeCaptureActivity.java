@@ -1,4 +1,4 @@
-package org.rhok.linguist.util;
+package org.rhok.linguist.old;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-import org.rhok.linguist.HomeActivity;
+import org.rhok.linguist.old.HomeActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.Person;

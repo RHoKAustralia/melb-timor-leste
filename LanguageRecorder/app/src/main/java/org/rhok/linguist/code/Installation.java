@@ -10,6 +10,10 @@ import java.util.UUID;
 
 /**
  * Created by lachlan on 24/05/2015.
+ *
+ * This class creates a unique GUID for the application installed on this phone.
+ * This is useful so that when we upload interview data to the web service we
+ * can uniquely identify the phone.
  */
 public class Installation {
     private static String sID = null;

@@ -1,16 +1,12 @@
 package org.rhok.linguist.interview;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import org.rhok.linguist.R;
-import org.rhok.linguist.SpokenLanguageActivity;
 import org.rhok.linguist.code.Person;
-import org.rhok.linguist.location.MunicipalityActivity;
+import org.rhok.linguist.location.InterviewMunicipalityActivity;
 
 public class InterviewMoreLanguagesActivity extends BaseInterviewActivity {
 
@@ -25,13 +21,11 @@ public class InterviewMoreLanguagesActivity extends BaseInterviewActivity {
         Bundle extras = getIntent().getExtras();
         _person = (Person) extras.getSerializable("Person");
         _lastLanguageNumber = extras.getInt("LastLanguageNumber");
-
-        //setTitle("Interview - Language");
     }
 
     public void noButtonClick(View view)
     {
-        Intent intent = new Intent(this, MunicipalityActivity.class);
+        Intent intent = new Intent(this, InterviewMunicipalityActivity.class);
         intent.putExtra("Person", _person);
         intent.putExtra("mode", "lives");
         startActivity(intent);
@@ -39,7 +33,7 @@ public class InterviewMoreLanguagesActivity extends BaseInterviewActivity {
 
     public void yesButtonClick(View view)
     {
-        Intent intent = new Intent(this, SpokenLanguageActivity.class);
+        Intent intent = new Intent(this, InterviewSpokenLanguageActivity.class);
 
         if (_lastLanguageNumber == 1) {
             intent.putExtra("LANGUAGE_QUESTION", "(secondary language?)");

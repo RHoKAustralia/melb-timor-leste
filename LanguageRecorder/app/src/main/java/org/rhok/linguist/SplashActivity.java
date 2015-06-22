@@ -1,18 +1,13 @@
 package org.rhok.linguist;
 
 import android.content.Intent;
-import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import org.rhok.linguist.interview.InterviewNameActivity;
-import org.rhok.linguist.util.LocaleHelper;
+import org.rhok.linguist.code.LocaleHelper;
 
 
 public class SplashActivity extends ActionBarActivity {
@@ -56,6 +51,8 @@ public class SplashActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
+        // If the user changes the locale in the settings we need to
+        // recreate the activity so that the new resources are loaded in
         if (LocaleHelper.updateLocale(getBaseContext(), this)) {
             this.recreate();
         }
@@ -65,7 +62,6 @@ public class SplashActivity extends ActionBarActivity {
 
     public void nextButtonClick(android.view.View view) {
         Intent intent = new Intent(this, InterviewNameActivity.class);
-        //intent.putExtra("LANGUAGE_QUESTION", "Which language do you want to research?");
         startActivity(intent);
     }
 

@@ -1,4 +1,4 @@
-package org.rhok.linguist;
+package org.rhok.linguist.old;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.rhok.linguist.R;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.Person;
 

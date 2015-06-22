@@ -1,4 +1,4 @@
-package org.rhok.linguist;
+package org.rhok.linguist.old;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.rhok.linguist.R;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.DiskSpace;
 import org.rhok.linguist.code.Person;

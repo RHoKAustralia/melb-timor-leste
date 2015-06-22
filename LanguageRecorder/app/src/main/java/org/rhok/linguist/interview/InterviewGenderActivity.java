@@ -33,12 +33,7 @@ public class InterviewGenderActivity extends BaseInterviewActivity {
         _person = (Person) intent.getSerializableExtra("person");
 
         populateGenders();
-
-        //setTitle("Interview - Gender");
     }
-
-
-
 
     private void populateGenders() {
 

@@ -7,6 +7,11 @@ import android.os.Bundle;
 
 import java.util.Locale;
 
+/**
+ * Created by lachlan on 17/06/2015.
+ *
+ * Settings file.
+ */
 
 public class AppSettingsActivity extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -35,19 +40,16 @@ public class AppSettingsActivity extends PreferenceActivity
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
                                           String key) {
+
+        // this is called when the user changes any of their preferences
+        // at the moment we change the user's locale in BaseInterviewActivity
+        // instead of here
+
         if (key.equals("pref_tetum")) {
-            //Preference connectionPref = findPreference(key);
-            /*Boolean tetumEnabled = sharedPreferences.getBoolean("pref_tetum", false);
-
-            String localeName = (tetumEnabled ? "tet" : "en");
-
-            Locale newLocale = new Locale(localeName);
-            Locale.setDefault(newLocale);
-            Configuration config = getBaseContext().getResources().getConfiguration();
-            config.setLocale(newLocale);*/
 
         // Set summary to be the user-description for the selected value
-  //          connectionPref.setSummary(sharedPreferences.getString(key, ""));
+        // connectionPref.setSummary(sharedPreferences.getString(key, ""));
+
         }
     }
 }

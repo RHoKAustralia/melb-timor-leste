@@ -1,4 +1,4 @@
-package org.rhok.linguist;
+package org.rhok.linguist.old;
 
 import android.content.SharedPreferences;
 import android.os.Environment;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.session.AppKeyPair;
+
+import org.rhok.linguist.R;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.DiskSpace;
 import org.rhok.linguist.code.DropBoxSettings;

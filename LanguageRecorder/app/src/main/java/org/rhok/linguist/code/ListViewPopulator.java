@@ -10,6 +10,8 @@ import java.util.Arrays;
 
 /**
  * Created by lachlan on 10/06/2015.
+ *
+ * Contains code for populating our listviews
  */
 public class ListViewPopulator {
 

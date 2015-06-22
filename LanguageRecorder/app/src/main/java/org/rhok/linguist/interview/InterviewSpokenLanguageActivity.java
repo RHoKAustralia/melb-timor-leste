@@ -1,22 +1,19 @@
-package org.rhok.linguist;
+package org.rhok.linguist.interview;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import org.rhok.linguist.R;
+import org.rhok.linguist.old.StudyActivity;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.Person;
-import org.rhok.linguist.interview.BaseInterviewActivity;
-import org.rhok.linguist.interview.InterviewLivedLifeActivity;
-import org.rhok.linguist.interview.InterviewMoreLanguagesActivity;
+import org.rhok.linguist.location.InterviewMunicipalityActivity;
 
 
-public class SpokenLanguageActivity extends BaseInterviewActivity {
+public class InterviewSpokenLanguageActivity extends BaseInterviewActivity {
 
     private String selectedLanguage = "";
     private String nextActivity = "";
@@ -26,7 +23,7 @@ public class SpokenLanguageActivity extends BaseInterviewActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spoken_language);
+        setContentView(R.layout.activity_interview_spoken_language);
         setTitle("Select Language");
 
         TextView question = (TextView)findViewById(R.id.language_question);
@@ -34,30 +31,18 @@ public class SpokenLanguageActivity extends BaseInterviewActivity {
         populateLanguages();
 
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            nextActivity = extras.getString("NEXT_ACTIVITY");
-            _person = (Person) extras.getSerializable("Person");
-        }
+
+        nextActivity = extras.getString("NEXT_ACTIVITY");
+        _person = (Person) extras.getSerializable("Person");
 
         setTitle("Interview - Language");
     }
-
-    @Override
-    public void onSaveInstanceState (Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    protected void onRestoreInstanceState (Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-    }
-
-
-
 
     public void nextButtonClick(android.view.View view) {
 
         if (nextActivity.equals("Study")) {
             Intent intent = new Intent(this, StudyActivity.class);
+            intent.putExtra("Person", _person);
             intent.putExtra("LANGUAGE", selectedLanguage);
             startActivity(intent);
         }
@@ -78,7 +63,8 @@ public class SpokenLanguageActivity extends BaseInterviewActivity {
             if (languageNumber == 4) {
                 _person.otherlanguages = selectedLanguage;
 
-                intent = new Intent(this, InterviewLivedLifeActivity.class);
+                intent = new Intent(this, InterviewMunicipalityActivity.class);
+                intent.putExtra("mode", "lives");
             }
             intent.putExtra("Person", _person);
             intent.putExtra("LastLanguageNumber", languageNumber);

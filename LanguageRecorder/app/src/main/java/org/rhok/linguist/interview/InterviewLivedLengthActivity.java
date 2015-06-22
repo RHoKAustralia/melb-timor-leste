@@ -1,17 +1,14 @@
 package org.rhok.linguist.interview;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.rhok.linguist.location.MunicipalityActivity;
+import org.rhok.linguist.location.InterviewMunicipalityActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.Person;
 
@@ -38,8 +35,6 @@ public class InterviewLivedLengthActivity extends BaseInterviewActivity {
         if (editText.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
-
-        //setTitle("Interview - Lived");
     }
 
 
@@ -55,7 +50,7 @@ public class InterviewLivedLengthActivity extends BaseInterviewActivity {
         else {
             _person.livesinyears = Integer.parseInt(longLived);
 
-            Intent intent = new Intent(this, MunicipalityActivity.class);
+            Intent intent = new Intent(this, InterviewMunicipalityActivity.class);
             intent.putExtra("Person", _person);
             intent.putExtra("mode", "born");
             startActivity(intent);

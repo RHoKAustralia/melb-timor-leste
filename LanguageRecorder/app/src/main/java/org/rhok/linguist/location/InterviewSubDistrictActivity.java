@@ -1,10 +1,7 @@
 package org.rhok.linguist.location;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -19,7 +16,7 @@ import org.rhok.linguist.interview.BaseInterviewActivity;
 
 import java.util.ArrayList;
 
-public class SubDistrictActivity extends BaseInterviewActivity {
+public class InterviewSubDistrictActivity extends BaseInterviewActivity {
     private String selectedMunicipality = "";
     private String selectedSubDistrict = "";
     private String mode = null;
@@ -28,7 +25,7 @@ public class SubDistrictActivity extends BaseInterviewActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub_district);
+        setContentView(R.layout.activity_location_sub_district);
 
         Bundle extras = getIntent().getExtras();
 
@@ -92,7 +89,7 @@ public class SubDistrictActivity extends BaseInterviewActivity {
     }
 
     public void nextButtonClick(android.view.View view) {
-        Intent intent = new Intent(this, VillageActivity.class);
+        Intent intent = new Intent(this, InterviewVillageActivity.class);
         if (mode.equals("lives")) {
             _person.livesDistrict = selectedSubDistrict;
         }

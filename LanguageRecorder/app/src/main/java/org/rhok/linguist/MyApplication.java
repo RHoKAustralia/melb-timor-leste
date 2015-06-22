@@ -9,6 +9,9 @@ import java.util.Locale;
 
 /**
  * Created by lachlan on 19/06/2015.
+ *
+ * This is the global application variable, it takes care of setting the applications
+ * locale based on the settings file
  */
 public class MyApplication extends Application {
 

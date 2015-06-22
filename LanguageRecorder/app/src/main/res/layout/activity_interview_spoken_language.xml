@@ -1,16 +1,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/activityStyle"
-    tools:context="org.rhok.linguist.location.MunicipalityActivity">
+    tools:context="org.rhok.linguist.interview.InterviewSpokenLanguageActivity">
 
     <LinearLayout style="@style/contentContainerStyle">
 
         <TextView style="@style/contentHeaderStyle"
-            android:text="Select municipality"
-            android:id="@+id/municipalityQuestionTextView" />
+            android:text="What is your first language?"
+            android:id="@+id/language_question" />
 
         <ListView style="@style/listViewStyle"
-            android:id="@+id/municipality_list" />
+            android:id="@+id/language_list" />
 
     </LinearLayout>
 

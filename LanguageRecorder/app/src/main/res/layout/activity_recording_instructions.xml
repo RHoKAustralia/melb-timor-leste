@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="@dimen/app_window_padding"
     tools:context="org.rhok.linguist.recording.RecordingInstructionsActivity">
 
     <LinearLayout

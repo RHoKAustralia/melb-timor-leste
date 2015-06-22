@@ -1,4 +1,4 @@
-package org.rhok.linguist;
+package org.rhok.linguist.old;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -12,6 +12,8 @@ import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.DiskSpace;
 import org.rhok.linguist.code.Person;
 import org.rhok.linguist.code.PersonWord;
+import org.rhok.linguist.old.HomeActivity;
+import org.rhok.linguist.old.PersonActivity;
 
 import java.io.File;
 

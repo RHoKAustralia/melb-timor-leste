@@ -1,4 +1,4 @@
-package org.rhok.linguist.util;
+package org.rhok.linguist.code;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,6 +9,8 @@ import java.util.Locale;
 
 /**
  * Created by lachlan on 20/06/2015.
+ *
+ * Contains code to change the applications locale
  */
 public class LocaleHelper {
     public static Boolean updateLocale(Context baseContext, Context thisContext) {

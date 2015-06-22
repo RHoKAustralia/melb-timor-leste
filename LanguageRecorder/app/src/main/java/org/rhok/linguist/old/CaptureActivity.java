@@ -1,14 +1,10 @@
-package org.rhok.linguist;
+package org.rhok.linguist.old;
 
 import android.content.Intent;
-import android.os.Environment;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,6 +12,7 @@ import android.media.MediaRecorder;
 import android.media.MediaPlayer;
 import android.widget.TextView;
 
+import org.rhok.linguist.R;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.DiskSpace;
 import org.rhok.linguist.code.Person;

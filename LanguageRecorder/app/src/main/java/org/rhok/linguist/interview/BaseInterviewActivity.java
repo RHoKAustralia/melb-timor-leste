@@ -1,10 +1,6 @@
 package org.rhok.linguist.interview;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,9 +8,7 @@ import android.view.MenuItem;
 import org.rhok.linguist.AppSettingsActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.SplashActivity;
-import org.rhok.linguist.util.LocaleHelper;
-
-import java.util.Locale;
+import org.rhok.linguist.code.LocaleHelper;
 
 /**
  * Created by lachlan on 18/06/2015.
