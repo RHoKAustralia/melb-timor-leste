@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.entity.Person;
 import org.rhok.linguist.activity.recording.RecordingInstructionsActivity;
 
@@ -32,17 +33,25 @@ public class InterviewLivedLifeActivity extends BaseInterviewActivity {
 
     public void noButtonClick(View view) {
 
+        _person.livedWholeLife = false;
+
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        dbHelper.updatePersonLivedWholeLife(_person.personid, false);
+
         Intent intent = new Intent(this, InterviewLivedLengthActivity.class);
         intent.putExtra("Person", _person);
         startActivity(intent);
     }
 
     public void yesButtonClick(View view) {
-        _person.livesInYears = null;
+        _person.livedWholeLife = true;
+        _person.livedInYears = null;
+
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        dbHelper.updatePersonLivedWholeLife(_person.personid, true);
 
         Intent intent = new Intent(this, RecordingInstructionsActivity.class);
-        intent.putExtra("Person", _person);
-        intent.putExtra("mode", "born");
+        intent.putExtra("PersonId", _person.personid);
         startActivity(intent);
     }
 }

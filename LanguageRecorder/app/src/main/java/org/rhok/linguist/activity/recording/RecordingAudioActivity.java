@@ -2,6 +2,7 @@ package org.rhok.linguist.activity.recording;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.common.SplashActivity;
 import org.rhok.linguist.activity.interview.BaseInterviewActivity;
+import org.rhok.linguist.code.DatabaseHelper;
 
 public class RecordingAudioActivity extends BaseInterviewActivity {
 
@@ -28,13 +30,19 @@ public class RecordingAudioActivity extends BaseInterviewActivity {
     EditText transcribeEditText;
     ImageView imageView;
 
+    private int personId;
     private int pictureCount = 1;
     private boolean transcribing = false;
+
+    AudioThread audioThread;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recording_audio);
+
+        personId = getIntent().getIntExtra("PersonId", -1);
 
         imageView = (ImageView)findViewById(R.id.captureImageView);
         imageView.setImageResource(R.drawable.goat);
@@ -56,11 +64,46 @@ public class RecordingAudioActivity extends BaseInterviewActivity {
         anim.setRepeatCount(Animation.INFINITE);
         recordingMessageTextView.startAnimation(anim);
 
+        audioThread = new AudioThread();
+        audioThread.start();
+
+//        audioThread.mHandler.sendMessage(createMessage("startrecording"));
+
     }
+
+    private Message createMessage(String text) {
+        Message msg = Message.obtain();
+        msg.obj = text;
+        return msg;
+    }
+
+
+    private void startRecording()
+    {
+        audioThread.mHandler.sendMessage(createMessage("startrecording"));
+    }
+    private void stopRecording()
+    {
+        audioThread.mHandler.sendMessage(createMessage("stoprecording"));
+    }
+    private void startPlaying()
+    {
+        audioThread.mHandler.sendMessage(createMessage("startplaying"));
+    }
+    private void stopPlaying()
+    {
+        audioThread.mHandler.sendMessage(createMessage("stopplaying"));
+    }
+
+
 
     public void nextButtonClick(android.view.View view) {
 
         if (!transcribing) {
+
+            stopRecording();
+            //startPlaying();
+
             recordingQuestionTextView.setVisibility(View.GONE);
             recordingMessageTextView.clearAnimation();
             recordingMessageTextView.setVisibility(View.GONE);
@@ -72,6 +115,12 @@ public class RecordingAudioActivity extends BaseInterviewActivity {
             noButton.setVisibility(View.VISIBLE);
 
         } else {
+
+
+            String transcribedWord = transcribeEditText.getText().toString();
+
+            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+            dbHelper.saveWord(personId, pictureCount, transcribedWord, audioThread.audioFilename);
 
             transcribing = false;
             pictureCount++;
@@ -95,6 +144,9 @@ public class RecordingAudioActivity extends BaseInterviewActivity {
                 if (pictureCount == 3) {
                     imageView.setImageResource(R.drawable.rooster);
                 }
+
+                audioThread.audioFilename = null;
+                startRecording();
             }
         }
 
@@ -110,9 +162,17 @@ public class RecordingAudioActivity extends BaseInterviewActivity {
 
         yesButton.setVisibility(View.GONE);
         noButton.setVisibility(View.GONE);
+
+        stopPlaying();
+        startRecording();
     }
 
     public void yesButtonClick(View view) {
+
+        stopPlaying();
+
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        dbHelper.saveWord(personId, pictureCount, null, audioThread.audioFilename);
 
         recordOkTextView.setVisibility(View.GONE);
 

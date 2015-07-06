@@ -1,5 +1,9 @@
 package org.rhok.linguist.code.entity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 /**
@@ -22,11 +26,11 @@ public class Person implements Serializable {
     public String livesInDistrict;
     public String livesInVillage;
     public Boolean livedWholeLife;
-    public Integer livesInYears;
+    public Integer livedInYears;
     public String bornMunicipality;
     public String bornDistrict;
     public String bornVillage;
-
+    public Boolean uploaded;
 
     public PersonWord[] Words;
 
@@ -55,7 +59,8 @@ public class Person implements Serializable {
                    Integer _livesInYears,
                    String _bornMunicipality,
                    String _bornDistrict,
-                   String _bornVillage
+                   String _bornVillage,
+                   Boolean _uploaded
                  )
     {
         personid = _id;
@@ -72,71 +77,65 @@ public class Person implements Serializable {
         livesInDistrict = _livesInDistrict;
         livesInVillage = _livesInVillage;
         livedWholeLife = _livedWholeLife;
-        livesInYears = _livesInYears;
+        livedInYears = _livesInYears;
         bornMunicipality = _bornMunicipality;
         bornDistrict = _bornDistrict;
         bornVillage = _bornVillage;
-
+        uploaded = _uploaded;
     }
 
     public String getAsJson(PersonWord[] words) {
-        StringBuilder sb = new StringBuilder();
 
-        //TODO find a JSON serialisation library
-        /*sb.append("{");
-        addField(sb, "name", this.name, true, true);
-        addField(sb, "age", this.age, false, true);
-        addField(sb, "gender", this.gender, true, true);
-        addField(sb, "livesin", this.livesin, true, true);
-        addField(sb, "livesinyears", this.livesinyears, false, true);
-        addField(sb, "firstlanguage", this.firstlanguage, true, true);
-        addField(sb, "secondlanguage", this.secondlanguage, true, true);
-        addField(sb, "thirdlanguage", this.thirdlanguage, true, true);
-        addField(sb, "otherlanguages", this.otherlanguages, true, true);
-        addField(sb, "occupation", this.occupation, true, true);
-        addField(sb, "education", this.education, true, true);
-        addField(sb, "latitude", this.latitude, false, true);
-        addField(sb, "longitude", this.longitude, false, true);
-        sb.append("words: [");
+        org.json.JSONObject json = new JSONObject();
 
-        for (int i=0;i<words.length;i++) {
-            sb.append("{ itemid: ");
-            sb.append(words[i].itemid);
-            sb.append(", word: \"");
-            if (words[i].word != null) {
-                sb.append(words[i].word);
+        try {
+            json.put("name", this.name);
+            json.put("age", this.age);
+            json.put("gender", this.gender);
+            json.put("occupation", this.occupation);
+            json.put("education", this.education);
+
+            json.put("firstLanguage", this.firstLanguage);
+            json.put("secondLanguage", this.secondLanguage);
+            json.put("thirdLanguage", this.thirdLanguage);
+            json.put("fourthLanguage", this.fourthLanguage);
+
+            json.put("livesInMunicipality", this.livesInMunicipality);
+            json.put("livesInDistrict", this.livesInDistrict);
+            json.put("livesInVillage", this.livesInVillage);
+
+            json.put("livedWholeLife", this.livedWholeLife);
+            json.put("livedInYears", this.livedInYears);
+
+            json.put("bornMunicipality", this.bornMunicipality);
+            json.put("bornDistrict", this.bornDistrict);
+            json.put("bornVillage", this.bornVillage);
+
+            JSONArray jsonWords = new JSONArray();
+
+            for (int i=0;i<words.length;i++) {
+
+                if (words[i].word != null || words[i].audiofilename != null) {
+                    JSONObject jsonWord = new JSONObject();
+
+                    jsonWord.put("wordid", words[i].itemid);
+
+                    if (words[i].word != null) {
+                        jsonWord.put("word", words[i].word);
+                    }
+                    if (words[i].audiofilename != null) {
+                        jsonWord.put("filename", words[i].audiofilename);
+                    }
+                    jsonWords.put(jsonWord);
+                }
             }
-            sb.append("\"");
-            sb.append(", audiofilename: \"");
-            if (words[i].audiofilename != null) {
-                sb.append(words[i].audiofilename);
-            }
-            sb.append("\"");
-            sb.append("}");
-            if (i<words.length-1) {
-                sb.append(",");
-            }
+
+            json.put("words", jsonWords);
+
+            return json.toString();
         }
-        sb.append("]");
-        sb.append("}");*/
-        return sb.toString();
-    }
-
-    private void addField(StringBuilder sb, String name, Object value, Boolean useQuotes, Boolean addComma) {
-
-        if (value != null) {
-            sb.append(name);
-            sb.append(": ");
-            if (useQuotes) {
-                sb.append("\"");
-            }
-            sb.append(value);
-            if (useQuotes) {
-                sb.append("\"");
-            }
-            if (addComma) {
-                sb.append(",");
-            }
+        catch (JSONException jsonE) {
+            return jsonE.toString();
         }
     }
 

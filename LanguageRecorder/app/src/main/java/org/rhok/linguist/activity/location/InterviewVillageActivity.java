@@ -8,6 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.entity.Location;
 import org.rhok.linguist.code.entity.Person;
@@ -98,14 +99,17 @@ public class InterviewVillageActivity extends BaseInterviewActivity {
 
     public void nextButtonClick(View view) {
 
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         Intent intent = null;
 
         if (mode.equals("lives")) {
             _person.livesInVillage = selectedVillage;
+            dbHelper.updatePersonLivesVillage(_person.personid, selectedVillage);
             intent = new Intent(this, InterviewLivedLifeActivity.class);
         }
         else {
             _person.bornVillage = selectedVillage;
+            dbHelper.updatePersonBornVillage(_person.personid, selectedVillage);
             intent = new Intent(this, RecordingInstructionsActivity.class);
         }
 

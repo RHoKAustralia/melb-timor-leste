@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.old.StudyActivity;
+import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.entity.Person;
 import org.rhok.linguist.activity.location.InterviewMunicipalityActivity;
@@ -49,19 +50,24 @@ public class InterviewSpokenLanguageActivity extends BaseInterviewActivity {
         if (nextActivity.equals("MoreLanguages")) {
 
             Intent intent = new Intent(this, InterviewMoreLanguagesActivity.class);
+            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
 
             languageNumber = getIntent().getExtras().getInt("LanguageNumber");
             if (languageNumber == 1) {
                 _person.firstLanguage = selectedLanguage;
+                dbHelper.updatePersonLanguage1(_person.personid, selectedLanguage);
             }
             if (languageNumber == 2) {
                 _person.secondLanguage = selectedLanguage;
+                dbHelper.updatePersonLanguage2(_person.personid, selectedLanguage);
             }
             if (languageNumber == 3) {
                 _person.thirdLanguage = selectedLanguage;
+                dbHelper.updatePersonLanguage3(_person.personid, selectedLanguage);
             }
             if (languageNumber == 4) {
                 _person.fourthLanguage = selectedLanguage;
+                dbHelper.updatePersonLanguage4(_person.personid, selectedLanguage);
 
                 intent = new Intent(this, InterviewMunicipalityActivity.class);
                 intent.putExtra("mode", "lives");

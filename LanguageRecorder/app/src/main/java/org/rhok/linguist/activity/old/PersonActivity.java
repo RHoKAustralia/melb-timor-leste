@@ -235,8 +235,8 @@ public class PersonActivity extends ActionBarActivity {
         if (ageText.trim().length() > 0) {
             person.age = Integer.parseInt(ageText);
         }
-/*        if (livesInYears.trim().length() > 0) {
-            person.livesinyears = Integer.parseInt(livesInYears);
+/*        if (livedInYears.trim().length() > 0) {
+            person.livesinyears = Integer.parseInt(livedInYears);
         }
         person.gender = genderSpinner.getSelectedItem().toString();
         person.livesin = locationEditText.getText().toString();

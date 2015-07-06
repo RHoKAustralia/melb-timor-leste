@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.entity.Person;
 
 public class InterviewAgeActivity extends BaseInterviewActivity {
@@ -39,6 +40,9 @@ public class InterviewAgeActivity extends BaseInterviewActivity {
         }
         else {
             _person.age = Integer.parseInt(age);
+
+            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+            dbHelper.updatePersonAge(_person.personid, _person.age);
 
             Intent intent = new Intent(this, InterviewGenderActivity.class);
             intent.putExtra("person", _person);

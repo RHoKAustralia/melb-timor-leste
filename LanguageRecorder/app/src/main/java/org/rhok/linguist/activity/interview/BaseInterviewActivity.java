@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import org.rhok.linguist.activity.common.AppSettingsActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.common.SplashActivity;
+import org.rhok.linguist.activity.old.UploadActivity;
 import org.rhok.linguist.code.LocaleHelper;
 
 /**
@@ -36,6 +37,10 @@ public class BaseInterviewActivity extends ActionBarActivity {
         }
         if (id == R.id.action_settings) {
             Intent intent = new Intent(this, AppSettingsActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.action_upload) {
+            Intent intent = new Intent(this, UploadActivity.class);
             startActivity(intent);
         }
 

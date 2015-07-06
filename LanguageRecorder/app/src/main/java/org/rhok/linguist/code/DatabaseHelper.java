@@ -37,10 +37,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         "livesInDistrict, " +
         "livesInVillage, " +
         "livedWholeLife, " +
-        "livesInYears, " +
+        "livedInYears, " +
         "bornMunicipality, " +
         "bornDistrict, " +
-        "bornVillage ";
+        "bornVillage," +
+        "uploaded ";
 
     private static final String PERSONWORD_TABLE_NAME = "personword";
 
@@ -62,7 +63,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "livedinyears integer, "  +
             "bornmunicipality varchar, "  +
             "borndistrict varchar, " +
-            "bornvillage varchar); ";
+            "bornvillage varchar," +
+            "uploaded boolean); ";
 
     String createPersonWordTable = "create table " + PERSONWORD_TABLE_NAME + " " +
             "(personwordid integer primary key autoincrement," +
@@ -87,8 +89,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertPerson(Person person) {
+    private void recreateDB() {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        db.execSQL("drop table " + PERSONWORD_TABLE_NAME + ";");
+        db.execSQL("drop table " + PERSON_TABLE_NAME + ";");
+        db.execSQL(createPersonTable);
+        db.execSQL(createPersonWordTable);
+    }
+
+    public void insertPerson(Person person) {
+        //recreateDB();
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = getDbValues(person);
@@ -96,6 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long personId = db.insert(PERSON_TABLE_NAME, null, values);
 
         person.personid = (int)personId;
+        person.uploaded = false;
 
         db.close();
     }
@@ -117,10 +129,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("livesInDistrict", person.livesInDistrict);
         values.put("livesInVillage", person.livesInVillage);
         values.put("livedWholeLife", person.livedWholeLife);
-        values.put("livesInYears", person.livesInYears);
+        values.put("livedInYears", person.livedInYears);
         values.put("bornMunicipality", person.bornMunicipality);
         values.put("bornDistrict", person.bornDistrict);
         values.put("bornVillage", person.bornVillage);
+        values.put("uploaded", person.uploaded);
         return values;
     }
 
@@ -135,35 +148,101 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void saveWord(int personid, int pictureid, String word, String audiofilename) {
+    private void updateField(int personId, String fieldName, String strValue, Integer intValue, String type) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        if (type.equals("String")) {
+            values.put(fieldName, strValue);
+        }
+        if (type.equals("Integer")) {
+            values.put(fieldName, strValue);
+        }
+        db.update(PERSON_TABLE_NAME, values, "personid = " + String.valueOf(personId), null);
+
+        db.close();
+    }
+
+    public void updatePersonAge(int personId, Integer Age) {
+        updateField(personId, "age", null, personId, "Integer");
+    }
+
+    public void updatePersonGender(int personId, String gender) {
+        updateField(personId, "gender", gender, null, "String");
+    }
+
+    public void updatePersonOccupation(int personId, String occupation) {
+        updateField(personId, "occupation", occupation, null, "String");
+    }
+
+    public void updatePersonEducation(int personId, String education) {
+        updateField(personId, "education", education, null, "String");
+    }
+
+    public void updatePersonLanguage1(int personId, String language) {
+        updateField(personId, "firstLanguage", language, null, "String");
+    }
+    public void updatePersonLanguage2(int personId, String language) {
+        updateField(personId, "secondLanguage", language, null, "String");
+    }
+    public void updatePersonLanguage3(int personId, String language) {
+        updateField(personId, "thirdLanguage", language, null, "String");
+    }
+    public void updatePersonLanguage4(int personId, String language) {
+        updateField(personId, "fourthLanguage", language, null, "String");
+    }
+
+    public void updatePersonLivesMunicipality(int personId, String location) {
+        updateField(personId, "livesInMunicipality", location, null, "String");
+    }
+    public void updatePersonLivesDistrict(int personId, String location) {
+        updateField(personId, "livesInDistrict", location, null, "String");
+    }
+    public void updatePersonLivesVillage(int personId, String location) {
+        updateField(personId, "livesInVillage", location, null, "String");
+    }
+
+    public void updatePersonBornMunicipality(int personId, String location) {
+        updateField(personId, "bornMunicipality", location, null, "String");
+    }
+    public void updatePersonBornDistrict(int personId, String location) {
+        updateField(personId, "bornDistrict", location, null, "String");
+    }
+    public void updatePersonBornVillage(int personId, String location) {
+        updateField(personId, "bornVillage", location, null, "String");
+    }
+    public void updatePersonLivedWholeLife(int personId, Boolean livedWholeLife) {
+        updateField(personId, "livedWholeLife", null, (livedWholeLife ? 1 : 0), "Integer");
+    }
+    public void updatePersonLivedYears(int personId, Integer years) {
+        updateField(personId, "livedInYears", null, years, "Integer");
+    }
+
+    public void saveWord(int personid, int wordid, String word, String audiofilename) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-/*        db.execSQL("drop table " + PERSONCAPTURE_TABLE_NAME + ";");
-        db.execSQL("drop table " + PERSON_TABLE_NAME + ";");
-        db.execSQL(createPersonTable);
-        db.execSQL(createPersonCaptureTable);*/
-
-        String sql = "select personcaptureid from " + PERSONWORD_TABLE_NAME +
+        String sql = "select personwordid from " + PERSONWORD_TABLE_NAME +
                 " where personid = " + String.valueOf(personid) + " and " +
-                " itemid = " + String.valueOf(pictureid);
+                " wordid = " + String.valueOf(wordid);
 
         Cursor c = db.rawQuery(sql, null);
 
         if (c.moveToNext()) {
-            int personcaptureid = c.getInt(0);
+            int personwordid = c.getInt(0);
 
             ContentValues values = new ContentValues();
-            values.put("word", word );
+            values.put("wordtranscription", word );
             values.put("audiofilename", audiofilename);
 
-            db.update(PERSONWORD_TABLE_NAME, values,  "personcaptureid = " + String.valueOf(personcaptureid), null);
+            db.update(PERSONWORD_TABLE_NAME, values,  "personwordid = " + String.valueOf(personwordid), null);
         } else {
             if (word != null || audiofilename != null) {
                 ContentValues values = new ContentValues();
-                values.put("word", word);
+                values.put("wordtranscription", word);
                 values.put("personid", personid);
-                values.put("itemid", pictureid);
+                values.put("wordid", wordid);
                 values.put("audiofilename", audiofilename);
                 db.insert(PERSONWORD_TABLE_NAME, null, values);
             }
@@ -200,8 +279,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public PersonWord[] getAllWords() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "select personid, itemid, word, audiofilename from " +
-                PERSONWORD_TABLE_NAME + " where word <> '' or audiofilename <> ''";
+
+        String sql = "select personid, wordid, wordtranscription, audiofilename from " +
+                PERSONWORD_TABLE_NAME + " where wordtranscription <> '' or audiofilename <> ''";
 
         Cursor c = db.rawQuery(sql, null);
         List<PersonWord> items = new ArrayList<PersonWord>();
@@ -335,7 +415,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 (c.isNull(14) ? null : c.getInt(14)),
                 c.getString(15),
                 c.getString(16),
-                c.getString(17)
+                c.getString(17),
+                (c.isNull(18) ? null : (c.getInt(18) == 1))
         );
     }
 

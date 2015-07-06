@@ -36,8 +36,8 @@ public class InterviewNameActivity extends BaseInterviewActivity {
 
             Person newPerson = new Person(name);
 
-            //DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-            //dbHelper.insertPerson(newPerson);
+            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+            dbHelper.insertPerson(newPerson);
 
             Intent intent = new Intent(this, InterviewAgeActivity.class);
             intent.putExtra("person", newPerson);

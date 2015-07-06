@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.entity.Person;
 
@@ -45,6 +46,9 @@ public class InterviewOccupationActivity extends BaseInterviewActivity {
         }
         else {
             _person.occupation = selectedOccupation;
+
+            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+            dbHelper.updatePersonOccupation(_person.personid, _person.occupation);
 
             Intent intent = new Intent(this, InterviewEducationActivity.class);
             intent.putExtra("person", _person);

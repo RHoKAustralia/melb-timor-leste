@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import org.rhok.linguist.activity.location.InterviewMunicipalityActivity;
 import org.rhok.linguist.R;
+import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.entity.Person;
 
 public class InterviewLivedLengthActivity extends BaseInterviewActivity {
@@ -48,7 +49,10 @@ public class InterviewLivedLengthActivity extends BaseInterviewActivity {
             toast.show();
         }
         else {
-            _person.livesInYears = Integer.parseInt(longLived);
+            _person.livedInYears = Integer.parseInt(longLived);
+
+            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+            dbHelper.updatePersonLivedYears(_person.personid, _person.livedInYears);
 
             Intent intent = new Intent(this, InterviewMunicipalityActivity.class);
             intent.putExtra("Person", _person);

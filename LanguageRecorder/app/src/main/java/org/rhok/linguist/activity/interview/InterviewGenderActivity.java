@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.entity.Person;
 
@@ -44,7 +45,11 @@ public class InterviewGenderActivity extends BaseInterviewActivity {
             toast.show();
         }
         else {
+
             _person.gender = selectedGender;
+
+            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+            dbHelper.updatePersonGender(_person.personid, _person.gender );
 
             Intent intent = new Intent(this, InterviewOccupationActivity.class);
             intent.putExtra("person", _person);

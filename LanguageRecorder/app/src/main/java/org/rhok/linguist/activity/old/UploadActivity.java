@@ -88,6 +88,11 @@ public class UploadActivity extends ActionBarActivity {
 
     public void uploadToServer(android.view.View view) {
 
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        String json = dbHelper.getAllData();
+
+        addMessage(json);
+        /*
         new Thread(new Runnable() {
             public void run() {
 
@@ -101,7 +106,7 @@ public class UploadActivity extends ActionBarActivity {
                 addMessage( getResources().getString(R.string.upload_upload_complete));
 
             }
-        }).start();
+        }).start();*/
     }
 
 

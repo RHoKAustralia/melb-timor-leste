@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.entity.Person;
 
@@ -44,6 +45,9 @@ public class InterviewEducationActivity extends BaseInterviewActivity {
             toast.show();
         } else {
             _person.education = selectedEducation;
+
+            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+            dbHelper.updatePersonEducation(_person.personid, _person.education);
 
             String question = getResources().getString(R.string.interview_primarylanguage);
             Intent intent = new Intent(this, InterviewSpokenLanguageActivity.class);
