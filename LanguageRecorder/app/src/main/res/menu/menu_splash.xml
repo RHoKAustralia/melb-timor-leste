@@ -6,6 +6,9 @@
     <item android:id="@+id/action_skip" android:title="Skip"
         android:orderInCategory="101" app:showAsAction="never" />
 
+    <item android:id="@+id/action_upload" android:title="Upload"
+        android:orderInCategory="103" app:showAsAction="never" />
+
     <item android:id="@+id/action_settings" android:title="Settings"
         android:orderInCategory="105" app:showAsAction="never" />
 

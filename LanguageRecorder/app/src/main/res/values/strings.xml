@@ -98,7 +98,7 @@
 
 
     <string name="upload_title">Upload Data</string>
-    <string name="upload_number_of_people_label">Number of people</string>
+    <string name="upload_number_of_people_label">Number of people interviewed</string>
     <string name="upload_upload_data_button">Upload Data</string>
     <string name="upload_starting_upload">starting upload</string>
     <string name="upload_uploading_data">uploading data</string>

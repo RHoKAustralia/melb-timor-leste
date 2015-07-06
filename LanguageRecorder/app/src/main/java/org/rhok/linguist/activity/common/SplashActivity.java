@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.interview.InterviewNameActivity;
+import org.rhok.linguist.activity.old.UploadActivity;
 import org.rhok.linguist.activity.recording.RecordingAudioActivity;
 import org.rhok.linguist.activity.recording.RecordingInstructionsActivity;
 import org.rhok.linguist.code.LocaleHelper;
@@ -48,6 +49,10 @@ public class SplashActivity extends ActionBarActivity {
         if (id == R.id.action_skip) {
             Intent intent = new Intent(this, RecordingInstructionsActivity.class);
             intent.putExtra("PersonId", 1);
+            startActivity(intent);
+        }
+        if (id == R.id.action_upload) {
+            Intent intent = new Intent(this, UploadActivity.class);
             startActivity(intent);
         }
 

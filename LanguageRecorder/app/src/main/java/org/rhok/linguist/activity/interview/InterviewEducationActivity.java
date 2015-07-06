@@ -41,7 +41,7 @@ public class InterviewEducationActivity extends BaseInterviewActivity {
     public void nextButtonClick(android.view.View view) {
 
         if (selectedEducation == null) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please select an occupation", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), "Please select an education", Toast.LENGTH_SHORT);
             toast.show();
         } else {
             _person.education = selectedEducation;

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.DatabaseHelper;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 
 
 public class InterviewMunicipalityActivity extends BaseInterviewActivity {
-    private String selectedMunicipality = "";
+    private String selectedMunicipality = null;
     private String mode = null;
     private Person _person;
 
@@ -80,22 +81,26 @@ public class InterviewMunicipalityActivity extends BaseInterviewActivity {
     }
 
     public void nextButtonClick(android.view.View view) {
+        if (selectedMunicipality == null) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please select a municipality", Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
 
-        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
 
-        if (mode.equals("lives")) {
-            _person.livesInMunicipality = selectedMunicipality;
-            dbHelper.updatePersonLivesMunicipality(_person.personid, selectedMunicipality);
+            if (mode.equals("lives")) {
+                _person.livesInMunicipality = selectedMunicipality;
+                dbHelper.updatePersonLivesMunicipality(_person.personid, selectedMunicipality);
+            } else {
+                _person.bornMunicipality = selectedMunicipality;
+                dbHelper.updatePersonBornMunicipality(_person.personid, selectedMunicipality);
+            }
+
+            Intent intent = new Intent(this, InterviewSubDistrictActivity.class);
+            intent.putExtra("Person", _person);
+            intent.putExtra("mode", mode);
+            startActivity(intent);
         }
-        else {
-            _person.bornMunicipality = selectedMunicipality;
-            dbHelper.updatePersonBornMunicipality(_person.personid, selectedMunicipality);
-        }
-
-        Intent intent = new Intent(this, InterviewSubDistrictActivity.class);
-        intent.putExtra("Person", _person);
-        intent.putExtra("mode", mode);
-        startActivity(intent);
     }
 
     private String[] locations() {

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.DatabaseHelper;
@@ -18,8 +19,8 @@ import org.rhok.linguist.activity.interview.BaseInterviewActivity;
 import java.util.ArrayList;
 
 public class InterviewSubDistrictActivity extends BaseInterviewActivity {
-    private String selectedMunicipality = "";
-    private String selectedSubDistrict = "";
+    private String selectedMunicipality = null;
+    private String selectedSubDistrict = null;
     private String mode = null;
     private Person _person;
 
@@ -91,20 +92,25 @@ public class InterviewSubDistrictActivity extends BaseInterviewActivity {
 
     public void nextButtonClick(android.view.View view) {
 
-        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        if (mode.equals("lives")) {
-            _person.livesInDistrict = selectedSubDistrict;
-            dbHelper.updatePersonLivesDistrict(_person.personid, selectedSubDistrict);
-        }
-        else {
-            _person.bornDistrict = selectedSubDistrict;
-            dbHelper.updatePersonBornDistrict(_person.personid, selectedSubDistrict);
-        }
+        if (selectedSubDistrict == null) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please select a sub district", Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
 
-        Intent intent = new Intent(this, InterviewVillageActivity.class);
-        intent.putExtra("mode", mode);
-        intent.putExtra("Person", _person);
-        startActivity(intent);
+            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+            if (mode.equals("lives")) {
+                _person.livesInDistrict = selectedSubDistrict;
+                dbHelper.updatePersonLivesDistrict(_person.personid, selectedSubDistrict);
+            } else {
+                _person.bornDistrict = selectedSubDistrict;
+                dbHelper.updatePersonBornDistrict(_person.personid, selectedSubDistrict);
+            }
+
+            Intent intent = new Intent(this, InterviewVillageActivity.class);
+            intent.putExtra("mode", mode);
+            intent.putExtra("Person", _person);
+            startActivity(intent);
+        }
     }
 
 

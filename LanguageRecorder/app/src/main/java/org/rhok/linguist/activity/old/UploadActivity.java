@@ -1,5 +1,9 @@
 package org.rhok.linguist.activity.old;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,7 +63,6 @@ public class UploadActivity extends ActionBarActivity {
         progressText = "";
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -88,11 +91,6 @@ public class UploadActivity extends ActionBarActivity {
 
     public void uploadToServer(android.view.View view) {
 
-        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        String json = dbHelper.getAllData();
-
-        addMessage(json);
-        /*
         new Thread(new Runnable() {
             public void run() {
 
@@ -101,14 +99,39 @@ public class UploadActivity extends ActionBarActivity {
 
                 uploadData();
 
-                uploadAudioData();
+                //uploadAudioData();
 
                 addMessage( getResources().getString(R.string.upload_upload_complete));
 
             }
-        }).start();*/
+        }).start();
     }
 
+    private void sendNotification(String message) {
+
+        Intent resultIntent = new Intent(this, UploadActivity.class);
+        PendingIntent resultPendingIntent =
+                PendingIntent.getActivity(
+                        this,
+                        0,
+                        resultIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.livru_timor_logo)
+                        .setContentTitle("Local Linguist")
+                        .setContentText(message);
+
+        // notification click behaviour
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        int mNotificationId = 001;
+        NotificationManager mNotifyMgr =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        mNotifyMgr.notify(mNotificationId, mBuilder.build());
+    }
 
     private void addMessage(String message) {
         Date now = new Date();
@@ -139,20 +162,20 @@ public class UploadActivity extends ActionBarActivity {
             httppost.setHeader("Accept", "application/json");
             httppost.setHeader("Content-type", "application/json");
 
-            // Add your data
-//            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-//            nameValuePairs.add(new BasicNameValuePair("json", json));
-  //          httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
             // Execute HTTP Post Request
             HttpResponse response = httpclient.execute(httppost);
 
         } catch (ClientProtocolException e) {
             Log.i("languageapp", e.toString());
+            sendNotification("Data upload failed");
+            addMessage(e.toString());
+
             // TODO Auto-generated catch block
         } catch (IOException e) {
             // TODO Auto-generated catch block
             Log.i("languageapp", e.toString());
+            sendNotification("Data upload failed");
+            addMessage(e.toString());
         }
 
     }

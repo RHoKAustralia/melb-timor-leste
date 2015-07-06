@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.old.StudyActivity;
@@ -16,7 +17,7 @@ import org.rhok.linguist.activity.location.InterviewMunicipalityActivity;
 
 public class InterviewSpokenLanguageActivity extends BaseInterviewActivity {
 
-    private String selectedLanguage = "";
+    private String selectedLanguage = null;
     private String nextActivity = "";
     private int languageNumber;
     private Person _person;
@@ -41,40 +42,46 @@ public class InterviewSpokenLanguageActivity extends BaseInterviewActivity {
 
     public void nextButtonClick(android.view.View view) {
 
-        if (nextActivity.equals("Study")) {
-            Intent intent = new Intent(this, StudyActivity.class);
-            intent.putExtra("Person", _person);
-            intent.putExtra("LANGUAGE", selectedLanguage);
-            startActivity(intent);
-        }
-        if (nextActivity.equals("MoreLanguages")) {
+        if (selectedLanguage == null) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please select a language", Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
 
-            Intent intent = new Intent(this, InterviewMoreLanguagesActivity.class);
-            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+            if (nextActivity.equals("Study")) {
+                Intent intent = new Intent(this, StudyActivity.class);
+                intent.putExtra("Person", _person);
+                intent.putExtra("LANGUAGE", selectedLanguage);
+                startActivity(intent);
+            }
+            if (nextActivity.equals("MoreLanguages")) {
 
-            languageNumber = getIntent().getExtras().getInt("LanguageNumber");
-            if (languageNumber == 1) {
-                _person.firstLanguage = selectedLanguage;
-                dbHelper.updatePersonLanguage1(_person.personid, selectedLanguage);
-            }
-            if (languageNumber == 2) {
-                _person.secondLanguage = selectedLanguage;
-                dbHelper.updatePersonLanguage2(_person.personid, selectedLanguage);
-            }
-            if (languageNumber == 3) {
-                _person.thirdLanguage = selectedLanguage;
-                dbHelper.updatePersonLanguage3(_person.personid, selectedLanguage);
-            }
-            if (languageNumber == 4) {
-                _person.fourthLanguage = selectedLanguage;
-                dbHelper.updatePersonLanguage4(_person.personid, selectedLanguage);
+                Intent intent = new Intent(this, InterviewMoreLanguagesActivity.class);
+                DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
 
-                intent = new Intent(this, InterviewMunicipalityActivity.class);
-                intent.putExtra("mode", "lives");
+                languageNumber = getIntent().getExtras().getInt("LanguageNumber");
+                if (languageNumber == 1) {
+                    _person.firstLanguage = selectedLanguage;
+                    dbHelper.updatePersonLanguage1(_person.personid, selectedLanguage);
+                }
+                if (languageNumber == 2) {
+                    _person.secondLanguage = selectedLanguage;
+                    dbHelper.updatePersonLanguage2(_person.personid, selectedLanguage);
+                }
+                if (languageNumber == 3) {
+                    _person.thirdLanguage = selectedLanguage;
+                    dbHelper.updatePersonLanguage3(_person.personid, selectedLanguage);
+                }
+                if (languageNumber == 4) {
+                    _person.fourthLanguage = selectedLanguage;
+                    dbHelper.updatePersonLanguage4(_person.personid, selectedLanguage);
+
+                    intent = new Intent(this, InterviewMunicipalityActivity.class);
+                    intent.putExtra("mode", "lives");
+                }
+                intent.putExtra("Person", _person);
+                intent.putExtra("LastLanguageNumber", languageNumber);
+                startActivity(intent);
             }
-            intent.putExtra("Person", _person);
-            intent.putExtra("LastLanguageNumber", languageNumber);
-            startActivity(intent);
         }
     }
 

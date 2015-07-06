@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.DatabaseHelper;
@@ -99,22 +100,27 @@ public class InterviewVillageActivity extends BaseInterviewActivity {
 
     public void nextButtonClick(View view) {
 
-        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        Intent intent = null;
+        if (selectedVillage == null) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please select a village", Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
 
-        if (mode.equals("lives")) {
-            _person.livesInVillage = selectedVillage;
-            dbHelper.updatePersonLivesVillage(_person.personid, selectedVillage);
-            intent = new Intent(this, InterviewLivedLifeActivity.class);
+            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+            Intent intent = null;
+
+            if (mode.equals("lives")) {
+                _person.livesInVillage = selectedVillage;
+                dbHelper.updatePersonLivesVillage(_person.personid, selectedVillage);
+                intent = new Intent(this, InterviewLivedLifeActivity.class);
+                intent.putExtra("Person", _person);
+            } else {
+                _person.bornVillage = selectedVillage;
+                dbHelper.updatePersonBornVillage(_person.personid, selectedVillage);
+                intent = new Intent(this, RecordingInstructionsActivity.class);
+                intent.putExtra("PersonId", _person.personid);
+            }
+
+            startActivity(intent);
         }
-        else {
-            _person.bornVillage = selectedVillage;
-            dbHelper.updatePersonBornVillage(_person.personid, selectedVillage);
-            intent = new Intent(this, RecordingInstructionsActivity.class);
-        }
-
-        intent.putExtra("Person", _person);
-
-        startActivity(intent);
     }
 }
