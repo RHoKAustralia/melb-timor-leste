@@ -72,7 +72,7 @@ public class CaptureActivity extends ActionBarActivity {
 
         showPicture();
 
-        getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        //getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     private void populateWindowTitle() {
@@ -192,7 +192,7 @@ public class CaptureActivity extends ActionBarActivity {
     private void showPicture() {
 
         int pictureToUse = 0;
-
+        /*
         if (itemid == 1) {
             pictureToUse = R.drawable.church;
         }
@@ -205,7 +205,7 @@ public class CaptureActivity extends ActionBarActivity {
         if (itemid == 4) {
             pictureToUse = R.drawable.spider;
         }
-
+        */
         imageView.setImageResource(pictureToUse);
 
         PersonWord personWord = dbHelper.getWord(personid, itemid);

@@ -99,7 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void insertPerson(Person person) {
-        //recreateDB();
+        recreateDB();
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = getDbValues(person);
@@ -157,7 +157,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(fieldName, strValue);
         }
         if (type.equals("Integer")) {
-            values.put(fieldName, strValue);
+            values.put(fieldName, intValue);
         }
         db.update(PERSON_TABLE_NAME, values, "personid = " + String.valueOf(personId), null);
 

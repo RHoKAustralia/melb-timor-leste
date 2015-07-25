@@ -89,6 +89,7 @@ public class Person implements Serializable {
         org.json.JSONObject json = new JSONObject();
 
         try {
+            json.put("personid", this.personid);
             json.put("name", this.name);
             json.put("age", this.age);
             json.put("gender", this.gender);

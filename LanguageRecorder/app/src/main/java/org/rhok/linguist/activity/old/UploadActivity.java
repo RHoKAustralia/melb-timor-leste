@@ -39,7 +39,7 @@ import java.util.Date;
 
 public class UploadActivity extends ActionBarActivity {
 
-    private String baseUrl = "http://lachlanbarclay.net";
+    private String baseUrl = "http://bluetac";
     private TextView uploadProgressTextView;
     private Button uploadFileButton;
     private String progressText;
