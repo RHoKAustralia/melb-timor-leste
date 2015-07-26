@@ -12,6 +12,10 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.params.HttpProtocolParams;
+import org.apache.http.protocol.HTTP;
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.DiskSpace;
@@ -99,7 +103,7 @@ public class UploadActivity extends ActionBarActivity {
 
                 uploadData();
 
-                //uploadAudioData();
+                uploadAudioData();
 
                 addMessage( getResources().getString(R.string.upload_upload_complete));
 
@@ -146,7 +150,10 @@ public class UploadActivity extends ActionBarActivity {
     }
 
     private void uploadData() {
-        HttpClient httpclient = new DefaultHttpClient();
+        HttpParams httpParameters = new BasicHttpParams();
+        HttpProtocolParams.setContentCharset(httpParameters, HTTP.UTF_8);
+        HttpProtocolParams.setHttpElementCharset(httpParameters, HTTP.UTF_8);
+        HttpClient httpclient = new DefaultHttpClient(httpParameters);
         HttpPost httppost = new HttpPost(baseUrl + "/api/languagedata");
 
         try {
@@ -156,7 +163,7 @@ public class UploadActivity extends ActionBarActivity {
 
             Log.i("LanguageApp", json);
 
-            StringEntity se = new StringEntity(json);
+            StringEntity se = new StringEntity(json, HTTP.UTF_8);
 
             httppost.setEntity(se);
             httppost.setHeader("Accept", "application/json");

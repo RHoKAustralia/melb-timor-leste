@@ -66,14 +66,14 @@ public class AudioThread extends Thread {
     {
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
 
         if (audioFilename == null) {
-            audioFilename = UUID.randomUUID().toString().replaceAll("-", "").concat(".3gp");
+            audioFilename = UUID.randomUUID().toString().replaceAll("-", "").concat(".mp4");
         }
 
         mRecorder.setOutputFile(DiskSpace.getAudioFileBasePath() + audioFilename);
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
 
         try {
             mRecorder.prepare();

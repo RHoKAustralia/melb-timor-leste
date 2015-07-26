@@ -99,7 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void insertPerson(Person person) {
-        recreateDB();
+        //recreateDB();
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = getDbValues(person);
@@ -165,7 +165,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updatePersonAge(int personId, Integer Age) {
-        updateField(personId, "age", null, personId, "Integer");
+        updateField(personId, "age", null, Age, "Integer");
     }
 
     public void updatePersonGender(int personId, String gender) {
@@ -365,8 +365,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.execSQL("drop table person;");
-        db.execSQL("drop table personcapture;");
+       // db.execSQL("drop table person;");
+        //db.execSQL("drop table personcapture;");
         db.execSQL(createPersonTable);
         db.execSQL(createPersonWordTable);
 
@@ -374,9 +374,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Person[] getPeople() {
-
         //resetDatabase();
-
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor c = db.rawQuery("select " + PERSON_COLUMNS + " from " + PERSON_TABLE_NAME, null);

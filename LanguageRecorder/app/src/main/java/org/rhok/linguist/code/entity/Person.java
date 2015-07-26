@@ -119,7 +119,7 @@ public class Person implements Serializable {
                 if (words[i].word != null || words[i].audiofilename != null) {
                     JSONObject jsonWord = new JSONObject();
 
-                    jsonWord.put("wordid", words[i].itemid);
+                    jsonWord.put("itemid", words[i].itemid);
 
                     if (words[i].word != null) {
                         jsonWord.put("word", words[i].word);
