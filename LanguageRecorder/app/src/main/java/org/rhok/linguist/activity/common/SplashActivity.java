@@ -1,8 +1,11 @@
 package org.rhok.linguist.activity.common;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,12 +16,20 @@ import org.rhok.linguist.activity.recording.RecordingAudioActivity;
 import org.rhok.linguist.activity.recording.RecordingInstructionsActivity;
 import org.rhok.linguist.code.LocaleHelper;
 
+import java.io.Console;
+import java.util.logging.Logger;
+
 
 public class SplashActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String serverAddress = sharedPref.getString("pref_server_address", "err.org");
+        Log.d("","Shared sever: " + serverAddress);
 
         setContentView(R.layout.activity_splash);
         //ActionBar actionBar = getSupportActionBar();
