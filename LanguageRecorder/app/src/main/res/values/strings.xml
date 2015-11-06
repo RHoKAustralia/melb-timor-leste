@@ -1,8 +1,44 @@
 <resources>
-    <string name="app_name">Language Recorder</string>
+    <string name="app_name">Local Linguist</string>
 
-    <string name="splash_title">Language Recorder</string>
-    <string name="splash_start_button">Start</string>
+    <!-- Splash screen settings -->
+    <string name="splash_start_button">Komesa</string>
+
+    <string name="interview_title">Interview</string>
+    <string name="interview_name">What is your name?</string>
+    <string name="interview_age">What is your age?</string>
+    <string name="interview_years">(years)</string>
+    <string name="interview_gender">What is your gender?</string>
+    <string name="interview_occupation">What is your occupation?</string>
+    <string name="interview_education">What is your education?</string>
+    <string name="interview_primarylanguage">What is your primary language?</string>
+    <string name="interview_morelanguages">Do you speak another language?</string>
+
+
+
+    <string name="interview_municipality_lives">What municipality do you live in?</string>
+    <string name="interview_district_lives">In ##municipality##, what district do you live?</string>
+    <string name="interview_village_lives">In ##district##, what village do you live?</string>
+
+    <string name="interview_lived_life">Have you lived in ##village## your whole life?</string>
+
+    <string name="interview_municipality_born">What municipality were you born in?</string>
+    <string name="interview_district_born">In ##municipality##, what district were you born in?</string>
+    <string name="interview_village_born">In ##district##, what village were you born in?</string>
+
+    <string name="interview_lived_length">How many years have you lived in ##village##?</string>
+
+    <string name="interview_audio_instructions">Please say the word for the picture you see on the screen.</string>
+    <string name="interview_audio_recording">What is the word for this?</string>
+    <string name="interview_recording">Recording</string>
+    <string name="interview_recording_ok">Is this recording ok?</string>
+    <string name="interview_transcribe">What is the transcription for this word?</string>
+
+    <!-- Button settings -->
+    <string name="next_button">Next</string>
+    <string name="start_button">Start</string>
+    <string name="yes_button">Yes</string>
+    <string name="no_button">No</string>
 
     <string name="home_title">Home</string>
     <string name="home_select_person">Person selection</string>
@@ -62,7 +98,7 @@
 
 
     <string name="upload_title">Upload Data</string>
-    <string name="upload_number_of_people_label">Number of people</string>
+    <string name="upload_number_of_people_label">Number of people interviewed</string>
     <string name="upload_upload_data_button">Upload Data</string>
     <string name="upload_starting_upload">starting upload</string>
     <string name="upload_uploading_data">uploading data</string>
@@ -73,6 +109,40 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_name_capture">NameCaptureActivity</string>
+    <string name="title_activity_age_capture">AgeCaptureActivity</string>
+    <string name="title_activity_gender_capture">GenderCaptureActivity</string>
+    <string name="title_activity_home_capture">HomeCaptureActivity</string>
+    <string name="INTENT_PERSONID">org.rhok.linguist.personid</string>
+    <string name="title_activity_years_in_home_capture">YearsInHomeCaptureActivity</string>
+    <string name="title_activity_activity_occupation_capture">activity_occupation_capture</string>
+    <string name="title_activity_occupation_activity">occupation_activity</string>
+    <string name="title_activity_occupation_capture">OccupationCaptureActivity</string>
+    <string name="title_activity_education">EducationActivity</string>
+    <string name="title_activity_spoken_language">SpokenLanguageActivity</string>
+    <string name="title_activity_more_languages">MoreLanguagesActivity</string>
+    <string name="title_activity_how_long_lived">HowLongLivedActivity</string>
+    <string name="title_activity_district_born">DistrictBornActivity</string>
+    <string name="title_activity_sub_district_born">SubDistrictBornActivity</string>
+    <string name="title_activity_village_born">VillageBornActivity</string>
+    <string name="title_activity_location">LocationActivity</string>
+    <string name="title_activity_sub_district">SubDistrictActivity</string>
+    <string name="title_activity_village">VillageActivity</string>
+    <string name="title_activity_study">StudyActivity</string>
+    <string name="title_activity_home_new">HomeNew</string>
+    <string name="title_activity_interview_name">InterviewNameActivity</string>
+    <string name="title_activity_interview_age">InterviewAgeActivity</string>
+    <string name="title_activity_interview_gender">InterviewGenderActivity</string>
+    <string name="title_activity_interview_occupation">InterviewOccupation</string>
+    <string name="title_activity_interview_education">InterviewEducationActivity</string>
+    <string name="title_activity_interview_more_languages">InterviewMoreLanguagesActivity</string>
+    <string name="title_activity_interview_lived_life">InterviewLivedLifeActivity</string>
+    <string name="title_activity_interview_lived_length">InterviewLivedLengthActivity</string>
+    <string name="title_activity_recording_audio">RecordingAudioActivity</string>
+    <string name="title_activity_recording_instructions">RecordingInstructionsActivity</string>
+    <string name="title_activity_recording_listen">RecordingListenActivity</string>
+    <string name="title_activity_recording_transcribe">RecordingTranscribeActivity</string>
+    <string name="title_activity_app_settings">AppSettingsActivity</string>
 
 
 </resources>

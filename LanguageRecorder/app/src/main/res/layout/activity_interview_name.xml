@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/activityStyle"
+    tools:context="org.rhok.linguist.activity.interview.InterviewNameActivity">
+
+    <LinearLayout style="@style/contentContainerStyle">
+
+        <TextView style="@style/contentHeaderStyle"
+            android:text="@string/interview_name" />
+
+        <EditText
+            android:id="@+id/nameEditText"
+            android:singleLine="true"
+            android:hint=""
+            android:imeOptions="actionDone"
+            android:inputType="textNoSuggestions"
+            android:layout_marginTop="16px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </EditText>
+
+    </LinearLayout>
+
+    <Button style="@style/nextButtonStyle" />
+
+</LinearLayout>

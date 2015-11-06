@@ -1,40 +1,511 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="districts">
-        <item
-            district="Ainaro District"
-            subdistrict="Ainaro"
-            village="Ainaro"
-            />
-        <item
-            district="Ainaro District"
-            subdistrict="Ainaro"
-            village="Suro-Craic"
-            />
-        <item
-            district="Ainaro District"
-            subdistrict="Ainaro"
-            village="Soro"
-            />
-        <item
-            district="Ainaro District"
-            subdistrict="Ainaro"
-            village="Manutasi"
-            />
-        <item
-            district="Ainaro District"
-            subdistrict="Ainaro"
-            village="Cassa"
-            />
-        <item
-            district="Ainaro District"
-            subdistrict="Ainaro"
-            village="Mau-Ulu"
-            />
-        <item
-            district="Ainaro District"
-            subdistrict="Ainaro"
-            village="Mau-Nuno"
-            />
-    </array>
+    <string-array name="locations">
+        <item>Ainaro|Ainaro|Ainaro</item>
+        <item>Ainaro|Ainaro|Suro-Craic</item>
+        <item>Ainaro|Ainaro|Soro</item>
+        <item>Ainaro|Ainaro|Manutasi</item>
+        <item>Ainaro|Ainaro|Cassa</item>
+        <item>Ainaro|Ainaro|Mau-Ulu</item>
+        <item>Ainaro|Ainaro|Mau-Nuno</item>
+        <item>Ainaro|Hatu-Builico|Mulo</item>
+        <item>Ainaro|Hatu-Builico|Nuno-Mogue</item>
+        <item>Ainaro|Hatu-Builico|Mau-Chiga</item>
+        <item>Ainaro|Maubisse|Maubisse</item>
+        <item>Ainaro|Maubisse|Manelobas</item>
+        <item>Ainaro|Maubisse|Manetu</item>
+        <item>Ainaro|Maubisse|Aitutu</item>
+        <item>Ainaro|Maubisse|Edi</item>
+        <item>Ainaro|Maubisse|Maulau</item>
+        <item>Ainaro|Maubisse|Horai-Quic</item>
+        <item>Ainaro|Maubisse|Suco Liurai</item>
+        <item>Ainaro|Maubisse|Fatu-Besi</item>
+        <item>Ainaro|Hatu-udo|Leolima</item>
+        <item>Ainaro|Hatu-udo|Foho-Ai-Lico</item>
+        <item>Aileu|Aileu vila|Aisirimou</item>
+        <item>Aileu|Aileu vila|Bandudato</item>
+        <item>Aileu|Aileu vila|Fahiria</item>
+        <item>Aileu|Aileu vila|Fatubosa</item>
+        <item>Aileu|Aileu vila|Lahae</item>
+        <item>Aileu|Aileu vila|Lausi</item>
+        <item>Aileu|Aileu vila|Hoholau</item>
+        <item>Aileu|Aileu vila|Seloi Malere</item>
+        <item>Aileu|Aileu vila|Seloi Craic</item>
+        <item>Aileu|Aileu vila|Saboria</item>
+        <item>Aileu|Aileu vila|Suco Liurai</item>
+        <item>Aileu|Liquidoe|Namoleso</item>
+        <item>Aileu|Liquidoe|Acubilitoho</item>
+        <item>Aileu|Liquidoe|Betulau</item>
+        <item>Aileu|Liquidoe|Faturilau</item>
+        <item>Aileu|Liquidoe|Bereleu</item>
+        <item>Aileu|Liquidoe|Fahisoi</item>
+        <item>Aileu|Liquidoe|Manucasa</item>
+        <item>Aileu|Remexio|Acumau</item>
+        <item>Aileu|Remexio|Tulataqueo</item>
+        <item>Aileu|Remexio|Suco-Liurai</item>
+        <item>Aileu|Remexio|Faturasa</item>
+        <item>Aileu|Remexio|Fadabloco</item>
+        <item>Aileu|Remexio|Maumeta</item>
+        <item>Aileu|Remexio|Hautoho</item>
+        <item>Aileu|Remexio|Fahisoi</item>
+        <item>Aileu|Laulara|Cotolau</item>
+        <item>Aileu|Laulara|Talitu</item>
+        <item>Aileu|Laulara|Madabeno</item>
+        <item>Aileu|Laulara|Tohumeta</item>
+        <item>Aileu|Laulara|Fatisi</item>
+        <item>Baucau|Baucau|Bahu</item>
+        <item>Baucau|Baucau|Bucoli</item>
+        <item>Baucau|Baucau|Buruma</item>
+        <item>Baucau|Baucau|Buibau</item>
+        <item>Baucau|Baucau|Wailili</item>
+        <item>Baucau|Baucau|Samalari</item>
+        <item>Baucau|Baucau|Gariuai</item>
+        <item>Baucau|Baucau|Triloca</item>
+        <item>Baucau|Baucau|Trilolo</item>
+        <item>Baucau|Baucau|Seical</item>
+        <item>Baucau|Baucau|Caibada</item>
+        <item>Baucau|Laga|Atelari</item>
+        <item>Baucau|Laga|Tequino Mata</item>
+        <item>Baucau|Laga|Soba</item>
+        <item>Baucau|Laga|Samalari</item>
+        <item>Baucau|Laga|Sagadati</item>
+        <item>Baucau|Laga|Nunira</item>
+        <item>Baucau|Laga|Libagua</item>
+        <item>Baucau|Laga|Saelari</item>
+        <item>Baucau|Quelicai|Baguia</item>
+        <item>Baucau|Quelicai|Locoliu</item>
+        <item>Baucau|Quelicai|Letemuno</item>
+        <item>Baucau|Quelicai|Waitame</item>
+        <item>Baucau|Quelicai|Macalaco</item>
+        <item>Baucau|Quelicai|Bualale</item>
+        <item>Baucau|Quelicai|Lelalai</item>
+        <item>Baucau|Quelicai|Abo</item>
+        <item>Baucau|Quelicai|Guruca</item>
+        <item>Baucau|Quelicai|Afaca</item>
+        <item>Baucau|Quelicai|Laisorolai De Sima</item>
+        <item>Baucau|Quelicai|Laisorolai De Baixo</item>
+        <item>Baucau|Quelicai|Maluro</item>
+        <item>Baucau|Quelicai|Namanei</item>
+        <item>Baucau|Quelicai|Abafala</item>
+        <item>Baucau|Baguia|Afaloicai</item>
+        <item>Baucau|Baguia|Alaua Craic</item>
+        <item>Baucau|Baguia|Alaua Leten</item>
+        <item>Baucau|Baguia|Haeconi</item>
+        <item>Baucau|Baguia|Ossu-Huna</item>
+        <item>Baucau|Baguia|Lari Sula</item>
+        <item>Baucau|Baguia|Samalari</item>
+        <item>Baucau|Baguia|Defa Uassi</item>
+        <item>Baucau|Baguia|Lavateri</item>
+        <item>Baucau|Baguia|Uacala</item>
+        <item>Baucau|Vemase|Vemase</item>
+        <item>Baucau|Vemase|Ostico</item>
+        <item>Baucau|Vemase|Ossoala</item>
+        <item>Baucau|Vemase|Loilubo</item>
+        <item>Baucau|Vemase|Uaigae</item>
+        <item>Baucau|Vemase|Uatu-Lari</item>
+        <item>Baucau|Vemase|Caicua</item>
+        <item>Baucau|Venilale|Bada Ho\'o</item>
+        <item>Baucau|Venilale|Baha Mori</item>
+        <item>Baucau|Venilale|Uailaha</item>
+        <item>Baucau|Venilale|Uaiolo</item>
+        <item>Baucau|Venilale|Uma Ana Ico</item>
+        <item>Baucau|Venilale|Uma Ana Ulo</item>
+        <item>Baucau|Venilale|Fatulia</item>
+        <item>Baucau|Venilale|Uataco</item>
+        <item>Bobonaro|Maliana|Lahomea</item>
+        <item>Bobonaro|Maliana|Raifun</item>
+        <item>Bobonaro|Maliana|Ritabou</item>
+        <item>Bobonaro|Maliana|Odomau</item>
+        <item>Bobonaro|Maliana|Holsa</item>
+        <item>Bobonaro|Maliana|Tapo/Memo</item>
+        <item>Bobonaro|Maliana|Saburai</item>
+        <item>Bobonaro|Cailaco|Raiheu</item>
+        <item>Bobonaro|Cailaco|Goulolo</item>
+        <item>Bobonaro|Cailaco|Meligo</item>
+        <item>Bobonaro|Cailaco|Atudara</item>
+        <item>Bobonaro|Cailaco|Purugoa</item>
+        <item>Bobonaro|Cailaco|Dau Udo</item>
+        <item>Bobonaro|Cailaco|Guenu Lai</item>
+        <item>Bobonaro|Cailaco|Manapa</item>
+        <item>Bobonaro|Balibo|Balibo Vila</item>
+        <item>Bobonaro|Balibo|Leohitu</item>
+        <item>Bobonaro|Balibo|Cowa</item>
+        <item>Bobonaro|Balibo|Leolima 1</item>
+        <item>Bobonaro|Balibo|Sanirin</item>
+        <item>Bobonaro|Balibo|Batugade</item>
+        <item>Bobonaro|Atabae|Aidabaleten</item>
+        <item>Bobonaro|Atabae|Atabae</item>
+        <item>Bobonaro|Atabae|Rairobo</item>
+        <item>Bobonaro|Atabae|Hataz</item>
+        <item>Bobonaro|Lolotoe|Opa</item>
+        <item>Bobonaro|Lolotoe|Lupal</item>
+        <item>Bobonaro|Lolotoe|Guda</item>
+        <item>Bobonaro|Lolotoe|Deudet</item>
+        <item>Bobonaro|Lolotoe|Lebos</item>
+        <item>Bobonaro|Lolotoe|Lontas</item>
+        <item>Bobonaro|Lolotoe|Gildapil</item>
+        <item>Bobonaro|Bobonaro|Ai-Assa</item>
+        <item>Bobonaro|Bobonaro|Atu-Aben</item>
+        <item>Bobonaro|Bobonaro|Bobonaro</item>
+        <item>Bobonaro|Bobonaro|Carabau</item>
+        <item>Bobonaro|Bobonaro|Colimau</item>
+        <item>Bobonaro|Bobonaro|Cotabot</item>
+        <item>Bobonaro|Bobonaro|Lourba</item>
+        <item>Bobonaro|Bobonaro|Lour 1</item>
+        <item>Bobonaro|Bobonaro|Leber</item>
+        <item>Bobonaro|Bobonaro|Malilait</item>
+        <item>Bobonaro|Bobonaro|Molop</item>
+        <item>Bobonaro|Bobonaro|Male-Ubu</item>
+        <item>Bobonaro|Bobonaro|Oe-Leu</item>
+        <item>Bobonaro|Bobonaro|Soilesu</item>
+        <item>Bobonaro|Bobonaro|Sibuni</item>
+        <item>Bobonaro|Bobonaro|Tapo</item>
+        <item>Bobonaro|Bobonaro|Tebabui</item>
+        <item>Bobonaro|Bobonaro|Ilat-Laun</item>
+        <item>Covalima|Fatululic|Fatululic</item>
+        <item>Covalima|Fatululic|Taroman</item>
+        <item>Covalima|Fatumean|Fatumea</item>
+        <item>Covalima|Fatumean|Belulik Leten</item>
+        <item>Covalima|Fatumean|Nanu</item>
+        <item>Covalima|Fohorem|Fohoren</item>
+        <item>Covalima|Fohorem|Lactos</item>
+        <item>Covalima|Fohorem|Dato Rua</item>
+        <item>Covalima|Fohorem|Dato Tolu</item>
+        <item>Covalima|Maukatar|Holpilat</item>
+        <item>Covalima|Maukatar|Ogues</item>
+        <item>Covalima|Maukatar|Matai</item>
+        <item>Covalima|Maukatar|Belecasac</item>
+        <item>Covalima|Suai|Beco</item>
+        <item>Covalima|Suai|Debos</item>
+        <item>Covalima|Suai|Suai Loro</item>
+        <item>Covalima|Suai|Camenasa</item>
+        <item>Covalima|Suai|Labarai</item>
+        <item>Covalima|Tilomar|Foholulic</item>
+        <item>Covalima|Tilomar|Lalawa</item>
+        <item>Covalima|Tilomar|Maudemo</item>
+        <item>Covalima|Tilomar|Casabauc</item>
+        <item>Covalima|Zumalai|Raimea</item>
+        <item>Covalima|Zumalai|Zulo</item>
+        <item>Covalima|Zumalai|Lour</item>
+        <item>Covalima|Zumalai|Fatuleto</item>
+        <item>Covalima|Zumalai|Mape</item>
+        <item>Covalima|Zumalai|Lepo</item>
+        <item>Covalima|Zumalai|Ucecai</item>
+        <item>Covalima|Zumalai|Tashilin</item>
+        <item>Dili|Vera Cruz|Lahane Ocidental</item>
+        <item>Dili|Vera Cruz|Vila Verde</item>
+        <item>Dili|Vera Cruz|Macarenhas</item>
+        <item>Dili|Vera Cruz|Caicoli</item>
+        <item>Dili|Vera Cruz|Colmera</item>
+        <item>Dili|Vera Cruz|Motael</item>
+        <item>Dili|Vera Cruz|Dare</item>
+        <item>Dili|Nain Feto|Santa Cruz</item>
+        <item>Dili|Nain Feto|Acadiru Hun</item>
+        <item>Dili|Nain Feto|Bemori</item>
+        <item>Dili|Nain Feto|Lahane Oriental</item>
+        <item>Dili|Nain Feto|Bidau Lecidere</item>
+        <item>Dili|Nain Feto|Gricenfor</item>
+        <item>Dili|Metinaro|Sabuli</item>
+        <item>Dili|Metinaro|Duyung (Sereia)</item>
+        <item>Dili|Atauro|Atauro Vila/Maumeta</item>
+        <item>Dili|Atauro|Maquili</item>
+        <item>Dili|Atauro|Beloi</item>
+        <item>Dili|Atauro|Macadade</item>
+        <item>Dili|Atauro|Biceli</item>
+        <item>Dili|Dom Aleixo|Fatuhada</item>
+        <item>Dili|Dom Aleixo|Kampung Alor</item>
+        <item>Dili|Dom Aleixo|Comoro</item>
+        <item>Dili|Dom Aleixo|Bairro Pite</item>
+        <item>Dili|Cristo Rei|Culu Hun</item>
+        <item>Dili|Cristo Rei|Becora</item>
+        <item>Dili|Cristo Rei|Camea</item>
+        <item>Dili|Cristo Rei|Hera</item>
+        <item>Dili|Cristo Rei|Balibar</item>
+        <item>Dili|Cristo Rei|Meti Aut</item>
+        <item>Dili|Cristo Rei|Bidau Santana</item>
+        <item>Ermera|Railaco|Lihu</item>
+        <item>Ermera|Railaco|Matata</item>
+        <item>Ermera|Railaco|Tocoluli</item>
+        <item>Ermera|Railaco|Fatuquero</item>
+        <item>Ermera|Railaco|Railaco Craic</item>
+        <item>Ermera|Railaco|Railaco Leten</item>
+        <item>Ermera|Railaco|Samalete</item>
+        <item>Ermera|Railaco|Deleco</item>
+        <item>Ermera|Railaco|Taraço</item>
+        <item>Ermera|Ermera|Poetete</item>
+        <item>Ermera|Ermera|Ponilala</item>
+        <item>Ermera|Ermera|Talimoro</item>
+        <item>Ermera|Ermera|Mirtutu</item>
+        <item>Ermera|Ermera|Leguimea</item>
+        <item>Ermera|Ermera|Humboe</item>
+        <item>Ermera|Ermera|Riheu</item>
+        <item>Ermera|Ermera|Lauala</item>
+        <item>Ermera|Ermera|Raimerhei</item>
+        <item>Ermera|Ermera|Estado</item>
+        <item>Ermera|Letefoho|Ducurai</item>
+        <item>Ermera|Letefoho|Haupu</item>
+        <item>Ermera|Letefoho|Lauana</item>
+        <item>Ermera|Letefoho|Catrai-Craic</item>
+        <item>Ermera|Letefoho|Catrai Leten</item>
+        <item>Ermera|Letefoho|Goulolo</item>
+        <item>Ermera|Letefoho|Eraulo</item>
+        <item>Ermera|Letefoho|Hatugau</item>
+        <item>Ermera|Atsabe|Paramin</item>
+        <item>Ermera|Atsabe|Atara</item>
+        <item>Ermera|Atsabe|Baboi Craic</item>
+        <item>Ermera|Atsabe|Obulo</item>
+        <item>Ermera|Atsabe|Lasaun</item>
+        <item>Ermera|Atsabe|Batumanu</item>
+        <item>Ermera|Atsabe|Tiarlelo</item>
+        <item>Ermera|Atsabe|Laubono</item>
+        <item>Ermera|Atsabe|Atadame/Malabe</item>
+        <item>Ermera|Atsabe|Leimea Leten</item>
+        <item>Ermera|Atsabe|Laclo</item>
+        <item>Ermera|Atsabe|Beboi Leten</item>
+        <item>Ermera|Hatolia|Lemia Sorimbalu</item>
+        <item>Ermera|Hatolia|Coliate-Leotelo</item>
+        <item>Ermera|Hatolia|Asulau</item>
+        <item>Ermera|Hatolia|Ailelo</item>
+        <item>Ermera|Hatolia|Leimeacraic</item>
+        <item>Ermera|Hatolia|Samara</item>
+        <item>Ermera|Hatolia|Manusae</item>
+        <item>Ermera|Hatolia|Hatolia</item>
+        <item>Ermera|Hatolia|Urahou</item>
+        <item>Ermera|Hatolia|Mau-Ubu</item>
+        <item>Ermera|Hatolia|Lissapat</item>
+        <item>Ermera|Hatolia|Fatubolu</item>
+        <item>Ermera|Hatolia|Fatuessi</item>
+        <item>Liquica|Bazartete|Fatumasi</item>
+        <item>Liquica|Bazartete|Fahilebo</item>
+        <item>Liquica|Bazartete|Tibar</item>
+        <item>Liquica|Bazartete|Motaulun</item>
+        <item>Liquica|Bazartete|Metagou</item>
+        <item>Liquica|Bazartete|Lauhata</item>
+        <item>Liquica|Bazartete|Leorema</item>
+        <item>Liquica|Bazartete|Maumeta</item>
+        <item>Liquica|Bazartete|Ulmera</item>
+        <item>Liquica|Liquiça|Dato</item>
+        <item>Liquica|Liquiça|Loidahar</item>
+        <item>Liquica|Liquiça|Darulete</item>
+        <item>Liquica|Liquiça|Luculai</item>
+        <item>Liquica|Liquiça|Hatuquessi</item>
+        <item>Liquica|Liquiça|Atumano</item>
+        <item>Liquica|Liquiça|Leoteala</item>
+        <item>Liquica|Maubara|Lissadila</item>
+        <item>Liquica|Maubara|Guito</item>
+        <item>Liquica|Maubara|Vatuvou</item>
+        <item>Liquica|Maubara|Vatuboro</item>
+        <item>Liquica|Maubara|Maubaralissa</item>
+        <item>Liquica|Maubara|Vaviquinia</item>
+        <item>Liquica|Maubara|Gugleur</item>
+        <item>Lautem|Lospalos|Bauro</item>
+        <item>Lautem|Lospalos|Fuiloro</item>
+        <item>Lautem|Lospalos|Home</item>
+        <item>Lautem|Lospalos|Cacavem</item>
+        <item>Lautem|Lospalos|Leuro</item>
+        <item>Lautem|Lospalos|Lore I</item>
+        <item>Lautem|Lospalos|Lore Ii</item>
+        <item>Lautem|Lospalos|Muapitine</item>
+        <item>Lautem|Lospalos|Raça</item>
+        <item>Lautem|Lospalos|Souro</item>
+        <item>Lautem|Lautem|Baduro</item>
+        <item>Lautem|Lautem|Com</item>
+        <item>Lautem|Lautem|Daudare</item>
+        <item>Lautem|Lautem|Euquisi</item>
+        <item>Lautem|Lautem|Ililai</item>
+        <item>Lautem|Lautem|Maina I</item>
+        <item>Lautem|Lautem|Maina Ii</item>
+        <item>Lautem|Lautem|Pairara</item>
+        <item>Lautem|Lautem|Parlamento</item>
+        <item>Lautem|Lautem|Serelau</item>
+        <item>Lautem|Iliomar|Ailebere</item>
+        <item>Lautem|Iliomar|Cainliu</item>
+        <item>Lautem|Iliomar|Fuat</item>
+        <item>Lautem|Iliomar|Iliomar I</item>
+        <item>Lautem|Iliomar|Iliomar Ii</item>
+        <item>Lautem|Iliomar|Tirilolo</item>
+        <item>Lautem|Luro|Afabubu</item>
+        <item>Lautem|Luro|Baricafa</item>
+        <item>Lautem|Luro|Cotamutu</item>
+        <item>Lautem|Luro|Lacawa</item>
+        <item>Lautem|Luro|Luro</item>
+        <item>Lautem|Luro|Wairoce</item>
+        <item>Lautem|Tutuala|Mehara</item>
+        <item>Lautem|Tutuala|Tutuala</item>
+        <item>Manufahi|Same|Letefoho</item>
+        <item>Manufahi|Same|Holarua</item>
+        <item>Manufahi|Same|Babulu</item>
+        <item>Manufahi|Same|Betano</item>
+        <item>Manufahi|Same|Daisua</item>
+        <item>Manufahi|Same|Grotu</item>
+        <item>Manufahi|Same|Rotuto</item>
+        <item>Manufahi|Same|Tutuluru</item>
+        <item>Manufahi|Alas|Aituha</item>
+        <item>Manufahi|Alas|Dotic</item>
+        <item>Manufahi|Alas|Taitudac</item>
+        <item>Manufahi|Alas|Mahaquidan</item>
+        <item>Manufahi|Alas|Uma Berloic</item>
+        <item>Manufahi|Fatuberliu|Bubususu</item>
+        <item>Manufahi|Fatuberliu|Clacuc</item>
+        <item>Manufahi|Fatuberliu|Fahinehan</item>
+        <item>Manufahi|Fatuberliu|Fatucahi</item>
+        <item>Manufahi|Fatuberliu|Caicasa</item>
+        <item>Manufahi|Turiscai|Aitemua</item>
+        <item>Manufahi|Turiscai|Beremana</item>
+        <item>Manufahi|Turiscai|Caimauc</item>
+        <item>Manufahi|Turiscai|Lesuata</item>
+        <item>Manufahi|Turiscai|Liurai</item>
+        <item>Manufahi|Turiscai|Manumera</item>
+        <item>Manufahi|Turiscai|Matorec</item>
+        <item>Manufahi|Turiscai|Mindelo</item>
+        <item>Manufahi|Turiscai|Orana</item>
+        <item>Manufahi|Turiscai|Foholau</item>
+        <item>Manufahi|Turiscai|Fatucalo</item>
+        <item>Manatuto|Manatuto|Cribas</item>
+        <item>Manatuto|Manatuto|Aiteas</item>
+        <item>Manatuto|Manatuto|Ma\'Abat</item>
+        <item>Manatuto|Manatuto|Sau</item>
+        <item>Manatuto|Manatuto|Iliheu</item>
+        <item>Manatuto|Manatuto|Ailili</item>
+        <item>Manatuto|Laleia|Lifau</item>
+        <item>Manatuto|Laleia|Haturalan</item>
+        <item>Manatuto|Laleia|Cairui</item>
+        <item>Manatuto|Laclo|Lacumesac</item>
+        <item>Manatuto|Laclo|Umacaduac</item>
+        <item>Manatuto|Laclo|Uma Naruc</item>
+        <item>Manatuto|Laclo|Hohorai</item>
+        <item>Manatuto|Soibada|Samoro</item>
+        <item>Manatuto|Soibada|Leo Hat</item>
+        <item>Manatuto|Soibada|Fatumacerec</item>
+        <item>Manatuto|Soibada|Manlala</item>
+        <item>Manatuto|Soibada|Manufahi</item>
+        <item>Manatuto|Barique/Natarbora|Aubeon</item>
+        <item>Manatuto|Barique/Natarbora|Uma Boco</item>
+        <item>Manatuto|Barique/Natarbora|Abat Oan</item>
+        <item>Manatuto|Barique/Natarbora|Barique</item>
+        <item>Manatuto|Barique/Natarbora|Manehat</item>
+        <item>Manatuto|Laclubar|Orlalan</item>
+        <item>Manatuto|Laclubar|Funar</item>
+        <item>Manatuto|Laclubar|Manelima</item>
+        <item>Manatuto|Laclubar|Batara</item>
+        <item>Manatuto|Laclubar|Fatumaquerec</item>
+        <item>Manatuto|Laclubar|Sanana\'In</item>
+        <item>Oecussi|Pante Macasar|Nipani</item>
+        <item>Oecussi|Pante Macasar|Lifau</item>
+        <item>Oecussi|Pante Macasar|Cunha</item>
+        <item>Oecussi|Pante Macasar|Costa</item>
+        <item>Oecussi|Pante Macasar|Taiboco</item>
+        <item>Oecussi|Pante Macasar|Lalisuc</item>
+        <item>Oecussi|Pante Macasar|Bobocase</item>
+        <item>Oecussi|Pante Macasar|Naimeco</item>
+        <item>Oecussi|Nitibe|Usi-Taco</item>
+        <item>Oecussi|Nitibe|Bene-Ufe</item>
+        <item>Oecussi|Nitibe|Suni-Ufe</item>
+        <item>Oecussi|Nitibe|Lela-Ufe</item>
+        <item>Oecussi|Nitibe|Banafi</item>
+        <item>Oecussi|Oesilo|Bobometo</item>
+        <item>Oecussi|Oesilo|Usi-Taqueno</item>
+        <item>Oecussi|Oesilo|Usi-Tacae</item>
+        <item>Oecussi|Passabe|Abani</item>
+        <item>Oecussi|Passabe|Malelat</item>
+        <item>Viqueque|Uatucarbau|Irabin De Baixo</item>
+        <item>Viqueque|Uatucarbau|Irabin De Cima</item>
+        <item>Viqueque|Uatucarbau|Uani Uma</item>
+        <item>Viqueque|Uatucarbau|Afaloicai</item>
+        <item>Viqueque|Uatucarbau|Bahatata</item>
+        <item>Viqueque|Uatucarbau|Loi Ulu</item>
+        <item>Viqueque|Ossu|Uaibobo</item>
+        <item>Viqueque|Ossu|Builale</item>
+        <item>Viqueque|Ossu|Nahareca</item>
+        <item>Viqueque|Ossu|Ossu De Cima</item>
+        <item>Viqueque|Ossu|Uaigia</item>
+        <item>Viqueque|Ossu|Ossorua</item>
+        <item>Viqueque|Ossu|Loi-Huno</item>
+        <item>Viqueque|Ossu|Uabubo</item>
+        <item>Viqueque|Ossu|Liaruca</item>
+        <item>Viqueque|Watulari|Macadique</item>
+        <item>Viqueque|Watulari|Uaitame</item>
+        <item>Viqueque|Watulari|Matahoi</item>
+        <item>Viqueque|Watulari|Vessoru</item>
+        <item>Viqueque|Watulari|Babulo</item>
+        <item>Viqueque|Watulari|Afaloicai</item>
+        <item>Viqueque|Viqueque|Uma Uain Craic</item>
+        <item>Viqueque|Viqueque|Bahalarauain</item>
+        <item>Viqueque|Viqueque|Uma Quic</item>
+        <item>Viqueque|Viqueque|Bibileo</item>
+        <item>Viqueque|Viqueque|Watu Dere</item>
+        <item>Viqueque|Viqueque|Uai Mori</item>
+        <item>Viqueque|Viqueque|Caraubalo</item>
+        <item>Viqueque|Viqueque|Uma Uain Leten</item>
+        <item>Viqueque|Viqueque|Maluro</item>
+        <item>Viqueque|Viqueque|Luca</item>
+        <item>Viqueque|Lacluta|Laline</item>
+        <item>Viqueque|Lacluta|Uma Tolu</item>
+        <item>Viqueque|Lacluta|Ahic</item>
+        <item>Viqueque|Lacluta|Dilor</item>
+    </string-array>
+
+    <string-array name="genders">
+        <item>Mane</item>
+        <item>Feto</item>
+    </string-array>
+
+    <string-array name="occupations">
+        <item>To\'os na\'in</item>
+        <item>Mestre / Mestra</item>
+        <item>Governu</item>
+        <item>Loja na\'in</item>
+        <item>xofér</item>
+        <item>la servisu</item>
+    </string-array>
+
+    <string-array name="education">
+        <item>Eskola Primária</item>
+        <item>SMP</item>
+        <item>SMA</item>
+        <item>Universidade</item>
+    </string-array>
+
+    <string-array name="study_languages">
+        <item>Tetum Prasa</item>
+        <item>Tetum Terik</item>
+        <item>Adabe</item>
+        <item>Atauran</item>
+        <item>Baikenu</item>
+        <item>Bekais</item>
+        <item>Bunak</item>
+        <item>Dadu\'a</item>
+        <item>Fataluku</item>
+        <item>Galoli</item>
+        <item>Habun</item>
+        <item>Idalaka</item>
+        <item>Idate</item>
+        <item>Isni</item>
+        <item>Kairui</item>
+        <item>Kawaimina</item>
+        <item>Kemak</item>
+        <item>Lakalei</item>
+        <item>Lolein</item>
+        <item>Makalero</item>
+        <item>Sa\'ani</item>
+        <item>Makasai</item>
+        <item>Makuva</item>
+        <item>Mambai</item>
+        <item>Midiki</item>
+        <item>Nanaek</item>
+        <item>Naueti</item>
+        <item>Rahesuk</item>
+        <item>Raklungu</item>
+        <item>Resuk</item>
+        <item>Tokodede</item>
+        <item>Waima\'a</item>
+    </string-array>
+
+    <string-array name="dummy_studies">
+        <item>Study 1</item>
+        <item>Study 2</item>
+        <item>Study 3</item>
+        <item>Study 4</item>
+        <item>Study 5</item>
+    </string-array>
 </resources>
