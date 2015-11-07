@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/activityStyle"
+    tools:context="org.rhok.linguist.activity.interview.InterviewEducationActivity">
+
+    <LinearLayout style="@style/contentContainerStyle">
+
+        <TextView style="@style/contentHeaderStyle"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/interview_education" />
+
+        <ListView style="@style/listViewStyle"
+            android:id="@+id/educationListView" />
+
+    </LinearLayout>
+
+    <Button style="@style/nextButtonStyle" />
+
+</LinearLayout>

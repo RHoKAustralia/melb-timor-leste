@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/activityStyle"
+    tools:context="org.rhok.linguist.activity.location.InterviewSubDistrictActivity">
+
+    <LinearLayout style="@style/contentContainerStyle">
+
+        <TextView style="@style/contentHeaderStyle"
+            android:text="Please select a district"
+            android:id="@+id/whichDistrictTextView" />
+
+        <ListView style="@style/listViewStyle"
+            android:id="@+id/subdistrict_list" />
+
+    </LinearLayout>
+
+    <Button style="@style/nextButtonStyle" />
+
+</LinearLayout>

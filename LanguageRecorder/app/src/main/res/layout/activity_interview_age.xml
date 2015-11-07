@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/activityStyle"
+    tools:context="org.rhok.linguist.activity.interview.InterviewAgeActivity">
+
+    <LinearLayout style="@style/contentContainerStyle">
+
+        <TextView style="@style/contentHeaderStyle"
+            android:text="@string/interview_age" />
+
+        <EditText
+            android:id="@+id/ageEditText"
+            android:singleLine="true"
+            android:hint=""
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/interview_years" />
+
+    </LinearLayout>
+
+    <Button style="@style/nextButtonStyle" />
+
+</LinearLayout>
