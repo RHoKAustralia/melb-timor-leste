@@ -3,6 +3,8 @@ package org.rhok.linguist.activity.old;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -43,7 +45,8 @@ import java.util.Date;
 
 public class UploadActivity extends ActionBarActivity {
 
-    private String baseUrl = "http://bluetac";
+    private String baseUrl;
+    private String apiUrl;
     private TextView uploadProgressTextView;
     private Button uploadFileButton;
     private String progressText;
@@ -57,6 +60,10 @@ public class UploadActivity extends ActionBarActivity {
         uploadFileButton = (Button)findViewById(R.id.upload_file_button);
         uploadProgressTextView = (TextView)findViewById(R.id.upload_progress);
         dataInfo = (TextView)findViewById(R.id.data_info);
+
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        baseUrl = settings.getString("pref_server_address", "http://bluetac");
+        apiUrl = settings.getString("pref_server_api", "/api/languagedata");
 
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         Person[] people = db.getPeople();
@@ -154,7 +161,7 @@ public class UploadActivity extends ActionBarActivity {
         HttpProtocolParams.setContentCharset(httpParameters, HTTP.UTF_8);
         HttpProtocolParams.setHttpElementCharset(httpParameters, HTTP.UTF_8);
         HttpClient httpclient = new DefaultHttpClient(httpParameters);
-        HttpPost httppost = new HttpPost(baseUrl + "/api/languagedata");
+        HttpPost httppost = new HttpPost(baseUrl + apiUrl);
 
         try {
 

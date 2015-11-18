@@ -1,12 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <CheckBoxPreference
-        android:key="pref_tetum"
-        android:title="Tetum"
-        android:summary="Display tetum text"
-        android:defaultValue="false" />
+    <PreferenceCategory
+        android:title="Server Settings"
+        android:key="pref_key_server_settings">
+
+        <EditTextPreference
+            android:key="pref_server_address"
+            android:title="Server URL"
+            android:summary="Address of the server to upload studies to."
+            android:defaultValue="http://bluetac" />
+
+        <EditTextPreference
+            android:key="pref_server_api"
+            android:title="Server api path"
+            android:summary="Path on the server to access the language upload api."
+            android:defaultValue="/api/languagedata" />
+
+    </PreferenceCategory>
 
 
+
+    <PreferenceCategory
+        android:title="Storage Settings"
+        android:key="pref_key_storage_settings">
+
+        <CheckBoxPreference
+            android:key="pref_delete_after_upload"
+            android:title="Delete after upload"
+            android:summary="Stub."
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+
+
+    <PreferenceCategory
+        android:title="Language Settings"
+        android:key="pref_key_language_settings">
+
+        <CheckBoxPreference
+            android:key="pref_tetum"
+            android:title="Tetum"
+            android:summary="Display tetum text"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+
+
+    <PreferenceCategory
+        android:title="About"
+        android:key="pref_key_about_settings">
+
+        <Preference android:title="Source code" >
+            <intent android:action="android.intent.action.VIEW"
+                android:data="https://github.com/RHoKAustralia/melb-timor-leste" />
+        </Preference>
+    </PreferenceCategory>
 
 </PreferenceScreen>
