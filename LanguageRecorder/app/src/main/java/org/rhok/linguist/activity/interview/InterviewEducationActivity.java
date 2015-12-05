@@ -56,6 +56,8 @@ public class InterviewEducationActivity extends BaseInterviewActivity {
             intent.putExtra("NEXT_ACTIVITY", "MoreLanguages");
             intent.putExtra(IntentUtil.ARG_PERSON, _person);
             intent.putExtra("LanguageNumber", 1);
+            intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
+                    getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
             startActivity(intent);
         }
 

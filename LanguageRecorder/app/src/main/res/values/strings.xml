@@ -36,6 +36,10 @@
     <!-- Splash screen settings -->
     <string name="splash_start_button">Komesa</string>
 
+    <string name="study_question_count_format">"%1$s questions"</string>
+    <string name="study_title_select">Please select a study</string>
+
+
     <string name="interview_title">Interview</string>
     <string name="interview_name">What is your name?</string>
     <string name="interview_age">What is your age?</string>
@@ -95,6 +99,7 @@
 
     <string name="person_title">Add new person</string>
     <string name="person_title_edit">Edit person</string>
+    <string name="person_is_new_question">Have you interviewed this person before?</string>
     <string name="person_title_select">Please select a person</string>
     <string name="person_name_label">Name</string>
     <string name="person_age_label">Age</string>

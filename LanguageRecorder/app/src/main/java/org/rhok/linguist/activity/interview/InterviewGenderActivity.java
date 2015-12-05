@@ -54,6 +54,8 @@ public class InterviewGenderActivity extends BaseInterviewActivity {
 
             Intent intent = new Intent(this, InterviewOccupationActivity.class);
             intent.putExtra(IntentUtil.ARG_PERSON, _person);
+            intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
+                    getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
             startActivity(intent);
         }
 

@@ -19,7 +19,7 @@ import org.rhok.linguist.activity.common.SplashActivity;
 import org.rhok.linguist.activity.interview.BaseInterviewActivity;
 import org.rhok.linguist.code.DatabaseHelper;
 
-public class RecordingAudioActivity extends BaseInterviewActivity {
+public class RecordingAudioActivity extends RecordingInstructionsActivity {
 
     TextView recordingQuestionTextView;
     TextView recordingMessageTextView;

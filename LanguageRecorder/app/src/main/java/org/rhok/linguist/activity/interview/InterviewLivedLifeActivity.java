@@ -41,6 +41,8 @@ public class InterviewLivedLifeActivity extends BaseInterviewActivity {
 
         Intent intent = new Intent(this, InterviewLivedLengthActivity.class);
         intent.putExtra(IntentUtil.ARG_PERSON, _person);
+        intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
+                getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
         startActivity(intent);
     }
 
@@ -51,8 +53,11 @@ public class InterviewLivedLifeActivity extends BaseInterviewActivity {
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         dbHelper.updatePersonLivedWholeLife(_person.personid, true);
 
-        Intent intent = new Intent(this, RecordingInstructionsActivity.class);
+        Intent intent = getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT);
+        if(intent==null) intent=new Intent(this, RecordingInstructionsActivity.class);
         intent.putExtra(IntentUtil.ARG_PERSON_ID, _person.personid);
+        intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
+                getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
         startActivity(intent);
     }
 }

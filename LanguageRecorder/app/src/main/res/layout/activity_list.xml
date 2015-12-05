@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/activityStyle"
+    android:orientation="vertical"
+  >
+
+<ProgressBar
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/progress"
+    android:visibility="gone"
+    android:layout_gravity="center_horizontal"/>
+        <ListView style="@style/listViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/listview" />
+
+
+
+    <Button style="@style/nextButtonStyle" />
+
+</LinearLayout>

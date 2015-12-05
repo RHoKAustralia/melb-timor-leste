@@ -58,6 +58,8 @@ public class InterviewLivedLengthActivity extends BaseInterviewActivity {
             Intent intent = new Intent(this, InterviewMunicipalityActivity.class);
             intent.putExtra(IntentUtil.ARG_PERSON, _person);
             intent.putExtra("mode", "born");
+            intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
+                    getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
             startActivity(intent);
         }
     }

@@ -29,6 +29,8 @@ public class InterviewMoreLanguagesActivity extends BaseInterviewActivity {
         Intent intent = new Intent(this, InterviewMunicipalityActivity.class);
         intent.putExtra(IntentUtil.ARG_PERSON, _person);
         intent.putExtra("mode", "lives");
+        intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
+                getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
         startActivity(intent);
     }
 
@@ -49,6 +51,8 @@ public class InterviewMoreLanguagesActivity extends BaseInterviewActivity {
         intent.putExtra("LanguageNumber", _lastLanguageNumber +1);
         intent.putExtra(IntentUtil.ARG_PERSON, _person);
         intent.putExtra("NEXT_ACTIVITY", "MoreLanguages");
+        intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
+                getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
         startActivity(intent);
 
     }

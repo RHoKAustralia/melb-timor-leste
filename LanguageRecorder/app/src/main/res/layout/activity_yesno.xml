@@ -1,0 +1,18 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/activityStyle"
+    tools:context="org.rhok.linguist.activity.interview.YesNoActivity">
+
+    <LinearLayout
+        style="@style/contentContainerStyle">
+
+        <TextView style="@style/contentHeaderStyle"
+           tools:text="Question?"
+            android:id="@+id/text1" />
+
+    </LinearLayout>
+
+    <Button style="@style/noButtonStyle" android:id="@+id/btn_no" android:onClick="onYesNoClicked" />
+    <Button style="@style/yesButtonStyle" android:id="@+id/btn_yes" android:onClick="onYesNoClicked" />
+
+</RelativeLayout>

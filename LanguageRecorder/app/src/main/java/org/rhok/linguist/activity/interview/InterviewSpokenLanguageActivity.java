@@ -52,6 +52,8 @@ public class InterviewSpokenLanguageActivity extends BaseInterviewActivity {
                 Intent intent = new Intent(this, StudyActivity.class);
                 intent.putExtra(IntentUtil.ARG_PERSON, _person);
                 intent.putExtra("LANGUAGE", selectedLanguage);
+                intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
+                        getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
                 startActivity(intent);
             }
             if (nextActivity.equals("MoreLanguages")) {
@@ -81,6 +83,8 @@ public class InterviewSpokenLanguageActivity extends BaseInterviewActivity {
                 }
                 intent.putExtra(IntentUtil.ARG_PERSON, _person);
                 intent.putExtra("LastLanguageNumber", languageNumber);
+                intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
+                        getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
                 startActivity(intent);
             }
         }

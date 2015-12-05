@@ -88,7 +88,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
     public void nextButtonClick(android.view.View view) {
-        Intent intent = new Intent(this, InterviewNameActivity.class);
+        Intent intent = new Intent(this, StudyListActivity.class);
         startActivity(intent);
     }
 

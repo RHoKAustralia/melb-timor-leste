@@ -1,5 +1,7 @@
 package org.rhok.linguist.util;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.TextView;
@@ -50,6 +52,26 @@ public class UIUtil {
         return (int) (in*density+0.5f);
     }
 
+    /**
+     * Checks whether there is an internet connection available
+     *
+     * */
+    public static boolean isInternetAvailable() {
+        try{
+            ConnectivityManager connectivityManager=(ConnectivityManager) LinguistApplication.getContextStatic().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            if (connectivityManager.getActiveNetworkInfo() != null) {
+                return connectivityManager.getActiveNetworkInfo().isConnected();
+            }
+            else {
+                return false;
+            }
+        }
+        catch(Exception e){
+            //Can't access connectivity manager, or it's null
+            return true;
+        }
+    }
 
     /**
      * Set text1 and text2 from R.string. The second text view is not explicitly hidden if the text is empty.

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.IntentUtil;
+import org.rhok.linguist.activity.interview.InterviewNameActivity;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.entity.Location;
@@ -110,6 +111,8 @@ public class InterviewSubDistrictActivity extends BaseInterviewActivity {
             Intent intent = new Intent(this, InterviewVillageActivity.class);
             intent.putExtra("mode", mode);
             intent.putExtra(IntentUtil.ARG_PERSON, _person);
+            intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
+                    getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
             startActivity(intent);
         }
     }

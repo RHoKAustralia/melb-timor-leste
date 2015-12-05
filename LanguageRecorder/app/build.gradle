@@ -29,7 +29,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:${appCompatVersion}"
     compile "com.android.support:support-v4:${supportLibVersion}"
 
-    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.google.code.gson:gson:2.5'
 
     compile files('libs/android-query-full.0.26.7.jar')
 
