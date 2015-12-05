@@ -1,6 +1,38 @@
 <resources>
     <string name="app_name">Local Linguist</string>
 
+    <string name="request_fail">Sorry, your connection was lost. Please try again.</string>
+    <string name="request_fail_server_error">There was a problem with our server. Please try again later.</string>
+    <string name="request_fail_unauthorized">"Sorry, your session has expired. Pelase log in again."</string>
+    <string name="request_fail_re_auth">Login expired, refreshing&#x2026;</string>
+    <string name="no_internet_available">No Internet Available</string>
+    <string name="empty_result">There is currently no data available.</string>
+
+
+    <string name="refresh">Refresh</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="clear">Clear</string>
+    <string name="back">Back</string>
+    <string name="ok">OK</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="done">Done</string>
+    <string name="search">Search</string>
+    <string name="delete">Delete</string>
+    <string name="error">Error</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="retry">Retry</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="message">Message</string>
+    <string name="expired">Expired</string>
+    <string name="send">Send</string>
+    <string name="confirm">Confirm</string>
+
+
     <!-- Splash screen settings -->
     <string name="splash_start_button">Komesa</string>
 
