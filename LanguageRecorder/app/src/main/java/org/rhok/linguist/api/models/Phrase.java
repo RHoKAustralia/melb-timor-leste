@@ -17,7 +17,7 @@ public class Phrase implements Serializable{
     private String english_text;
     private String audio_url;
     private String image_url;
-    private String response_type_id;
+    private int response_type_id;
     private List<String> choices;
 
     public int getId() {
@@ -52,11 +52,11 @@ public class Phrase implements Serializable{
         this.image_url = image_url;
     }
 
-    public String getResponse_type() {
+    public int getResponse_type() {
         return response_type_id;
     }
 
-    public void setResponse_type(String response_type) {
+    public void setResponse_type(int response_type) {
         this.response_type_id = response_type;
     }
 

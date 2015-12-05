@@ -11,15 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
 
-            android:src="@drawable/word1"
-            android:scaleType="fitStart"
-            android:adjustViewBounds="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxHeight="200dp"
-            android:id="@+id/captureImageView" />
 
         <TextView
             android:paddingTop="0px"
@@ -31,13 +23,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <ProgressBar
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress"/>
         <TextView
             android:paddingTop="0px"
             android:layout_marginTop="0px"
             android:gravity="center_horizontal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#ff0000"
-            android:text="@string/interview_recording"
+            android:text="@string/interview_audio_playing"
             android:id="@+id/recordingMessageTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -46,17 +43,16 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textAlignment="center"
-            android:text="@string/interview_recording_ok"
+            android:text="@string/interview_audio_replay"
             android:visibility="gone"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/recordOkTextView"
+            android:id="@+id/recordReplayTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
 
 
     </LinearLayout>
-    <Button style="@style/nextButtonStyle" android:id="@+id/nextRecordingButton" />
 
     <Button style="@style/noButtonStyle" android:id="@+id/noButton" android:visibility="gone" />
 

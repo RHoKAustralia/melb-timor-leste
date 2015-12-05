@@ -6,11 +6,12 @@ import android.widget.TextView;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.IntentUtil;
+import org.rhok.linguist.activity.interview.BaseInterviewActivity;
 import org.rhok.linguist.api.models.Interview;
 import org.rhok.linguist.api.models.Study;
 import org.rhok.linguist.util.StringUtils;
 
-public class RecordingInstructionsActivity extends BaseRecordingActivity {
+public class RecordingInstructionsActivity extends BaseInterviewActivity {
 
     private int personId;
     private Interview interview;
@@ -20,19 +21,22 @@ public class RecordingInstructionsActivity extends BaseRecordingActivity {
         setContentView(R.layout.activity_recording_instructions);
 
         personId = getIntent().getIntExtra(IntentUtil.ARG_PERSON_ID, -1);
-        Study study = getStudy();
+        Study study = (Study) getIntent().getSerializableExtra(IntentUtil.ARG_STUDY);
+        setTitle(study.getName());
         if( !StringUtils.isNullOrEmpty(study.getInstructions())){
             ((TextView)findViewById(R.id.questionText)).setText(study.getInstructions());
         }
         interview = new Interview(study);
+        interview.setInterviewee_id(personId);
 
     }
 
     public void nextButtonClick(android.view.View view) {
+        Study study = (Study) getIntent().getSerializableExtra(IntentUtil.ARG_STUDY);
 
-        Intent intent = new Intent(this, RecordingAudioLocalActivity.class);
-        intent.putExtra(IntentUtil.ARG_PERSON_ID, personId);
-        intent.putExtra(IntentUtil.ARG_STUDY, personId);
+        Intent intent = new Intent(this, RecordingFragmentActivity.class);
+        intent.putExtra(IntentUtil.ARG_INTERVIEW, interview);
+        intent.putExtra(IntentUtil.ARG_STUDY, study);
         startActivity(intent);
 
     }

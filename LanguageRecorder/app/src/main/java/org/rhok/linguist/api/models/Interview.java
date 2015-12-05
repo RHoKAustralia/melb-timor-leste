@@ -11,6 +11,9 @@ import java.util.List;
  */
 public class Interview implements Serializable{
 
+    private int __appid;
+    private boolean __completed;
+    private boolean __uploaded;
     private int id;
     private Date interview_time;
     private int study_id;
@@ -27,17 +30,31 @@ public class Interview implements Serializable{
         interview_time= new Date();
         study_id=study.getId();
         recordings=new ArrayList<Recording>(study.getPhrases().size());
-        for(Phrase phrase : study.getPhrases()){
-            Recording answer = new Recording();
-            answer.setPhrase_id(phrase.getId());
-        }
+
     }
+
+    /**
+     * id as stored in API
+     * @return
+     */
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    /**
+     * ID as stored in app database. Not serialized to json
+     * @return
+     */
+    public int get__appid() {
+        return __appid;
+    }
+
+    /**
+     * ID as stored in app database. Not serialized to json
+     * @param __appid
+     */
+    public void set__appid(int __appid) {
+        this.__appid = __appid;
     }
 
     public Date getInterview_time() {
@@ -86,5 +103,21 @@ public class Interview implements Serializable{
 
     public void setRecordings(List<Recording> recordings) {
         this.recordings = recordings;
+    }
+
+    public boolean is__completed() {
+        return __completed;
+    }
+
+    public void set__completed(boolean __completed) {
+        this.__completed = __completed;
+    }
+
+    public boolean is__uploaded() {
+        return __uploaded;
+    }
+
+    public void set__uploaded(boolean __uploaded) {
+        this.__uploaded = __uploaded;
     }
 }

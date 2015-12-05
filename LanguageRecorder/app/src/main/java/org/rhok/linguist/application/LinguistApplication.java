@@ -21,6 +21,8 @@ public class LinguistApplication extends Application {
     public static final boolean DEBUG = true;
     private Locale locale = null;
     private static LinguistApplication instance;
+
+    public static final String DIR_INTERVIEW_MEDIA = "interviewMedia";
     @Override
     public void onCreate()
     {

@@ -34,6 +34,7 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         listView= (ListView) findViewById(R.id.listview);
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView.setOnItemClickListener(this);
         mProgressBar= (ProgressBar) findViewById(R.id.progress);
 
@@ -60,7 +61,7 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
 
     static final int REQUEST_YES_NO = 101;
     public void nextButtonClick(View view){
-        Study study = (Study) listView.getSelectedItem();
+        Study study = mSelection;
         if(study!=null){
             Intent yesNo = YesNoActivity.makeYesNoIntent(getString(R.string.person_is_new_question), null);
             Bundle nextActivityArgs = new Bundle();
@@ -129,7 +130,9 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        parent.setSelection(position);
-        ((StudyAdapter)parent.getAdapter()).notifyDataSetChanged();
+        mSelection= (Study) parent.getItemAtPosition(position);
+        //parent.setSelection(position);
+        //((StudyAdapter)parent.getAdapter()).notifyDataSetChanged();
     }
+    private Study mSelection;
 }

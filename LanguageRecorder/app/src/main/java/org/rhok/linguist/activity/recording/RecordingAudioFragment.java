@@ -16,7 +16,10 @@ import com.androidquery.AQuery;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.IntentUtil;
+import org.rhok.linguist.api.models.Phrase;
 import org.rhok.linguist.api.models.Study;
+import org.rhok.linguist.util.Reflect;
+import org.rhok.linguist.util.StringUtils;
 
 public class RecordingAudioFragment extends Fragment {
 
@@ -31,7 +34,7 @@ public class RecordingAudioFragment extends Fragment {
     ImageView imageView;
     private AQuery aq;
 
-    private int personId;
+    private int interviewId;
     private int phraseIndex;
     private boolean transcribing = false;
     private boolean playing = false;
@@ -41,17 +44,16 @@ public class RecordingAudioFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        personId = getArguments().getInt(IntentUtil.ARG_PERSON_ID, -1);
+        //personId = getArguments().getInt(IntentUtil.ARG_PERSON_ID, -1);
         audioThread=new AudioThread();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.activity_recording_audio, container, false);
+        View root = inflater.inflate(R.layout.fragment_recording_audio, container, false);
         aq=new AQuery(root);
         imageView = (ImageView)root.findViewById(R.id.captureImageView);
-        imageView.setImageResource(R.drawable.word1);
 
         recordingQuestionTextView = (TextView) root.findViewById(R.id.recordingQuestionTextView);
         recordingMessageTextView  = (TextView) root.findViewById(R.id.recordingMessageTextView);
@@ -70,6 +72,21 @@ public class RecordingAudioFragment extends Fragment {
 
         audioThread = new AudioThread();
         audioThread.start();
+
+        Phrase phrase =getStudy().getPhrases().get(phraseIndex);
+        String question = StringUtils.isNullOrEmpty(phrase.getEnglish_text(), getString(R.string.interview_audio_recording));
+        recordingQuestionTextView.setText(question);
+        if(StringUtils.isNullOrEmpty(phrase.getImage_url())){
+            aq.id(imageView).gone();
+        }
+        else if (phrase.getImage_url().toLowerCase().startsWith("http")){
+            aq.id(imageView).image(phrase.getImage_url());
+        }
+        else{
+            //in case it refers to a built-in image, eg "word4"
+            int resId = Reflect.getImageResId(phrase.getImage_url());
+            aq.id(imageView).image(resId);
+        }
 
         return root;
     }
@@ -123,7 +140,7 @@ public class RecordingAudioFragment extends Fragment {
     }
 
     public Study getStudy(){
-        return ((BaseRecordingActivity)getActivity()).getStudy();
+        return ((RecordingFragmentActivity)getActivity()).getStudy();
     }
 
     public void nextButtonClick(View view) {

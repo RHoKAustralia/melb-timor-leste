@@ -35,7 +35,7 @@ public class PersonListActivity extends AppCompatActivity implements AdapterView
     }
 
     public void nextButtonClick(View view){
-        Person person = (Person) listView.getSelectedItem();
+        Person person = mSelection;
         if(person!=null){
             Intent intent = getIntent().getParcelableExtra(IntentUtil.ARG_NEXT_INTENT);
             intent.putExtra(IntentUtil.ARG_PERSON, person);
@@ -79,7 +79,9 @@ public class PersonListActivity extends AppCompatActivity implements AdapterView
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        parent.setSelection(position);
-        ((PersonAdapter)parent.getAdapter()).notifyDataSetChanged();
+        mSelection= (Person) parent.getItemAtPosition(position);
+        //parent.setSelection(position);
+        //((PersonAdapter)parent.getAdapter()).notifyDataSetChanged();
     }
+    private Person mSelection;
 }

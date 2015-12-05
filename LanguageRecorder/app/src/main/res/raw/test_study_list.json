@@ -6,19 +6,23 @@
 "start_date":"2015-12-01T05:48:26Z",
 "phrases":[
 {"id":2,
-"english_text":"Basic question with free text response"
+"english_text":"Basic question with free text response",
+  "response_type_id":1
 },
 {"id":3,
 "english_text":"Image question with free text response",
-"image_url":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg"
+"image_url":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
+  "response_type_id":1
 },
 {"id":4,
-"english_text":"Audio question with free text response",
-"audio_url":"http://feeds.soundcloud.com/stream/229649544-science-vs-season-1-science-vs-the-next-chapter.mp3"
+"english_text":"Audio question with audio and free text response",
+"audio_url":"http://feeds.soundcloud.com/stream/229649544-science-vs-season-1-science-vs-the-next-chapter.mp3",
+  "response_type_id":3
 },
 {"id":5,
 "english_text":"question with drop down responses",
-"choices":["hello","world","yes","no"]
+"choices":["hello","world","yes","no"],
+  "response_type_id":1
 }
 ]
 },
@@ -29,7 +33,8 @@
 "start_date":"2015-12-02T05:48:26Z",
 "phrases":[
 {"id":30,
-"english_text":"Boring question with free text response"
+"english_text":"Boring question with free text response",
+  "response_type_id":1
 }
 ]
 }

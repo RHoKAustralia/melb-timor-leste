@@ -53,7 +53,7 @@ public class YesNoActivity extends AppCompatActivity {
         Intent resultData = new Intent();
         resultData.putExtra(IntentUtil.ARG_NEXT_ACTIVITY_ARGS, getIntent().getBundleExtra(IntentUtil.ARG_NEXT_ACTIVITY_ARGS));
         resultData.putExtra(IntentUtil.ARG_NEXT_ACTIVITY_CLASS, getIntent().getStringExtra(IntentUtil.ARG_NEXT_ACTIVITY_CLASS));
-        setResult(view.getId() == R.id.btn_yes ? RESULT_YES : RESULT_NO);
+        setResult(view.getId() == R.id.btn_yes ? RESULT_YES : RESULT_NO, resultData);
         finish();
     }
 }

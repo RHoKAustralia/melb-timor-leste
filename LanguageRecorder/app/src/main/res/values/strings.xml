@@ -67,6 +67,8 @@
     <string name="interview_audio_instructions">Please say the word for the picture you see on the screen.</string>
     <string name="interview_audio_recording">What is the word for this?</string>
     <string name="interview_recording">Recording</string>
+    <string name="interview_audio_playing">Playing</string>
+    <string name="interview_audio_replay">Would you like to hear the recording again?</string>
     <string name="interview_recording_ok">Is this recording ok?</string>
     <string name="interview_transcribe">What is the transcription for this word?</string>
 

@@ -133,6 +133,10 @@
             android:label="Recording" >
         </activity>
         <activity
+            android:name=".activity.recording.RecordingFragmentActivity"
+            android:label="Recording" >
+        </activity>
+        <activity
             android:name=".activity.recording.RecordingInstructionsActivity"
             android:label="Recording" >
         </activity>
