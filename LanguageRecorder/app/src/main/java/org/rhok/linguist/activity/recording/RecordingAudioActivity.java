@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
@@ -15,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.activity.common.SplashActivity;
 import org.rhok.linguist.activity.interview.BaseInterviewActivity;
 import org.rhok.linguist.code.DatabaseHelper;
@@ -46,7 +46,7 @@ public class RecordingAudioActivity extends BaseInterviewActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recording_audio);
 
-        personId = getIntent().getIntExtra("PersonId", -1);
+        personId = getIntent().getIntExtra(IntentUtil.ARG_PERSON_ID, -1);
 
         imageView = (ImageView)findViewById(R.id.captureImageView);
         imageView.setImageResource(R.drawable.word1);

@@ -21,6 +21,9 @@ import org.rhok.linguist.code.entity.PersonWord;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * Not used
+ */
 public class CaptureActivity extends ActionBarActivity {
 
     public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";

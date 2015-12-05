@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.activity.old.StudyActivity;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.ListViewPopulator;
@@ -35,7 +36,7 @@ public class InterviewSpokenLanguageActivity extends BaseInterviewActivity {
         Bundle extras = getIntent().getExtras();
 
         nextActivity = extras.getString("NEXT_ACTIVITY");
-        _person = (Person) extras.getSerializable("Person");
+        _person = (Person) extras.getSerializable(IntentUtil.ARG_PERSON);
 
         setTitle("Interview - Language");
     }
@@ -49,7 +50,7 @@ public class InterviewSpokenLanguageActivity extends BaseInterviewActivity {
 
             if (nextActivity.equals("Study")) {
                 Intent intent = new Intent(this, StudyActivity.class);
-                intent.putExtra("Person", _person);
+                intent.putExtra(IntentUtil.ARG_PERSON, _person);
                 intent.putExtra("LANGUAGE", selectedLanguage);
                 startActivity(intent);
             }
@@ -78,7 +79,7 @@ public class InterviewSpokenLanguageActivity extends BaseInterviewActivity {
                     intent = new Intent(this, InterviewMunicipalityActivity.class);
                     intent.putExtra("mode", "lives");
                 }
-                intent.putExtra("Person", _person);
+                intent.putExtra(IntentUtil.ARG_PERSON, _person);
                 intent.putExtra("LastLanguageNumber", languageNumber);
                 startActivity(intent);
             }

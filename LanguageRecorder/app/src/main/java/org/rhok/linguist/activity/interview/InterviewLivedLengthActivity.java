@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.activity.location.InterviewMunicipalityActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.code.DatabaseHelper;
@@ -23,7 +24,7 @@ public class InterviewLivedLengthActivity extends BaseInterviewActivity {
         setContentView(R.layout.activity_interview_lived_length);
 
         Bundle extras = getIntent().getExtras();
-        _person = (Person) extras.getSerializable("Person");
+        _person = (Person) extras.getSerializable(IntentUtil.ARG_PERSON);
 
         String question = getResources()
                 .getString(R.string.interview_lived_length)
@@ -55,7 +56,7 @@ public class InterviewLivedLengthActivity extends BaseInterviewActivity {
             dbHelper.updatePersonLivedYears(_person.personid, _person.livedInYears);
 
             Intent intent = new Intent(this, InterviewMunicipalityActivity.class);
-            intent.putExtra("Person", _person);
+            intent.putExtra(IntentUtil.ARG_PERSON, _person);
             intent.putExtra("mode", "born");
             startActivity(intent);
         }

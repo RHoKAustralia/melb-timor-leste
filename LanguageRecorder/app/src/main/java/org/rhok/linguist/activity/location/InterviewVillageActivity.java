@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.entity.Location;
@@ -35,7 +36,7 @@ public class InterviewVillageActivity extends BaseInterviewActivity {
         Bundle extras = getIntent().getExtras();
 
         mode = extras.getString("mode");
-        _person = (Person) extras.getSerializable("Person");
+        _person = (Person) extras.getSerializable(IntentUtil.ARG_PERSON);
 
         int questionTextId = 0;
 
@@ -112,12 +113,12 @@ public class InterviewVillageActivity extends BaseInterviewActivity {
                 _person.livesInVillage = selectedVillage;
                 dbHelper.updatePersonLivesVillage(_person.personid, selectedVillage);
                 intent = new Intent(this, InterviewLivedLifeActivity.class);
-                intent.putExtra("Person", _person);
+                intent.putExtra(IntentUtil.ARG_PERSON, _person);
             } else {
                 _person.bornVillage = selectedVillage;
                 dbHelper.updatePersonBornVillage(_person.personid, selectedVillage);
                 intent = new Intent(this, RecordingInstructionsActivity.class);
-                intent.putExtra("PersonId", _person.personid);
+                intent.putExtra(IntentUtil.ARG_PERSON_ID, _person.personid);
             }
 
             startActivity(intent);

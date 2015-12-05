@@ -141,9 +141,9 @@ public class HomeActivity extends ActionBarActivity {
     public void editPersonButton(android.view.View view) {
         Person p = (Person)selectPersonSpinner.getSelectedItem();
         if (p != null) {
-            //Intent intent = new Intent(this, NameCaptureActivity.class);
-            //intent.putExtra(INTENT_PERSONID, p.personid);
-            //startActivity(intent);
+            Intent intent = new Intent(this, PersonActivity.class);
+            intent.putExtra(INTENT_PERSONID, p.personid);
+            startActivity(intent);
         }
     }
 

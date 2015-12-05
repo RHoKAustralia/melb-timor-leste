@@ -2,6 +2,7 @@ package org.rhok.linguist.activity.interview;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,7 +15,7 @@ import org.rhok.linguist.code.LocaleHelper;
 /**
  * Created by lachlan on 18/06/2015.
  */
-public class BaseInterviewActivity extends ActionBarActivity {
+public class BaseInterviewActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

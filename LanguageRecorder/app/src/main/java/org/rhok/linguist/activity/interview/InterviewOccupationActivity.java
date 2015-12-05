@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.entity.Person;
@@ -22,7 +23,7 @@ public class InterviewOccupationActivity extends BaseInterviewActivity {
         setContentView(R.layout.activity_interview_occupation);
 
         Intent intent = getIntent();
-        _person = (Person) intent.getSerializableExtra("person");
+        _person = (Person) intent.getSerializableExtra(IntentUtil.ARG_PERSON);
 
         populateOccupations();
     }
@@ -51,7 +52,7 @@ public class InterviewOccupationActivity extends BaseInterviewActivity {
             dbHelper.updatePersonOccupation(_person.personid, _person.occupation);
 
             Intent intent = new Intent(this, InterviewEducationActivity.class);
-            intent.putExtra("person", _person);
+            intent.putExtra(IntentUtil.ARG_PERSON, _person);
             startActivity(intent);
         }
 

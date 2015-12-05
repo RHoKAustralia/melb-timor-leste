@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.entity.Person;
 
@@ -40,7 +41,7 @@ public class InterviewNameActivity extends BaseInterviewActivity {
             dbHelper.insertPerson(newPerson);
 
             Intent intent = new Intent(this, InterviewAgeActivity.class);
-            intent.putExtra("person", newPerson);
+            intent.putExtra(IntentUtil.ARG_PERSON, newPerson);
             startActivity(intent);
         }
     }
