@@ -13,7 +13,7 @@ public class Study implements Serializable{
     private int id;
     private String name;
     private String instructions;
-    private String language_id;
+    private int language_id;
     private Date start_date;
     private List<Phrase> phrases;
 
@@ -33,11 +33,11 @@ public class Study implements Serializable{
         this.name = name;
     }
 
-    public String getLanguage_id() {
+    public int getLanguage_id() {
         return language_id;
     }
 
-    public void setLanguage_id(String language_id) {
+    public void setLanguage_id(int language_id) {
         this.language_id = language_id;
     }
 

@@ -219,6 +219,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         updateField(personId, "livedInYears", null, years, "Integer");
     }
 
+    public void insertUpdateRecording(int interviewid, int phraseid, String word, String audiofilename) {
+
+    }
     public void saveWord(int personid, int wordid, String word, String audiofilename) {
 
         SQLiteDatabase db = this.getWritableDatabase();

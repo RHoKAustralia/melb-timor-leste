@@ -11,7 +11,8 @@ import org.rhok.linguist.api.models.Study;
  */
 public abstract class BaseRecordingActivity extends BaseInterviewActivity {
 
-    protected Study getStudy(){
+    public static final String ARG_RECORD_INDEX = "rhok.recordIndex";
+    public Study getStudy(){
         return (Study) getIntent().getSerializableExtra(IntentUtil.ARG_STUDY);
     }
 
