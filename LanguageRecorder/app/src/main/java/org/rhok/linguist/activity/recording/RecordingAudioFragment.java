@@ -44,7 +44,7 @@ public class RecordingAudioFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //personId = getArguments().getInt(IntentUtil.ARG_PERSON_ID, -1);
+        phraseIndex = getArguments().getInt(RecordingFragmentActivity.ARG_PHRASE_INDEX);
         audioThread=new AudioThread();
     }
 

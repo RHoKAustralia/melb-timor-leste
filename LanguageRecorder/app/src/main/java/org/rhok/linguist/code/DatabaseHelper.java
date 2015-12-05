@@ -73,6 +73,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "wordtranscription varchar, " +
             "audiofilename varchar);";
 
+    private static final String INTERVIEW_TABLE_NAME = "interview";
+
+    String createInterviewTable = "create table " + PERSONWORD_TABLE_NAME + " " +
+            "(interviewid integer primary key autoincrement," +
+            "completed bit, " +
+            "uploaded bit, " +
+            "intervieweeid integer, " +
+            "json varchar);";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this._context = context;
@@ -82,6 +91,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(createPersonTable);
         db.execSQL(createPersonWordTable);
+        db.execSQL(createInterviewTable);
     }
 
     @Override
@@ -94,8 +104,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("drop table " + PERSONWORD_TABLE_NAME + ";");
         db.execSQL("drop table " + PERSON_TABLE_NAME + ";");
+        db.execSQL("drop table " + INTERVIEW_TABLE_NAME + ";");
         db.execSQL(createPersonTable);
         db.execSQL(createPersonWordTable);
+        db.execSQL(createInterviewTable);
     }
 
     public void insertPerson(Person person) {
