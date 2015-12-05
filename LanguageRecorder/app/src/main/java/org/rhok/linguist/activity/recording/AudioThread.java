@@ -56,7 +56,13 @@ public class AudioThread extends Thread {
     }
 
     private void stopRecording() {
-        mRecorder.stop();
+        try {
+            mRecorder.stop();
+        }
+        catch (RuntimeException e) {
+            // TODO (Warwick): any cleanup required here?
+            Log.e("LanguageApp", "Error during stopRecording()", e);
+        }
         mRecorder.release();
         mRecorder = null;
 
@@ -78,7 +84,7 @@ public class AudioThread extends Thread {
         try {
             mRecorder.prepare();
         } catch (IOException e) {
-
+            Log.e("LanguageApp", "Error during mRecorder.prepare()", e);
         }
 
         Log.i("LanguageApp", "recording started for filename: " + audioFilename);
@@ -103,6 +109,7 @@ public class AudioThread extends Thread {
             mPlayer.start();
         }
         catch (IOException e) {
+            Log.e("LanguageApp", "Error during startPlaying()", e);
         }
     }
 
