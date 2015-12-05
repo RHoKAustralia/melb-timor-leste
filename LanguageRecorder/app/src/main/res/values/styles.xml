@@ -85,4 +85,20 @@
     </style>
 
 
+    <style name="ListHeadingText">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/body_text_1</item>
+    </style>
+    <style name="ListSubText" >
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textColor">@color/body_text_2</item>
+    </style>
+
+    <style name="ListHeadingText.Inverse">
+        <item name="android:textColor">@color/body_text_1_inverse</item>
+    </style>
+    <style name="ListSubText.Inverse" >
+        <item name="android:textColor">@color/body_text_2_inverse</item>
+    </style>
 </resources>

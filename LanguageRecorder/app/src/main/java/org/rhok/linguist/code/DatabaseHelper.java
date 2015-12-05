@@ -20,9 +20,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private Context _context;
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "linguist";
-    private static final String PERSON_TABLE_NAME = "person";
-    private static final String PERSON_COLUMNS = 
+    public static final String DATABASE_NAME = "linguist";
+    public static final String PERSON_TABLE_NAME = "person";
+    public static final String PERSON_COLUMNS =
         "personid, " +
         "name, " +
         "age, " +

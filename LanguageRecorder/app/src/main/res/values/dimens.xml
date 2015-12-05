@@ -5,4 +5,16 @@
     <dimen name="splash_logo_width">624dp</dimen>
     <dimen name="splash_logo_height">315dp</dimen>
     <dimen name="app_window_padding">16dp</dimen>
+
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xlarge">20sp</dimen>
+    <dimen name="text_size_diff_large_small">6sp</dimen>
+
+    <dimen name="separator_item_height">40dp</dimen>
+    <dimen name="listPreferredItemHeight">64dp</dimen>
+    <dimen name="listSmallItemHeight">45dp</dimen>
+    <dimen name="small_margin">5dp</dimen>
+
 </resources>

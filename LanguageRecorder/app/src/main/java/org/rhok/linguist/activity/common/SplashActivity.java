@@ -3,6 +3,7 @@ package org.rhok.linguist.activity.common;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,7 +17,7 @@ import org.rhok.linguist.application.LinguistApplication;
 import org.rhok.linguist.code.LocaleHelper;
 
 
-public class SplashActivity extends ActionBarActivity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class SplashActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_splash, menu);
         if(LinguistApplication.DEBUG){
             menu.add(0, R.id.menu_old_home,0, "Old Home");
+            menu.add(0, R.id.menu_person_list,0, "Person list");
         }
         return true;
     }
@@ -60,6 +62,9 @@ public class SplashActivity extends ActionBarActivity {
                 break;
             case R.id.menu_old_home:
                 intent = new Intent(this, HomeActivity.class);
+                break;
+            case R.id.menu_person_list:
+                intent = new Intent(this, PersonListActivity.class);
         }
         if(intent!=null){
             startActivity(intent);

@@ -1,0 +1,18 @@
+<resources>
+    <color name="linguist_color">#0057a8</color>
+
+    <color name="text_color_highight">@color/linguist_color</color>
+
+    <color name="body_text_1">#000000</color>
+    <color name="body_text_2">#555555</color>
+    <color name="body_text_3">#A2A2A2</color>
+    <color name="body_text_disabled">#44000000</color>
+    <color name="body_text_disabled_inverse">#66cccccc</color>
+
+    <color name="body_text_1_inverse">#E9EDF0</color>
+    <color name="body_text_2_inverse">#99ffffff</color>
+
+
+
+
+</resources>

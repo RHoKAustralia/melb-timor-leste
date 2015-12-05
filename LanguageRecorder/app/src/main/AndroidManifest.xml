@@ -24,6 +24,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.common.PersonListActivity"
+            android:label="@string/person_title_select" >
+        </activity>
+        <activity
             android:name=".activity.old.HomeActivity"
             android:label="@string/home_title" >
         </activity>
