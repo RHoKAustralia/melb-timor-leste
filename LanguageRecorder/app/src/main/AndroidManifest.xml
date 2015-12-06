@@ -72,6 +72,14 @@
                 android:value=".activity.old.HomeActivity" />
         </activity>
         <activity
+            android:name=".activity.common.UploadInterviewsActivity"
+            android:label="@string/upload_title"
+            android:parentActivityName=".activity.common.SplashActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.common.SplashActivity" />
+        </activity>
+        <activity
             android:name=".activity.old.PersonDeleteActivity"
             android:label="@string/delete_person_title"
             android:parentActivityName=".activity.old.PersonActivity" >
