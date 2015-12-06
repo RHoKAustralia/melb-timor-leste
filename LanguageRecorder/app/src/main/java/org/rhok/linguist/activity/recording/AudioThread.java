@@ -18,6 +18,8 @@ import java.util.UUID;
 
 public class AudioThread extends Thread {
 
+    private static final String TAG = "AudioThread";
+
     public Handler mHandler;
     public String audioFilename;
 
@@ -31,7 +33,7 @@ public class AudioThread extends Thread {
         mHandler = new Handler() {
             public void handleMessage(Message msg) {
 
-                Log.i("LanguageApp", msg.obj.toString());
+                Log.i(TAG, msg.obj.toString());
 
                 if (msg.obj.toString().equals("startrecording")) {
                     startRecording();
@@ -61,7 +63,7 @@ public class AudioThread extends Thread {
         }
         catch (RuntimeException e) {
             // TODO (Warwick): any cleanup required here?
-            Log.e("LanguageApp", "Error during stopRecording()", e);
+            Log.e(TAG, "Error during stopRecording()", e);
         }
         mRecorder.release();
         mRecorder = null;
@@ -84,10 +86,10 @@ public class AudioThread extends Thread {
         try {
             mRecorder.prepare();
         } catch (IOException e) {
-            Log.e("LanguageApp", "Error during mRecorder.prepare()", e);
+            Log.e(TAG, "Error during mRecorder.prepare()", e);
         }
 
-        Log.i("LanguageApp", "recording started for filename: " + audioFilename);
+        Log.i(TAG, "recording started for filename: " + audioFilename);
 
         mRecorder.start();
 
@@ -109,7 +111,7 @@ public class AudioThread extends Thread {
             mPlayer.start();
         }
         catch (IOException e) {
-            Log.e("LanguageApp", "Error during startPlaying()", e);
+            Log.e(TAG, "Error during startPlaying()", e);
         }
     }
 
