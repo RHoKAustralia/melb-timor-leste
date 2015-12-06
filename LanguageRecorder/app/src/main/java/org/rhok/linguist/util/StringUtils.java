@@ -67,7 +67,7 @@ public class StringUtils {
         return list == null || list.length == 0;
     }
     public static boolean isNullOrEmpty(Number number){
-        return number==null || number==0 || number==0d || number.equals(BigDecimal.ZERO)
+        return number==null || number.equals(0) || number.equals(0d) || number.equals(BigDecimal.ZERO)
                 || (number instanceof BigDecimal && BigDecimal.ZERO.compareTo((BigDecimal) number)==0)
                 || number.toString().equals("0");
 
