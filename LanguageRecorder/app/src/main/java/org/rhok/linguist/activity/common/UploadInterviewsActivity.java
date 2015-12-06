@@ -313,7 +313,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
 
             if(responseCode<400){
                 //success. delete file.
-                Log.i("LanguageApp","success. deleting file "+file.getName());                 
+                Log.i("LanguageApp","success. deleting file "+file.getName());
                 file.delete();
             }
             String str;

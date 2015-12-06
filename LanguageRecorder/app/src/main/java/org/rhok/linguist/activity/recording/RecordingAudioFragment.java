@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.androidquery.AQuery;
 
 import org.rhok.linguist.R;
-import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.api.models.Phrase;
 import org.rhok.linguist.api.models.Study;
 import org.rhok.linguist.util.Reflect;
@@ -76,15 +75,15 @@ public class RecordingAudioFragment extends Fragment {
         Phrase phrase =getStudy().getPhrases().get(phraseIndex);
         String question = StringUtils.isNullOrEmpty(phrase.getEnglish_text(), getString(R.string.interview_audio_recording));
         recordingQuestionTextView.setText(question);
-        if(StringUtils.isNullOrEmpty(phrase.getImage_url())){
+        if(StringUtils.isNullOrEmpty(phrase.getImage())){
             aq.id(imageView).gone();
         }
-        else if (phrase.getImage_url().toLowerCase().startsWith("http")){
-            aq.id(imageView).image(phrase.getImage_url());
+        else if (phrase.formatImageUrl().startsWith("http")){
+            aq.id(imageView).image(phrase.formatImageUrl());
         }
         else{
             //in case it refers to a built-in image, eg "word4"
-            int resId = Reflect.getImageResId(phrase.getImage_url());
+            int resId = Reflect.getImageResId(phrase.getImage());
             aq.id(imageView).image(resId);
         }
 

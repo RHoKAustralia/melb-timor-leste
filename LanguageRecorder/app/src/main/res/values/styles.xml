@@ -51,12 +51,12 @@
     </style>
 
     <style name="redButtonStyle" parent="buttonStyle">
-        <item name="android:background">@android:color/holo_red_light</item>
+        <item name="android:background">@drawable/button_red</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="greenButtonStyle" parent="buttonStyle">
-        <item name="android:background">#ff00a887</item>
+        <item name="android:background">@drawable/button_green</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 

@@ -1,18 +1,8 @@
 package org.rhok.linguist.activity.recording;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
@@ -78,7 +68,7 @@ public class RecordingFragmentActivity extends BaseInterviewActivity {
             Bundle args = new Bundle();
             args.putInt(ARG_PHRASE_INDEX, phraseIndex);
             Phrase phrase = getStudy().getPhrases().get(phraseIndex);
-            if(!StringUtils.isNullOrEmpty(phrase.getAudio_url())){
+            if(!StringUtils.isNullOrEmpty(phrase.getAudio())){
                 Fragment fragment = new AudioPlaybackFragment();
                 fragment.setArguments(args);
                 transactTo(getMainFragmentContainerId(), fragment, AudioPlaybackFragment.TAG + "_" + phraseIndex);

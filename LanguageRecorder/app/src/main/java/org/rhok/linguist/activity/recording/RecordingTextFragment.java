@@ -42,15 +42,15 @@ public class RecordingTextFragment extends Fragment {
         int responseType = phrase.getResponse_type();
         //will be either TYPE_TEXT_AUDIO or TEXT. Audio only won't come to this fragment.
         aq.id(R.id.recordingQuestionTextView).text(responseType == Phrase.TYPE_TEXT_AUDIO ? getString(R.string.interview_transcribe) : phrase.getEnglish_text());
-        if(StringUtils.isNullOrEmpty(phrase.getImage_url())){
+        if(StringUtils.isNullOrEmpty(phrase.getImage())){
             aq.id(R.id.captureImageView).gone();
         }
-        else if (phrase.getImage_url().toLowerCase().startsWith("http")){
-            aq.id(R.id.captureImageView).image(phrase.getImage_url());
+        else if (phrase.formatImageUrl().startsWith("http")){
+            aq.id(R.id.captureImageView).image(phrase.formatImageUrl());
         }
         else{
             //in case it refers to a built-in image, eg "word4"
-            int resId = Reflect.getImageResId(phrase.getImage_url());
+            int resId = Reflect.getImageResId(phrase.getImage());
             aq.id(R.id.captureImageView).image(resId);
         }
         if(StringUtils.isNullOrEmpty(phrase.getChoices())){
