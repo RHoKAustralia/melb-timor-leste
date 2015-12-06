@@ -11,9 +11,26 @@ import java.util.List;
  */
 public class Interview implements Serializable{
 
+    /**
+     * id of interview in local db
+     */
     private int __appid;
+    /**
+     * if this interview is completed
+     */
     private boolean __completed;
+    /**
+     * if this interview has been uploaded
+     */
     private boolean __uploaded;
+    /**
+     * id of interviewee (person) in local db
+     */
+    private int __intervieweeid;
+    /**
+     * id of interviewer (user) in local db. NYI.
+     */
+    private int __interviewerid;
     private int id;
     private Date interview_time;
     private int study_id;
@@ -30,7 +47,11 @@ public class Interview implements Serializable{
         interview_time= new Date();
         study_id=study.getId();
         recordings=new ArrayList<Recording>(study.getPhrases().size());
-
+        for(Phrase phrase : study.getPhrases()){
+            Recording recording = new Recording();
+            recording.setPhrase_id(phrase.getId());
+            recordings.add(recording);
+        }
     }
 
     /**
@@ -119,5 +140,21 @@ public class Interview implements Serializable{
 
     public void set__uploaded(boolean __uploaded) {
         this.__uploaded = __uploaded;
+    }
+
+    public int get__intervieweeid() {
+        return __intervieweeid;
+    }
+
+    public void set__intervieweeid(int __intervieweeid) {
+        this.__intervieweeid = __intervieweeid;
+    }
+
+    public int get__interviewerid() {
+        return __interviewerid;
+    }
+
+    public void set__interviewerid(int __interviewerid) {
+        this.__interviewerid = __interviewerid;
     }
 }

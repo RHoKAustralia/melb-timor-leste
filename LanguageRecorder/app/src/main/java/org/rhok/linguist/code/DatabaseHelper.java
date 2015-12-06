@@ -6,8 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.rhok.linguist.api.models.Interview;
 import org.rhok.linguist.code.entity.Person;
 import org.rhok.linguist.code.entity.PersonWord;
+import org.rhok.linguist.network.PCJsonSerializers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context _context;
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "linguist";
     public static final String PERSON_TABLE_NAME = "person";
     public static final String PERSON_COLUMNS =
@@ -75,11 +80,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String INTERVIEW_TABLE_NAME = "interview";
 
-    String createInterviewTable = "create table " + PERSONWORD_TABLE_NAME + " " +
+    String createInterviewTable = "create table " + INTERVIEW_TABLE_NAME + " " +
             "(interviewid integer primary key autoincrement," +
             "completed bit, " +
             "uploaded bit, " +
             "intervieweeid integer, " +
+            "interviewerid integer, " +
             "json varchar);";
 
     public DatabaseHelper(Context context) {
@@ -96,7 +102,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int fromVersion, int toVersion) {
+        if(fromVersion==1){
+            db.execSQL("drop table if exists " + INTERVIEW_TABLE_NAME + ";");
+            db.execSQL(createInterviewTable);
 
+        }
     }
 
     private void recreateDB() {
@@ -231,7 +241,75 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         updateField(personId, "livedInYears", null, years, "Integer");
     }
 
+    public void insertUpdateInterview(Interview interview){
+        ContentValues values = interviewToContentValues(interview);
+        SQLiteDatabase db = getWritableDatabase();
+        if(interview.get__appid()>0){
+            db.update(INTERVIEW_TABLE_NAME, values,  "interviewid = " + String.valueOf(interview.get__appid()), null);
+        }
+        else{
+            long appid = db.insert(INTERVIEW_TABLE_NAME, null, values);
+            interview.set__appid((int) appid);
+        }
+        db.close();
+    }
+    private ContentValues interviewToContentValues(Interview interview){
+        ContentValues v = new ContentValues();
+        v.put("completed", interview.is__completed());
+        v.put("uploaded", interview.is__uploaded());
+        v.put("intervieweeid", interview.get__intervieweeid());
+        v.put("interviewerid", interview.get__interviewerid());
+        String json = getGson().toJson(interview);
+        v.put("json", json);
+        return v;
+    }
+    private Interview getInterviewFromCursor(Cursor c){
+        String json = c.getString(c.getColumnIndexOrThrow("json"));
+        Interview r = getGson().fromJson(json, Interview.class);
+        r.set__appid((int) c.getLong(c.getColumnIndexOrThrow("interviewid")));
+        r.set__completed(c.getInt(c.getColumnIndexOrThrow("completed")) > 0);
+        r.set__uploaded(c.getInt(c.getColumnIndexOrThrow("uploaded")) > 0);
+        r.set__intervieweeid(c.getInt(c.getColumnIndexOrThrow("intervieweeid")));
+        r.set__interviewerid(c.getInt(c.getColumnIndexOrThrow("interviewerid")));
+        return r;
+    }
+    public Interview getInterview(int appId){
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            Cursor c = db.rawQuery("select * from " + INTERVIEW_TABLE_NAME + "" +
+                    " where interviewid = " + appId, null);
+            Interview p = null;
+            if (c.moveToNext()) {
+                p = getInterviewFromCursor(c);
+            }
+
+            db.close();
+            return p;
+
+    }
+    public List<Interview> getInterviews(boolean readyToUploadOnly) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select * from "+INTERVIEW_TABLE_NAME;
+        if(readyToUploadOnly) query+=" where completed=1 and uploaded=0";
+        Cursor c = db.rawQuery(query, null);
+
+        List<Interview> items = new ArrayList<Interview>();
+
+        while (c.moveToNext()) {
+            Interview p = getInterviewFromCursor(c);
+            items.add(p);
+        }
+
+        db.close();
+
+        return items;
+    }
+    private Gson getGson(){
+        return new GsonBuilder().setExclusionStrategies(PCJsonSerializers.getUnderscoreExclusionStrategy()).create();
+    }
     public void insertUpdateRecording(int interviewid, int phraseid, String word, String audiofilename) {
+        SQLiteDatabase db = getWritableDatabase();
+
 
     }
     public void saveWord(int personid, int wordid, String word, String audiofilename) {

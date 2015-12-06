@@ -9,7 +9,6 @@ import java.util.Date;
  */
 public class Recording implements Serializable{
 
-    private int __appid;
     private int id;
     private Date recorded;
     private int interview_id;
@@ -27,21 +26,7 @@ public class Recording implements Serializable{
         return id;
     }
 
-    /**
-     * ID as stored in app database. Not serialized to json
-     * @return
-     */
-    public int get__appid() {
-        return __appid;
-    }
 
-    /**
-     * ID as stored in app database. Not serialized to json
-     * @param __appid
-     */
-    public void set__appid(int __appid) {
-        this.__appid = __appid;
-    }
 
     public Date getRecorded() {
         return recorded;
