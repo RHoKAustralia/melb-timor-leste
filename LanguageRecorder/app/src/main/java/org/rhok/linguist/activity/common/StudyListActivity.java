@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -16,7 +17,11 @@ import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.activity.interview.InterviewNameActivity;
 import org.rhok.linguist.activity.recording.RecordingInstructionsActivity;
 import org.rhok.linguist.api.OfflineStorageHelper;
+import org.rhok.linguist.api.models.Phrase;
 import org.rhok.linguist.api.models.Study;
+import org.rhok.linguist.application.LinguistApplication;
+import org.rhok.linguist.network.BaseIonCallback;
+import org.rhok.linguist.network.IonHelper;
 import org.rhok.linguist.util.UIUtil;
 
 import java.util.ArrayList;
@@ -46,15 +51,40 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
         if(mStudies==null){
             OfflineStorageHelper helper = new OfflineStorageHelper(this);
             mStudies=helper.getStudyListFromAssets(R.raw.test_study_list);
+            //STOPSHIP quick hack to grab all /phrases.json from API for demo
+            IonHelper ionHelper = new IonHelper();
+            ionHelper.doGet(ionHelper.getIon().build(this), PhraseList.class, "/phrases.json")
+                    .go()
+                    .setCallback(new BaseIonCallback<PhraseList>() {
+                        @Override
+                        public void onSuccess(PhraseList result) {
+                            for(Phrase phrase:result){
+                                //response_type was missing
+                                if(phrase.getResponse_type()==0)phrase.setResponse_type(Phrase.TYPE_TEXT);
+                                phrase.setAudio(null);
+                            }
+                            Study apiStudy = new Study();
+                            apiStudy.setName("API Study");
+                            apiStudy.setId(-1);
+                            apiStudy.setInstructions("Demo from API");
+                            apiStudy.setPhrases(result);
+                            mStudies.add(mStudies.size(), apiStudy);
+                            updateListView();
+                        }
+                    });
+
         }
         updateListView();
+    }
+    public static class PhraseList extends ArrayList<Phrase>{
+
     }
 
     private void updateListView(){
         if(listView.getAdapter()==null){
             listView.setAdapter(new StudyAdapter(mStudies));
         }
-        else ((StudyAdapter)listView.getAdapter()).notifyDataSetChanged();
+        else ((StudyAdapter)listView.getAdapter()).updateData(mStudies);
         mProgressBar.setVisibility(mStudies==null?View.VISIBLE:View.GONE);
     }
 
@@ -96,8 +126,12 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
     private class StudyAdapter extends BaseAdapter {
         private List<Study> items;
         public StudyAdapter(List<Study> items) {
+            updateData(items);
+        }
+        private void updateData(List<Study> items){
             if(items==null) items = new ArrayList<>();
             this.items= items;
+            notifyDataSetChanged();
         }
 
         @Override

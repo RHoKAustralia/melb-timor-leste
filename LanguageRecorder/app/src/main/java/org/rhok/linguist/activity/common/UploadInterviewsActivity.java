@@ -146,7 +146,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
             final int index = i;
             if (!interview.is__uploaded()) {
                 InsertInterviewRequest req = makeInsertInterviewRequest(interview);
-                ionHelper.doPost(ionHelper.getIon().build(this), req, LinguistApplication.getWebserviceUrl() + "interview/upload")
+                ionHelper.doPost(ionHelper.getIon().build(this), req, LinguistApplication.getWebserviceUrl() + "interviews/upload")
                         .go()
                         .setCallback(new BaseIonCallback<Interview>() {
                             @Override

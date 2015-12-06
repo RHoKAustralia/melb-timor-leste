@@ -45,7 +45,7 @@ public class RecordingTextFragment extends Fragment {
         if(StringUtils.isNullOrEmpty(phrase.getImage())){
             aq.id(R.id.captureImageView).gone();
         }
-        else if (phrase.formatImageUrl().startsWith("http")){
+        else if (phrase.formatImageUrl().toLowerCase().startsWith("http")){
             aq.id(R.id.captureImageView).image(phrase.formatImageUrl());
         }
         else{

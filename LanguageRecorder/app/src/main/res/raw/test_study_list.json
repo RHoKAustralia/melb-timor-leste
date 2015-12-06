@@ -11,21 +11,27 @@
 },
   {"id":80,
     "english_text":"Image question with audio response",
-    "image_url":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
+    "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
+    "response_type_id":2
+  },
+  {"id":81,
+    "english_text":"Image question with another audio response",
+    "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/GEM_corn.jpg/220px-GEM_corn.jpg",
     "response_type_id":2
   },
 {"id":3,
 "english_text":"Image question with free text response",
-"image_url":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
+"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
   "response_type_id":1
 },
 {"id":4,
-"english_text":"Audio question with audio and free text response",
-"audio_url":"http://feeds.soundcloud.com/stream/229649544-science-vs-season-1-science-vs-the-next-chapter.mp3",
+"english_text":"question with audio and drop down text response",
+"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/GEM_corn.jpg/220px-GEM_corn.jpg",
+  "choices":["hello","world","yes","no"],
   "response_type_id":3
 },
 {"id":5,
-"english_text":"question with drop down responses",
+"english_text":"No image question with drop down responses",
 "choices":["hello","world","yes","no"],
   "response_type_id":1
 }
