@@ -21,6 +21,7 @@ import org.rhok.linguist.activity.common.SplashActivity;
 import org.rhok.linguist.activity.interview.BaseInterviewActivity;
 import org.rhok.linguist.api.models.Interview;
 import org.rhok.linguist.api.models.Phrase;
+import org.rhok.linguist.api.models.Recording;
 import org.rhok.linguist.api.models.Study;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.util.StringUtils;
@@ -40,12 +41,19 @@ public class RecordingFragmentActivity extends BaseInterviewActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty);
+        Bundle restoreState = savedInstanceState!=null?savedInstanceState:getIntent().getExtras();
         study = (Study) getIntent().getSerializableExtra(IntentUtil.ARG_STUDY);
-        interview = (Interview) getIntent().getSerializableExtra(IntentUtil.ARG_INTERVIEW);
+        interview = (Interview) restoreState.getSerializable(IntentUtil.ARG_INTERVIEW);
         if (getSupportFragmentManager().findFragmentById(getMainFragmentContainerId()) == null) {
             navigateNextPhrase(0);
         }
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(IntentUtil.ARG_INTERVIEW, interview);
     }
 
     public Study getStudy() {
@@ -54,7 +62,8 @@ public class RecordingFragmentActivity extends BaseInterviewActivity {
 
     private void finishInterview() {
         interview.set__completed(true);
-        //TODO save to db
+        DatabaseHelper db = new DatabaseHelper(this);
+        db.insertUpdateInterview(interview);
         Toast.makeText(this, "Interview completed", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, SplashActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -87,9 +96,9 @@ public class RecordingFragmentActivity extends BaseInterviewActivity {
     }
 
     public void onRecordingAudioFinished(int phraseIndex, String audioFilename) {
-        DatabaseHelper helper = new DatabaseHelper(this);
-        int interviewId = interview.get__appid();
-        helper.insertUpdateRecording(interviewId, study.getPhrases().get(phraseIndex).getId(), null, audioFilename);
+        Recording recording = interview.getRecordings().get(phraseIndex);
+        recording.setAudio_url(audioFilename);
+
         if (study.getPhrases().get(phraseIndex).getResponse_type() == Phrase.TYPE_TEXT_AUDIO) {
             //requires text as well as audio, go to the text fragment
             Bundle args = new Bundle();
@@ -103,9 +112,9 @@ public class RecordingFragmentActivity extends BaseInterviewActivity {
     }
 
     public void onRecordingTextFinished(int phraseIndex, String answer) {
-        DatabaseHelper helper = new DatabaseHelper(this);
         int interviewId = interview.get__appid();
-        helper.insertUpdateRecording(interviewId, getStudy().getPhrases().get(phraseIndex).getId(), answer, null);
+        Recording recording = interview.getRecordings().get(phraseIndex);
+        recording.setText_response(answer);
         navigateNextPhrase(phraseIndex + 1);
     }
 

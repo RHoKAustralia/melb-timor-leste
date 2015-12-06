@@ -27,7 +27,7 @@ public class RecordingInstructionsActivity extends BaseInterviewActivity {
             ((TextView)findViewById(R.id.questionText)).setText(study.getInstructions());
         }
         interview = new Interview(study);
-        interview.setInterviewee_id(personId);
+        interview.set__intervieweeid(personId);
 
     }
 

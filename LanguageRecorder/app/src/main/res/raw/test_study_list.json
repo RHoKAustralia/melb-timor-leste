@@ -9,6 +9,11 @@
 "english_text":"Basic question with free text response",
   "response_type_id":1
 },
+  {"id":80,
+    "english_text":"Image question with audio response",
+    "image_url":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
+    "response_type_id":2
+  },
 {"id":3,
 "english_text":"Image question with free text response",
 "image_url":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
