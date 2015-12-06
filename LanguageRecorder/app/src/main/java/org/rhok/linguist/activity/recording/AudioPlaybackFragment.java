@@ -3,6 +3,7 @@ package org.rhok.linguist.activity.recording;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,6 +93,13 @@ public class AudioPlaybackFragment extends Fragment {
         return msg;
     }
 
+    private Message createMessage(String text, Bundle bundle) {
+        Message msg = Message.obtain();
+        msg.obj = text;
+        msg.setData(bundle);
+        return msg;
+    }
+
     private void startAudioThreadIfNull() {
         if (audioThread == null) {
             audioThread = new AudioThread();
@@ -109,7 +117,10 @@ public class AudioPlaybackFragment extends Fragment {
 
     private void startPlaying(File file)
     {
-        audioThread.mHandler.sendMessage(createMessage("startplaying"));
+        Log.d(TAG, "startPlaying(): " + file.getAbsolutePath());
+        Bundle bundle = new Bundle();
+        bundle.putString("path", file.getAbsolutePath());
+        audioThread.mHandler.sendMessage(createMessage("playfile", bundle));
         playing = true;
     }
     private void stopPlaying()
@@ -133,7 +144,7 @@ public class AudioPlaybackFragment extends Fragment {
         super.onResume();
         startAudioThreadIfNull();
         if (!playing) {
-            startPlaying(null);
+            loadAudioFile(getStudy().getPhrases().get(phraseIndex));
             playing = true;
         }
         // The activity has become visible (it is now "resumed").

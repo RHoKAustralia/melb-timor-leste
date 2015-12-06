@@ -46,6 +46,9 @@ public class AudioThread extends Thread {
                 if (msg.obj.toString().equals("startplaying")) {
                     startPlaying();
                 }
+                if (msg.obj.toString().equals("playfile")) {
+                    playFile(msg.getData().getString("path"));
+                }
                 if (msg.obj.toString().equals("stopplaying")) {
                     stopPlaying();
                 }
@@ -115,6 +118,27 @@ public class AudioThread extends Thread {
         }
         catch (IOException e) {
             Log.e(TAG, "Error during startPlaying()", e);
+        }
+    }
+
+    private void playFile(String path) {
+        Log.d(TAG, "playFile(): " + path);
+        stopPlaying();
+        mPlayer = new MediaPlayer();
+        mPlayer.setLooping(true);
+        try {
+            mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer arg0) {
+                    //startPlaying();
+                }
+            });
+            mPlayer.setDataSource(path);
+            mPlayer.prepare();
+            mPlayer.start();
+        }
+        catch (IOException e) {
+            Log.e(TAG, "Error during playFile()", e);
         }
     }
 
