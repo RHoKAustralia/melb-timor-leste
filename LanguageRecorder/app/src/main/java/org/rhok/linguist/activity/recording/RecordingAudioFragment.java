@@ -45,7 +45,7 @@ public class RecordingAudioFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         phraseIndex = getArguments().getInt(RecordingFragmentActivity.ARG_PHRASE_INDEX);
-        audioThread=new AudioThread();
+        startAudioThreadIfNull();
     }
 
     @Override
@@ -70,9 +70,6 @@ public class RecordingAudioFragment extends Fragment {
         anim.setRepeatCount(Animation.INFINITE);
         recordingMessageTextView.startAnimation(anim);
 
-        audioThread = new AudioThread();
-        audioThread.start();
-
         Phrase phrase =getStudy().getPhrases().get(phraseIndex);
         String question = StringUtils.isNullOrEmpty(phrase.getEnglish_text(), getString(R.string.interview_audio_recording));
         recordingQuestionTextView.setText(question);
@@ -88,6 +85,9 @@ public class RecordingAudioFragment extends Fragment {
             aq.id(imageView).image(resId);
         }
 
+        startAudioThreadIfNull();
+        startRecording();
+
         return root;
     }
 
@@ -96,6 +96,20 @@ public class RecordingAudioFragment extends Fragment {
         Message msg = Message.obtain();
         msg.obj = text;
         return msg;
+    }
+
+    private void startAudioThreadIfNull() {
+        if (audioThread == null) {
+            audioThread = new AudioThread();
+            audioThread.start();
+        }
+    }
+
+    private void releaseAudioThread() {
+        if (audioThread != null) {
+            audioThread.mHandler.sendMessage(createMessage("release"));
+            audioThread = null;
+        }
     }
 
 
@@ -127,11 +141,13 @@ public class RecordingAudioFragment extends Fragment {
             stopPlaying();
             playingIsPaused = true;
         }
+        releaseAudioThread();
         // Another activity is taking focus (this activity is about to be "paused").
     }
     @Override
     public void onResume() {
         super.onResume();
+        startAudioThreadIfNull();
         if (playingIsPaused) {
             startPlaying();
             playingIsPaused = false;

@@ -18,6 +18,8 @@ import java.util.UUID;
 
 public class AudioThread extends Thread {
 
+    private static final String TAG = "AudioThread";
+
     public Handler mHandler;
     public String audioFilename;
 
@@ -26,12 +28,13 @@ public class AudioThread extends Thread {
 
     @Override
     public void run() {
+        Log.d(TAG, "run()");
         Looper.prepare();
 
         mHandler = new Handler() {
             public void handleMessage(Message msg) {
 
-                Log.i("LanguageApp", msg.obj.toString());
+                Log.i(TAG, msg.obj.toString());
 
                 if (msg.obj.toString().equals("startrecording")) {
                     startRecording();
@@ -43,29 +46,34 @@ public class AudioThread extends Thread {
                 if (msg.obj.toString().equals("startplaying")) {
                     startPlaying();
                 }
+                if (msg.obj.toString().equals("playfile")) {
+                    playFile(msg.getData().getString("path"));
+                }
                 if (msg.obj.toString().equals("stopplaying")) {
                     stopPlaying();
+                }
+                if (msg.obj.toString().equals("release")) {
+                    release();
                 }
 
             }
         };
 
-        startRecording();
-
         Looper.loop();
     }
 
+    /** Stop recording audio and release recorder */
     private void stopRecording() {
-        try {
-            mRecorder.stop();
+        if (mRecorder != null) {
+            try {
+                mRecorder.stop();
+            } catch (RuntimeException e) {
+                // TODO (Warwick): any cleanup required here?
+                Log.e(TAG, "Error during stopRecording()", e);
+            }
+            mRecorder.release();
+            mRecorder = null;
         }
-        catch (RuntimeException e) {
-            // TODO (Warwick): any cleanup required here?
-            Log.e("LanguageApp", "Error during stopRecording()", e);
-        }
-        mRecorder.release();
-        mRecorder = null;
-
     }
 
     private void startRecording()
@@ -84,10 +92,10 @@ public class AudioThread extends Thread {
         try {
             mRecorder.prepare();
         } catch (IOException e) {
-            Log.e("LanguageApp", "Error during mRecorder.prepare()", e);
+            Log.e(TAG, "Error during mRecorder.prepare()", e);
         }
 
-        Log.i("LanguageApp", "recording started for filename: " + audioFilename);
+        Log.i(TAG, "recording started for filename: " + audioFilename);
 
         mRecorder.start();
 
@@ -109,13 +117,48 @@ public class AudioThread extends Thread {
             mPlayer.start();
         }
         catch (IOException e) {
-            Log.e("LanguageApp", "Error during startPlaying()", e);
+            Log.e(TAG, "Error during startPlaying()", e);
         }
     }
 
-    private void stopPlaying()
-    {
-        mPlayer.release();
-        mPlayer = null;
+    private void playFile(String path) {
+        Log.d(TAG, "playFile(): " + path);
+        stopPlaying();
+        mPlayer = new MediaPlayer();
+        mPlayer.setLooping(true);
+        try {
+            mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer arg0) {
+                    //startPlaying();
+                }
+            });
+            mPlayer.setDataSource(path);
+            mPlayer.prepare();
+            mPlayer.start();
+        }
+        catch (IOException e) {
+            Log.e(TAG, "Error during playFile()", e);
+        }
+    }
+
+    /** Stop playing audio and release player */
+    private void stopPlaying() {
+        if (mPlayer != null) {
+            if (mPlayer.isPlaying()) {
+                mPlayer.stop();
+            }
+            mPlayer.release();
+            mPlayer = null;
+        }
+    }
+
+    private void release() {
+        Log.d(TAG, "release()");
+        stopRecording();
+        stopPlaying();
+        if (Looper.myLooper() != null) {
+            Looper.myLooper().quit();
+        }
     }
 }
