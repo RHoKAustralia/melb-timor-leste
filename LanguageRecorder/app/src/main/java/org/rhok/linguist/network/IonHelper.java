@@ -91,10 +91,10 @@ public class IonHelper {
                 .registerTypeAdapter(TimeSpan.class, JsonSerializers.getTimeSpanDeserializer())
                 .registerTypeAdapter(UUID.class, JsonSerializers.getGuidSerializer())
                 .registerTypeAdapter(UUID.class, JsonSerializers.getGuidDeserializer());
-
+        builder.setExclusionStrategies(PCJsonSerializers.getUnderscoreExclusionStrategy());
         config.setGson(builder.create());
         config.userAgent(getDefaultUserAgentString());
-        config.setLogging("ION", LinguistApplication.DEBUG ? 0 : Log.ASSERT+1);
+        config.setLogging("ION", LinguistApplication.DEBUG ? 0 : Log.ASSERT + 1);
     }
 
     public Ion getIon(){
@@ -120,6 +120,21 @@ public class IonHelper {
         addDefaultHeaders(b2);
 
         return new HelperRequest<>(request, mConfigLoaderCallback, "GET", b2, url);
+    }
+
+    public <TResponse> HelperRequest<TResponse> doPost(LoadBuilder<Builders.Any.B> loadBuilder, IReturn<TResponse> request, String urlPath){
+        if(urlPath.startsWith("/")) urlPath=urlPath.substring(1);
+        String url = LinguistApplication.getWebserviceUrl()+urlPath;
+        Builders.Any.B b2 = loadBuilder.load(url);
+        addDefaultHeaders(b2);
+        if(LOG_REQUEST){
+            String json = ion.configure().getGson().toJson(request);
+            Log.d("requestDump", json);
+            b2.setStringBody(json);
+            b2.setHeader("Content-Type", "application/json");
+        }
+        else b2.setJsonPojoBody(request);
+        return new HelperRequest<>(request, mConfigLoaderCallback, "POST", b2, url);
     }
 
     public <TResponse> HelperRequest<TResponse> doPost(LoadBuilder<Builders.Any.B> loadBuilder, IReturn<TResponse> request){

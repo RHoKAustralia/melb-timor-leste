@@ -58,7 +58,7 @@ public class SplashActivity extends AppCompatActivity {
                 intent.putExtra(IntentUtil.ARG_PERSON_ID, 1);
                 break;
             case R.id.action_upload:
-                intent = new Intent(this, UploadActivity.class);
+                intent = new Intent(this, UploadInterviewsActivity.class);
                 break;
             case R.id.menu_old_home:
                 intent = new Intent(this, HomeActivity.class);
