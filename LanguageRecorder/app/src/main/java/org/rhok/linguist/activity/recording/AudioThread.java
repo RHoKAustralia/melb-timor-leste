@@ -28,6 +28,7 @@ public class AudioThread extends Thread {
 
     @Override
     public void run() {
+        Log.d(TAG, "run()");
         Looper.prepare();
 
         mHandler = new Handler() {
@@ -48,26 +49,28 @@ public class AudioThread extends Thread {
                 if (msg.obj.toString().equals("stopplaying")) {
                     stopPlaying();
                 }
+                if (msg.obj.toString().equals("release")) {
+                    release();
+                }
 
             }
         };
 
-        startRecording();
-
         Looper.loop();
     }
 
+    /** Stop recording audio and release recorder */
     private void stopRecording() {
-        try {
-            mRecorder.stop();
+        if (mRecorder != null) {
+            try {
+                mRecorder.stop();
+            } catch (RuntimeException e) {
+                // TODO (Warwick): any cleanup required here?
+                Log.e(TAG, "Error during stopRecording()", e);
+            }
+            mRecorder.release();
+            mRecorder = null;
         }
-        catch (RuntimeException e) {
-            // TODO (Warwick): any cleanup required here?
-            Log.e(TAG, "Error during stopRecording()", e);
-        }
-        mRecorder.release();
-        mRecorder = null;
-
     }
 
     private void startRecording()
@@ -115,9 +118,23 @@ public class AudioThread extends Thread {
         }
     }
 
-    private void stopPlaying()
-    {
-        mPlayer.release();
-        mPlayer = null;
+    /** Stop playing audio and release player */
+    private void stopPlaying() {
+        if (mPlayer != null) {
+            if (mPlayer.isPlaying()) {
+                mPlayer.stop();
+            }
+            mPlayer.release();
+            mPlayer = null;
+        }
+    }
+
+    private void release() {
+        Log.d(TAG, "release()");
+        stopRecording();
+        stopPlaying();
+        if (Looper.myLooper() != null) {
+            Looper.myLooper().quit();
+        }
     }
 }

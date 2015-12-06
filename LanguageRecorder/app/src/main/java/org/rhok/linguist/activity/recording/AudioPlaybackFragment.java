@@ -52,7 +52,7 @@ public class AudioPlaybackFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         phraseIndex = getArguments().getInt(RecordingFragmentActivity.ARG_PHRASE_INDEX);
-        audioThread=new AudioThread();
+        startAudioThreadIfNull();
     }
 
     @Override
@@ -76,13 +76,11 @@ public class AudioPlaybackFragment extends Fragment {
         anim.setRepeatCount(Animation.INFINITE);
         recordingMessageTextView.startAnimation(anim);
 
-        audioThread = new AudioThread();
-        audioThread.start();
-
         Phrase phrase =getStudy().getPhrases().get(phraseIndex);
         String question = StringUtils.isNullOrEmpty(phrase.getEnglish_text(), getString(R.string.interview_audio_recording));
         recordingQuestionTextView.setText(question);
 
+        startAudioThreadIfNull();
 
         return root;
     }
@@ -94,37 +92,49 @@ public class AudioPlaybackFragment extends Fragment {
         return msg;
     }
 
+    private void startAudioThreadIfNull() {
+        if (audioThread == null) {
+            audioThread = new AudioThread();
+            audioThread.start();
+        }
+    }
+
+    private void releaseAudioThread() {
+        if (audioThread != null) {
+            audioThread.mHandler.sendMessage(createMessage("release"));
+            audioThread = null;
+        }
+    }
 
 
     private void startPlaying(File file)
     {
-        //TODO play file
-       // audioThread.mHandler.sendMessage(createMessage("startplaying"));
+        audioThread.mHandler.sendMessage(createMessage("startplaying"));
+        playing = true;
     }
     private void stopPlaying()
     {
-        //TODO stop playing
-      //  audioThread.mHandler.sendMessage(createMessage("stopplaying"));
+        audioThread.mHandler.sendMessage(createMessage("stopplaying"));
         playing = false;
     }
-
-    private boolean playingIsPaused = false;
 
     @Override
     public void onPause() {
         super.onPause();
         if (playing) {
             stopPlaying();
-            playingIsPaused = true;
+            playing = false;
         }
+        releaseAudioThread();
         // Another activity is taking focus (this activity is about to be "paused").
     }
     @Override
     public void onResume() {
         super.onResume();
-        if (playingIsPaused) {
+        startAudioThreadIfNull();
+        if (!playing) {
             startPlaying(null);
-            playingIsPaused = false;
+            playing = true;
         }
         // The activity has become visible (it is now "resumed").
     }
