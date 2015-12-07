@@ -31,7 +31,7 @@
   "response_type_id":3
 },
 {"id":5,
-"english_text":"No image question with drop down responses",
+"english_text":"audio question with drop down responses",
 "choices":["hello","world","yes","no"],
   "response_type_id":1
 }
