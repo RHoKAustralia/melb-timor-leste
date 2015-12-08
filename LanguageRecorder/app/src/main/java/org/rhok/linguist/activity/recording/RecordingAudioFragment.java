@@ -1,8 +1,8 @@
 package org.rhok.linguist.activity.recording;
 
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +22,7 @@ import org.rhok.linguist.util.StringUtils;
 
 public class RecordingAudioFragment extends Fragment {
 
-    public static final String TAG = "RecordingAudioFragment";
+    public static final String TAG = "RecAudioFragment";
     TextView recordingQuestionTextView;
     TextView recordingMessageTextView;
     TextView recordOkTextView;
@@ -43,8 +43,15 @@ public class RecordingAudioFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         phraseIndex = getArguments().getInt(RecordingFragmentActivity.ARG_PHRASE_INDEX);
         startAudioThreadIfNull();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
     }
 
     @Override
@@ -90,13 +97,6 @@ public class RecordingAudioFragment extends Fragment {
         return root;
     }
 
-
-    private Message createMessage(String text) {
-        Message msg = Message.obtain();
-        msg.obj = text;
-        return msg;
-    }
-
     private void startAudioThreadIfNull() {
         if (audioThread == null) {
             audioThread = new AudioThread();
@@ -106,7 +106,7 @@ public class RecordingAudioFragment extends Fragment {
 
     private void releaseAudioThread() {
         if (audioThread != null) {
-            audioThread.mHandler.sendMessage(createMessage("release"));
+            audioThread.release();
             audioThread = null;
         }
     }
@@ -114,20 +114,20 @@ public class RecordingAudioFragment extends Fragment {
 
     private void startRecording()
     {
-        audioThread.mHandler.sendMessage(createMessage("startrecording"));
+        audioThread.startRecording();
     }
     private void stopRecording()
     {
-        audioThread.mHandler.sendMessage(createMessage("stoprecording"));
+        audioThread.stopRecording();
         playing = true;
     }
     private void startPlaying()
     {
-        audioThread.mHandler.sendMessage(createMessage("startplaying"));
+        audioThread.startPlaying();
     }
     private void stopPlaying()
     {
-        audioThread.mHandler.sendMessage(createMessage("stopplaying"));
+        audioThread.stopPlaying();
         playing = false;
     }
 

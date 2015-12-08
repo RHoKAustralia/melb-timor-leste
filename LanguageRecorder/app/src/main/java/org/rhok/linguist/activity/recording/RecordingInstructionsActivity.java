@@ -2,6 +2,7 @@ package org.rhok.linguist.activity.recording;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import org.rhok.linguist.R;
@@ -13,11 +14,14 @@ import org.rhok.linguist.util.StringUtils;
 
 public class RecordingInstructionsActivity extends BaseInterviewActivity {
 
+    private static final String TAG = "RecInstructActivity";
+
     private int personId;
     private Interview interview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         setContentView(R.layout.activity_recording_instructions);
 
         personId = getIntent().getIntExtra(IntentUtil.ARG_PERSON_ID, -1);
@@ -29,6 +33,12 @@ public class RecordingInstructionsActivity extends BaseInterviewActivity {
         interview = new Interview(study);
         interview.set__intervieweeid(personId);
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
     }
 
     public void nextButtonClick(android.view.View view) {

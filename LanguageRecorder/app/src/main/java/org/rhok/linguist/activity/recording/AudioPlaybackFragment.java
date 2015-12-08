@@ -1,7 +1,6 @@
 package org.rhok.linguist.activity.recording;
 
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,6 +56,12 @@ public class AudioPlaybackFragment extends Fragment {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_audio_playback, container, false);
@@ -86,20 +91,6 @@ public class AudioPlaybackFragment extends Fragment {
         return root;
     }
 
-
-    private Message createMessage(String text) {
-        Message msg = Message.obtain();
-        msg.obj = text;
-        return msg;
-    }
-
-    private Message createMessage(String text, Bundle bundle) {
-        Message msg = Message.obtain();
-        msg.obj = text;
-        msg.setData(bundle);
-        return msg;
-    }
-
     private void startAudioThreadIfNull() {
         if (audioThread == null) {
             audioThread = new AudioThread();
@@ -109,7 +100,7 @@ public class AudioPlaybackFragment extends Fragment {
 
     private void releaseAudioThread() {
         if (audioThread != null) {
-            audioThread.mHandler.sendMessage(createMessage("release"));
+            audioThread.release();
             audioThread = null;
         }
     }
@@ -118,14 +109,12 @@ public class AudioPlaybackFragment extends Fragment {
     private void startPlaying(File file)
     {
         Log.d(TAG, "startPlaying(): " + file.getAbsolutePath());
-        Bundle bundle = new Bundle();
-        bundle.putString("path", file.getAbsolutePath());
-        audioThread.mHandler.sendMessage(createMessage("playfile", bundle));
+        audioThread.playFile(file.getAbsolutePath());
         playing = true;
     }
     private void stopPlaying()
     {
-        audioThread.mHandler.sendMessage(createMessage("stopplaying"));
+        audioThread.stopPlaying();
         playing = false;
     }
 

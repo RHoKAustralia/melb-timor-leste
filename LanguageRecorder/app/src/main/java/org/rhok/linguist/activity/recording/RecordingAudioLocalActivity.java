@@ -3,7 +3,7 @@ package org.rhok.linguist.activity.recording;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -20,6 +20,8 @@ import org.rhok.linguist.activity.interview.BaseInterviewActivity;
 import org.rhok.linguist.code.DatabaseHelper;
 
 public class RecordingAudioLocalActivity extends BaseInterviewActivity {
+
+    private static final String TAG = "RecAudioLocActivity";
 
     TextView recordingQuestionTextView;
     TextView recordingMessageTextView;
@@ -44,6 +46,7 @@ public class RecordingAudioLocalActivity extends BaseInterviewActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         setContentView(R.layout.activity_recording_audio);
 
         personId = getIntent().getIntExtra(IntentUtil.ARG_PERSON_ID, -1);
@@ -75,29 +78,28 @@ public class RecordingAudioLocalActivity extends BaseInterviewActivity {
 
     }
 
-    private Message createMessage(String text) {
-        Message msg = Message.obtain();
-        msg.obj = text;
-        return msg;
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
     }
-
 
     private void startRecording()
     {
-        audioThread.mHandler.sendMessage(createMessage("startrecording"));
+        audioThread.startRecording();
     }
     private void stopRecording()
     {
-        audioThread.mHandler.sendMessage(createMessage("stoprecording"));
+        audioThread.stopRecording();
         playing = true;
     }
     private void startPlaying()
     {
-        audioThread.mHandler.sendMessage(createMessage("startplaying"));
+        audioThread.startPlaying();
     }
     private void stopPlaying()
     {
-        audioThread.mHandler.sendMessage(createMessage("stopplaying"));
+        audioThread.stopPlaying();
         playing = false;
     }
 

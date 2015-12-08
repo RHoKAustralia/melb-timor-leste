@@ -3,6 +3,7 @@ package org.rhok.linguist.activity.recording;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
@@ -21,6 +22,8 @@ import org.rhok.linguist.util.StringUtils;
  */
 public class RecordingFragmentActivity extends BaseInterviewActivity {
 
+    private static final String TAG = "RecFragActivity";
+
     public static final String ARG_PHRASE_INDEX = "rhok.phraseIndex";
 
 
@@ -30,6 +33,7 @@ public class RecordingFragmentActivity extends BaseInterviewActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         setContentView(R.layout.activity_empty);
         Bundle restoreState = savedInstanceState!=null?savedInstanceState:getIntent().getExtras();
         study = (Study) getIntent().getSerializableExtra(IntentUtil.ARG_STUDY);
@@ -44,6 +48,12 @@ public class RecordingFragmentActivity extends BaseInterviewActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(IntentUtil.ARG_INTERVIEW, interview);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
     }
 
     public Study getStudy() {
