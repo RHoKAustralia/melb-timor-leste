@@ -100,7 +100,6 @@ public class RecordingAudioFragment extends Fragment {
     private void startAudioThreadIfNull() {
         if (audioThread == null) {
             audioThread = new AudioThread();
-            audioThread.start();
         }
     }
 

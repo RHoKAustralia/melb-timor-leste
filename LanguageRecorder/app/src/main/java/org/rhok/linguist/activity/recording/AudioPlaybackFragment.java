@@ -94,7 +94,6 @@ public class AudioPlaybackFragment extends Fragment {
     private void startAudioThreadIfNull() {
         if (audioThread == null) {
             audioThread = new AudioThread();
-            audioThread.start();
         }
     }
 

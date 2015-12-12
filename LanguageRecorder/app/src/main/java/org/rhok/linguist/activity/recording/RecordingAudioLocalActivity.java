@@ -72,7 +72,6 @@ public class RecordingAudioLocalActivity extends BaseInterviewActivity {
         recordingMessageTextView.startAnimation(anim);
 
         audioThread = new AudioThread();
-        audioThread.start();
 
 //        audioThread.mHandler.sendMessage(createMessage("startrecording"));
 

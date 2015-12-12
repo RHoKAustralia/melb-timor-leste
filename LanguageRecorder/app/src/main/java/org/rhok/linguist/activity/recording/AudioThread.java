@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
@@ -17,12 +18,9 @@ import java.util.UUID;
 /**
  * Created by lachlan on 3/07/2015.
  *
- * FIXME: it's possible to cause a NPE by creating this object
- * then calling a public method before the message handler has
- * been created.
  */
 
-public class AudioThread extends Thread {
+public class AudioThread extends HandlerThread {
 
     private static final String TAG = "AudioThread";
 
@@ -43,7 +41,8 @@ public class AudioThread extends Thread {
     private static class MessageHandler extends Handler {
         private WeakReference<AudioThread> mAudioThread;
 
-        public MessageHandler(AudioThread audioThread) {
+        public MessageHandler(AudioThread audioThread, Looper looper) {
+            super(looper);
             mAudioThread = new WeakReference<>(audioThread);
         }
 
@@ -79,12 +78,13 @@ public class AudioThread extends Thread {
         }
     }
 
-    @Override
-    public void run() {
-        Log.d(TAG, "run()");
-        Looper.prepare();
-        mHandler = new MessageHandler(this);
-        Looper.loop();
+    /**
+     * Create a new AudioThread. Blocks until thread is ready.
+     */
+    public AudioThread() {
+        super("AudioThread");
+        start();
+        mHandler = new MessageHandler(this, getLooper());
     }
 
     /** Stop recording audio and release recorder */
@@ -208,6 +208,7 @@ public class AudioThread extends Thread {
         }
     }
 
+    /** Release audio resources & gracefully close thread */
     public void release() {
         if (Thread.currentThread().getId() != this.getId()) {
             mHandler.sendMessage(mHandler.obtainMessage(MSG_RELEASE));
@@ -215,9 +216,7 @@ public class AudioThread extends Thread {
             Log.d(TAG, "release()");
             stopRecording();
             stopPlaying();
-            if (Looper.myLooper() != null) {
-                Looper.myLooper().quit();
-            }
+            quit();
         }
     }
 }
