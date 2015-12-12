@@ -11,71 +11,86 @@ import android.util.Log;
 import org.rhok.linguist.code.DiskSpace;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.UUID;
 
 /**
  * Created by lachlan on 3/07/2015.
+ *
+ * FIXME: it's possible to cause a NPE by creating this object
+ * then calling a public method before the message handler has
+ * been created.
  */
 
 public class AudioThread extends Thread {
 
     private static final String TAG = "AudioThread";
 
-    private static final String MSG_START_RECORDING = "startrecording";
-    private static final String MSG_STOP_RECORDING = "stoprecording";
-    private static final String MSG_START_PLAYING = "startplaying";
-    private static final String MSG_STOP_PLAYING = "stopplaying";
-    private static final String MSG_PLAY_FILE = "playfile";
-    private static final String MSG_RELEASE = "release";
+    private static final int MSG_START_RECORDING = 1;
+    private static final int MSG_STOP_RECORDING = 2;
+    private static final int MSG_START_PLAYING = 3;
+    private static final int MSG_STOP_PLAYING = 4;
+    private static final int MSG_PLAY_FILE = 5;
+    private static final int MSG_RELEASE = 6;
 
-    public Handler mHandler;
+    private MessageHandler mHandler;
+    // TODO: make this private
     public String audioFilename;
 
     private MediaRecorder mRecorder = null;
     private MediaPlayer mPlayer = null;
 
+    private static class MessageHandler extends Handler {
+        private WeakReference<AudioThread> mAudioThread;
+
+        public MessageHandler(AudioThread audioThread) {
+            mAudioThread = new WeakReference<>(audioThread);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            Log.d(TAG, "msg: " + msg.what);
+
+            switch (msg.what) {
+                case MSG_START_RECORDING:
+                    mAudioThread.get().startRecording();
+                    break;
+                case MSG_STOP_RECORDING:
+                    mAudioThread.get().stopRecording();
+                    // TODO: call this from client code
+                    mAudioThread.get().startPlaying();
+                    break;
+                case MSG_START_PLAYING:
+                    mAudioThread.get().startPlaying();
+                    break;
+                case MSG_PLAY_FILE:
+                    mAudioThread.get().playFile(msg.getData().getString("path"));
+                    break;
+                case MSG_STOP_PLAYING:
+                    mAudioThread.get().stopPlaying();
+                    break;
+                case MSG_RELEASE:
+                    mAudioThread.get().release();
+                    break;
+                default:
+                    Log.e(TAG, "Unknown message: " + msg.what);
+                    break;
+            }
+        }
+    }
+
     @Override
     public void run() {
         Log.d(TAG, "run()");
         Looper.prepare();
-
-        mHandler = new Handler() {
-            public void handleMessage(Message msg) {
-
-                Log.i(TAG, msg.obj.toString());
-
-                if (msg.obj.toString().equals(MSG_START_RECORDING)) {
-                    startRecording();
-                }
-                if (msg.obj.toString().equals(MSG_STOP_RECORDING)) {
-                    stopRecording();
-                    startPlaying();
-                }
-                if (msg.obj.toString().equals(MSG_START_PLAYING)) {
-                    startPlaying();
-                }
-                if (msg.obj.toString().equals(MSG_PLAY_FILE)) {
-                    playFile(msg.getData().getString("path"));
-                }
-                if (msg.obj.toString().equals(MSG_STOP_PLAYING)) {
-                    stopPlaying();
-                }
-                if (msg.obj.toString().equals(MSG_RELEASE)) {
-                    release();
-                }
-
-            }
-        };
-
+        mHandler = new MessageHandler(this);
         Looper.loop();
     }
 
     /** Stop recording audio and release recorder */
     public void stopRecording() {
         if (Thread.currentThread().getId() != this.getId()) {
-            Message msg = mHandler.obtainMessage();
-            msg.obj = MSG_STOP_RECORDING;
-            mHandler.sendMessage(msg);
+            mHandler.sendMessage(mHandler.obtainMessage(MSG_STOP_RECORDING));
         } else {
             if (mRecorder != null) {
                 try {
@@ -86,8 +101,6 @@ public class AudioThread extends Thread {
                     mRecorder.release();
                     mRecorder = null;
                 }
-            } else {
-                Log.w(TAG, "stopRecording called when mRecorder == null");
             }
         }
     }
@@ -95,9 +108,7 @@ public class AudioThread extends Thread {
     public void startRecording()
     {
         if (Thread.currentThread().getId() != this.getId()) {
-            Message msg = mHandler.obtainMessage();
-            msg.obj = MSG_START_RECORDING;
-            mHandler.sendMessage(msg);
+            mHandler.sendMessage(mHandler.obtainMessage(MSG_START_RECORDING));
         } else {
             if (mRecorder != null) {
                 Log.w(TAG, "startRecording called while recording");
@@ -130,9 +141,7 @@ public class AudioThread extends Thread {
     public void startPlaying()
     {
         if (Thread.currentThread().getId() != this.getId()) {
-            Message msg = mHandler.obtainMessage();
-            msg.obj = MSG_START_PLAYING;
-            mHandler.sendMessage(msg);
+            mHandler.sendMessage(mHandler.obtainMessage(MSG_START_PLAYING));
         } else {
             mPlayer = new MediaPlayer();
             mPlayer.setLooping(true);
@@ -154,8 +163,7 @@ public class AudioThread extends Thread {
 
     public void playFile(String path) {
         if (Thread.currentThread().getId() != this.getId()) {
-            Message msg = mHandler.obtainMessage();
-            msg.obj = MSG_PLAY_FILE;
+            Message msg = mHandler.obtainMessage(MSG_PLAY_FILE);
             Bundle data = new Bundle();
             data.putString("path", path);
             msg.setData(data);
@@ -184,13 +192,15 @@ public class AudioThread extends Thread {
     /** Stop playing audio and release player */
     public void stopPlaying() {
         if (Thread.currentThread().getId() != this.getId()) {
-            Message msg = mHandler.obtainMessage();
-            msg.obj = MSG_STOP_PLAYING;
-            mHandler.sendMessage(msg);
+            mHandler.sendMessage(mHandler.obtainMessage(MSG_STOP_PLAYING));
         } else {
             if (mPlayer != null) {
                 if (mPlayer.isPlaying()) {
-                    mPlayer.stop();
+                    try {
+                        mPlayer.stop();
+                    } catch (IllegalStateException e) {
+                        Log.e(TAG, "mPlayer.stop() failed", e);
+                    }
                 }
                 mPlayer.release();
                 mPlayer = null;
@@ -200,9 +210,7 @@ public class AudioThread extends Thread {
 
     public void release() {
         if (Thread.currentThread().getId() != this.getId()) {
-            Message msg = mHandler.obtainMessage();
-            msg.obj = MSG_RELEASE;
-            mHandler.sendMessage(msg);
+            mHandler.sendMessage(mHandler.obtainMessage(MSG_RELEASE));
         } else {
             Log.d(TAG, "release()");
             stopRecording();
