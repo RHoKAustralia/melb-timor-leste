@@ -137,10 +137,6 @@
             android:label="@string/interview_title" >
         </activity>
         <activity
-            android:name=".activity.recording.RecordingAudioLocalActivity"
-            android:label="Recording" >
-        </activity>
-        <activity
             android:name=".activity.recording.RecordingFragmentActivity"
             android:label="Recording" >
         </activity>

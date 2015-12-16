@@ -1,10 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="@dimen/app_window_padding"
-    tools:context="org.rhok.linguist.activity.recording.RecordingAudioLocalActivity">
+    android:layout_margin="@dimen/app_window_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
