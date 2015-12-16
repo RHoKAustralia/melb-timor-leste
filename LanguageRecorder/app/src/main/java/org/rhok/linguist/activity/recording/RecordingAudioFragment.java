@@ -118,11 +118,11 @@ public class RecordingAudioFragment extends Fragment {
     private void stopRecording()
     {
         audioThread.stopRecording();
-        playing = true;
     }
     private void startPlaying()
     {
-        audioThread.startPlaying();
+        audioThread.playRecording();
+        playing = true;
     }
     private void stopPlaying()
     {
@@ -162,7 +162,7 @@ public class RecordingAudioFragment extends Fragment {
         if (!transcribing) {
 
             stopRecording();
-            //startPlaying();
+            startPlaying();
 
             recordingQuestionTextView.setVisibility(View.GONE);
             recordingMessageTextView.clearAnimation();

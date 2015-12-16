@@ -90,11 +90,11 @@ public class RecordingAudioLocalActivity extends BaseInterviewActivity {
     private void stopRecording()
     {
         audioThread.stopRecording();
-        playing = true;
     }
     private void startPlaying()
     {
-        audioThread.startPlaying();
+        audioThread.playRecording();
+        playing = true;
     }
     private void stopPlaying()
     {
@@ -129,7 +129,7 @@ public class RecordingAudioLocalActivity extends BaseInterviewActivity {
         if (!transcribing) {
 
             stopRecording();
-            //startPlaying();
+            startPlaying();
 
             recordingQuestionTextView.setVisibility(View.GONE);
             recordingMessageTextView.clearAnimation();

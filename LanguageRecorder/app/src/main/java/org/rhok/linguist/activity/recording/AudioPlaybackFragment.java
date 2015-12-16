@@ -107,7 +107,7 @@ public class AudioPlaybackFragment extends Fragment {
 
     private void startPlaying(File file)
     {
-        Log.d(TAG, "startPlaying(): " + file.getAbsolutePath());
+        Log.d(TAG, "playRecording(): " + file.getAbsolutePath());
         audioThread.playFile(file.getAbsolutePath());
         playing = true;
     }

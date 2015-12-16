@@ -26,7 +26,7 @@ public class AudioThread extends HandlerThread {
 
     private static final int MSG_START_RECORDING = 1;
     private static final int MSG_STOP_RECORDING = 2;
-    private static final int MSG_START_PLAYING = 3;
+    private static final int MSG_PLAY_RECORDING = 3;
     private static final int MSG_STOP_PLAYING = 4;
     private static final int MSG_PLAY_FILE = 5;
     private static final int MSG_RELEASE = 6;
@@ -56,11 +56,9 @@ public class AudioThread extends HandlerThread {
                     break;
                 case MSG_STOP_RECORDING:
                     mAudioThread.get().stopRecording();
-                    // TODO: call this from client code
-                    mAudioThread.get().startPlaying();
                     break;
-                case MSG_START_PLAYING:
-                    mAudioThread.get().startPlaying();
+                case MSG_PLAY_RECORDING:
+                    mAudioThread.get().playRecording();
                     break;
                 case MSG_PLAY_FILE:
                     mAudioThread.get().playFile(msg.getData().getString("path"));
@@ -82,15 +80,15 @@ public class AudioThread extends HandlerThread {
      * Create a new AudioThread. Blocks until thread is ready.
      */
     public AudioThread() {
-        super("AudioThread");
+        super(TAG);
         start();
         mHandler = new MessageHandler(this, getLooper());
     }
 
     /** Stop recording audio and release recorder */
     public void stopRecording() {
-        if (Thread.currentThread().getId() != this.getId()) {
-            mHandler.sendMessage(mHandler.obtainMessage(MSG_STOP_RECORDING));
+        if (!isMyThread()) {
+            sendMessage(MSG_STOP_RECORDING);
         } else {
             if (mRecorder != null) {
                 try {
@@ -107,8 +105,8 @@ public class AudioThread extends HandlerThread {
 
     public void startRecording()
     {
-        if (Thread.currentThread().getId() != this.getId()) {
-            mHandler.sendMessage(mHandler.obtainMessage(MSG_START_RECORDING));
+        if (!isMyThread()) {
+            sendMessage(MSG_START_RECORDING);
         } else {
             if (mRecorder != null) {
                 Log.w(TAG, "startRecording called while recording");
@@ -138,10 +136,10 @@ public class AudioThread extends HandlerThread {
 
     }
 
-    public void startPlaying()
+    public void playRecording()
     {
-        if (Thread.currentThread().getId() != this.getId()) {
-            mHandler.sendMessage(mHandler.obtainMessage(MSG_START_PLAYING));
+        if (!isMyThread()) {
+            sendMessage(MSG_PLAY_RECORDING);
         } else {
             mPlayer = new MediaPlayer();
             mPlayer.setLooping(true);
@@ -149,20 +147,20 @@ public class AudioThread extends HandlerThread {
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer arg0) {
-                        //startPlaying();
+                        //playRecording();
                     }
                 });
                 mPlayer.setDataSource(DiskSpace.getAudioFileBasePath() + audioFilename);
                 mPlayer.prepare();
                 mPlayer.start();
             } catch (IOException e) {
-                Log.e(TAG, "Error during startPlaying()", e);
+                Log.e(TAG, "Error during playRecording()", e);
             }
         }
     }
 
     public void playFile(String path) {
-        if (Thread.currentThread().getId() != this.getId()) {
+        if (!isMyThread()) {
             Message msg = mHandler.obtainMessage(MSG_PLAY_FILE);
             Bundle data = new Bundle();
             data.putString("path", path);
@@ -177,7 +175,7 @@ public class AudioThread extends HandlerThread {
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer arg0) {
-                        //startPlaying();
+                        //playRecording();
                     }
                 });
                 mPlayer.setDataSource(path);
@@ -191,8 +189,8 @@ public class AudioThread extends HandlerThread {
 
     /** Stop playing audio and release player */
     public void stopPlaying() {
-        if (Thread.currentThread().getId() != this.getId()) {
-            mHandler.sendMessage(mHandler.obtainMessage(MSG_STOP_PLAYING));
+        if (!isMyThread()) {
+            sendMessage(MSG_STOP_PLAYING);
         } else {
             if (mPlayer != null) {
                 if (mPlayer.isPlaying()) {
@@ -210,13 +208,23 @@ public class AudioThread extends HandlerThread {
 
     /** Release audio resources & gracefully close thread */
     public void release() {
-        if (Thread.currentThread().getId() != this.getId()) {
-            mHandler.sendMessage(mHandler.obtainMessage(MSG_RELEASE));
+        if (!isMyThread()) {
+            sendMessage(MSG_RELEASE);
         } else {
             Log.d(TAG, "release()");
             stopRecording();
             stopPlaying();
             quit();
         }
+    }
+
+    /** Returns true if the current thread is this AudioThread's thread. */
+    private boolean isMyThread() {
+        return Thread.currentThread().getId() == this.getId();
+    }
+
+    /** Send an integer message to the audio thread's handler. */
+    private void sendMessage(int msg) {
+        mHandler.sendMessage(mHandler.obtainMessage(msg));
     }
 }
