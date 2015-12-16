@@ -207,6 +207,6 @@ public class RecordingAudioFragment extends Fragment {
 
 
         transcribing = true;
-        ((RecordingFragmentActivity)getActivity()).onRecordingAudioFinished(phraseIndex,  audioThread.audioFilename);
+        ((RecordingFragmentActivity)getActivity()).onRecordingAudioFinished(phraseIndex,  audioThread.getAudioFilename());
     }
 }

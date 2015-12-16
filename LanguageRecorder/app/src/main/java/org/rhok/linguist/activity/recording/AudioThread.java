@@ -16,10 +16,19 @@ import java.lang.ref.WeakReference;
 import java.util.UUID;
 
 /**
- * Created by lachlan on 3/07/2015.
+ * Manages audio recording and playback. Each audio thread
+ * records to a single file, therefore each call to
+ * {@link #startRecording} overwrites any previous recording.
  *
+ * Thread safety: All public methods are thread safe. Uses
+ * message passing internally to ensure all audio operations
+ * occur on the correct thread.
+ *
+ * TODO: enforce this:
+ * Important: Don't create multiple instances of this class,
+ * since they will all try to access the same audio resources,
+ * which is bad (eg. will crash app/phone).
  */
-
 public class AudioThread extends HandlerThread {
 
     private static final String TAG = "AudioThread";
@@ -32,8 +41,8 @@ public class AudioThread extends HandlerThread {
     private static final int MSG_RELEASE = 6;
 
     private MessageHandler mHandler;
-    // TODO: make this private
-    public String audioFilename;
+    private final String audioFilename =
+            UUID.randomUUID().toString().replaceAll("-", "").concat(".mp4");
 
     private MediaRecorder mRecorder = null;
     private MediaPlayer mPlayer = null;
@@ -85,7 +94,11 @@ public class AudioThread extends HandlerThread {
         mHandler = new MessageHandler(this, getLooper());
     }
 
-    /** Stop recording audio and release recorder */
+    public String getAudioFilename() {
+        return audioFilename;
+    }
+
+    /** Stop recording audio */
     public void stopRecording() {
         if (!isMyThread()) {
             sendMessage(MSG_STOP_RECORDING);
@@ -103,6 +116,10 @@ public class AudioThread extends HandlerThread {
         }
     }
 
+    /**
+     * Start recording audio to file. Overwrites audio recorded by
+     * any previous calls to {@link #startRecording}.
+     */
     public void startRecording()
     {
         if (!isMyThread()) {
@@ -115,11 +132,6 @@ public class AudioThread extends HandlerThread {
             mRecorder = new MediaRecorder();
             mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-
-            if (audioFilename == null) {
-                audioFilename = UUID.randomUUID().toString().replaceAll("-", "").concat(".mp4");
-            }
-
             mRecorder.setOutputFile(DiskSpace.getAudioFileBasePath() + audioFilename);
             mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
 
@@ -136,6 +148,7 @@ public class AudioThread extends HandlerThread {
 
     }
 
+    /** Play the most recently recorded audio, if any exists */
     public void playRecording()
     {
         if (!isMyThread()) {
@@ -159,6 +172,7 @@ public class AudioThread extends HandlerThread {
         }
     }
 
+    /** Play the specified audio file */
     public void playFile(String path) {
         if (!isMyThread()) {
             Message msg = mHandler.obtainMessage(MSG_PLAY_FILE);
