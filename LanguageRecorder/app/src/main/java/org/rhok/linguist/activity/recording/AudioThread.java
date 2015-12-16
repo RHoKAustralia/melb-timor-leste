@@ -24,10 +24,10 @@ import java.util.UUID;
  * message passing internally to ensure all audio operations
  * occur on the correct thread.
  *
- * TODO: enforce this:
- * Important: Don't create multiple instances of this class,
- * since they will all try to access the same audio resources,
- * which is bad (eg. will crash app/phone).
+ * Only a single instance of AudioThread can exist at any point
+ * in time. This prevents contention over audio resources, however
+ * doesn't prevent you from trying to use an AudioThread that's been
+ * released somewhere else...
  */
 public class AudioThread extends HandlerThread {
 
@@ -40,6 +40,7 @@ public class AudioThread extends HandlerThread {
     private static final int MSG_PLAY_FILE = 5;
     private static final int MSG_RELEASE = 6;
 
+    private static AudioThread instance;
     private MessageHandler mHandler;
     private final String audioFilename =
             UUID.randomUUID().toString().replaceAll("-", "").concat(".mp4");
@@ -88,12 +89,21 @@ public class AudioThread extends HandlerThread {
     /**
      * Create a new AudioThread. Blocks until thread is ready.
      */
-    public AudioThread() {
+    private AudioThread() {
         super(TAG);
         start();
         mHandler = new MessageHandler(this, getLooper());
     }
 
+    /** Get the single AudioThread instance, creating one if necessary */
+    public static AudioThread getInstance() {
+        if (instance == null) {
+            instance = new AudioThread();
+        }
+        return instance;
+    }
+
+    /** Get the file path that audio is recorded to */
     public String getAudioFilename() {
         return audioFilename;
     }
@@ -229,6 +239,7 @@ public class AudioThread extends HandlerThread {
             stopRecording();
             stopPlaying();
             quit();
+            instance = null;
         }
     }
 

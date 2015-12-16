@@ -1,6 +1,7 @@
 package org.rhok.linguist.activity.recording;
 
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -93,7 +94,7 @@ public class AudioPlaybackFragment extends Fragment {
 
     private void startAudioThreadIfNull() {
         if (audioThread == null) {
-            audioThread = new AudioThread();
+            audioThread = AudioThread.getInstance();
         }
     }
 
