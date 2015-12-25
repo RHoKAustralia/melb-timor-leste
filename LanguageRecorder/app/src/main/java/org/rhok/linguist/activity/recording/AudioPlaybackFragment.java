@@ -110,6 +110,7 @@ public class AudioPlaybackFragment extends Fragment {
     {
         Log.d(TAG, "playRecording(): " + file.getAbsolutePath());
         audioThread.playFile(file.getAbsolutePath());
+        onPlaybackStateChanged(STATE_PLAYING);
         playing = true;
     }
     private void stopPlaying()
@@ -183,12 +184,14 @@ public class AudioPlaybackFragment extends Fragment {
     public static final int STATE_PLAYING =1;
     public static final int STATE_FINISHED =2;
 
-    public void onPlaybackStateChanged(int state){
+    /**
+     * Update UI based on given state.
+     */
+    private void onPlaybackStateChanged(int state){
         switch (state) {
             case STATE_LOADING:
                 recordingQuestionTextView.setVisibility(View.VISIBLE);
-                recordingMessageTextView.startAnimation(anim);
-                recordingMessageTextView.setVisibility(View.VISIBLE);
+                recordingMessageTextView.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
                 recordReplayTextView.setVisibility(View.GONE);
 
