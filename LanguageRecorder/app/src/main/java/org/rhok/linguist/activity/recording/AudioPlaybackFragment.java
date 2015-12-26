@@ -109,6 +109,17 @@ public class AudioPlaybackFragment extends Fragment {
     private void startPlaying(File file)
     {
         Log.d(TAG, "playRecording(): " + file.getAbsolutePath());
+        audioThread.setPlaybackCompletionListener(new AudioThread.PlaybackCompletionListener() {
+            @Override
+            public void onPlaybackComplete() {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        onPlaybackStateChanged(STATE_FINISHED);
+                    }
+                });
+            }
+        });
         audioThread.playFile(file.getAbsolutePath());
         onPlaybackStateChanged(STATE_PLAYING);
         playing = true;

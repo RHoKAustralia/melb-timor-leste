@@ -48,6 +48,12 @@ public class AudioThread extends HandlerThread {
     private MediaRecorder mRecorder = null;
     private MediaPlayer mPlayer = null;
 
+    private PlaybackCompletionListener mPlaybackCompletionListener;
+
+    public interface PlaybackCompletionListener {
+        void onPlaybackComplete();
+    }
+
     private static class MessageHandler extends Handler {
         private WeakReference<AudioThread> mAudioThread;
 
@@ -71,7 +77,7 @@ public class AudioThread extends HandlerThread {
                     mAudioThread.get().playRecording();
                     break;
                 case MSG_PLAY_FILE:
-                    mAudioThread.get().playFile(msg.getData().getString("path"));
+                    mAudioThread.get().playFile(msg.getData().getString("path"), msg.arg1 == 1);
                     break;
                 case MSG_STOP_PLAYING:
                     mAudioThread.get().stopPlaying();
@@ -164,6 +170,7 @@ public class AudioThread extends HandlerThread {
         if (!isMyThread()) {
             sendMessage(MSG_PLAY_RECORDING);
         } else {
+            stopPlaying();
             mPlayer = new MediaPlayer();
             mPlayer.setLooping(true);
             try {
@@ -182,10 +189,21 @@ public class AudioThread extends HandlerThread {
         }
     }
 
+    /** Set action to perform on playback completion */
+    public void setPlaybackCompletionListener(PlaybackCompletionListener listener) {
+        mPlaybackCompletionListener = listener;
+    }
+
     /** Play the specified audio file */
     public void playFile(String path) {
+        playFile(path, false);
+    }
+
+    /** Play the specified audio file, optionally looping */
+    public void playFile(String path, boolean loop) {
         if (!isMyThread()) {
-            Message msg = mHandler.obtainMessage(MSG_PLAY_FILE);
+            int loopInt = loop ? 1 : 0;
+            Message msg = mHandler.obtainMessage(MSG_PLAY_FILE, loopInt, 0);
             Bundle data = new Bundle();
             data.putString("path", path);
             msg.setData(data);
@@ -194,14 +212,16 @@ public class AudioThread extends HandlerThread {
             Log.d(TAG, "playFile(): " + path);
             stopPlaying();
             mPlayer = new MediaPlayer();
-            mPlayer.setLooping(true);
+            mPlayer.setLooping(loop);
             try {
-                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer arg0) {
-                        //playRecording();
-                    }
-                });
+                if (mPlaybackCompletionListener != null) {
+                    mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mediaPlayer) {
+                            mPlaybackCompletionListener.onPlaybackComplete();
+                        }
+                    });
+                }
                 mPlayer.setDataSource(path);
                 mPlayer.prepare();
                 mPlayer.start();
