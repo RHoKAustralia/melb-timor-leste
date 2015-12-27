@@ -1,7 +1,6 @@
 package org.rhok.linguist.activity.recording;
 
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -27,33 +25,34 @@ import org.rhok.linguist.util.StringUtils;
 import java.io.File;
 
 /**
- * Play an audio question
+ * Handles phrases/questions that contain audio prompts.
  */
 public class AudioPlaybackFragment extends Fragment {
 
     public static final String TAG = "AudioPlaybackFragment";
+
+    // UI elements
     TextView recordingQuestionTextView;
     TextView recordingMessageTextView;
     TextView recordReplayTextView;
     Button yesButton;
     Button noButton;
     Animation anim;
-    ImageView imageView;
     ProgressBar progressBar;
+
     private AQuery aq;
-
-
-    private int phraseIndex;
-    private boolean transcribing = false;
-    private boolean playing = false;
-
     private AudioThread audioThread;
+
+    private int mPhraseIndex;
+    private Phrase mPhrase;
+    private boolean playing = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        phraseIndex = getArguments().getInt(RecordingFragmentActivity.ARG_PHRASE_INDEX);
         startAudioThreadIfNull();
+        mPhraseIndex = getArguments().getInt(RecordingFragmentActivity.ARG_PHRASE_INDEX);
+        mPhrase = getStudy().getPhrases().get(mPhraseIndex);
     }
 
     @Override
@@ -83,8 +82,7 @@ public class AudioPlaybackFragment extends Fragment {
         anim.setRepeatCount(Animation.INFINITE);
         recordingMessageTextView.startAnimation(anim);
 
-        Phrase phrase =getStudy().getPhrases().get(phraseIndex);
-        String question = StringUtils.isNullOrEmpty(phrase.getEnglish_text(), getString(R.string.interview_audio_recording));
+        String question = StringUtils.isNullOrEmpty(mPhrase.getEnglish_text(), getString(R.string.interview_audio_recording));
         recordingQuestionTextView.setText(question);
 
         startAudioThreadIfNull();
@@ -146,7 +144,7 @@ public class AudioPlaybackFragment extends Fragment {
         super.onResume();
         startAudioThreadIfNull();
         if (!playing) {
-            loadAudioFile(getStudy().getPhrases().get(phraseIndex), new Runnable() {
+            loadAudioFile(mPhrase, new Runnable() {
                 @Override
                 public void run() {
                     startPlaying(getPhraseAudioFile());
@@ -159,9 +157,8 @@ public class AudioPlaybackFragment extends Fragment {
      * Get the audio file associated with this phrase
      */
     private File getPhraseAudioFile() {
-        Phrase phrase = getStudy().getPhrases().get(phraseIndex);
         File dir = new File(getActivity().getFilesDir().getPath(), LinguistApplication.DIR_INTERVIEW_MEDIA);
-        return new File(dir, String.format("%d_audio.m4a", phrase.getId()));
+        return new File(dir, String.format("%d_audio.m4a", mPhrase.getId()));
     }
 
     private void loadAudioFile(Phrase phrase, final Runnable onLoadComplete){
@@ -192,7 +189,7 @@ public class AudioPlaybackFragment extends Fragment {
 
     //all done
         stopPlaying();
-        ((RecordingFragmentActivity)getActivity()).onAudioQuestionFinished(phraseIndex);
+        ((RecordingFragmentActivity)getActivity()).onAudioQuestionFinished(mPhraseIndex);
 
     }
 
