@@ -108,7 +108,8 @@ public class AudioPlaybackFragment extends Fragment {
 
     private void startPlaying(File file)
     {
-        Log.d(TAG, "playRecording(): " + file.getAbsolutePath());
+        stopPlaying();
+        Log.d(TAG, "startPlaying: " + file.getAbsolutePath());
         audioThread.setPlaybackCompletionListener(new AudioThread.PlaybackCompletionListener() {
             @Override
             public void onPlaybackComplete() {
@@ -145,25 +146,36 @@ public class AudioPlaybackFragment extends Fragment {
         super.onResume();
         startAudioThreadIfNull();
         if (!playing) {
-            loadAudioFile(getStudy().getPhrases().get(phraseIndex));
-            playing = true;
+            loadAudioFile(getStudy().getPhrases().get(phraseIndex), new Runnable() {
+                @Override
+                public void run() {
+                    startPlaying(getPhraseAudioFile());
+                }
+            });
         }
-        // The activity has become visible (it is now "resumed").
     }
 
-    private void loadAudioFile(Phrase phrase){
-        onPlaybackStateChanged(STATE_LOADING);
+    /**
+     * Get the audio file associated with this phrase
+     */
+    private File getPhraseAudioFile() {
+        Phrase phrase = getStudy().getPhrases().get(phraseIndex);
         File dir = new File(getActivity().getFilesDir().getPath(), LinguistApplication.DIR_INTERVIEW_MEDIA);
-        File audioFile = new File(dir, String.format("%d_audio.m4a", phrase.getId()));
-        if(audioFile.exists() && audioFile.length()>0){
-            startPlaying(audioFile);
+        return new File(dir, String.format("%d_audio.m4a", phrase.getId()));
+    }
+
+    private void loadAudioFile(Phrase phrase, final Runnable onLoadComplete){
+        onPlaybackStateChanged(STATE_LOADING);
+        File audioFile = getPhraseAudioFile();
+        if (audioFile.exists() && audioFile.length()>0){
+            onLoadComplete.run();
         }
         else {
             aq.download(phrase.getAudio(), audioFile, new AjaxCallback<File>(){
                 @Override
                 public void callback(String url, File file, AjaxStatus status) {
                     if(file!=null && file.exists() && file.length()>0 ){
-                        startPlaying(file);
+                        onLoadComplete.run();
                     }
                 }
             });
@@ -185,10 +197,7 @@ public class AudioPlaybackFragment extends Fragment {
     }
 
     public void yesButtonClick(View view) {
-//TODO replay
-        stopPlaying();
-
-        startPlaying(null);
+        startPlaying(getPhraseAudioFile());
     }
 
     public static final int STATE_LOADING =0;
