@@ -144,7 +144,7 @@ public class AudioPlaybackFragment extends Fragment {
         super.onResume();
         startAudioThreadIfNull();
         if (!playing) {
-            loadAudioFile(mPhrase, new Runnable() {
+            loadAudioFile(new Runnable() {
                 @Override
                 public void run() {
                     startPlaying(getPhraseAudioFile());
@@ -161,14 +161,18 @@ public class AudioPlaybackFragment extends Fragment {
         return new File(dir, String.format("%d_audio.m4a", mPhrase.getId()));
     }
 
-    private void loadAudioFile(Phrase phrase, final Runnable onLoadComplete){
+    /**
+     * Load audio prompt from file / web
+     * @param onLoadComplete Action to perform once loading is complete.
+     */
+    private void loadAudioFile(final Runnable onLoadComplete){
         onPlaybackStateChanged(STATE_LOADING);
         File audioFile = getPhraseAudioFile();
         if (audioFile.exists() && audioFile.length()>0){
             onLoadComplete.run();
         }
         else {
-            aq.download(phrase.getAudio(), audioFile, new AjaxCallback<File>(){
+            aq.download(mPhrase.getAudio(), audioFile, new AjaxCallback<File>(){
                 @Override
                 public void callback(String url, File file, AjaxStatus status) {
                     if(file!=null && file.exists() && file.length()>0 ){

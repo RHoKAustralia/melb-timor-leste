@@ -258,6 +258,8 @@ public class AudioThread extends HandlerThread {
             Log.d(TAG, "release()");
             stopRecording();
             stopPlaying();
+            // TODO: quit safely. Not a biggie, just can cause error messages in logcat
+            // can't use quitSafely as it only arrived in API 18
             quit();
             instance = null;
         }
