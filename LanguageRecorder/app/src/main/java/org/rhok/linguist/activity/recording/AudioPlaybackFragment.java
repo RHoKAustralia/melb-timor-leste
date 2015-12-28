@@ -103,11 +103,12 @@ public class AudioPlaybackFragment extends Fragment {
         }
     }
 
-
-    private void startPlaying(File file)
+    /** Play the phrase's audio prompt */
+    private void playPhraseAudio()
     {
         stopPlaying();
-        Log.d(TAG, "startPlaying: " + file.getAbsolutePath());
+        File file = getPhraseAudioFile();
+        Log.d(TAG, "playPhraseAudio: " + file.getAbsolutePath());
         audioThread.setPlaybackCompletionListener(new AudioThread.PlaybackCompletionListener() {
             @Override
             public void onPlaybackComplete() {
@@ -144,10 +145,10 @@ public class AudioPlaybackFragment extends Fragment {
         super.onResume();
         startAudioThreadIfNull();
         if (!playing) {
-            loadAudioFile(new Runnable() {
+            loadPhraseAudio(new Runnable() {
                 @Override
                 public void run() {
-                    startPlaying(getPhraseAudioFile());
+                    playPhraseAudio();
                 }
             });
         }
@@ -165,7 +166,7 @@ public class AudioPlaybackFragment extends Fragment {
      * Load audio prompt from file / web
      * @param onLoadComplete Action to perform once loading is complete.
      */
-    private void loadAudioFile(final Runnable onLoadComplete){
+    private void loadPhraseAudio(final Runnable onLoadComplete){
         onPlaybackStateChanged(STATE_LOADING);
         File audioFile = getPhraseAudioFile();
         if (audioFile.exists() && audioFile.length()>0){
@@ -189,6 +190,7 @@ public class AudioPlaybackFragment extends Fragment {
 
 
 
+    @SuppressWarnings("unused")
     public void noButtonClick(View view) {
 
     //all done
@@ -197,8 +199,9 @@ public class AudioPlaybackFragment extends Fragment {
 
     }
 
+    @SuppressWarnings("unused")
     public void yesButtonClick(View view) {
-        startPlaying(getPhraseAudioFile());
+        playPhraseAudio();
     }
 
     public static final int STATE_LOADING =0;

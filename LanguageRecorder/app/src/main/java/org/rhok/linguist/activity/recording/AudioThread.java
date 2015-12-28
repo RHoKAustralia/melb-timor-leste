@@ -251,6 +251,9 @@ public class AudioThread extends HandlerThread {
     }
 
     /** Release audio resources & gracefully close thread */
+    // FIXME: set a flag here so that getInstance() knows that a release message
+    // is pending. Currently you can getInstance(), which subsequently gets released,
+    // resulting in error messages and no recording / playback
     public void release() {
         if (!isMyThread()) {
             sendMessage(MSG_RELEASE);
