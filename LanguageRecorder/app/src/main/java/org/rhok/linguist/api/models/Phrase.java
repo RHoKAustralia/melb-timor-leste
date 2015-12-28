@@ -17,6 +17,7 @@ public class Phrase implements Serializable{
 
     private int id;
     private String english_text;
+    /** URL pointing to audio prompt */
     private String audio;
     private String image;
     private int response_type_id;
@@ -38,10 +39,12 @@ public class Phrase implements Serializable{
         this.english_text = english_text;
     }
 
+    /** Get URL of audio prompt data */
     public String getAudio() {
         return audio;
     }
 
+    /** Set URL of audio prompt data */
     public void setAudio(String audio) {
         this.audio = audio;
     }
