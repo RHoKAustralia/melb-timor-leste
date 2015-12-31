@@ -47,6 +47,7 @@ public class AudioThread extends HandlerThread {
 
     private MediaRecorder mRecorder = null;
     private MediaPlayer mPlayer = null;
+    private boolean mIsReleasePending = false;
 
     private PlaybackCompletionListener mPlaybackCompletionListener;
 
@@ -103,10 +104,18 @@ public class AudioThread extends HandlerThread {
 
     /** Get the single AudioThread instance, creating one if necessary */
     public static AudioThread getInstance() {
-        if (instance == null) {
+        if (instance == null || instance.isReleasePending()) {
             instance = new AudioThread();
         }
         return instance;
+    }
+
+    private synchronized boolean isReleasePending() {
+        return mIsReleasePending;
+    }
+
+    private synchronized void setReleasePending() {
+        mIsReleasePending = true;
     }
 
     /** Get the file path that audio is recorded to */
@@ -251,20 +260,15 @@ public class AudioThread extends HandlerThread {
     }
 
     /** Release audio resources & gracefully close thread */
-    // FIXME: set a flag here so that getInstance() knows that a release message
-    // is pending. Currently you can getInstance(), which subsequently gets released,
-    // resulting in error messages and no recording / playback
     public void release() {
         if (!isMyThread()) {
+            setReleasePending();
             sendMessage(MSG_RELEASE);
         } else {
             Log.d(TAG, "release()");
             stopRecording();
             stopPlaying();
-            // TODO: quit safely. Not a biggie, just can cause error messages in logcat
-            // can't use quitSafely as it only arrived in API 18
             quit();
-            instance = null;
         }
     }
 
