@@ -11,7 +11,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
+        <ImageView
+            android:src="@drawable/word1"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+            android:id="@+id/captureImageView" />
 
         <TextView
             android:paddingTop="0px"

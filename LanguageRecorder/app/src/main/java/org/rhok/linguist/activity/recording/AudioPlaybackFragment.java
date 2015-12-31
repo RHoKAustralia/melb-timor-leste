@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import org.rhok.linguist.R;
 import org.rhok.linguist.api.models.Phrase;
 import org.rhok.linguist.api.models.Study;
 import org.rhok.linguist.application.LinguistApplication;
+import org.rhok.linguist.util.Reflect;
 import org.rhok.linguist.util.StringUtils;
 
 import java.io.File;
@@ -38,6 +40,7 @@ public class AudioPlaybackFragment extends Fragment {
     TextView recordingQuestionTextView;
     TextView recordingMessageTextView;
     TextView recordReplayTextView;
+    ImageView imageView;
     Button yesButton;
     Button noButton;
     Animation anim;
@@ -67,6 +70,7 @@ public class AudioPlaybackFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_audio_playback, container, false);
         aq = new AQuery(root);
+        imageView = (ImageView)root.findViewById(R.id.captureImageView);
 
         recordingQuestionTextView = (TextView) root.findViewById(R.id.recordingQuestionTextView);
         recordingMessageTextView = (TextView) root.findViewById(R.id.recordingMessageTextView);
@@ -85,6 +89,18 @@ public class AudioPlaybackFragment extends Fragment {
 
         String question = StringUtils.isNullOrEmpty(mPhrase.getEnglish_text(), getString(R.string.interview_audio_recording));
         recordingQuestionTextView.setText(question);
+
+        if(StringUtils.isNullOrEmpty(mPhrase.getImage())){
+            aq.id(imageView).gone();
+        }
+        else if (mPhrase.formatImageUrl().startsWith("http")){
+            aq.id(imageView).image(mPhrase.formatImageUrl());
+        }
+        else{
+            //in case it refers to a built-in image, eg "word4"
+            int resId = Reflect.getImageResId(mPhrase.getImage());
+            aq.id(imageView).image(resId);
+        }
 
         startAudioThreadIfNull();
 
