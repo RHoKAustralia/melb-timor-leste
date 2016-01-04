@@ -1,58 +1,119 @@
 [
-{
-"id":1,
-"name":"A study",
-"language_id":1,
-"start_date":"2015-12-01T05:48:26Z",
-"phrases":[
-{"id":2,
-"english_text":"Basic question with free text response",
-  "response_type_id":1
-},
-  {"id":80,
-    "english_text":"Image question with audio response",
-    "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
-    "response_type_id":2
+  {
+    "id": 1,
+    "language_id": 1,
+    "name": "Phrase types demo",
+    "phrases": [
+      {
+        "english_text": "Basic question with free text response",
+        "id": 2,
+        "response_type_id": 1
+      },
+      {
+        "english_text": "Image question with audio response",
+        "id": 80,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
+        "response_type_id": 2
+      },
+      {
+        "english_text": "Image question with another audio response",
+        "id": 81,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/GEM_corn.jpg/220px-GEM_corn.jpg",
+        "response_type_id": 2
+      },
+      {
+        "english_text": "Image question with free text response",
+        "id": 3,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
+        "response_type_id": 1
+      },
+      {
+        "choices": [
+          "hello",
+          "world",
+          "yes",
+          "no"
+        ],
+        "english_text": "Image question with audio + drop down text response",
+        "id": 4,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/GEM_corn.jpg/220px-GEM_corn.jpg",
+        "response_type_id": 3
+      },
+      {
+        "audio": "https://upload.wikimedia.org/wikipedia/commons/c/cd/En-au-legless_lizard.ogg",
+        "choices": [
+          "hello",
+          "world",
+          "yes",
+          "no"
+        ],
+        "english_text": "Image + audio question with drop down responses",
+        "id": 5,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Anguidae.jpg",
+        "response_type_id": 1
+      }
+    ],
+    "start_date": "2015-12-01T05:48:26Z"
   },
-  {"id":81,
-    "english_text":"Image question with another audio response",
-    "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/GEM_corn.jpg/220px-GEM_corn.jpg",
-    "response_type_id":2
-  },
-{"id":3,
-"english_text":"Image question with free text response",
-"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
-  "response_type_id":1
-},
-{"id":4,
-"english_text":"question with audio and drop down text response",
-"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/GEM_corn.jpg/220px-GEM_corn.jpg",
-  "choices":["hello","world","yes","no"],
-  "response_type_id":3
-},
-{"id":5,
-"english_text":"audio question with drop down responses",
-"choices":["hello","world","yes","no"],
-  "response_type_id":1
-}
-]
-},
-{
-"id":2,
-"name":"2nd study",
-"language_id":1,
-"start_date":"2015-12-02T05:48:26Z",
-"phrases":[
-{"id":30,
-"english_text":"Boring question with free text response",
-  "response_type_id":1
-},
-{"id":31,
-  "english_text":"Image + audio question with audio response",
-  "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
-  "audio":"https://upload.wikimedia.org/wikipedia/commons/c/cd/En-au-legless_lizard.ogg",
-  "response_type_id":2
-}
-]
-}
+  {
+    "id": 3,
+    "language_id": 1,
+    "name": "API Study duplicate",
+    "phrases": [
+      {
+        "id": 1,
+        "english_text": "Banannas",
+        "image": "http://45.79.129.214/system/phrases/images/000/000/001/original/word1.jpg?1449369469",
+        "response_type_id": 2
+      },
+      {
+        "id": 2,
+        "english_text": "Girl",
+        "image": "http://45.79.129.214/system/phrases/images/000/000/002/original/word2.jpg?1449369579",
+        "response_type_id": 2
+      },
+      {
+        "id": 3,
+        "english_text": "Corn",
+        "image": "http://45.79.129.214/system/phrases/images/000/000/003/original/word3.jpg?1449369651",
+        "response_type_id": 2
+      },
+      {
+        "id": 4,
+        "english_text": "Dog",
+        "image": "http://45.79.129.214/system/phrases/images/000/000/004/original/word4.jpg?1449369697",
+        "response_type_id": 2
+      },
+      {
+        "id": 5,
+        "english_text": "Grass",
+        "image": "http://45.79.129.214/system/phrases/images/000/000/005/original/word5.jpg?1449369752",
+        "response_type_id": 2
+      },
+      {
+        "id": 6,
+        "english_text": "Donkey",
+        "image": "http://45.79.129.214/system/phrases/images/000/000/006/original/word6.jpg?1449369787",
+        "response_type_id": 2
+      },
+      {
+        "id": 7,
+        "english_text": "Legs",
+        "image": "http://45.79.129.214/system/phrases/images/000/000/007/original/word7.jpg?1449369831",
+        "response_type_id": 2
+      },
+      {
+        "id": 8,
+        "english_text": "Sun",
+        "image": "http://45.79.129.214/system/phrases/images/000/000/008/original/word9.jpg?1449369876",
+        "response_type_id": 2
+      },
+      {
+        "id": 9,
+        "english_text": "Tree",
+        "image": "http://45.79.129.214/system/phrases/images/000/000/009/original/word10.jpg?1449369908",
+        "response_type_id": 2
+      }
+    ]
+  }
 ]
