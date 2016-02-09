@@ -56,8 +56,7 @@ public class InterviewLivedLifeActivity extends BaseInterviewActivity {
         Intent intent = getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT);
         if(intent==null) intent=new Intent(this, RecordingInstructionsActivity.class);
         intent.putExtra(IntentUtil.ARG_PERSON_ID, _person.personid);
-        intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
-                getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
+
         startActivity(intent);
     }
 }

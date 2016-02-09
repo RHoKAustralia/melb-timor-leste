@@ -115,14 +115,16 @@ public class InterviewVillageActivity extends BaseInterviewActivity {
                 dbHelper.updatePersonLivesVillage(_person.personid, selectedVillage);
                 intent = new Intent(this, InterviewLivedLifeActivity.class);
                 intent.putExtra(IntentUtil.ARG_PERSON, _person);
+                intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
+                        getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
             } else {
                 _person.bornVillage = selectedVillage;
                 dbHelper.updatePersonBornVillage(_person.personid, selectedVillage);
-                intent = new Intent(this, RecordingInstructionsActivity.class);
+                intent = getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT);
+                if(intent==null) intent=new Intent(this, RecordingInstructionsActivity.class);
                 intent.putExtra(IntentUtil.ARG_PERSON_ID, _person.personid);
             }
-            intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
-                    getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
+
             startActivity(intent);
         }
     }
