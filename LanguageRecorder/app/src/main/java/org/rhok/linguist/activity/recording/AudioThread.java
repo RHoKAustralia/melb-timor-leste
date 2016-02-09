@@ -35,6 +35,7 @@ public class AudioThread extends HandlerThread {
 
     private static final int MSG_START_RECORDING = 1;
     private static final int MSG_STOP_RECORDING = 2;
+    @Deprecated
     private static final int MSG_PLAY_RECORDING = 3;
     private static final int MSG_STOP_PLAYING = 4;
     private static final int MSG_PLAY_FILE = 5;
@@ -42,8 +43,7 @@ public class AudioThread extends HandlerThread {
 
     private static AudioThread instance;
     private MessageHandler mHandler;
-    private final String audioFilename =
-            UUID.randomUUID().toString().replaceAll("-", "").concat(".mp4");
+
 
     private MediaRecorder mRecorder = null;
     private MediaPlayer mPlayer = null;
@@ -69,13 +69,13 @@ public class AudioThread extends HandlerThread {
 
             switch (msg.what) {
                 case MSG_START_RECORDING:
-                    mAudioThread.get().startRecording();
+                    mAudioThread.get().startRecording(msg.getData().getString("path"));
                     break;
                 case MSG_STOP_RECORDING:
                     mAudioThread.get().stopRecording();
                     break;
                 case MSG_PLAY_RECORDING:
-                    mAudioThread.get().playRecording();
+                    //mAudioThread.get().playRecording();
                     break;
                 case MSG_PLAY_FILE:
                     mAudioThread.get().playFile(msg.getData().getString("path"), msg.arg1 == 1);
@@ -104,7 +104,7 @@ public class AudioThread extends HandlerThread {
 
     /** Get the single AudioThread instance, creating one if necessary */
     public static AudioThread getInstance() {
-        if (instance == null || instance.isReleasePending()) {
+        if (instance == null || instance.isReleasePending() || !instance.isAlive()) {
             instance = new AudioThread();
         }
         return instance;
@@ -118,10 +118,7 @@ public class AudioThread extends HandlerThread {
         mIsReleasePending = true;
     }
 
-    /** Get the file path that audio is recorded to */
-    public String getAudioFilename() {
-        return audioFilename;
-    }
+
 
     /** Stop recording audio */
     public void stopRecording() {
@@ -145,10 +142,14 @@ public class AudioThread extends HandlerThread {
      * Start recording audio to file. Overwrites audio recorded by
      * any previous calls to {@link #startRecording}.
      */
-    public void startRecording()
+    public void startRecording(String path)
     {
         if (!isMyThread()) {
-            sendMessage(MSG_START_RECORDING);
+            Message msg = mHandler.obtainMessage(MSG_START_RECORDING);
+            Bundle data = new Bundle();
+            data.putString("path", path);
+            msg.setData(data);
+            mHandler.sendMessage(msg);
         } else {
             if (mRecorder != null) {
                 Log.w(TAG, "startRecording called while recording");
@@ -157,7 +158,7 @@ public class AudioThread extends HandlerThread {
             mRecorder = new MediaRecorder();
             mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-            mRecorder.setOutputFile(DiskSpace.getAudioFileBasePath() + audioFilename);
+            mRecorder.setOutputFile(path);
             mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
 
             try {
@@ -166,37 +167,14 @@ public class AudioThread extends HandlerThread {
                 Log.e(TAG, "Error during mRecorder.prepare()", e);
             }
 
-            Log.i(TAG, "recording started for filename: " + audioFilename);
+            Log.i(TAG, "recording started for filename: " + path);
 
             mRecorder.start();
         }
 
     }
 
-    /** Play the most recently recorded audio, if any exists */
-    public void playRecording()
-    {
-        if (!isMyThread()) {
-            sendMessage(MSG_PLAY_RECORDING);
-        } else {
-            stopPlaying();
-            mPlayer = new MediaPlayer();
-            mPlayer.setLooping(true);
-            try {
-                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer arg0) {
-                        //playRecording();
-                    }
-                });
-                mPlayer.setDataSource(DiskSpace.getAudioFileBasePath() + audioFilename);
-                mPlayer.prepare();
-                mPlayer.start();
-            } catch (IOException e) {
-                Log.e(TAG, "Error during playRecording()", e);
-            }
-        }
-    }
+
 
     /** Set action to perform on playback completion */
     public void setPlaybackCompletionListener(PlaybackCompletionListener listener) {

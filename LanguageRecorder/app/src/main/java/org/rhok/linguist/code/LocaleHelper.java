@@ -3,6 +3,7 @@ package org.rhok.linguist.code;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.preference.PreferenceManager;
 
 import java.util.Locale;
@@ -24,9 +25,13 @@ public class LocaleHelper {
         {
             Locale locale = new Locale(localeName);
             Locale.setDefault(locale);
-
-            config.setLocale(locale);
-//            config.locale = locale;
+            if(Build.VERSION.SDK_INT>=17) {
+                //not available before Android api 17
+                config.setLocale(locale);
+            }
+            else{
+                config.locale = locale;
+            }
             baseContext.getResources().updateConfiguration(config, baseContext.getResources().getDisplayMetrics());
 
             return true;
