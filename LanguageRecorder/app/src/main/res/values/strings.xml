@@ -142,6 +142,7 @@
     <string name="upload_number_of_people_label">Number of people interviewed</string>
     <string name="upload_upload_data_button">Upload Data</string>
     <string name="upload_starting_upload">starting upload</string>
+    <string name="upload_starting_upload_format">starting upload of %1$d interviews</string>
     <string name="upload_uploading_data">uploading data</string>
     <string name="upload_uploading_audio">uploading audio file</string>
     <string name="upload_upload_complete">upload complete</string>

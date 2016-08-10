@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.koushikdutta.ion.Response;
 
@@ -27,6 +28,8 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.HTTP;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.rhok.linguist.R;
 import org.rhok.linguist.api.InsertInterviewRequest;
 import org.rhok.linguist.api.models.Interview;
@@ -133,50 +136,77 @@ public class UploadInterviewsActivity extends ActionBarActivity {
         return req;
     }
 
-
+    /**
+     * called from onClick
+     * @param view
+     */
     public void uploadToServer(android.view.View view) {
-
-
-
-        addMessage(getResources().getString(R.string.upload_starting_upload) + "...");
-        addMessage(getResources().getString(R.string.upload_uploading_data) + "...");
-
-        for (int i = 0; i < interviewsToUpload.size(); i++) {
-            final Interview interview = interviewsToUpload.get(i);
-            final int index = i;
-            if (!interview.is__uploaded()) {
-                InsertInterviewRequest req = makeInsertInterviewRequest(interview);
-                ionHelper.doPost(ionHelper.getIon().build(this), req,  "interviews/upload")
-                        .go()
-                        .setCallback(new BaseIonCallback<Interview>() {
-                            @Override
-                            public void onSuccess(Interview result) {
-                                interview.set__uploaded(true);
-                                DatabaseHelper db = new DatabaseHelper(UploadInterviewsActivity.this);
-                                db.insertUpdateInterview(interview);
-                                addMessage(String.format("Uploaded %d/%d interviews", index + 1, interviewsToUpload.size()));
-                                if(index==interviewsToUpload.size()-1){
-                                    //finished
-                                    //Media Api NYI
-                                    //processMediaFiles(interviewsToUpload);
-                                }
-                            }
-                        });
-            }
+        if(mUploading){
+            Toast.makeText(this, "Upload already in progress", Toast.LENGTH_SHORT).show();
         }
-
-
-        addMessage(getResources().getString(R.string.upload_upload_complete));
+        else {
+            processMediaFiles(interviewsToUpload);
+        }
     }
-    private void processMediaFiles(List<Interview> interviews){
-        new AsyncTask<Interview, Void, Void>(){
+    private boolean mUploading;
+    private void processMediaFiles(final List<Interview> interviews){
+        mUploading=true;
+        addMessage(getResources().getString(R.string.upload_starting_upload_format, interviews.size()));
+        addMessage(getResources().getString(R.string.upload_uploading_data) + "...");
+        new AsyncTask<Interview, Interview, Void>(){
 
             @Override
             protected Void doInBackground(Interview... params) {
-                for(Interview interview : params){
+                for (int i = 0; i < params.length; i++) {
+                    Interview interview = params[i];
+                    //upload any media in this thread
                     uploadMediaForInterview(interview);
+                    //then upload json response using ion
+                    publishProgress(interview);
                 }
                 return null;
+            }
+
+            @Override
+            protected void onProgressUpdate(Interview... values) {
+                //as each interview's media is done, upload the json interview response
+                final Interview interview = values[0]; // always only one interview here, AsyncTask is weird.
+                final int index = interviews.indexOf(interview);
+                final boolean lastItem = index==interviews.size()-1;
+                if (!interview.is__uploaded()) {
+
+                    InsertInterviewRequest req = makeInsertInterviewRequest(interview);
+                    ionHelper.doPost(ionHelper.getIon().build(UploadInterviewsActivity.this), req,  "interviews/upload")
+                            .go()
+                            .setCallback(new BaseIonCallback<Interview>() {
+                                @Override
+                                public void onSuccess(Interview result) {
+                                    interview.set__uploaded(true);
+                                    DatabaseHelper db = new DatabaseHelper(UploadInterviewsActivity.this);
+                                    db.insertUpdateInterview(interview);
+
+                                    addMessage(String.format("Uploaded %d/%d interviews", index + 1, interviews.size()));
+                                    if(lastItem){
+                                        addMessage(getResources().getString(R.string.upload_upload_complete));
+                                        mUploading=false;
+                                    }
+
+                                }
+                            });
+                }
+                else if (lastItem){
+                    addMessage(getResources().getString(R.string.upload_upload_complete));
+                    mUploading=false;
+
+                }
+
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                //image upload complete.
+                //json upload not necessarily complete (done in different thread)
+
             }
         }.execute(Func.toArray(interviews, Interview.class));
     }
@@ -221,25 +251,37 @@ public class UploadInterviewsActivity extends ActionBarActivity {
 
 
     private void uploadMediaForInterview(Interview interview) {
-
+        int mediaCount=0;
         for(Recording recording : interview.getRecordings()){
-            if(!StringUtils.isNullOrEmpty(recording.getAudio_url())){
+            //has filename, doesn't have url
+            if(!StringUtils.isNullOrEmpty(recording.get__audio_filename()) && StringUtils.isNullOrEmpty(recording.getAudio_url())){
                 String basePath = DiskSpace.getAudioFileBasePath();
-                File f = new File(basePath + recording.getAudio_url());
+                File f = new File(basePath + recording.get__audio_filename());
 
                 if (f.exists()&&f.length()>0) {
                     String msg = getResources().getString(R.string.upload_uploading_audio);
-                        addMessage(msg + ": " + recording.getAudio_url());
-                    doFileUpload(f, recording.getAudio_url());
+                        addMessage(msg + ": " + recording.get__audio_filename());
+                    String response = doFileUpload(f, recording.get__audio_filename());
+                    if(response!=null && response.startsWith("http")){
+                        //the url where the upload went to
+                        recording.setAudio_url(response);
+                        mediaCount++;
+                    }
                 }
             }
+        }
+        if(mediaCount>0){
+            //save the uploaded audio urls to local db
+            DatabaseHelper db = new DatabaseHelper(UploadInterviewsActivity.this);
+            db.insertUpdateInterview(interview);
+
         }
     }
 
 
 
 
-    private void doFileUpload(File file, String shortName){
+    private String doFileUpload(File file, String shortName){
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
         DataInputStream inStream = null;
@@ -250,7 +292,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
         byte[] buffer;
         int maxBufferSize = 1*1024*1024;
         String responseFromServer = "";
-        String urlString = LinguistApplication.getWebserviceUrl() + "api/uploadaudio";
+        String urlString = LinguistApplication.getWebserviceUrl() + "/recordings";
 
         try
         {
@@ -321,13 +363,17 @@ public class UploadInterviewsActivity extends ActionBarActivity {
             while (( str = inStream.readUTF()) != null)
             {
                 Log.i("LanguageApp","Server Response: "+str);
+                JSONObject jsonObj = new JSONObject(str);
+                String url = jsonObj.getString("audio_file_name");
+                return url;
             }
             inStream.close();
 
         }
-        catch (IOException ioex){
+        catch (IOException|JSONException ioex){
             Log.e("LanguageApp", "error: " + ioex.getMessage(), ioex);
         }
+        return null;
     }
 
 
