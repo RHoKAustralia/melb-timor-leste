@@ -192,7 +192,7 @@ public class AudioPlaybackFragment extends Fragment {
         if (audioFile.exists() && audioFile.length() > 0) {
             onLoadComplete.run();
         } else {
-            aq.download(mPhrase.getAudio(), audioFile, new AjaxCallback<File>() {
+            aq.download(mPhrase.formatAudioUrl(), audioFile, new AjaxCallback<File>() {
                 @Override
                 public void callback(String url, File file, AjaxStatus status) {
                     if (file != null && file.exists() && file.length() > 0) {

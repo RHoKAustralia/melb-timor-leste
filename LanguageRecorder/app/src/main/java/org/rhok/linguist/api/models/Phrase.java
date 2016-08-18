@@ -41,8 +41,18 @@ public class Phrase implements Serializable{
 
     /** Get URL of audio prompt data */
     public String getAudio() {
+        if(audio==null||audio.contains("missing.png"))return null;
         return audio;
     }
+    public String formatAudioUrl(){
+        String audio = getAudio();
+        if(audio!=null) {
+            if (audio.toLowerCase().startsWith("http")) return audio;
+            if(audio.startsWith("/")) return LinguistApplication.getWebserviceUrl()+audio;
+        }
+        return audio;
+    }
+
 
     /** Set URL of audio prompt data */
     public void setAudio(String audio) {

@@ -44,11 +44,13 @@ import org.rhok.linguist.network.BaseIonCallback;
 import org.rhok.linguist.network.IonHelper;
 import org.rhok.linguist.util.StringUtils;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -284,7 +286,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
     private String doFileUpload(File file, String shortName){
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
-        DataInputStream inStream = null;
+        BufferedReader inStream = null;
         String lineEnd = "\r\n";
         String twoHyphens = "--";
         String boundary =  "*****";
@@ -292,7 +294,9 @@ public class UploadInterviewsActivity extends ActionBarActivity {
         byte[] buffer;
         int maxBufferSize = 1*1024*1024;
         String responseFromServer = "";
-        String urlString = LinguistApplication.getWebserviceUrl() + "/recordings";
+        String urlString = LinguistApplication.getWebserviceUrl();
+        if(!urlString.endsWith("/"))urlString+="/";
+        urlString+="recordings";
 
         try
         {
@@ -349,8 +353,13 @@ public class UploadInterviewsActivity extends ActionBarActivity {
 
         //------------------ read the SERVER RESPONSE
         try {
-            inStream = new DataInputStream ( conn.getInputStream() );
+
             int responseCode = conn.getResponseCode();
+            if (200 <= conn.getResponseCode() && conn.getResponseCode() <= 299) {
+                inStream = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+            } else {
+                inStream = new BufferedReader(new InputStreamReader((conn.getErrorStream())));
+            }
             Log.i("LanguageApp","Server Response code: "+responseCode);
 
             if(responseCode<400){
@@ -359,15 +368,20 @@ public class UploadInterviewsActivity extends ActionBarActivity {
                 file.delete();
             }
             String str;
+            StringBuilder sb = new StringBuilder();
+            String output;
+            while ((output = inStream.readLine()) != null) {
+                sb.append(output);
+            }
+            inStream.close();
+            str = sb.toString();
 
-            while (( str = inStream.readUTF()) != null)
-            {
                 Log.i("LanguageApp","Server Response: "+str);
                 JSONObject jsonObj = new JSONObject(str);
                 String url = jsonObj.getString("audio_file_name");
                 return url;
-            }
-            inStream.close();
+
+            //
 
         }
         catch (IOException|JSONException ioex){

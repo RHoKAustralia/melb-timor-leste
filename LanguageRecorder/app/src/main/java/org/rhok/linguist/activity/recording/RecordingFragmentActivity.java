@@ -97,7 +97,7 @@ public class RecordingFragmentActivity extends BaseInterviewActivity {
 
     public void onRecordingAudioFinished(int phraseIndex, String audioFilename) {
         Recording recording = interview.getRecordings().get(phraseIndex);
-        recording.setAudio_url(audioFilename);
+        recording.set__audio_filename(audioFilename);
 
         if (study.getPhrases().get(phraseIndex).getResponse_type() == Phrase.TYPE_TEXT_AUDIO) {
             //requires text as well as audio, go to the text fragment

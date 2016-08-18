@@ -9,12 +9,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import net.servicestack.client.JsonSerializers;
+
 import org.rhok.linguist.api.models.Interview;
 import org.rhok.linguist.code.entity.Person;
 import org.rhok.linguist.code.entity.PersonWord;
 import org.rhok.linguist.network.PCJsonSerializers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -305,7 +308,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return items;
     }
     private Gson getGson(){
-        return new GsonBuilder().setExclusionStrategies(PCJsonSerializers.getUnderscoreExclusionStrategy()).create();
+        return new GsonBuilder()
+                .registerTypeAdapter(Date.class, JsonSerializers.getDateSerializer())
+                .registerTypeAdapter(Date.class, PCJsonSerializers.getDateDeserializer())
+                //.setExclusionStrategies(PCJsonSerializers.getUnderscoreExclusionStrategy())
+                .create();
     }
     public void insertUpdateRecording(int interviewid, int phraseid, String word, String audiofilename) {
         SQLiteDatabase db = getWritableDatabase();
