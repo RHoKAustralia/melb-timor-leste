@@ -16,23 +16,20 @@ public class RecordingInstructionsActivity extends BaseInterviewActivity {
 
     private static final String TAG = "RecInstructActivity";
 
-    private int personId;
     private Interview interview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate");
         setContentView(R.layout.activity_recording_instructions);
 
-        personId = getIntent().getIntExtra(IntentUtil.ARG_PERSON_ID, -1);
         Study study = (Study) getIntent().getSerializableExtra(IntentUtil.ARG_STUDY);
         setTitle(study.getName());
         if( !StringUtils.isNullOrEmpty(study.getInstructions())){
             ((TextView)findViewById(R.id.questionText)).setText(study.getInstructions());
         }
-        interview = new Interview(study);
-        interview.set__intervieweeid(personId);
-
+        interview = (Interview) getIntent().getSerializableExtra(IntentUtil.ARG_INTERVIEW);
     }
 
     @Override

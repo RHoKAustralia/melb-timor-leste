@@ -16,7 +16,7 @@ import com.koushikdutta.ion.Response;
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.activity.interview.InterviewNameActivity;
-import org.rhok.linguist.activity.recording.RecordingInstructionsActivity;
+import org.rhok.linguist.activity.recording.InterviewResponseLanguageActivity;
 import org.rhok.linguist.api.OfflineStorageHelper;
 import org.rhok.linguist.api.models.Study;
 import org.rhok.linguist.network.BaseIonCallback;
@@ -114,7 +114,7 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==REQUEST_YES_NO){
             Intent intent = null;
-            Intent recordingStartIntent = new Intent(this, RecordingInstructionsActivity.class);
+            Intent recordingStartIntent = new Intent(this, InterviewResponseLanguageActivity.class);
             Study study = (Study) data.getBundleExtra(IntentUtil.ARG_NEXT_ACTIVITY_ARGS).getSerializable(IntentUtil.ARG_STUDY);
             recordingStartIntent.putExtra(IntentUtil.ARG_STUDY, study);
             if(resultCode==YesNoActivity.RESULT_YES){

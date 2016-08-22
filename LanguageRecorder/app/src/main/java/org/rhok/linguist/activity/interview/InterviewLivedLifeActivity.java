@@ -7,9 +7,9 @@ import android.widget.TextView;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.IntentUtil;
+import org.rhok.linguist.activity.recording.InterviewResponseLanguageActivity;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.entity.Person;
-import org.rhok.linguist.activity.recording.RecordingInstructionsActivity;
 
 public class InterviewLivedLifeActivity extends BaseInterviewActivity {
 
@@ -54,7 +54,7 @@ public class InterviewLivedLifeActivity extends BaseInterviewActivity {
         dbHelper.updatePersonLivedWholeLife(_person.personid, true);
 
         Intent intent = getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT);
-        if(intent==null) intent=new Intent(this, RecordingInstructionsActivity.class);
+        if(intent==null) intent=new Intent(this, InterviewResponseLanguageActivity.class);
         intent.putExtra(IntentUtil.ARG_PERSON_ID, _person.personid);
 
         startActivity(intent);
