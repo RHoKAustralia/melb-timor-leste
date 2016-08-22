@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/activityStyle"
+    tools:context="org.rhok.linguist.activity.old.StudyActivity">
+
+    <LinearLayout style="@style/contentContainerStyle">
+
+        <TextView style="@style/contentHeaderStyle"
+            android:text="What language will interview responses be in?"
+            android:id="@+id/whichLanguageTextView" />
+
+        <ListView style="@style/listViewStyle"
+            android:id="@+id/language_list" />
+
+    </LinearLayout>
+
+    <Button style="@style/nextButtonStyle" />
+
+</LinearLayout>
