@@ -53,6 +53,7 @@ public class AudioThread extends HandlerThread {
 
     public interface PlaybackCompletionListener {
         void onPlaybackComplete();
+        void onPlaybackError(Exception e);
     }
 
     private static class MessageHandler extends Handler {
@@ -165,6 +166,8 @@ public class AudioThread extends HandlerThread {
                 mRecorder.prepare();
             } catch (IOException e) {
                 Log.e(TAG, "Error during mRecorder.prepare()", e);
+                if(mPlaybackCompletionListener!=null)
+                    mPlaybackCompletionListener.onPlaybackError(e);
             }
 
             Log.i(TAG, "recording started for filename: " + path);
@@ -214,6 +217,8 @@ public class AudioThread extends HandlerThread {
                 mPlayer.start();
             } catch (IOException e) {
                 Log.e(TAG, "Error during playFile()", e);
+                if(mPlaybackCompletionListener!=null)
+                    mPlaybackCompletionListener.onPlaybackError(e);
             }
         }
     }

@@ -35,6 +35,7 @@ public class AudioPlaybackFragment extends Fragment {
     public static final int STATE_LOADING = 0;
     public static final int STATE_PLAYING = 1;
     public static final int STATE_FINISHED = 2;
+    public static final int STATE_ERROR = 3;
 
     // UI elements
     TextView recordingQuestionTextView;
@@ -137,6 +138,11 @@ public class AudioPlaybackFragment extends Fragment {
                     }
                 });
             }
+
+            @Override
+            public void onPlaybackError(Exception e) {
+                onPlaybackStateChanged(STATE_ERROR);
+            }
         });
         audioThread.playFile(file.getAbsolutePath());
         onPlaybackStateChanged(STATE_PLAYING);
@@ -198,6 +204,9 @@ public class AudioPlaybackFragment extends Fragment {
                     if (file != null && file.exists() && file.length() > 0) {
                         onLoadComplete.run();
                     }
+                    else{
+                        onPlaybackStateChanged(STATE_ERROR);
+                    }
                 }
             });
         }
@@ -250,9 +259,23 @@ public class AudioPlaybackFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
 
                 recordReplayTextView.setVisibility(View.VISIBLE);
+                recordReplayTextView.setText(R.string.interview_audio_replay);
 
                 yesButton.setVisibility(View.VISIBLE);
                 noButton.setVisibility(View.VISIBLE);
+                break;
+            case STATE_ERROR: //error downloading/playing file. Still let them continue with other Qs.
+                recordingQuestionTextView.setVisibility(View.VISIBLE);
+                recordingMessageTextView.clearAnimation();
+                recordingMessageTextView.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
+
+                recordReplayTextView.setVisibility(View.VISIBLE);
+                recordReplayTextView.setText(R.string.interview_audio_playback_error);
+
+                yesButton.setVisibility(View.VISIBLE);
+                noButton.setVisibility(View.VISIBLE);
+
                 break;
         }
     }
