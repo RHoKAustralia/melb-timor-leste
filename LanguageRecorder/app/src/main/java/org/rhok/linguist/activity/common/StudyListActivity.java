@@ -112,7 +112,7 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode==REQUEST_YES_NO){
+        if(requestCode==REQUEST_YES_NO && resultCode!=RESULT_CANCELED){
             Intent intent = null;
             Intent recordingStartIntent = new Intent(this, RecordingInstructionsActivity.class);
             Study study = (Study) data.getBundleExtra(IntentUtil.ARG_NEXT_ACTIVITY_ARGS).getSerializable(IntentUtil.ARG_STUDY);
