@@ -26,6 +26,8 @@ public class YesNoActivity extends AppCompatActivity {
     public static final int RESULT_YES = 1;
     public static final int RESULT_NO = 2;
 
+    private static final int MAX_TITLE_LENGTH = 22;
+
     public static Intent makeYesNoIntent(String title, String question){
         Intent intent = new Intent(LinguistApplication.getContextStatic(), YesNoActivity.class);
         intent.putExtra(ARG_ACTIVITY_TITLE, title);
@@ -40,8 +42,12 @@ public class YesNoActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         String title = extras.getString(ARG_ACTIVITY_TITLE);
-        if(!StringUtils.isNullOrEmpty(title))
-            setTitle(title);
+        if(!StringUtils.isNullOrEmpty(title)) {
+            if(title.length()>MAX_TITLE_LENGTH && getSupportActionBar()!=null){
+                getSupportActionBar().setSubtitle(title);
+            }
+            else setTitle(title);
+        }
         TextView text1 = (TextView) findViewById(R.id.text1);
         text1.setText(extras.getString(ARG_QUESTION_TEXT));
 

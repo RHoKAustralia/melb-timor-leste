@@ -69,6 +69,7 @@
     <string name="interview_recording">Recording</string>
     <string name="interview_audio_playing">Playing</string>
     <string name="interview_audio_replay">Would you like to hear the recording again?</string>
+    <string name="interview_audio_playback_error">Error playing audio. Retry?</string>
     <string name="interview_recording_ok">Is this recording ok?</string>
     <string name="interview_transcribe">What is the transcription for this word?</string>
 
