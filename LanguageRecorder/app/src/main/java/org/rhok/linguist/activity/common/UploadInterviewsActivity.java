@@ -43,6 +43,7 @@ import org.rhok.linguist.code.entity.PersonWord;
 import org.rhok.linguist.network.BaseIonCallback;
 import org.rhok.linguist.network.IonHelper;
 import org.rhok.linguist.util.StringUtils;
+import org.rhok.linguist.util.ZipUtil;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -55,8 +56,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 
 public class UploadInterviewsActivity extends ActionBarActivity {
@@ -147,9 +151,70 @@ public class UploadInterviewsActivity extends ActionBarActivity {
             Toast.makeText(this, "Upload already in progress", Toast.LENGTH_SHORT).show();
         }
         else {
-            processMediaFiles(interviewsToUpload);
+            processMediaFilesToZip(interviewsToUpload);
         }
     }
+
+    private void processMediaFilesToZip(final List<Interview> interviews){
+        mUploading=true;
+        addMessage(getResources().getString(R.string.upload_starting_upload_format, interviews.size()));
+        addMessage(getResources().getString(R.string.upload_uploading_data) + "...");
+        new AsyncTask<Interview, Interview, Void>(){
+
+            @Override
+            protected Void doInBackground(Interview... params) {
+                for (int i = 0; i < params.length; i++) {
+                    Interview interview = params[i];
+
+                    if(!interview.is__uploaded()){
+
+                        List<File> mediaFiles = new ArrayList<File>();
+                        for(Recording recording : interview.getRecordings()){
+                            //has filename
+                            if(!StringUtils.isNullOrEmpty(recording.get__audio_filename()) ){
+                                String basePath = DiskSpace.getAudioFileBasePath();
+                                File f = new File(basePath + recording.get__audio_filename());
+
+                                if (f.exists()&&f.length()>0) {
+                                    addMessage("compressing: " + recording.get__audio_filename());
+                                    mediaFiles.add(f);
+                                    recording.setAudio_url(f.getName());
+                                }
+                            }
+                        }
+                        InsertInterviewRequest req = makeInsertInterviewRequest(interview);
+                        String json = ionHelper.getIon().configure().getGson().toJson(req);
+                        HashMap<String, String> mapOfTextFileNameBody = Func.toDictionary("upload.json", json);
+                        String destinationFileName = String.format("study_%d_response_%d.zip", interview.getStudy_id(), System.currentTimeMillis());
+                        File destinationFile = new File(DiskSpace.getAudioFileBasePath(), destinationFileName);
+                        try {
+                            ZipUtil.zip(mediaFiles, mapOfTextFileNameBody, destinationFile);
+                        } catch (IOException e) {
+                            addMessage("Error compressing files: "+e.getMessage());
+                            e.printStackTrace();
+                        }
+                        if(destinationFile.exists()){
+                            addMessage("Wrote zip to "+destinationFile.getAbsolutePath());
+                            //TODO upload the zip
+                            //doFileUpload("interviews", destinationFile, destinationFileName);
+                        }
+                    }
+                }
+                return null;
+            }
+
+
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                //zip compression complete
+
+                mUploading=false;
+
+            }
+        }.execute(Func.toArray(interviews, Interview.class));
+    }
+
     private boolean mUploading;
     private void processMediaFiles(final List<Interview> interviews){
         mUploading=true;
@@ -263,7 +328,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
                 if (f.exists()&&f.length()>0) {
                     String msg = getResources().getString(R.string.upload_uploading_audio);
                         addMessage(msg + ": " + recording.get__audio_filename());
-                    String response = doFileUpload(f, recording.get__audio_filename());
+                    String response = doFileUpload("recordings", f, recording.get__audio_filename());
                     if(response!=null && response.startsWith("http")){
                         //the url where the upload went to
                         recording.setAudio_url(response);
@@ -283,7 +348,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
 
 
 
-    private String doFileUpload(File file, String shortName){
+    private String doFileUpload(String urlPath, File file, String shortName){
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
         BufferedReader inStream = null;
@@ -296,7 +361,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
         String responseFromServer = "";
         String urlString = LinguistApplication.getWebserviceUrl();
         if(!urlString.endsWith("/"))urlString+="/";
-        urlString+="recordings";
+        urlString+=urlPath;
 
         try
         {
