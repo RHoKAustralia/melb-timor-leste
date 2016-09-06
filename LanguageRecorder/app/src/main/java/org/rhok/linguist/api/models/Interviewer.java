@@ -11,4 +11,7 @@ public class Interviewer {
     private String email;
     private String device_id;
 
+    public String getName() {
+        return name;
+    }
 }
