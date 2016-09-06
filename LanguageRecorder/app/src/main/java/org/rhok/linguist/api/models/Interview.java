@@ -34,7 +34,7 @@ public class Interview implements Serializable{
     /**
      * Language that the interviewee responds in
      */
-    private int __response_language;
+    private String response_language;
     private int id;
     private Date interview_time;
     private int study_id;
@@ -130,6 +130,16 @@ public class Interview implements Serializable{
         this.recordings = recordings;
     }
 
+    public String getResponse_language()
+    {
+        return response_language;
+    }
+
+    public void setResponse_language(String language)
+    {
+        response_language = language;
+    }
+
     public boolean is__completed() {
         return __completed;
     }
@@ -160,9 +170,5 @@ public class Interview implements Serializable{
 
     public void set__interviewerid(int __interviewerid) {
         this.__interviewerid = __interviewerid;
-    }
-
-    public void set__response_language (int response_language) {
-        __response_language = response_language;
     }
 }

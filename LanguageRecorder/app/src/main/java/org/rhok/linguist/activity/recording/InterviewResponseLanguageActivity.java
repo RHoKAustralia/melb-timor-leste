@@ -71,9 +71,7 @@ public class InterviewResponseLanguageActivity extends AppCompatActivity impleme
 
     public void nextButtonClick(View view) {
         if (mSelectedLanguage != null) {
-            // TODO: do languages have ids somewhere?
-            // maybe response language should be a string for now
-            interview.set__response_language(3);
+            interview.setResponse_language(mSelectedLanguage);
             Study study = (Study) getIntent().getSerializableExtra(IntentUtil.ARG_STUDY);
             Intent intent = new Intent(this, RecordingInstructionsActivity.class);
             intent.putExtra(IntentUtil.ARG_INTERVIEW, interview);
