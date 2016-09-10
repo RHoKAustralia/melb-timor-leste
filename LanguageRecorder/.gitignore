@@ -35,4 +35,7 @@ proguard/
 # Android Studio
 .idea
 apks/
-EQPay-Android.iml
+LanguageRecorder.iml
+
+# API keys
+api_keys.*

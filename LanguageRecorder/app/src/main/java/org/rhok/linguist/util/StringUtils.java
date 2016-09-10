@@ -14,6 +14,7 @@ import java.util.Locale;
  */
 public class StringUtils {
     public static final String DATE_STANDARD = "dd/MM/yyyy";
+    public static final String DATE_AND_TIME_STANDARD = "dd/MM/yyyy HH:mm";
 
     public static String formatDate(Date date, String pattern) {
 
