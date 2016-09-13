@@ -11,12 +11,16 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
+import net.servicestack.func.Func;
+import net.servicestack.func.Predicate;
+
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.api.models.Interview;
 import org.rhok.linguist.api.models.Study;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.entity.Person;
+import org.rhok.linguist.util.StringUtils;
 import org.rhok.linguist.util.UIUtil;
 
 import java.util.ArrayList;
@@ -90,13 +94,15 @@ public class InterviewResponseLanguageActivity extends AppCompatActivity impleme
     private class StudyAdapter extends BaseAdapter {
 
         private List<String> items;
-        public StudyAdapter(List<String> items) {
+        StudyAdapter(List<String> items) {
             updateData(items);
         }
 
-        private void updateData(List<String> items){
-            if(items==null) items = new ArrayList<>();
-            this.items = items;
+        private void updateData(List<String> in){
+            if(in==null) in = new ArrayList<>();
+            this.items = in;
+            String other = getString(R.string.interview_response_language_other);
+            if(!items.contains(other)) items.add(other);
             notifyDataSetChanged();
         }
 
@@ -135,6 +141,12 @@ public class InterviewResponseLanguageActivity extends AppCompatActivity impleme
         languages.add(person.secondLanguage);
         languages.add(person.thirdLanguage);
         languages.add(person.fourthLanguage);
+        languages = Func.filter(languages, new Predicate<String>() {
+            @Override
+            public boolean apply(String s) {
+                return !StringUtils.isNullOrEmpty(s);
+            }
+        });
         return languages;
     }
 }

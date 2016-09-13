@@ -128,6 +128,11 @@
     <string name="person_education_secondary">Secondary</string>
     <string name="person_education_university">University</string>
 
+    <string name="menu_cancel_interview">Cancel Interview</string>
+    <string name="menu_upload_interview">Upload</string>
+    <string name="menu_skip_question">Skip Question</string>
+    <string name="interview_response_language_other">Other</string>
+
     <string-array name="person_languages_array">
         <item>english</item>
         <item>french</item>

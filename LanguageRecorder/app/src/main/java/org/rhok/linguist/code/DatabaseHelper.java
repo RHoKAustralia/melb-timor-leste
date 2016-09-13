@@ -377,47 +377,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return word;
     }
 
-    public PersonWord[] getAllWords() {
-        SQLiteDatabase db = this.getReadableDatabase();
 
-        String sql = "select personid, wordid, wordtranscription, audiofilename from " +
-                PERSONWORD_TABLE_NAME + " where wordtranscription <> '' or audiofilename <> ''";
-
-        Cursor c = db.rawQuery(sql, null);
-        List<PersonWord> items = new ArrayList<PersonWord>();
-        while (c.moveToNext()) {
-            PersonWord pw = new PersonWord(
-                    c.getInt(0),
-                    c.getInt(1),
-                    c.getString(2),
-                    c.getString(3)
-            );
-            items.add(pw);
-        }
-        db.close();
-        return (PersonWord[]) items.toArray(new PersonWord[items.size()]);
-    }
-
-    public String getAllData() {
-        Person[] people = getPeople();
-        PersonWord[] allWords = getAllWords();
-
-        String installID = Installation.id(_context);
-        String json = "{ InstallID: \"" + installID + "\", Data: [";
-
-        for (int i=0;i<people.length;i++) {
-            Person p = people[i];
-            PersonWord[] words = wordsForPerson(p.personid, allWords);
-            json = json.concat(p.getAsJson(words));
-            if (i < people.length - 1) {
-                json = json.concat(",");
-            }
-        }
-
-
-        json = json.concat("]}");
-        return json;
-    }
 
     private PersonWord[] wordsForPerson(int personid, PersonWord[] allWords) {
         List<PersonWord> items = new ArrayList<PersonWord>();

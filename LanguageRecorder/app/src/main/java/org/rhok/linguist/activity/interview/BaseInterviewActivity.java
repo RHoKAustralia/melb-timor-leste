@@ -1,8 +1,6 @@
 package org.rhok.linguist.activity.interview;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,12 +14,12 @@ import org.rhok.linguist.code.LocaleHelper;
 /**
  * Created by lachlan on 18/06/2015.
  */
-public class BaseInterviewActivity extends BaseActivity {
+public abstract class BaseInterviewActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_interview, menu);
+        getMenuInflater().inflate(R.menu.menu_interview_person, menu);
         return true;
     }
 
@@ -32,18 +30,21 @@ public class BaseInterviewActivity extends BaseActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_cancel) {
-            Intent intent = new Intent(this, SplashActivity.class);
-            startActivity(intent);
-        }
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, AppSettingsActivity.class);
-            startActivity(intent);
-        }
-        if (id == R.id.action_upload) {
-            Intent intent = new Intent(this, UploadActivity.class);
-            startActivity(intent);
+
+        switch (id) {
+            case R.id.action_cancel: {
+                Intent intent = new Intent(this, SplashActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.action_settings: {
+                Intent intent = new Intent(this, AppSettingsActivity.class);
+                startActivity(intent);
+                return true;
+
+            }
+
         }
 
         return super.onOptionsItemSelected(item);

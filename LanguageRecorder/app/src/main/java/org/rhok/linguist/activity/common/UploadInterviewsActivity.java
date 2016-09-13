@@ -362,7 +362,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
             //has filename, doesn't have url
             if(!StringUtils.isNullOrEmpty(recording.get__audio_filename()) && StringUtils.isNullOrEmpty(recording.getAudio_url())){
                 String basePath = DiskSpace.getAudioFileBasePath();
-                File f = new File(basePath + recording.get__audio_filename());
+                File f = new File(basePath, recording.get__audio_filename());
 
                 if (f.exists()&&f.length()>0) {
                     String msg = getResources().getString(R.string.upload_uploading_audio);

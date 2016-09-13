@@ -159,7 +159,7 @@ public class UploadActivity extends ActionBarActivity {
         try {
 
             DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-            String json = dbHelper.getAllData();
+            String json = null;//dbHelper.getAllData();
 
             Log.i("LanguageApp", json);
 
@@ -190,7 +190,7 @@ public class UploadActivity extends ActionBarActivity {
     private void uploadAudioData() {
 
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        PersonWord[] words = dbHelper.getAllWords();
+        PersonWord[] words = null;//dbHelper.getAllWords();
 
         if (words == null) {
             return;

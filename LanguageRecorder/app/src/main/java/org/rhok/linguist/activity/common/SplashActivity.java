@@ -54,10 +54,7 @@ public class SplashActivity extends AppCompatActivity {
             case R.id.action_settings:
                 intent = new Intent(this, AppSettingsActivity.class);
                 break;
-            case R.id.action_skip:
-                intent = new Intent(this, InterviewResponseLanguageActivity.class);
-                intent.putExtra(IntentUtil.ARG_PERSON_ID, 1);
-                break;
+
             case R.id.action_upload:
                 intent = new Intent(this, UploadInterviewsActivity.class);
                 break;

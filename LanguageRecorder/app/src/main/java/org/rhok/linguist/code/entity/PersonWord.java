@@ -3,6 +3,7 @@ package org.rhok.linguist.code.entity;
 /**
  * Created by lachlan on 7/05/2015.
  */
+@Deprecated
 public class PersonWord {
 
     public int personid;

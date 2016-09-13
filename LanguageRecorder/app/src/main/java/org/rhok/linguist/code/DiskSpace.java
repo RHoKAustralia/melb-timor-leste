@@ -3,6 +3,8 @@ package org.rhok.linguist.code;
 import android.os.Environment;
 import android.os.StatFs;
 
+import org.rhok.linguist.application.LinguistApplication;
+
 import java.text.DecimalFormat;
 
 /**
@@ -27,6 +29,8 @@ public class DiskSpace {
 
     public static String getAudioFileBasePath() {
         return Environment.getExternalStorageDirectory().getAbsolutePath() + "/";
+        //switch to this for non-debug, so we don't pollute user's root dir
+        //return LinguistApplication.getContextStatic().getExternalFilesDir(null).getAbsolutePath()+"/";
     }
 
 /*    public static String getFilename(int picture) {

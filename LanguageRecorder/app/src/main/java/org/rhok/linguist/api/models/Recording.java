@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class Recording implements Serializable{
 
+    public static final String SKIPPED_TEXT_RESPONSE = "<skipped>";
     /**
      * local filename
      */
