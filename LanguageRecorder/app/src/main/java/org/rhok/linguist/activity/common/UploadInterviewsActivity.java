@@ -214,9 +214,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
                         if(destinationFile.exists()){
                             addMessage("Wrote zip to " + destinationFile.getAbsolutePath());
                             //TODO upload the zip
-                            //If you get a build error here, create a file res/values/api_keys.xml
-                            String slackToken = getString(R.string.slack_bot_token);
-                            String slackChannel =getString(R.string.slack_channel);
+
                             List<String> msgs = new ArrayList<String>();
                             msgs.add("`Interview date:` "+StringUtils.formatDate(req.interview.getInterview_time(), StringUtils.DATE_AND_TIME_STANDARD));
                             msgs.add(String.format("`StudyId:` %d (%d responses)", req.interview.getStudy_id(), req.interview.getRecordings().size()));
@@ -232,10 +230,13 @@ public class UploadInterviewsActivity extends ActionBarActivity {
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }
+                            //If you get a build error here, create a file res/values/api_keys.xml
+                            /*String slackToken = getString(R.string.slack_bot_token);
+                            String slackChannel =getString(R.string.slack_channel);
                             String url = "https://slack.com/api/files.upload?token="+slackToken+"&channels="+slackChannel+"&initial_comment="+slackMsg;
-
-                            doFileUpload(url, destinationFile, destinationFileName);
-                            //doFileUpload("interviews", destinationFile, destinationFileName);
+                            */
+                            //doFileUpload(url, destinationFile, destinationFileName);
+                            doFileUpload("interviews", destinationFile, destinationFileName);
                         }
                     }
                 }
