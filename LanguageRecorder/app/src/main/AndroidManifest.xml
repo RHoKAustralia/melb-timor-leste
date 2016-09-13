@@ -145,6 +145,10 @@
             android:label="Recording" >
         </activity>
         <activity
+            android:name=".activity.recording.InterviewResponseLanguageActivity"
+            android:label="Recording" >
+        </activity>
+        <activity
             android:name=".activity.common.AppSettingsActivity"
             android:label="@string/title_activity_app_settings" >
         </activity>

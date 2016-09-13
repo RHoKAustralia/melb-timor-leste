@@ -12,6 +12,7 @@ import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.activity.interview.InterviewNameActivity;
 import org.rhok.linguist.activity.old.HomeActivity;
 import org.rhok.linguist.activity.old.UploadActivity;
+import org.rhok.linguist.activity.recording.InterviewResponseLanguageActivity;
 import org.rhok.linguist.activity.recording.RecordingInstructionsActivity;
 import org.rhok.linguist.application.LinguistApplication;
 import org.rhok.linguist.code.LocaleHelper;
@@ -54,7 +55,7 @@ public class SplashActivity extends AppCompatActivity {
                 intent = new Intent(this, AppSettingsActivity.class);
                 break;
             case R.id.action_skip:
-                intent = new Intent(this, RecordingInstructionsActivity.class);
+                intent = new Intent(this, InterviewResponseLanguageActivity.class);
                 intent.putExtra(IntentUtil.ARG_PERSON_ID, 1);
                 break;
             case R.id.action_upload:

@@ -31,6 +31,10 @@ public class Interview implements Serializable{
      * id of interviewer (user) in local db. NYI.
      */
     private int __interviewerid;
+    /**
+     * Language that the interviewee responds in
+     */
+    private String response_language;
     private int id;
     private Date interview_time;
     private int study_id;
@@ -124,6 +128,16 @@ public class Interview implements Serializable{
 
     public void setRecordings(List<Recording> recordings) {
         this.recordings = recordings;
+    }
+
+    public String getResponse_language()
+    {
+        return response_language;
+    }
+
+    public void setResponse_language(String language)
+    {
+        response_language = language;
     }
 
     public boolean is__completed() {
