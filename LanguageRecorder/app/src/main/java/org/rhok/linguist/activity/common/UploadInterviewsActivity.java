@@ -256,94 +256,8 @@ public class UploadInterviewsActivity extends ActionBarActivity {
         }.execute(Func.toArray(interviews, Interview.class));
     }
 
+
     private boolean mUploading;
-    private void processMediaFiles(final List<Interview> interviews){
-        mUploading=true;
-        addMessage(getResources().getString(R.string.upload_starting_upload_format, interviews.size()));
-        addMessage(getResources().getString(R.string.upload_uploading_data) + "...");
-        new AsyncTask<Interview, Interview, Void>(){
-
-            @Override
-            protected Void doInBackground(Interview... params) {
-                for (int i = 0; i < params.length; i++) {
-                    Interview interview = params[i];
-                    //upload any media in this thread
-                    uploadMediaForInterview(interview);
-                    //then upload json response using ion
-                    publishProgress(interview);
-                }
-                return null;
-            }
-
-            @Override
-            protected void onProgressUpdate(Interview... values) {
-                //as each interview's media is done, upload the json interview response
-                final Interview interview = values[0]; // always only one interview here, AsyncTask is weird.
-                final int index = interviews.indexOf(interview);
-                final boolean lastItem = index==interviews.size()-1;
-                if (!interview.is__uploaded()) {
-
-                    InsertInterviewRequest req = makeInsertInterviewRequest(interview);
-                    ionHelper.doPost(ionHelper.getIon().build(UploadInterviewsActivity.this), req,  "interviews/upload")
-                            .go()
-                            .setCallback(new BaseIonCallback<Interview>() {
-                                @Override
-                                public void onSuccess(Interview result) {
-                                    interview.set__uploaded(true);
-                                    DatabaseHelper db = new DatabaseHelper(UploadInterviewsActivity.this);
-                                    db.insertUpdateInterview(interview);
-
-                                    addMessage(String.format("Uploaded %d/%d interviews", index + 1, interviews.size()));
-                                    if(lastItem){
-                                        addMessage(getResources().getString(R.string.upload_upload_complete));
-                                        mUploading=false;
-                                    }
-
-                                }
-                            });
-                }
-                else if (lastItem){
-                    addMessage(getResources().getString(R.string.upload_upload_complete));
-                    mUploading=false;
-
-                }
-
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                //image upload complete.
-                //json upload not necessarily complete (done in different thread)
-
-            }
-        }.execute(Func.toArray(interviews, Interview.class));
-    }
-
-    private void sendNotification(String message) {
-
-        Intent resultIntent = new Intent(this, UploadInterviewsActivity.class);
-        PendingIntent resultPendingIntent =
-                PendingIntent.getActivity(
-                        this,
-                        0,
-                        resultIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.livru_timor_logo)
-                        .setContentTitle("Local Linguist")
-                        .setContentText(message);
-
-        // notification click behaviour
-        mBuilder.setContentIntent(resultPendingIntent);
-
-        int mNotificationId = 001;
-        NotificationManager mNotifyMgr =
-                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        mNotifyMgr.notify(mNotificationId, mBuilder.build());
-    }
 
     private void addMessage(String message) {
         Date now = new Date();
@@ -356,36 +270,6 @@ public class UploadInterviewsActivity extends ActionBarActivity {
         });
 
     }
-
-
-    private void uploadMediaForInterview(Interview interview) {
-        int mediaCount=0;
-        for(Recording recording : interview.getRecordings()){
-            //has filename, doesn't have url
-            if(!StringUtils.isNullOrEmpty(recording.get__audio_filename()) && StringUtils.isNullOrEmpty(recording.getAudio_url())){
-                String basePath = DiskSpace.getAudioFileBasePath();
-                File f = new File(basePath, recording.get__audio_filename());
-
-                if (f.exists()&&f.length()>0) {
-                    String msg = getResources().getString(R.string.upload_uploading_audio);
-                        addMessage(msg + ": " + recording.get__audio_filename());
-                    String response = doFileUpload("recordings", f, recording.get__audio_filename());
-                    if(response!=null && response.startsWith("http")){
-                        //the url where the upload went to
-                        recording.setAudio_url(response);
-                        mediaCount++;
-                    }
-                }
-            }
-        }
-        if(mediaCount>0){
-            //save the uploaded audio urls to local db
-            DatabaseHelper db = new DatabaseHelper(UploadInterviewsActivity.this);
-            db.insertUpdateInterview(interview);
-
-        }
-    }
-
 
     /**
      * Upload a single zipped interview
