@@ -236,8 +236,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
                             String url = "https://slack.com/api/files.upload?token="+slackToken+"&channels="+slackChannel+"&initial_comment="+slackMsg;
                             */
                             //doFileUpload(url, destinationFile, destinationFileName);
-                            doFileUpload("interviews", destinationFile, destinationFileName,
-                                    interview.getStudy_id(), interview.getInterview_time());
+                            doFileUpload("interviews", destinationFile, destinationFileName);
                         }
                     }
                 }
@@ -274,8 +273,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
     /**
      * Upload a single zipped interview
      */
-    private String doFileUpload(String urlPath, File file, String shortName, int studyId,
-                                Date interviewTime){
+    private String doFileUpload(String urlPath, File file, String shortName){
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
         BufferedReader inStream = null;
@@ -312,10 +310,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
             //conn.setRequestProperty("uploaded_file", shortName);
             dos = new DataOutputStream( conn.getOutputStream() );
             dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; zipfile=\"uploaded_file\";" +
-                    "filename=\"" + shortName + "\"" + lineEnd +
-                    "study_id=\"" + studyId + "\"" + lineEnd +
-                    "interview_time=\"" + interviewTime + "\"" + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"file\";filename=\"" + shortName + "\"" + lineEnd);
             dos.writeBytes(lineEnd);
             // create a buffer of maximum size
             bytesAvailable = fileInputStream.available();
