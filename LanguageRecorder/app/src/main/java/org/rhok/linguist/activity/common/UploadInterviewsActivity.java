@@ -236,7 +236,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
                             String url = "https://slack.com/api/files.upload?token="+slackToken+"&channels="+slackChannel+"&initial_comment="+slackMsg;
                             */
                             //doFileUpload(url, destinationFile, destinationFileName);
-                            doFileUpload("interviews", destinationFile, destinationFileName);
+                            doFileUpload("interviews", destinationFile, destinationFileName, interview);
                         }
                     }
                 }
@@ -273,7 +273,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
     /**
      * Upload a single zipped interview
      */
-    private String doFileUpload(String urlPath, File file, String shortName){
+    private String doFileUpload(String urlPath, File file, String shortName, Interview interview){
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
         BufferedReader inStream = null;
@@ -310,7 +310,10 @@ public class UploadInterviewsActivity extends ActionBarActivity {
             //conn.setRequestProperty("uploaded_file", shortName);
             dos = new DataOutputStream( conn.getOutputStream() );
             dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"file\";filename=\"" + shortName + "\"" + lineEnd);
+            writeInterviewMultipartFormFields(interview, dos, boundary);
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"interview[zipfile]\";filename=\"" + shortName + "\"" + lineEnd);
+            dos.writeBytes("Content-Type: application/zip" + lineEnd);
             dos.writeBytes(lineEnd);
             // create a buffer of maximum size
             bytesAvailable = fileInputStream.available();
@@ -383,6 +386,14 @@ public class UploadInterviewsActivity extends ActionBarActivity {
             Log.e("LanguageApp", "error: " + ioex.getMessage(), ioex);
         }
         return null;
+    }
+
+    private static void writeInterviewMultipartFormFields (
+            Interview interview, DataOutputStream stream, String boundary) throws IOException {
+        String newline = "\r\n";
+        stream.writeBytes("Content-Disposition: form-data; name=\"interview[study_id]\"" + newline);
+        stream.writeBytes(newline);
+        stream.writeBytes(Integer.toString(interview.getStudy_id()) + newline);
     }
 
 
