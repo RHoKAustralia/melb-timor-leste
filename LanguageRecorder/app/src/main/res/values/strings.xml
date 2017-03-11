@@ -125,6 +125,7 @@
     <string name="person_mobile_phone">Mobile Number</string>
     <string name="person_email">Email</string>
     <string name="interviewer_name_format">Interviewer: %1$s</string>
+    <string name="interviewer_name_edit">Edit Interviewer</string>
 
     <string name="person_gender_male">Male</string>
     <string name="person_gender_female">Female</string>

@@ -49,6 +49,12 @@ public class InterviewerActivity extends AppCompatActivity{
         modelToUI();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("interviewer", interviewer);
+    }
+
     private void modelToUI(){
         aq.id(R.id.nameEditText).text(interviewer.getName());
         aq.id(R.id.mobileEditText).text(interviewer.getMobile());

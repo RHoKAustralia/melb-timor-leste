@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="org.rhok.linguist.activity.common.SplashActivity">
 
-
+    <item android:id="@+id/action_edit_interviewer" android:title="@string/interviewer_name_edit"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:orderInCategory="102" app:showAsAction="ifRoom" />
 
     <item android:id="@+id/action_upload" android:title="@string/menu_upload_interview"
         android:orderInCategory="103" app:showAsAction="never" />

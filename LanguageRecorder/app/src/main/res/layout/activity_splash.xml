@@ -30,26 +30,7 @@
 
     </RelativeLayout>
 
-    <TextView
-        style="@style/ListHeadingText"
-        android:id="@+id/interviewer_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/interviewer_edit"
-        android:onClick="editInterviewerClick"
-        tools:text="@string/interviewer_name_format"
-        android:gravity="center_vertical"
-        android:singleLine="false"
-        android:layout_alignTop="@+id/interviewer_edit"
-        android:layout_alignBottom="@+id/interviewer_edit"/>
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/interviewer_edit"
-        android:onClick="editInterviewerClick"
-        android:text="@string/edit"
-        android:src="@android:drawable/ic_menu_edit"
-        />
+
     <Button style="@style/nextButtonStyle" android:text="@string/start_button" android:id="@+id/nextbutton"/>
 
 </RelativeLayout>

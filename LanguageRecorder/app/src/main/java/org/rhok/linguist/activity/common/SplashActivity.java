@@ -20,6 +20,7 @@ import org.rhok.linguist.api.models.Interviewer;
 import org.rhok.linguist.application.LinguistApplication;
 import org.rhok.linguist.code.LocaleHelper;
 import org.rhok.linguist.code.PreferencesHelper;
+import org.rhok.linguist.util.StringUtils;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -69,6 +70,10 @@ public class SplashActivity extends AppCompatActivity {
                 break;
             case R.id.menu_person_list:
                 intent = new Intent(this, PersonListActivity.class);
+                break;
+            case R.id.action_edit_interviewer:
+                editInterviewerClick(null);
+                break;
         }
         if(intent!=null){
             startActivity(intent);
@@ -93,7 +98,8 @@ public class SplashActivity extends AppCompatActivity {
             interviewer = PreferencesHelper.createDefaultInterviewer();
             PreferencesHelper.saveInterviewer(interviewer);
         }
-        ((TextView)findViewById(R.id.interviewer_label)).setText(getString(R.string.interviewer_name_format, interviewer.getName()));
+        getSupportActionBar().setSubtitle(getString(R.string.interviewer_name_format,
+                interviewer.getName())) ;
 
 
     }

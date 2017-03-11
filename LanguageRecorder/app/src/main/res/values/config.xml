@@ -1,5 +1,5 @@
 <resources>
-    <string name="server_prod">http://45.79.129.214/</string>
+    <string name="server_prod">http://192.168.0.11:3000/</string>
 
 
 
