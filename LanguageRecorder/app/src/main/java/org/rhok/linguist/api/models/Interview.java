@@ -40,7 +40,6 @@ public class Interview implements Serializable{
     private int study_id;
     private int interviewer_id;
     private int interviewee_id;
-    private int locale_id;
 
     private List<Recording> recordings;
 
@@ -112,14 +111,6 @@ public class Interview implements Serializable{
 
     public void setInterviewee_id(int interviewee_id) {
         this.interviewee_id = interviewee_id;
-    }
-
-    public int getLocale_id() {
-        return locale_id;
-    }
-
-    public void setLocale_id(int locale_id) {
-        this.locale_id = locale_id;
     }
 
     public List<Recording> getRecordings() {
