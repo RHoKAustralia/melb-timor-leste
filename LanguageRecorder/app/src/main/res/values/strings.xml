@@ -121,6 +121,11 @@
     <string name="person_updated_toast">Person updated</string>
     <string name="person_added_toast">Person added</string>
 
+    <!-- interviewer details -->
+    <string name="person_mobile_phone">Mobile Number</string>
+    <string name="person_email">Email</string>
+    <string name="interviewer_name_format">Interviewer: %1$s</string>
+
     <string name="person_gender_male">Male</string>
     <string name="person_gender_female">Female</string>
 
@@ -191,6 +196,7 @@
     <string name="title_activity_recording_listen">RecordingListenActivity</string>
     <string name="title_activity_recording_transcribe">RecordingTranscribeActivity</string>
     <string name="title_activity_app_settings">AppSettingsActivity</string>
+    <string name="title_activity_interviewer">Interviewer Details</string>
 
 
 </resources>

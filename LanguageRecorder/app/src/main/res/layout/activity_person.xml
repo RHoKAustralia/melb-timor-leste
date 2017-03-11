@@ -24,7 +24,7 @@
         android:hint=""
         android:imeOptions="actionDone"
         android:inputType="textNoSuggestions"
-        android:layout_marginBottom="10px"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -48,7 +48,7 @@
                android:singleLine="true"
                android:inputType="number"
                android:imeOptions="actionDone"
-               android:layout_marginBottom="10px"
+               android:layout_marginBottom="10dp"
                android:layout_width="match_parent"
                android:layout_height="wrap_content" />
 
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content" />
 
             <Spinner
-                android:layout_marginBottom="20px"
+                android:layout_marginBottom="20dp"
                 android:id="@+id/gender_spinner"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"/>
@@ -95,7 +95,7 @@
                 android:id="@+id/locationEditText"
                 android:singleLine="true"
                 android:imeOptions="actionDone"
-                android:layout_marginBottom="10px"
+                android:layout_marginBottom="10dp"
                 android:inputType="textNoSuggestions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -221,26 +221,26 @@
 
     <TextView android:text="@string/person_mylocation_label"
         android:id="@+id/mylocation"
-        android:layout_marginTop="20px"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
 
-        android:layout_marginTop="20px"
+        android:layout_marginTop="20dp"
         android:text="@string/person_education_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <Spinner
-        android:layout_marginBottom="20px"
+        android:layout_marginBottom="20dp"
         android:id="@+id/educated_to_spinner"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"/>
 
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_marginTop="20px"
+    android:layout_marginTop="20dp"
     android:layout_height="wrap_content">
 
     <Button

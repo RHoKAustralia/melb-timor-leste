@@ -18,6 +18,6 @@
 
 
 
-    <Button style="@style/nextButtonStyle" />
+    <Button style="@style/nextButtonStyle" android:id="@+id/nextbutton"/>
 
 </LinearLayout>

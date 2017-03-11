@@ -42,6 +42,7 @@ import org.rhok.linguist.api.models.Recording;
 import org.rhok.linguist.application.LinguistApplication;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.DiskSpace;
+import org.rhok.linguist.code.PreferencesHelper;
 import org.rhok.linguist.code.entity.Person;
 import org.rhok.linguist.code.entity.PersonWord;
 import org.rhok.linguist.network.BaseIonCallback;
@@ -147,6 +148,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
                 req.interviewee = new Interviewee(interviewee);
         }
         req.interview=interview;
+        req.interviewer = PreferencesHelper.getInterviewer();
         return req;
     }
 

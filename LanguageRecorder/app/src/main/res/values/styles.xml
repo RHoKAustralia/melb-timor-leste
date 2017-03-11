@@ -35,13 +35,13 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">16px</item>
+        <item name="android:layout_marginBottom">16dp</item>
     </style>
 
     <style name="listViewStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">16px</item>
+        <item name="android:layout_marginBottom">16dp</item>
         <item name="android:listSelector">@drawable/list_item_selector</item>
     </style>
 
@@ -101,4 +101,6 @@
     <style name="ListSubText.Inverse" >
         <item name="android:textColor">@color/body_text_2_inverse</item>
     </style>
+
+
 </resources>

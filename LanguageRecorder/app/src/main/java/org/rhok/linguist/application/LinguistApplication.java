@@ -7,8 +7,10 @@ import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.code.PreferencesHelper;
 
 import java.util.Locale;
+import java.util.UUID;
 
 /**
  * Created by lachlan on 19/06/2015.
@@ -23,11 +25,16 @@ public class LinguistApplication extends Application {
     private static LinguistApplication instance;
 
     public static final String DIR_INTERVIEW_MEDIA = "interviewMedia";
+
     @Override
     public void onCreate()
     {
         super.onCreate();
         instance=this;
+        SharedPreferences appPrefs = getSharedPreferences(PreferencesHelper.PREFS_FILE_APPPREFS, 0);
+        if(!appPrefs.contains(PreferencesHelper.APPPREFS_KEY_INSTALLATION_ID)){
+            appPrefs.edit().putString(PreferencesHelper.APPPREFS_KEY_INSTALLATION_ID, UUID.randomUUID().toString()).commit();
+        }
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         Configuration config = getBaseContext().getResources().getConfiguration();

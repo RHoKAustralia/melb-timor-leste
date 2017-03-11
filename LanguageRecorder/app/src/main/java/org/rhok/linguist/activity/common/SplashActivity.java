@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.IntentUtil;
@@ -14,12 +16,15 @@ import org.rhok.linguist.activity.old.HomeActivity;
 import org.rhok.linguist.activity.old.UploadActivity;
 import org.rhok.linguist.activity.recording.InterviewResponseLanguageActivity;
 import org.rhok.linguist.activity.recording.RecordingInstructionsActivity;
+import org.rhok.linguist.api.models.Interviewer;
 import org.rhok.linguist.application.LinguistApplication;
 import org.rhok.linguist.code.LocaleHelper;
+import org.rhok.linguist.code.PreferencesHelper;
 
 
 public class SplashActivity extends AppCompatActivity {
 
+    private Interviewer interviewer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +32,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         //ActionBar actionBar = getSupportActionBar();
         //actionBar.hide();
+
 
     }
 
@@ -81,6 +87,14 @@ public class SplashActivity extends AppCompatActivity {
         if (LocaleHelper.updateLocale(getBaseContext(), this)) {
             this.recreate();
         }
+        interviewer = PreferencesHelper.getInterviewer();
+        if (interviewer==null){
+            //create default
+            interviewer = PreferencesHelper.createDefaultInterviewer();
+            PreferencesHelper.saveInterviewer(interviewer);
+        }
+        ((TextView)findViewById(R.id.interviewer_label)).setText(getString(R.string.interviewer_name_format, interviewer.getName()));
+
 
     }
 
@@ -90,4 +104,8 @@ public class SplashActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void editInterviewerClick(View view) {
+        Intent intent = new Intent(this, InterviewerActivity.class);
+        startActivity(intent);
+    }
 }
