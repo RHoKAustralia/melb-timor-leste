@@ -30,7 +30,7 @@ public class PreferencesHelper {
         Interviewer interviewer = new Interviewer();
         String deviceId = getInstallationID();
         interviewer.setDevice_id(deviceId);
-        interviewer.setName("Android User "+deviceId.replace("-","").substring(0,6));
+        interviewer.setName("Android User "+deviceId.replace("-","").substring(0,8));
         return interviewer;
     }
     public static Interviewer getInterviewer(){
