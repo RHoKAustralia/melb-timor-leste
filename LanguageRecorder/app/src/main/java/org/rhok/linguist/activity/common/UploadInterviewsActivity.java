@@ -238,7 +238,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
                             String url = "https://slack.com/api/files.upload?token="+slackToken+"&channels="+slackChannel+"&initial_comment="+slackMsg;
                             */
                             //doFileUpload(url, destinationFile, destinationFileName);
-                            doFileUpload("interviews", destinationFile, destinationFileName, interview);
+                            doFileUpload("api/v1/upload_interview", destinationFile, destinationFileName, interview);
                         }
                     }
                 }
@@ -308,13 +308,13 @@ public class UploadInterviewsActivity extends ActionBarActivity {
             conn.setRequestMethod("POST");
             //conn.setRequestProperty("Connection", "Keep-Alive");
             //conn.setRequestProperty("ENCTYPE", "multipart/form-data");
-            conn.setRequestProperty("Content-Type", "multipart/form-data; boundary="+boundary);
+            conn.setRequestProperty("Content-Type", "multipart/form-data; charset=utf-8; boundary="+boundary);
             //conn.setRequestProperty("uploaded_file", shortName);
             dos = new DataOutputStream( conn.getOutputStream() );
             dos.writeBytes(twoHyphens + boundary + lineEnd);
-            writeInterviewMultipartFormFields(interview, dos, boundary);
-            dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"interview[zipfile]\"; filename=\"" + shortName + "\"" + lineEnd);
+            //writeInterviewMultipartFormFields(interview, dos, boundary);
+            //dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"file\"; filename=\"" + shortName + "\"" + lineEnd);
             dos.writeBytes("Content-Type: application/zip" + lineEnd);
             dos.writeBytes(lineEnd);
             // create a buffer of maximum size
