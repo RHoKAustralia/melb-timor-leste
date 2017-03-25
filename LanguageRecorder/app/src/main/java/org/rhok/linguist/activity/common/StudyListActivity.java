@@ -3,6 +3,7 @@ package org.rhok.linguist.activity.common;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +37,8 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
-        listView= (ListView) findViewById(R.id.listview);
+        setContentView(R.layout.activity_study);
+        listView= (ListView) findViewById(R.id.study_list);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView.setOnItemClickListener(this);
         mProgressBar= (ProgressBar) findViewById(R.id.progress);
@@ -108,6 +109,10 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
             yesNo.putExtra(IntentUtil.ARG_NEXT_ACTIVITY_ARGS, nextActivityArgs);
             startActivityForResult(yesNo, REQUEST_YES_NO);
         }
+    }
+
+    public void downloadAllButtonClick(View view) {
+        Log.d("StudyList", "download all");
     }
 
     @Override
