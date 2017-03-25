@@ -20,6 +20,7 @@ import org.rhok.linguist.activity.interview.InterviewNameActivity;
 import org.rhok.linguist.activity.recording.InterviewResponseLanguageActivity;
 import org.rhok.linguist.api.OfflineStorageHelper;
 import org.rhok.linguist.api.models.Study;
+import org.rhok.linguist.code.StudyDownloader;
 import org.rhok.linguist.network.BaseIonCallback;
 import org.rhok.linguist.network.IonHelper;
 import org.rhok.linguist.util.UIUtil;
@@ -113,6 +114,10 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
 
     public void downloadAllButtonClick(View view) {
         Log.d("StudyList", "download all");
+        if (mSelection != null) {
+            StudyDownloader downloader = new StudyDownloader(this);
+            downloader.download(mSelection);
+        }
     }
 
     @Override

@@ -53,6 +53,14 @@ public class Phrase implements Serializable{
         return audio;
     }
 
+    public boolean hasAudio() {
+        return getAudio() != null;
+    }
+
+    public boolean hasImage() {
+        return getImage() != null;
+    }
+
 
     /** Set URL of audio prompt data */
     public void setAudio(String audio) {
