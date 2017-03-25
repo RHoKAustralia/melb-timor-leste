@@ -70,6 +70,8 @@ public class LinguistApplication extends Application {
     }
 
     public static String getWebserviceUrl() {
-        return instance.getString(R.string.server_prod);
+//        return instance.getString(R.string.server_prod);
+//        return "http://192.168.10.82:3000/";
+        return "http://10.0.2.2:3000/";
     }
 }
