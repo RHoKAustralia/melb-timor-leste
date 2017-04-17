@@ -3,8 +3,10 @@ package org.rhok.linguist.code;
 import android.os.Environment;
 import android.os.StatFs;
 
-import org.rhok.linguist.application.LinguistApplication;
+import org.rhok.linguist.api.models.Phrase;
+import org.rhok.linguist.util.FileUtils;
 
+import java.io.File;
 import java.text.DecimalFormat;
 
 /**
@@ -27,17 +29,53 @@ public class DiskSpace {
         return bytesToHuman(free);
     }
 
-    public static String getAudioFileBasePath() {
-        return Environment.getExternalStorageDirectory().getAbsolutePath() + "/";
+    public static boolean createAppDirs() {
+        return getAppStorageBasePath().mkdirs() &&
+            getPhrasesPath().mkdirs() &&
+            getInterviewRecordingsPath().mkdirs();
+    }
+
+    private static File getAppStorageBasePath() {
+        return new File(Environment.getExternalStorageDirectory(), "local_linguist");
         //switch to this for non-debug, so we don't pollute user's root dir
         //return LinguistApplication.getContextStatic().getExternalFilesDir(null).getAbsolutePath()+"/";
     }
 
-/*    public static String getFilename(int picture) {
-        String mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
-        mFileName += "/audiorecordtest" + picture + ".3gp";
-        return mFileName;
-    }*/
+    private static File getPhrasesPath() {
+        return new File(getAppStorageBasePath(), "phrases");
+    }
+
+    public static File getInterviewsPath() {
+        return new File(getAppStorageBasePath(), "interviews");
+    }
+
+    private static File getInterviewRecordingsPath() {
+        return new File(getInterviewsPath(), "recordings");
+    }
+
+    public static File getPhraseAudio(Phrase phrase) {
+        if (!phrase.hasAudio()) throw new IllegalArgumentException("phrase has no audio");
+        String ext = FileUtils.getExtension(phrase.getAudio());
+        return new File(getPhrasesPath(), phrase.getId() + "_audio." + ext);
+    }
+
+    public static File getPhraseImage(Phrase phrase) {
+        if (!phrase.hasImage()) throw new IllegalArgumentException("phrase has no image");
+        String ext = FileUtils.getExtension(phrase.getImage());
+        return new File(getPhrasesPath(), phrase.getId() + "_image." + ext);
+    }
+
+    public static File getInterviewRecording(String filename) {
+        return new File(getInterviewRecordingsPath(), filename);
+    }
+
+    /**
+     * @deprecated use getInterviewRecording
+     */
+    @Deprecated
+    public static String getAudioFileBasePath() {
+        return null;
+    }
 
     private static String floatForm (double d)
     {

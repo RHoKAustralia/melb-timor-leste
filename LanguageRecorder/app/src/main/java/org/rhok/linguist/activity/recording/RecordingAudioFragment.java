@@ -127,7 +127,7 @@ public class RecordingAudioFragment extends Fragment {
     }
 
     private String getAudioFilenameWithPath(){
-        return DiskSpace.getAudioFileBasePath()+mAudioFilename;
+        return DiskSpace.getInterviewRecording(mAudioFilename).getAbsolutePath();
     }
     private void startRecording()
     {

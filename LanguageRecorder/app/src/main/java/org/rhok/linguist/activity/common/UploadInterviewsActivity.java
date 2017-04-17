@@ -182,8 +182,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
                         for(Recording recording : interview.getRecordings()){
                             //has filename
                             if(!StringUtils.isNullOrEmpty(recording.get__audio_filename()) ){
-                                String basePath = DiskSpace.getAudioFileBasePath();
-                                File f = new File(basePath + recording.get__audio_filename());
+                                File f = DiskSpace.getInterviewRecording(recording.get__audio_filename());
 
                                 if (f.exists()&&f.length()>0) {
                                     addMessage("compressing: " + recording.get__audio_filename());
@@ -206,7 +205,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
                         String json = gson.toJson(req);
                         HashMap<String, String> mapOfTextFileNameBody = Func.toDictionary("upload.json", json);
                         String destinationFileName = String.format("study_%d_response_%d.zip", interview.getStudy_id(), System.currentTimeMillis());
-                        File destinationFile = new File(DiskSpace.getAudioFileBasePath(), destinationFileName);
+                        File destinationFile = new File(DiskSpace.getInterviewsPath(), destinationFileName);
                         try {
                             ZipUtil.zip(mediaFiles, mapOfTextFileNameBody, destinationFile);
                         } catch (IOException e) {

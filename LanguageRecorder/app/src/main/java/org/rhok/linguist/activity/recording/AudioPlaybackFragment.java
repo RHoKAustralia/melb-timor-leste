@@ -20,7 +20,7 @@ import com.androidquery.callback.AjaxStatus;
 import org.rhok.linguist.R;
 import org.rhok.linguist.api.models.Phrase;
 import org.rhok.linguist.api.models.Study;
-import org.rhok.linguist.application.LinguistApplication;
+import org.rhok.linguist.code.DiskSpace;
 import org.rhok.linguist.util.Reflect;
 import org.rhok.linguist.util.StringUtils;
 
@@ -183,8 +183,7 @@ public class AudioPlaybackFragment extends Fragment {
      * Get the audio file associated with this phrase
      */
     private File getPhraseAudioFile() {
-        File dir = new File(getActivity().getFilesDir().getPath(), LinguistApplication.DIR_INTERVIEW_MEDIA);
-        return new File(dir, String.format("%d_audio.m4a", mPhrase.getId()));
+        return DiskSpace.getPhraseAudio(mPhrase);
     }
 
     /**

@@ -43,7 +43,7 @@ public class StudyDownloader {
 
     private void downloadAudioIfMissing(Phrase phrase) {
         if (phrase.hasAudio()) {
-            File audioFile = getPhraseAudioFile(phrase);
+            File audioFile = DiskSpace.getPhraseAudio(phrase);
             if (!audioFile.exists() || audioFile.length() == 0) {
                 downloadUrl(phrase.formatAudioUrl(), audioFile);
             }
@@ -52,23 +52,11 @@ public class StudyDownloader {
 
     private void downloadImageIfMissing(Phrase phrase) {
         if (phrase.hasImage()) {
-            File imageFile = getPhraseImageFile(phrase);
+            File imageFile = DiskSpace.getPhraseImage(phrase);
             if (!imageFile.exists() || imageFile.length() == 0) {
                 downloadUrl(phrase.formatImageUrl(), imageFile);
             }
         }
-    }
-
-    private File getPhraseAudioFile(Phrase phrase) {
-        File dir = new File(_context.getFilesDir().getPath(), LinguistApplication.DIR_INTERVIEW_MEDIA);
-        return new File(dir, String.format("%d_audio.m4a", phrase.getId()));
-    }
-
-    private File getPhraseImageFile(Phrase phrase) {
-        if (!phrase.hasImage()) throw new IllegalStateException("phase has no image");
-        String ext = FileUtils.getExtension(phrase.getImage());
-        File dir = new File(_context.getFilesDir().getPath(), LinguistApplication.DIR_INTERVIEW_MEDIA);
-        return new File(dir, phrase.getId() + "_image." + ext);
     }
 
     private void downloadUrl(String url, File file) {
