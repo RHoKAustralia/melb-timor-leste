@@ -21,7 +21,6 @@ import org.rhok.linguist.R;
 import org.rhok.linguist.api.models.Phrase;
 import org.rhok.linguist.api.models.Study;
 import org.rhok.linguist.code.DiskSpace;
-import org.rhok.linguist.util.Reflect;
 import org.rhok.linguist.util.StringUtils;
 
 import java.io.File;
@@ -91,17 +90,7 @@ public class AudioPlaybackFragment extends Fragment {
         String question = StringUtils.isNullOrEmpty(mPhrase.getEnglish_text(), getString(R.string.interview_audio_recording));
         recordingQuestionTextView.setText(question);
 
-        if(StringUtils.isNullOrEmpty(mPhrase.getImage())){
-            aq.id(imageView).gone();
-        }
-        else if (mPhrase.formatImageUrl().startsWith("http")){
-            aq.id(imageView).image(mPhrase.formatImageUrl());
-        }
-        else{
-            //in case it refers to a built-in image, eg "word4"
-            int resId = Reflect.getImageResId(mPhrase.getImage());
-            aq.id(imageView).image(resId);
-        }
+        ResponseFragmentUtils.showImagePrompt(imageView, mPhrase);
 
         startAudioThreadIfNull();
 
