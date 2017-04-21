@@ -3,7 +3,6 @@ package org.rhok.linguist.activity.common;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.koushikdutta.ion.Response;
 
@@ -113,11 +113,14 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
     }
 
     public void downloadAllButtonClick(View view) {
-        Log.d("StudyList", "download all");
-        if (mSelection != null) {
-            StudyDownloader downloader = new StudyDownloader(this);
-            downloader.download(mSelection);
-        }
+        Toast.makeText(getApplicationContext(), "Downloading all studies", Toast.LENGTH_SHORT).show();
+        StudyDownloader downloader = new StudyDownloader(this);
+        downloader.downloadAll(mStudies, new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), "All studies downloaded", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

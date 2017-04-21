@@ -9,36 +9,39 @@ import com.androidquery.callback.AjaxStatus;
 
 import org.rhok.linguist.api.models.Phrase;
 import org.rhok.linguist.api.models.Study;
-import org.rhok.linguist.application.LinguistApplication;
-import org.rhok.linguist.util.FileUtils;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.List;
 
 public class StudyDownloader {
 
     private final String TAG = "StudyDownloader";
-    private Context _context;
     private AQuery _aq;
+    private HashSet<File> _downloading;
+    private Runnable _onDownloadComplete;
 
     public StudyDownloader(Context context) {
-        _context = context;
         _aq = new AQuery(context);
+        _downloading = new HashSet<>();
     }
 
-    public void downloadAll(List<Study> studies) {
+    public void downloadAll(List<Study> studies, Runnable onComplete) {
+        _onDownloadComplete = onComplete;
         for (Study study : studies) {
             download(study);
         }
     }
 
-    public void download(Study study) {
+    private void download(Study study) {
         Log.d(TAG, "Downloading any missing files for " + study.getName());
         for (Phrase phrase : study.getPhrases()) {
             downloadAudioIfMissing(phrase);
             downloadImageIfMissing(phrase);
         }
-        Log.d(TAG, "Downloading complete for " + study.getName());
+        if (_downloading.isEmpty()) {
+            onAllDownloadsComplete();
+        }
     }
 
     private void downloadAudioIfMissing(Phrase phrase) {
@@ -61,15 +64,28 @@ public class StudyDownloader {
 
     private void downloadUrl(String url, File file) {
         Log.d(TAG, "Downloading " + url);
+        _downloading.add(file);
         _aq.download(url, file, new AjaxCallback<File>() {
             @Override
             public void callback(String url, File file, AjaxStatus status) {
-                if (file != null && file.exists() && file.length() > 0) {
-                    Log.d(TAG, "Download complete: " + url);
-                } else {
+                if (file == null || !file.exists() || file.length() == 0) {
                     Log.d(TAG, "Download failed: " + url + " message:" + status.getMessage());
                 }
+                onFileDownloadComplete(file);
             }
         });
+    }
+
+    private void onFileDownloadComplete(File file) {
+        if (_downloading.contains(file)) {
+            _downloading.remove(file);
+        }
+        if (_downloading.isEmpty()) {
+            onAllDownloadsComplete();
+        }
+    }
+
+    private void onAllDownloadsComplete() {
+        if (_onDownloadComplete != null) _onDownloadComplete.run();
     }
 }
