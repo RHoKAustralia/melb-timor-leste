@@ -95,17 +95,8 @@ public class RecordingAudioFragment extends Fragment {
         Phrase phrase =getStudy().getPhrases().get(phraseIndex);
         String question = StringUtils.isNullOrEmpty(phrase.getEnglish_text(), getString(R.string.interview_audio_recording));
         recordingQuestionTextView.setText(question);
-        if(StringUtils.isNullOrEmpty(phrase.getImage())){
-            aq.id(imageView).gone();
-        }
-        else if (phrase.formatImageUrl().startsWith("http")){
-            aq.id(imageView).image(phrase.formatImageUrl());
-        }
-        else{
-            //in case it refers to a built-in image, eg "word4"
-            int resId = Reflect.getImageResId(phrase.getImage());
-            aq.id(imageView).image(resId);
-        }
+
+        ResponseFragmentUtils.showImagePrompt(imageView, phrase);
 
        // startAudioThreadIfNull();
        // startRecording();
@@ -127,7 +118,7 @@ public class RecordingAudioFragment extends Fragment {
     }
 
     private String getAudioFilenameWithPath(){
-        return DiskSpace.getAudioFileBasePath()+mAudioFilename;
+        return DiskSpace.getInterviewRecording(mAudioFilename).getAbsolutePath();
     }
     private void startRecording()
     {

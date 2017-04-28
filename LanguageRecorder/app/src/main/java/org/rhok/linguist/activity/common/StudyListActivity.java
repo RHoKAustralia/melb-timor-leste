@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.koushikdutta.ion.Response;
 
@@ -19,6 +20,7 @@ import org.rhok.linguist.activity.interview.InterviewNameActivity;
 import org.rhok.linguist.activity.recording.InterviewResponseLanguageActivity;
 import org.rhok.linguist.api.OfflineStorageHelper;
 import org.rhok.linguist.api.models.Study;
+import org.rhok.linguist.code.StudyDownloader;
 import org.rhok.linguist.network.BaseIonCallback;
 import org.rhok.linguist.network.IonHelper;
 import org.rhok.linguist.util.UIUtil;
@@ -36,8 +38,8 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
-        listView= (ListView) findViewById(R.id.listview);
+        setContentView(R.layout.activity_study);
+        listView= (ListView) findViewById(R.id.study_list);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView.setOnItemClickListener(this);
         mProgressBar= (ProgressBar) findViewById(R.id.progress);
@@ -108,6 +110,17 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
             yesNo.putExtra(IntentUtil.ARG_NEXT_ACTIVITY_ARGS, nextActivityArgs);
             startActivityForResult(yesNo, REQUEST_YES_NO);
         }
+    }
+
+    public void downloadAllButtonClick(View view) {
+        Toast.makeText(getApplicationContext(), "Downloading all studies", Toast.LENGTH_SHORT).show();
+        StudyDownloader downloader = new StudyDownloader(this);
+        downloader.downloadAll(mStudies, new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), "All studies downloaded", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

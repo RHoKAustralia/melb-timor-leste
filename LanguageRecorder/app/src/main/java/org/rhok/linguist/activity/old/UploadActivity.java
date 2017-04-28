@@ -203,8 +203,7 @@ public class UploadActivity extends ActionBarActivity {
             {
                 if (audiofilename.length() > 0)
                 {
-                    String basePath = DiskSpace.getAudioFileBasePath();
-                    File f = new File(basePath + audiofilename);
+                    File f = DiskSpace.getInterviewRecording(audiofilename);
 
                     if (f.exists()) {
 
@@ -212,7 +211,7 @@ public class UploadActivity extends ActionBarActivity {
                         if (words[i].word != null && words.length > 0) {
                             addMessage(msg + ": " + audiofilename);
                         }
-                        doFileUpload(basePath + audiofilename, audiofilename);
+                        doFileUpload(f.getAbsolutePath(), audiofilename);
                     }
                 }
             }

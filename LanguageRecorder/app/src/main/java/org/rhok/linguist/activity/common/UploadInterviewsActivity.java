@@ -182,8 +182,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
                         for(Recording recording : interview.getRecordings()){
                             //has filename
                             if(!StringUtils.isNullOrEmpty(recording.get__audio_filename()) ){
-                                String basePath = DiskSpace.getAudioFileBasePath();
-                                File f = new File(basePath + recording.get__audio_filename());
+                                File f = DiskSpace.getInterviewRecording(recording.get__audio_filename());
 
                                 if (f.exists()&&f.length()>0) {
                                     addMessage("compressing: " + recording.get__audio_filename());
@@ -206,7 +205,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
                         String json = gson.toJson(req);
                         HashMap<String, String> mapOfTextFileNameBody = Func.toDictionary("upload.json", json);
                         String destinationFileName = String.format("study_%d_response_%d.zip", interview.getStudy_id(), System.currentTimeMillis());
-                        File destinationFile = new File(DiskSpace.getAudioFileBasePath(), destinationFileName);
+                        File destinationFile = new File(DiskSpace.getInterviewsPath(), destinationFileName);
                         try {
                             ZipUtil.zip(mediaFiles, mapOfTextFileNameBody, destinationFile);
                         } catch (IOException e) {
@@ -276,6 +275,7 @@ public class UploadInterviewsActivity extends ActionBarActivity {
      * Upload a single zipped interview
      */
     private String doFileUpload(String urlPath, File file, String shortName, Interview interview){
+        DatabaseHelper db = new DatabaseHelper(this);
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
         BufferedReader inStream = null;
@@ -363,9 +363,15 @@ public class UploadInterviewsActivity extends ActionBarActivity {
             Log.i("LanguageApp","Server Response code: "+responseCode);
 
             if(responseCode<400){
-                //success. delete file.
-               // Log.i("LanguageApp","success. deleting file "+file.getName());
-               // file.delete();
+                //success. delete file & mark interview as uploaded
+                Log.i("LanguageApp","success. deleting file "+file.getName());
+                file.delete();
+                interview.set__uploaded(true);
+                db.insertUpdateInterview(interview);
+                addMessage("Upload successful");
+            }
+            else {
+                addMessage("Upload failed");
             }
             String str;
             StringBuilder sb = new StringBuilder();

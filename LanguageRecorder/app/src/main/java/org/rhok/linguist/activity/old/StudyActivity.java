@@ -22,8 +22,8 @@ public class StudyActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study);
 
-        TextView whichStudy = (TextView)findViewById(R.id.whichStudyTextView);
-        whichStudy.setText("Which " + selectedLanguage() + " study would you like to use?");
+//        TextView whichStudy = (TextView)findViewById(R.id.whichStudyTextView);
+//        whichStudy.setText("Which " + selectedLanguage() + " study would you like to use?");
 
         populateStudies();
     }

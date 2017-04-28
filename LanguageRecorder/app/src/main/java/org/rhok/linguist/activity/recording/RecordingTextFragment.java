@@ -9,13 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 
 import com.androidquery.AQuery;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.api.models.Phrase;
 import org.rhok.linguist.api.models.Study;
-import org.rhok.linguist.util.Reflect;
 import org.rhok.linguist.util.StringUtils;
 
 /**
@@ -50,17 +50,7 @@ public class RecordingTextFragment extends Fragment {
         int responseType = phrase.getResponse_type();
         //will be either TYPE_TEXT_AUDIO or TEXT. Audio only won't come to this fragment.
         aq.id(R.id.recordingQuestionTextView).text(responseType == Phrase.TYPE_TEXT_AUDIO ? getString(R.string.interview_transcribe) : phrase.getEnglish_text());
-        if(StringUtils.isNullOrEmpty(phrase.getImage())){
-            aq.id(R.id.captureImageView).gone();
-        }
-        else if (phrase.formatImageUrl().toLowerCase().startsWith("http")){
-            aq.id(R.id.captureImageView).image(phrase.formatImageUrl());
-        }
-        else{
-            //in case it refers to a built-in image, eg "word4"
-            int resId = Reflect.getImageResId(phrase.getImage());
-            aq.id(R.id.captureImageView).image(resId);
-        }
+        ResponseFragmentUtils.showImagePrompt((ImageView)root.findViewById(R.id.captureImageView), phrase);
         if(StringUtils.isNullOrEmpty(phrase.getChoices())){
             aq.id(R.id.answerEditText).visible();
             aq.id(R.id.answersListView).gone();
