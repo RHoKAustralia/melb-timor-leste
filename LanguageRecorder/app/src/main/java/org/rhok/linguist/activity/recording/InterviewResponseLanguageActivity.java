@@ -77,7 +77,7 @@ public class InterviewResponseLanguageActivity extends AppCompatActivity impleme
         if (mSelectedLanguage != null) {
             interview.setResponse_language(mSelectedLanguage);
             Study study = (Study) getIntent().getSerializableExtra(IntentUtil.ARG_STUDY);
-            Intent intent = new Intent(this, RecordingInstructionsActivity.class);
+            Intent intent = new Intent(this, RecordingFragmentActivity.class);
             intent.putExtra(IntentUtil.ARG_INTERVIEW, interview);
             intent.putExtra(IntentUtil.ARG_STUDY, study);
             startActivity(intent);

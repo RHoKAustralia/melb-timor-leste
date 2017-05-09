@@ -12,6 +12,8 @@ import org.rhok.linguist.api.models.Interview;
 import org.rhok.linguist.api.models.Study;
 import org.rhok.linguist.util.StringUtils;
 
+// removed in preference of prompt text per phrase - Warwick
+@Deprecated
 public class RecordingInstructionsActivity extends BaseInterviewActivity {
 
     private static final String TAG = "RecInstructActivity";
