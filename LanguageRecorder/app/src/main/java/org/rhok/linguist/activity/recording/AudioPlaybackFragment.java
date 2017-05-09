@@ -87,8 +87,8 @@ public class AudioPlaybackFragment extends Fragment {
         anim.setRepeatCount(Animation.INFINITE);
         recordingMessageTextView.startAnimation(anim);
 
-        String question = StringUtils.isNullOrEmpty(mPhrase.getEnglish_text(), getString(R.string.interview_audio_recording));
-        recordingQuestionTextView.setText(question);
+        String promptText = ResponseFragmentUtils.getPromptText(this.getActivity(), mPhrase);
+        recordingQuestionTextView.setText(promptText);
 
         ResponseFragmentUtils.showImagePrompt(imageView, mPhrase);
 

@@ -49,27 +49,15 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
     @Override
     protected void onResume() {
         super.onResume();
+        final OfflineStorageHelper helper = new OfflineStorageHelper(this);
+        // mStudies = helper.getStudyListFromAssets(R.raw.test_study_list);
         if(mStudies==null){
-            final OfflineStorageHelper helper = new OfflineStorageHelper(this);
-            //mStudies=helper.getStudyListFromAssets(R.raw.test_study_list);
-            //STOPSHIP quick hack to grab all /phrases.json from API for demo
             IonHelper ionHelper = new IonHelper();
             ionHelper.doGet(ionHelper.getIon().build(this), StudyList.class, "/studies.json")
                     .go()
                     .setCallback(new BaseIonCallback<StudyList>() {
                         @Override
                         public void onSuccess(StudyList result) {
-                            /*for(Phrase phrase:result){
-                                //response_type was missing
-                                if(phrase.getResponse_type()==0)phrase.setResponse_type(Phrase.TYPE_TEXT);
-                                phrase.setAudio(null);
-                            }
-                            Study apiStudy = new Study();
-                            apiStudy.setName("API Study");
-                            apiStudy.setId(-1);
-                            apiStudy.setInstructions("Demo from API");
-                            apiStudy.setPhrases(result);
-                            mStudies.add(mStudies.size(), apiStudy);*/
                             mStudies=result;
                             helper.writeStudyList(result);
                             updateListView();
@@ -83,7 +71,6 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
                             super.onError(response);
                         }
                     });
-
         }
         updateListView();
     }

@@ -92,9 +92,9 @@ public class RecordingAudioFragment extends Fragment {
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
 
-        Phrase phrase =getStudy().getPhrases().get(phraseIndex);
-        String question = StringUtils.isNullOrEmpty(phrase.getEnglish_text(), getString(R.string.interview_audio_recording));
-        recordingQuestionTextView.setText(question);
+        Phrase phrase = getStudy().getPhrases().get(phraseIndex);
+        String promptText = ResponseFragmentUtils.getPromptText(this.getActivity(), phrase);
+        recordingQuestionTextView.setText(promptText);
 
         ResponseFragmentUtils.showImagePrompt(imageView, phrase);
 

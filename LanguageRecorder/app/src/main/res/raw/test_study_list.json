@@ -115,5 +115,53 @@
         "response_type_id": 2
       }
     ]
+  },
+  {
+    "id": 4,
+    "language_id": 1,
+    "name": "input output combinations",
+    "phrases": [
+      {
+        "id": 100,
+//        "english_text": "no image or audio, text response",
+        "response_type_id": 1
+      },{
+        "id": 101,
+//        "english_text": "no image or audio, audio response",
+        "response_type_id": 2
+      },{
+        "id": 102,
+//        "english_text": "no image or audio, both response",
+        "response_type_id": 3
+      },{
+        "id": 103,
+//        "english_text": "no image or audio, choice response",
+        "response_type_id": 1,
+        "choices": ["yeah", "nah"]
+      },{
+        "id": 110,
+//        "english_text": "image, text response",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
+        "response_type_id": 1
+      },{
+        "id": 111,
+//        "english_text": "image, choice response",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
+        "response_type_id": 1,
+        "choices": ["yeah", "nah"]
+      },{
+        "id": 120,
+//        "english_text": "image and audio, text response",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
+        "audio": "https://archive.org/download/testmp3testfile/mpthreetest.mp3",
+        "response_type_id": 1
+      },{
+        "id": 121,
+//        "english_text": "image and audio, audio response",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg",
+        "audio": "https://archive.org/download/testmp3testfile/mpthreetest.mp3",
+        "response_type_id": 2
+      }
+    ]
   }
 ]

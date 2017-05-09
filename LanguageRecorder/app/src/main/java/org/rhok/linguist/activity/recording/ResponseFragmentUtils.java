@@ -1,5 +1,6 @@
 package org.rhok.linguist.activity.recording;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -7,6 +8,7 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 
+import org.rhok.linguist.R;
 import org.rhok.linguist.api.models.Phrase;
 import org.rhok.linguist.code.DiskSpace;
 import org.rhok.linguist.util.Reflect;
@@ -16,6 +18,45 @@ import java.io.File;
 class ResponseFragmentUtils {
 
     private static final String TAG = "ResponseFragmentUtils";
+
+    static String getPromptText(Context context, Phrase phrase) {
+        String phrasePromptText = phrase.getEnglish_text();
+        if (phrasePromptText != null && phrasePromptText.length() > 0)
+            return phrasePromptText;
+        String inputInstruction = getInputInstruction(context, phrase);
+        String outputInstruction = getOutputInstruction(context, phrase);
+        return context.getString(R.string.phrase_prompt_text)
+                .replace("##input_instruction##", inputInstruction)
+                .replace("##output_instruction##", outputInstruction);
+    }
+
+    private static String getInputInstruction(Context context, Phrase phrase) {
+        if (phrase.hasAudio())
+            return context.getString(R.string.phrase_prompt_text_input_audio);
+        if (phrase.hasImage())
+            return context.getString(R.string.phrase_prompt_text_input_picture);
+        // probably not right if we get here...
+        return context.getString(R.string.phrase_prompt_text_input_picture);
+    }
+
+    private static String getOutputInstruction(Context context, Phrase phrase) {
+        if (phrase.getResponse_type() == Phrase.TYPE_AUDIO)
+            return context.getString(R.string.phrase_prompt_text_output_audio);
+        if (phrase.getResponse_type() == Phrase.TYPE_TEXT) {
+            if (phrase.hasChoices())
+                return context.getString(R.string.phrase_prompt_text_output_choices);
+            else
+                return context.getString(R.string.phrase_prompt_text_output_text);
+        }
+        if (phrase.getResponse_type() == Phrase.TYPE_TEXT_AUDIO) {
+            if (phrase.hasChoices())
+                return context.getString(R.string.phrase_prompt_text_output_audio_choices);
+            else
+                return context.getString(R.string.phrase_prompt_text_output_audio_text);
+        }
+        // probably not right if we get here...
+        return context.getString(R.string.phrase_prompt_text_output_text);
+    }
 
     static void showImagePrompt(final ImageView imageView, final Phrase phrase) {
         final AQuery aq = new AQuery(imageView);

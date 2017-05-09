@@ -47,9 +47,8 @@ public class RecordingTextFragment extends Fragment {
         aq.id(R.id.nextRecordingButton).clicked(this, "nextButtonClick");
         Study study = getStudy();
         Phrase phrase = study.getPhrases().get(phraseIndex);
-        int responseType = phrase.getResponse_type();
         //will be either TYPE_TEXT_AUDIO or TEXT. Audio only won't come to this fragment.
-        aq.id(R.id.recordingQuestionTextView).text(responseType == Phrase.TYPE_TEXT_AUDIO ? getString(R.string.interview_transcribe) : phrase.getEnglish_text());
+        aq.id(R.id.recordingQuestionTextView).text(ResponseFragmentUtils.getPromptText(this.getActivity(), phrase));
         ResponseFragmentUtils.showImagePrompt((ImageView)root.findViewById(R.id.captureImageView), phrase);
         if(StringUtils.isNullOrEmpty(phrase.getChoices())){
             aq.id(R.id.answerEditText).visible();

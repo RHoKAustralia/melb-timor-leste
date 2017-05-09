@@ -41,7 +41,7 @@
 
 
     <string name="interview_title">Interview</string>
-    <string name="interview_name">What is your name?</string>
+    <string name="interview_name">What is your full name?</string>
     <string name="interview_age">What is your age?</string>
     <string name="interview_years">(years)</string>
     <string name="interview_gender">What is your gender?</string>
@@ -72,6 +72,15 @@
     <string name="interview_audio_playback_error">Error playing audio. Retry?</string>
     <string name="interview_recording_ok">Is this recording ok?</string>
     <string name="interview_transcribe">What is the transcription for this word?</string>
+
+    <string name="phrase_prompt_text">##input_instruction## and then ##output_instruction##</string>
+    <string name="phrase_prompt_text_input_picture">Look at the picture</string>
+    <string name="phrase_prompt_text_input_audio">Listen to the recording</string>
+    <string name="phrase_prompt_text_output_text">type the word in your language</string>
+    <string name="phrase_prompt_text_output_audio">record it in your language</string>
+    <string name="phrase_prompt_text_output_audio_text">record it and type it in your language</string>
+    <string name="phrase_prompt_text_output_choices">choose the correct option</string>
+    <string name="phrase_prompt_text_output_audio_choices">record it in your language and choose the correct option</string>
 
     <!-- Button settings -->
     <string name="next_button">Next</string>

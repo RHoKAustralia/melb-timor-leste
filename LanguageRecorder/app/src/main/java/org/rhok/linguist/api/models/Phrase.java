@@ -97,4 +97,8 @@ public class Phrase implements Serializable{
     public void setChoices(List<String> choices) {
         this.choices = choices;
     }
+
+    public boolean hasChoices() {
+        return choices != null && choices.size() > 0;
+    }
 }
