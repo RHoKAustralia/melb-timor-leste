@@ -41,7 +41,7 @@
 
 
     <string name="interview_title">Interview</string>
-    <string name="interview_name">What is your name?</string>
+    <string name="interview_name">What is your full name?</string>
     <string name="interview_age">What is your age?</string>
     <string name="interview_years">(years)</string>
     <string name="interview_gender">What is your gender?</string>
@@ -69,8 +69,18 @@
     <string name="interview_recording">Recording</string>
     <string name="interview_audio_playing">Playing</string>
     <string name="interview_audio_replay">Would you like to hear the recording again?</string>
+    <string name="interview_audio_playback_error">Error playing audio. Retry?</string>
     <string name="interview_recording_ok">Is this recording ok?</string>
     <string name="interview_transcribe">What is the transcription for this word?</string>
+
+    <string name="phrase_prompt_text">##input_instruction## and then ##output_instruction##</string>
+    <string name="phrase_prompt_text_input_picture">Look at the picture</string>
+    <string name="phrase_prompt_text_input_audio">Listen to the recording</string>
+    <string name="phrase_prompt_text_output_text">type the word in your language</string>
+    <string name="phrase_prompt_text_output_audio">record it in your language</string>
+    <string name="phrase_prompt_text_output_audio_text">record it and type it in your language</string>
+    <string name="phrase_prompt_text_output_choices">choose the correct option</string>
+    <string name="phrase_prompt_text_output_audio_choices">record it in your language and choose the correct option</string>
 
     <!-- Button settings -->
     <string name="next_button">Next</string>
@@ -120,12 +130,23 @@
     <string name="person_updated_toast">Person updated</string>
     <string name="person_added_toast">Person added</string>
 
+    <!-- interviewer details -->
+    <string name="person_mobile_phone">Mobile Number</string>
+    <string name="person_email">Email</string>
+    <string name="interviewer_name_format">Interviewer: %1$s</string>
+    <string name="interviewer_name_edit">Edit Interviewer</string>
+
     <string name="person_gender_male">Male</string>
     <string name="person_gender_female">Female</string>
 
     <string name="person_education_primary">Primary</string>
     <string name="person_education_secondary">Secondary</string>
     <string name="person_education_university">University</string>
+
+    <string name="menu_cancel_interview">Cancel Interview</string>
+    <string name="menu_upload_interview">Upload</string>
+    <string name="menu_skip_question">Skip Question</string>
+    <string name="interview_response_language_other">Other</string>
 
     <string-array name="person_languages_array">
         <item>english</item>
@@ -142,6 +163,7 @@
     <string name="upload_number_of_people_label">Number of people interviewed</string>
     <string name="upload_upload_data_button">Upload Data</string>
     <string name="upload_starting_upload">starting upload</string>
+    <string name="upload_starting_upload_format">starting upload of %1$d interviews</string>
     <string name="upload_uploading_data">uploading data</string>
     <string name="upload_uploading_audio">uploading audio file</string>
     <string name="upload_upload_complete">upload complete</string>
@@ -184,6 +206,7 @@
     <string name="title_activity_recording_listen">RecordingListenActivity</string>
     <string name="title_activity_recording_transcribe">RecordingTranscribeActivity</string>
     <string name="title_activity_app_settings">AppSettingsActivity</string>
+    <string name="title_activity_interviewer">Interviewer Details</string>
 
 
 </resources>

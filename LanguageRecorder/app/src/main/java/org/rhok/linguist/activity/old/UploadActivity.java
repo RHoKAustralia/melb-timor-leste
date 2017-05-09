@@ -159,7 +159,7 @@ public class UploadActivity extends ActionBarActivity {
         try {
 
             DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-            String json = dbHelper.getAllData();
+            String json = null;//dbHelper.getAllData();
 
             Log.i("LanguageApp", json);
 
@@ -190,7 +190,7 @@ public class UploadActivity extends ActionBarActivity {
     private void uploadAudioData() {
 
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        PersonWord[] words = dbHelper.getAllWords();
+        PersonWord[] words = null;//dbHelper.getAllWords();
 
         if (words == null) {
             return;
@@ -203,8 +203,7 @@ public class UploadActivity extends ActionBarActivity {
             {
                 if (audiofilename.length() > 0)
                 {
-                    String basePath = DiskSpace.getAudioFileBasePath();
-                    File f = new File(basePath + audiofilename);
+                    File f = DiskSpace.getInterviewRecording(audiofilename);
 
                     if (f.exists()) {
 
@@ -212,7 +211,7 @@ public class UploadActivity extends ActionBarActivity {
                         if (words[i].word != null && words.length > 0) {
                             addMessage(msg + ": " + audiofilename);
                         }
-                        doFileUpload(basePath + audiofilename, audiofilename);
+                        doFileUpload(f.getAbsolutePath(), audiofilename);
                     }
                 }
             }

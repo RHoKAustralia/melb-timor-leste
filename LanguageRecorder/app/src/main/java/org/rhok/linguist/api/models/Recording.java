@@ -9,12 +9,20 @@ import java.util.Date;
  */
 public class Recording implements Serializable{
 
+    public static final String SKIPPED_TEXT_RESPONSE = "<skipped>";
+    /**
+     * local filename
+     */
+    private String __audio_filename;
+
     private int id;
     private Date recorded;
     private int interview_id;
     private int language_id;
     private int phrase_id;
-
+    /**
+     * the url to the audio, once it's been uploaded
+     */
     private String audio_url;
     private String text_response;
 
@@ -66,6 +74,14 @@ public class Recording implements Serializable{
 
     public void setAudio_url(String audio_url) {
         this.audio_url = audio_url;
+    }
+
+    public String get__audio_filename() {
+        return __audio_filename;
+    }
+
+    public void set__audio_filename(String __audio_filename) {
+        this.__audio_filename = __audio_filename;
     }
 
     public String getText_response() {

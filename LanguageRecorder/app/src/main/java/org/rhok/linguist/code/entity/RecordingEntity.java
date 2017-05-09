@@ -26,7 +26,7 @@ public class RecordingEntity implements Serializable{
         r.setInterview_id(interviewid);
         r.setLanguage_id(languageid);
         r.setPhrase_id(phraseid);
-        r.setAudio_url(audiofilename);
+        r.set__audio_filename(audiofilename);
         r.setText_response(word);
         return r;
     }

@@ -17,6 +17,7 @@ public class Phrase implements Serializable{
 
     private int id;
     private String english_text;
+    /** URL pointing to audio prompt */
     private String audio;
     private String image;
     private int response_type_id;
@@ -38,10 +39,30 @@ public class Phrase implements Serializable{
         this.english_text = english_text;
     }
 
+    /** Get URL of audio prompt data */
     public String getAudio() {
+        if(audio==null||audio.contains("missing.png"))return null;
+        return audio;
+    }
+    public String formatAudioUrl(){
+        String audio = getAudio();
+        if(audio!=null) {
+            if (audio.toLowerCase().startsWith("http")) return audio;
+            if(audio.startsWith("/")) return LinguistApplication.getWebserviceUrl()+audio;
+        }
         return audio;
     }
 
+    public boolean hasAudio() {
+        return getAudio() != null;
+    }
+
+    public boolean hasImage() {
+        return getImage() != null;
+    }
+
+
+    /** Set URL of audio prompt data */
     public void setAudio(String audio) {
         this.audio = audio;
     }
@@ -75,5 +96,9 @@ public class Phrase implements Serializable{
 
     public void setChoices(List<String> choices) {
         this.choices = choices;
+    }
+
+    public boolean hasChoices() {
+        return choices != null && choices.size() > 0;
     }
 }

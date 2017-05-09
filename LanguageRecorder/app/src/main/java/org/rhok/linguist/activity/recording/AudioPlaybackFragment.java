@@ -1,7 +1,6 @@
 package org.rhok.linguist.activity.recording;
 
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,39 +20,44 @@ import com.androidquery.callback.AjaxStatus;
 import org.rhok.linguist.R;
 import org.rhok.linguist.api.models.Phrase;
 import org.rhok.linguist.api.models.Study;
-import org.rhok.linguist.application.LinguistApplication;
+import org.rhok.linguist.code.DiskSpace;
 import org.rhok.linguist.util.StringUtils;
 
 import java.io.File;
 
 /**
- * Play an audio question
+ * Handles phrases/questions that contain audio prompts.
  */
 public class AudioPlaybackFragment extends Fragment {
 
     public static final String TAG = "AudioPlaybackFragment";
+    public static final int STATE_LOADING = 0;
+    public static final int STATE_PLAYING = 1;
+    public static final int STATE_FINISHED = 2;
+    public static final int STATE_ERROR = 3;
+
+    // UI elements
     TextView recordingQuestionTextView;
     TextView recordingMessageTextView;
     TextView recordReplayTextView;
+    ImageView imageView;
     Button yesButton;
     Button noButton;
     Animation anim;
-    ImageView imageView;
     ProgressBar progressBar;
+
     private AQuery aq;
-
-
-    private int phraseIndex;
-    private boolean transcribing = false;
-    private boolean playing = false;
-
     private AudioThread audioThread;
+    private int mPhraseIndex;
+    private Phrase mPhrase;
+    private boolean playing = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        phraseIndex = getArguments().getInt(RecordingFragmentActivity.ARG_PHRASE_INDEX);
         startAudioThreadIfNull();
+        mPhraseIndex = getArguments().getInt(RecordingFragmentActivity.ARG_PHRASE_INDEX);
+        mPhrase = getStudy().getPhrases().get(mPhraseIndex);
     }
 
     @Override
@@ -64,12 +68,12 @@ public class AudioPlaybackFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View root = inflater.inflate(R.layout.fragment_audio_playback, container, false);
-        aq=new AQuery(root);
+        aq = new AQuery(root);
+        imageView = (ImageView)root.findViewById(R.id.captureImageView);
 
         recordingQuestionTextView = (TextView) root.findViewById(R.id.recordingQuestionTextView);
-        recordingMessageTextView  = (TextView) root.findViewById(R.id.recordingMessageTextView);
+        recordingMessageTextView = (TextView) root.findViewById(R.id.recordingMessageTextView);
         recordReplayTextView = (TextView) root.findViewById(R.id.recordReplayTextView);
         progressBar = (ProgressBar) root.findViewById(R.id.progress);
 
@@ -83,9 +87,10 @@ public class AudioPlaybackFragment extends Fragment {
         anim.setRepeatCount(Animation.INFINITE);
         recordingMessageTextView.startAnimation(anim);
 
-        Phrase phrase =getStudy().getPhrases().get(phraseIndex);
-        String question = StringUtils.isNullOrEmpty(phrase.getEnglish_text(), getString(R.string.interview_audio_recording));
-        recordingQuestionTextView.setText(question);
+        String promptText = ResponseFragmentUtils.getPromptText(this.getActivity(), mPhrase);
+        recordingQuestionTextView.setText(promptText);
+
+        ResponseFragmentUtils.showImagePrompt(imageView, mPhrase);
 
         startAudioThreadIfNull();
 
@@ -105,15 +110,35 @@ public class AudioPlaybackFragment extends Fragment {
         }
     }
 
+    /**
+     * Play the phrase's audio prompt
+     */
+    private void playPhraseAudio() {
+        stopPlaying();
+        File file = getPhraseAudioFile();
+        Log.d(TAG, "playPhraseAudio: " + file.getAbsolutePath());
+        audioThread.setPlaybackCompletionListener(new AudioThread.PlaybackCompletionListener() {
+            @Override
+            public void onPlaybackComplete() {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        onPlaybackStateChanged(STATE_FINISHED);
+                    }
+                });
+            }
 
-    private void startPlaying(File file)
-    {
-        Log.d(TAG, "playRecording(): " + file.getAbsolutePath());
+            @Override
+            public void onPlaybackError(Exception e) {
+                onPlaybackStateChanged(STATE_ERROR);
+            }
+        });
         audioThread.playFile(file.getAbsolutePath());
+        onPlaybackStateChanged(STATE_PLAYING);
         playing = true;
     }
-    private void stopPlaying()
-    {
+
+    private void stopPlaying() {
         audioThread.stopPlaying();
         playing = false;
     }
@@ -128,67 +153,76 @@ public class AudioPlaybackFragment extends Fragment {
         releaseAudioThread();
         // Another activity is taking focus (this activity is about to be "paused").
     }
+
     @Override
     public void onResume() {
         super.onResume();
         startAudioThreadIfNull();
         if (!playing) {
-            loadAudioFile(getStudy().getPhrases().get(phraseIndex));
-            playing = true;
+            loadPhraseAudio(new Runnable() {
+                @Override
+                public void run() {
+                    playPhraseAudio();
+                }
+            });
         }
-        // The activity has become visible (it is now "resumed").
     }
 
-    private void loadAudioFile(Phrase phrase){
+    /**
+     * Get the audio file associated with this phrase
+     */
+    private File getPhraseAudioFile() {
+        return DiskSpace.getPhraseAudio(mPhrase);
+    }
+
+    /**
+     * Load audio prompt from file / web
+     *
+     * @param onLoadComplete Action to perform once loading is complete.
+     */
+    private void loadPhraseAudio(final Runnable onLoadComplete) {
         onPlaybackStateChanged(STATE_LOADING);
-        File dir = new File(getActivity().getFilesDir().getPath(), LinguistApplication.DIR_INTERVIEW_MEDIA);
-        File audioFile = new File(dir, String.format("%d_audio.m4a", phrase.getId()));
-        if(audioFile.exists() && audioFile.length()>0){
-            startPlaying(audioFile);
-        }
-        else {
-            aq.download(phrase.getAudio(), audioFile, new AjaxCallback<File>(){
+        File audioFile = getPhraseAudioFile();
+        if (audioFile.exists() && audioFile.length() > 0) {
+            onLoadComplete.run();
+        } else {
+            aq.download(mPhrase.formatAudioUrl(), audioFile, new AjaxCallback<File>() {
                 @Override
                 public void callback(String url, File file, AjaxStatus status) {
-                    if(file!=null && file.exists() && file.length()>0 ){
-                        startPlaying(file);
+                    if (file != null && file.exists() && file.length() > 0) {
+                        onLoadComplete.run();
+                    }
+                    else{
+                        onPlaybackStateChanged(STATE_ERROR);
                     }
                 }
             });
         }
     }
 
-    public Study getStudy(){
-        return ((RecordingFragmentActivity)getActivity()).getStudy();
+    public Study getStudy() {
+        return ((RecordingFragmentActivity) getActivity()).getStudy();
     }
 
-
-
+    @SuppressWarnings("unused")
     public void noButtonClick(View view) {
-
-    //all done
         stopPlaying();
-        ((RecordingFragmentActivity)getActivity()).onAudioQuestionFinished(phraseIndex);
-
+        ((RecordingFragmentActivity) getActivity()).onAudioQuestionFinished(mPhraseIndex);
     }
 
+    @SuppressWarnings("unused")
     public void yesButtonClick(View view) {
-//TODO replay
-        stopPlaying();
-
-        startPlaying(null);
+        playPhraseAudio();
     }
 
-    public static final int STATE_LOADING =0;
-    public static final int STATE_PLAYING =1;
-    public static final int STATE_FINISHED =2;
-
-    public void onPlaybackStateChanged(int state){
+    /**
+     * Update UI based on given state.
+     */
+    private void onPlaybackStateChanged(int state) {
         switch (state) {
             case STATE_LOADING:
                 recordingQuestionTextView.setVisibility(View.VISIBLE);
-                recordingMessageTextView.startAnimation(anim);
-                recordingMessageTextView.setVisibility(View.VISIBLE);
+                recordingMessageTextView.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
                 recordReplayTextView.setVisibility(View.GONE);
 
@@ -196,15 +230,15 @@ public class AudioPlaybackFragment extends Fragment {
                 noButton.setVisibility(View.GONE);
                 break;
             case STATE_PLAYING:
-            recordingQuestionTextView.setVisibility(View.VISIBLE);
-            recordingMessageTextView.startAnimation(anim);
-            recordingMessageTextView.setVisibility(View.VISIBLE);
+                recordingQuestionTextView.setVisibility(View.VISIBLE);
+                recordingMessageTextView.startAnimation(anim);
+                recordingMessageTextView.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
 
-            recordReplayTextView.setVisibility(View.GONE);
+                recordReplayTextView.setVisibility(View.GONE);
 
-            yesButton.setVisibility(View.GONE);
-            noButton.setVisibility(View.GONE);
+                yesButton.setVisibility(View.GONE);
+                noButton.setVisibility(View.GONE);
                 break;
             case STATE_FINISHED:
                 recordingQuestionTextView.setVisibility(View.VISIBLE);
@@ -213,9 +247,23 @@ public class AudioPlaybackFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
 
                 recordReplayTextView.setVisibility(View.VISIBLE);
+                recordReplayTextView.setText(R.string.interview_audio_replay);
 
                 yesButton.setVisibility(View.VISIBLE);
                 noButton.setVisibility(View.VISIBLE);
+                break;
+            case STATE_ERROR: //error downloading/playing file. Still let them continue with other Qs.
+                recordingQuestionTextView.setVisibility(View.VISIBLE);
+                recordingMessageTextView.clearAnimation();
+                recordingMessageTextView.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
+
+                recordReplayTextView.setVisibility(View.VISIBLE);
+                recordReplayTextView.setText(R.string.interview_audio_playback_error);
+
+                yesButton.setVisibility(View.VISIBLE);
+                noButton.setVisibility(View.VISIBLE);
+
                 break;
         }
     }

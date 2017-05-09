@@ -26,12 +26,17 @@ public class PersonListActivity extends AppCompatActivity implements AdapterView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
+        boolean hasNext = getIntent().hasExtra(IntentUtil.ARG_NEXT_INTENT);
+        findViewById(R.id.nextbutton).setVisibility(hasNext?View.VISIBLE:View.GONE);
+
         listView= (ListView) findViewById(R.id.listview);
         listView.setOnItemClickListener(this);
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         Person[] people = dbHelper.getPeople();
         PersonAdapter adapter = new PersonAdapter( people);
         listView.setAdapter(adapter);
+
     }
 
     public void nextButtonClick(View view){

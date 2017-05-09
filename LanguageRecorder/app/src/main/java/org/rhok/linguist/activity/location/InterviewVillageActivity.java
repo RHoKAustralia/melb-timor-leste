@@ -11,6 +11,7 @@ import android.widget.Toast;
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.activity.interview.InterviewNameActivity;
+import org.rhok.linguist.activity.recording.InterviewResponseLanguageActivity;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.code.ListViewPopulator;
 import org.rhok.linguist.code.entity.Location;
@@ -18,7 +19,6 @@ import org.rhok.linguist.code.entity.Person;
 import org.rhok.linguist.code.entity.Village;
 import org.rhok.linguist.activity.interview.BaseInterviewActivity;
 import org.rhok.linguist.activity.interview.InterviewLivedLifeActivity;
-import org.rhok.linguist.activity.recording.RecordingInstructionsActivity;
 
 import java.util.ArrayList;
 
@@ -115,14 +115,16 @@ public class InterviewVillageActivity extends BaseInterviewActivity {
                 dbHelper.updatePersonLivesVillage(_person.personid, selectedVillage);
                 intent = new Intent(this, InterviewLivedLifeActivity.class);
                 intent.putExtra(IntentUtil.ARG_PERSON, _person);
+                intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
+                        getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
             } else {
                 _person.bornVillage = selectedVillage;
                 dbHelper.updatePersonBornVillage(_person.personid, selectedVillage);
-                intent = new Intent(this, RecordingInstructionsActivity.class);
+                intent = getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT);
+                if(intent==null) intent=new Intent(this, InterviewResponseLanguageActivity.class);
                 intent.putExtra(IntentUtil.ARG_PERSON_ID, _person.personid);
             }
-            intent.putExtra(InterviewNameActivity.ARG_FINAL_INTENT,
-                    getIntent().getParcelableExtra(InterviewNameActivity.ARG_FINAL_INTENT));
+
             startActivity(intent);
         }
     }

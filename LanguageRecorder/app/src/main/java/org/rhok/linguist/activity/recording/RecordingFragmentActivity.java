@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import org.rhok.linguist.R;
@@ -16,6 +18,8 @@ import org.rhok.linguist.api.models.Recording;
 import org.rhok.linguist.api.models.Study;
 import org.rhok.linguist.code.DatabaseHelper;
 import org.rhok.linguist.util.StringUtils;
+
+import java.util.Date;
 
 /**
  * Record audio/text for Record objects, using fragments and remote images
@@ -60,6 +64,34 @@ public class RecordingFragmentActivity extends BaseInterviewActivity {
         return study;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_interview_recording, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_skip_question:
+                int phraseIndex = getCurrentPhraseIndex();
+                if(phraseIndex>=0) {
+                    Recording recording = interview.getRecordings().get(phraseIndex);
+                    if(StringUtils.isNullOrEmpty(recording.getText_response()))
+                        recording.setText_response(Recording.SKIPPED_TEXT_RESPONSE);
+                    recording.setRecorded(new Date());
+                    navigateNextPhrase(phraseIndex + 1);
+                }
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    private int getCurrentPhraseIndex(){
+        Fragment f = getMainFragment();
+        if(f!=null&&f.getArguments()!=null) return f.getArguments().getInt(ARG_PHRASE_INDEX, -1);
+        return -1;
+    }
+
     private void finishInterview() {
         interview.set__completed(true);
         DatabaseHelper db = new DatabaseHelper(this);
@@ -97,7 +129,8 @@ public class RecordingFragmentActivity extends BaseInterviewActivity {
 
     public void onRecordingAudioFinished(int phraseIndex, String audioFilename) {
         Recording recording = interview.getRecordings().get(phraseIndex);
-        recording.setAudio_url(audioFilename);
+        recording.set__audio_filename(audioFilename);
+        recording.setRecorded(new Date());
 
         if (study.getPhrases().get(phraseIndex).getResponse_type() == Phrase.TYPE_TEXT_AUDIO) {
             //requires text as well as audio, go to the text fragment
@@ -115,6 +148,7 @@ public class RecordingFragmentActivity extends BaseInterviewActivity {
         int interviewId = interview.get__appid();
         Recording recording = interview.getRecordings().get(phraseIndex);
         recording.setText_response(answer);
+        recording.setRecorded(new Date());
         navigateNextPhrase(phraseIndex + 1);
     }
 

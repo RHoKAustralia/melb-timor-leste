@@ -5,10 +5,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import org.rhok.linguist.R;
+import org.rhok.linguist.code.DiskSpace;
+import org.rhok.linguist.code.PreferencesHelper;
 
 import java.util.Locale;
+import java.util.UUID;
 
 /**
  * Created by lachlan on 19/06/2015.
@@ -18,19 +22,26 @@ import java.util.Locale;
  */
 public class LinguistApplication extends Application {
 
+    private static final String TAG = "App";
+
     public static final boolean DEBUG = true;
     private Locale locale = null;
     private static LinguistApplication instance;
 
-    public static final String DIR_INTERVIEW_MEDIA = "interviewMedia";
     @Override
     public void onCreate()
     {
         super.onCreate();
         instance=this;
+        SharedPreferences appPrefs = getSharedPreferences(PreferencesHelper.PREFS_FILE_APPPREFS, 0);
+        if(!appPrefs.contains(PreferencesHelper.APPPREFS_KEY_INSTALLATION_ID)){
+            appPrefs.edit().putString(PreferencesHelper.APPPREFS_KEY_INSTALLATION_ID, UUID.randomUUID().toString()).commit();
+        }
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         Configuration config = getBaseContext().getResources().getConfiguration();
+
+        if (DiskSpace.createAppDirs()) Log.e(TAG, "Failed to create application directories");
 
         Boolean tetumEnabled = settings.getBoolean("pref_tetum", false);
 

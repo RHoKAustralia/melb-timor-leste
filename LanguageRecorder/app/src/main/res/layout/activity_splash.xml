@@ -30,6 +30,7 @@
 
     </RelativeLayout>
 
-    <Button style="@style/nextButtonStyle" android:text="@string/start_button" />
+
+    <Button style="@style/nextButtonStyle" android:text="@string/start_button" android:id="@+id/nextbutton"/>
 
 </RelativeLayout>

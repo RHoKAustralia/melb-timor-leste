@@ -11,11 +11,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
+        <ImageView
+            android:src="@drawable/word1"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+            android:id="@+id/captureImageView" />
 
         <TextView
-            android:paddingTop="0px"
-            android:layout_marginTop="10px"
+            android:paddingTop="0dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/interview_audio_recording"
@@ -29,8 +36,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/progress"/>
         <TextView
-            android:paddingTop="0px"
-            android:layout_marginTop="0px"
+            android:paddingTop="0dp"
+            android:layout_marginTop="0dp"
             android:gravity="center_horizontal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#ff0000"

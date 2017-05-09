@@ -22,8 +22,8 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:palette-v7:+'
-    compile 'com.android.support:support-v4:+'
+    compile 'com.android.support:palette-v7:22.2.0'
+    compile 'com.android.support:support-v4:22.1.10'
     compile project(':AndroidAsync')
     compile 'com.google.code.gson:gson:2.3.1'
 }

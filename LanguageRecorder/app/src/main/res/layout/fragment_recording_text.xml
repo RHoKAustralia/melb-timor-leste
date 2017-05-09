@@ -21,8 +21,8 @@
             android:id="@+id/captureImageView" />
 
         <TextView
-            android:paddingTop="0px"
-            android:layout_marginTop="10px"
+            android:paddingTop="0dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/interview_transcribe"
@@ -35,9 +35,9 @@
 
 
         <EditText
-            android:paddingTop="0px"
+            android:paddingTop="0dp"
             android:singleLine="true"
-            android:layout_marginTop="0px"
+            android:layout_marginTop="0dp"
             android:gravity="center_horizontal"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/answerEditText"

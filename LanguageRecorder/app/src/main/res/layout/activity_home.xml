@@ -25,7 +25,7 @@
         android:layout_height="wrap_content">
 
         <TextView android:text="@string/home_select_person"
-            android:layout_marginBottom="50px"
+            android:layout_marginBottom="50dp"
             android:textSize="10pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -57,8 +57,8 @@
         android:layout_height="match_parent">
 
         <Button
-            android:layout_marginTop="50px"
-            android:layout_marginBottom="50px"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
             android:onClick="newPersonButton"
             android:text="@string/home_add_person_button"
             android:id="@+id/add_person"
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:layout_marginBottom="50px"
+            android:layout_marginBottom="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/home_start_capturing_button"

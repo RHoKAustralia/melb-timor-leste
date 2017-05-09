@@ -31,12 +31,15 @@ public class Interview implements Serializable{
      * id of interviewer (user) in local db. NYI.
      */
     private int __interviewerid;
+    /**
+     * Language that the interviewee responds in
+     */
+    private String response_language;
     private int id;
     private Date interview_time;
     private int study_id;
     private int interviewer_id;
     private int interviewee_id;
-    private int locale_id;
 
     private List<Recording> recordings;
 
@@ -110,20 +113,22 @@ public class Interview implements Serializable{
         this.interviewee_id = interviewee_id;
     }
 
-    public int getLocale_id() {
-        return locale_id;
-    }
-
-    public void setLocale_id(int locale_id) {
-        this.locale_id = locale_id;
-    }
-
     public List<Recording> getRecordings() {
         return recordings;
     }
 
     public void setRecordings(List<Recording> recordings) {
         this.recordings = recordings;
+    }
+
+    public String getResponse_language()
+    {
+        return response_language;
+    }
+
+    public void setResponse_language(String language)
+    {
+        response_language = language;
     }
 
     public boolean is__completed() {

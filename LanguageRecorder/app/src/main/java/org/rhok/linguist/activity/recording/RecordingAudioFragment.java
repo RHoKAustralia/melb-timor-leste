@@ -17,8 +17,12 @@ import com.androidquery.AQuery;
 import org.rhok.linguist.R;
 import org.rhok.linguist.api.models.Phrase;
 import org.rhok.linguist.api.models.Study;
+import org.rhok.linguist.code.DiskSpace;
 import org.rhok.linguist.util.Reflect;
 import org.rhok.linguist.util.StringUtils;
+
+import java.io.File;
+import java.util.UUID;
 
 public class RecordingAudioFragment extends Fragment {
 
@@ -39,13 +43,26 @@ public class RecordingAudioFragment extends Fragment {
     private boolean playing = false;
 
     private AudioThread audioThread;
+    private String mAudioFilename;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate");
         phraseIndex = getArguments().getInt(RecordingFragmentActivity.ARG_PHRASE_INDEX);
-        startAudioThreadIfNull();
+        if(savedInstanceState!=null){
+            mAudioFilename=savedInstanceState.getString("mAudioFilename");
+        }
+        if(mAudioFilename==null){
+            mAudioFilename= UUID.randomUUID().toString().replaceAll("-", "").concat(".mp4");
+        }
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("mAudioFilename", mAudioFilename);
     }
 
     @Override
@@ -74,25 +91,15 @@ public class RecordingAudioFragment extends Fragment {
         anim.setStartOffset(20);
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
-        recordingMessageTextView.startAnimation(anim);
 
-        Phrase phrase =getStudy().getPhrases().get(phraseIndex);
-        String question = StringUtils.isNullOrEmpty(phrase.getEnglish_text(), getString(R.string.interview_audio_recording));
-        recordingQuestionTextView.setText(question);
-        if(StringUtils.isNullOrEmpty(phrase.getImage())){
-            aq.id(imageView).gone();
-        }
-        else if (phrase.formatImageUrl().startsWith("http")){
-            aq.id(imageView).image(phrase.formatImageUrl());
-        }
-        else{
-            //in case it refers to a built-in image, eg "word4"
-            int resId = Reflect.getImageResId(phrase.getImage());
-            aq.id(imageView).image(resId);
-        }
+        Phrase phrase = getStudy().getPhrases().get(phraseIndex);
+        String promptText = ResponseFragmentUtils.getPromptText(this.getActivity(), phrase);
+        recordingQuestionTextView.setText(promptText);
 
-        startAudioThreadIfNull();
-        startRecording();
+        ResponseFragmentUtils.showImagePrompt(imageView, phrase);
+
+       // startAudioThreadIfNull();
+       // startRecording();
 
         return root;
     }
@@ -110,10 +117,13 @@ public class RecordingAudioFragment extends Fragment {
         }
     }
 
-
+    private String getAudioFilenameWithPath(){
+        return DiskSpace.getInterviewRecording(mAudioFilename).getAbsolutePath();
+    }
     private void startRecording()
     {
-        audioThread.startRecording();
+        audioThread.startRecording(getAudioFilenameWithPath());
+        onPlaybackStateChanged(STATE_RECORDING);
     }
     private void stopRecording()
     {
@@ -121,7 +131,8 @@ public class RecordingAudioFragment extends Fragment {
     }
     private void startPlaying()
     {
-        audioThread.playRecording();
+        audioThread.playFile(getAudioFilenameWithPath(), true);
+        onPlaybackStateChanged(STATE_PLAYING);
         playing = true;
     }
     private void stopPlaying()
@@ -145,12 +156,24 @@ public class RecordingAudioFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        startAudioThreadIfNull();
-        if (playingIsPaused) {
-            startPlaying();
-            playingIsPaused = false;
-        }
-        // The activity has become visible (it is now "resumed").
+        onPlaybackStateChanged(STATE_LOADING);
+        //noinspection ConstantConditions
+        getView().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //init audio thread 150ms after fragment resumes, instead of in onCreate.
+                //allows time for any previous fragment's threads to be disposed first.
+                startAudioThreadIfNull();
+                File file = new File(getAudioFilenameWithPath());
+                if (playingIsPaused || file.exists()) {
+                    startPlaying();
+                    playingIsPaused = false;
+                } else {
+                    startRecording();
+                }
+
+            }
+        }, 150L);
     }
 
     public Study getStudy(){
@@ -159,35 +182,12 @@ public class RecordingAudioFragment extends Fragment {
 
     public void nextButtonClick(View view) {
 
-        if (!transcribing) {
-
             stopRecording();
             startPlaying();
-
-            recordingQuestionTextView.setVisibility(View.GONE);
-            recordingMessageTextView.clearAnimation();
-            recordingMessageTextView.setVisibility(View.GONE);
-            nextButton.setVisibility(View.GONE);
-
-            recordOkTextView.setVisibility(View.VISIBLE);
-
-            yesButton.setVisibility(View.VISIBLE);
-            noButton.setVisibility(View.VISIBLE);
-
-        }
 
     }
 
     public void noButtonClick(View view) {
-        recordingQuestionTextView.setVisibility(View.VISIBLE);
-        recordingMessageTextView.startAnimation(anim);
-        recordingMessageTextView.setVisibility(View.VISIBLE);
-        nextButton.setVisibility(View.VISIBLE);
-
-        recordOkTextView.setVisibility(View.GONE);
-
-        yesButton.setVisibility(View.GONE);
-        noButton.setVisibility(View.GONE);
 
         stopPlaying();
         startRecording();
@@ -197,16 +197,42 @@ public class RecordingAudioFragment extends Fragment {
 
         stopPlaying();
 
-        recordOkTextView.setVisibility(View.GONE);
-
-        yesButton.setVisibility(View.GONE);
-        noButton.setVisibility(View.GONE);
-
-        nextButton.setVisibility(View.VISIBLE);
-
-
-
         transcribing = true;
-        ((RecordingFragmentActivity)getActivity()).onRecordingAudioFinished(phraseIndex,  audioThread.getAudioFilename());
+        ((RecordingFragmentActivity)getActivity()).onRecordingAudioFinished(phraseIndex, mAudioFilename);
+    }
+    private static final int STATE_LOADING =0;
+    private static final int STATE_RECORDING =1;
+    private static final int STATE_PLAYING =2;
+    private void onPlaybackStateChanged(int state){
+        switch (state){
+            case STATE_LOADING:
+            case STATE_RECORDING:
+                recordingQuestionTextView.setVisibility(View.VISIBLE);
+                recordingMessageTextView.startAnimation(anim);
+                recordingMessageTextView.setVisibility(View.VISIBLE);
+                nextButton.setVisibility(View.VISIBLE);
+
+                recordOkTextView.setVisibility(View.GONE);
+
+                yesButton.setVisibility(View.GONE);
+                noButton.setVisibility(View.GONE);
+
+                if(state==STATE_RECORDING){
+                    recordingMessageTextView.startAnimation(anim);
+                }
+                nextButton.setEnabled(state==STATE_RECORDING);
+                break;
+            case STATE_PLAYING:
+                recordingQuestionTextView.setVisibility(View.GONE);
+                recordingMessageTextView.clearAnimation();
+                recordingMessageTextView.setVisibility(View.GONE);
+                nextButton.setVisibility(View.GONE);
+
+                recordOkTextView.setVisibility(View.VISIBLE);
+
+                yesButton.setVisibility(View.VISIBLE);
+                noButton.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 }

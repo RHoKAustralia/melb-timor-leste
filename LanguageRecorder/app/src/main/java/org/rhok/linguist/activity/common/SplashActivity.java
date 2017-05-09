@@ -6,19 +6,26 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.IntentUtil;
 import org.rhok.linguist.activity.interview.InterviewNameActivity;
 import org.rhok.linguist.activity.old.HomeActivity;
 import org.rhok.linguist.activity.old.UploadActivity;
+import org.rhok.linguist.activity.recording.InterviewResponseLanguageActivity;
 import org.rhok.linguist.activity.recording.RecordingInstructionsActivity;
+import org.rhok.linguist.api.models.Interviewer;
 import org.rhok.linguist.application.LinguistApplication;
 import org.rhok.linguist.code.LocaleHelper;
+import org.rhok.linguist.code.PreferencesHelper;
+import org.rhok.linguist.util.StringUtils;
 
 
 public class SplashActivity extends AppCompatActivity {
 
+    private Interviewer interviewer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         //ActionBar actionBar = getSupportActionBar();
         //actionBar.hide();
+
 
     }
 
@@ -53,10 +61,7 @@ public class SplashActivity extends AppCompatActivity {
             case R.id.action_settings:
                 intent = new Intent(this, AppSettingsActivity.class);
                 break;
-            case R.id.action_skip:
-                intent = new Intent(this, RecordingInstructionsActivity.class);
-                intent.putExtra(IntentUtil.ARG_PERSON_ID, 1);
-                break;
+
             case R.id.action_upload:
                 intent = new Intent(this, UploadInterviewsActivity.class);
                 break;
@@ -65,6 +70,10 @@ public class SplashActivity extends AppCompatActivity {
                 break;
             case R.id.menu_person_list:
                 intent = new Intent(this, PersonListActivity.class);
+                break;
+            case R.id.action_edit_interviewer:
+                editInterviewerClick(null);
+                break;
         }
         if(intent!=null){
             startActivity(intent);
@@ -83,6 +92,15 @@ public class SplashActivity extends AppCompatActivity {
         if (LocaleHelper.updateLocale(getBaseContext(), this)) {
             this.recreate();
         }
+        interviewer = PreferencesHelper.getInterviewer();
+        if (interviewer==null){
+            //create default
+            interviewer = PreferencesHelper.createDefaultInterviewer();
+            PreferencesHelper.saveInterviewer(interviewer);
+        }
+        getSupportActionBar().setSubtitle(getString(R.string.interviewer_name_format,
+                interviewer.getName())) ;
+
 
     }
 
@@ -92,4 +110,8 @@ public class SplashActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void editInterviewerClick(View view) {
+        Intent intent = new Intent(this, InterviewerActivity.class);
+        startActivity(intent);
+    }
 }
