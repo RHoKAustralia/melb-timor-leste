@@ -12,6 +12,15 @@ To build the application you will need Android Studio.
     open the LanguageRecorder directory in Android Studio
     run using Android Studio
 
+*To create a release*
+
+- go to [github](https://github.com/RHoKAustralia/melb-timor-leste/releases
+- click 'Draft a new release'
+- add relevant details
+- build the apk in Android Studio by selecting Build -> Build APK
+- the app apk will be built under ~/app/build/outputs/apk/
+- upload the app to the release
+
 *Local Linguist Server*
 
 The server component and instructions for setting it up are avaliable here:
