@@ -4,7 +4,7 @@
     <string name="request_fail">Deskulpa, ligasaun ba internet lakon. Favór ida koko fali.</string>
     <string name="request_fail_server_error">Iha problema ho ami nia ligasaun internet. Favór ida koko fali orsida</string>
     <string name="request_fail_unauthorized">"Deskulpa, ita log out tiha ona. Favor ida login fali."</string>
-    <string name="request_fail_re_auth">Ita logout tiha ona, prosesu hela&#x2026;</string>
+    <string name="request_fail_re_auth">Ita logout tiha ona, prosesu hela…</string>
     <string name="no_internet_available">Laiha asesu ba internet</string>
     <string name="empty_result">Laiha dadus atu foti agora.</string>
 
@@ -46,7 +46,7 @@
     <string name="interview_years">(tinan)</string>
     <string name="interview_gender">Ita mane ka feto?</string>
     <string name="interview_occupation">Ita-nia servisu saida?</string>
-    <string name="interview_education">Ita-nia edukasaun to'o iha ne'ebé?</string>
+    <string name="interview_education">"Ita-nia edukasaun to'o iha ne'ebé?"</string>
     <string name="interview_primarylanguage">Ita-nia lian inan saida?</string>
     <string name="interview_morelanguages">Ita hatene lian seluk ka lae?</string>
 
@@ -64,14 +64,14 @@
 
     <string name="interview_lived_length">Ita moris iha ##village## tinan hira ona?</string>
 
-    <string name="interview_audio_instructions">Favor ida temi liafuan ba foto ne'ebé ita haree.</string>
-    <string name="interview_audio_recording">Ne'e saida?</string>
+    <string name="interview_audio_instructions">"Favor ida temi liafuan ba foto ne'ebé ita haree."</string>
+    <string name="interview_audio_recording">"Ne'e saida?"</string>
     <string name="interview_recording">Grava hela</string>
     <string name="interview_audio_playing">Rona hela gravasaun</string>
     <string name="interview_audio_replay">Ita hakarak rona fali gravasaun?</string>
     <string name="interview_audio_playback_error">Ita labele rona gravasaun. Koko fali?</string>
-    <string name="interview_recording_ok">Gravasaun ne'e di'ak ka lae?</string>
-    <string name="interview_transcribe">Ita hakerek liafuan ne'e hanesan saida?</string>
+    <string name="interview_recording_ok">"Gravasaun ne'e di'ak ka lae?"</string>
+    <string name="interview_transcribe">"Ita hakerek liafuan ne'e hanesan saida?"</string>
 
     <string name="phrase_prompt_text">##input_instruction## depois ##output_instruction##</string>
     <string name="phrase_prompt_text_input_picture">Haree foto </string>
@@ -79,8 +79,8 @@
     <string name="phrase_prompt_text_output_text">hakerek liafaun iha ita-nia lian</string>
     <string name="phrase_prompt_text_output_audio">grava iha ita-nia lian</string>
     <string name="phrase_prompt_text_output_audio_text">grava no hakerek iha ita nia lian</string>
-    <string name="phrase_prompt_text_output_choices">hili opsaun ne'ebé loos</string>
-    <string name="phrase_prompt_text_output_audio_choices">grava iha ita nia lian, no hili opsaun ne'ebé loos</string>
+    <string name="phrase_prompt_text_output_choices">"hili opsaun ne'ebé loos"</string>
+    <string name="phrase_prompt_text_output_audio_choices">"grava iha ita nia lian, no hili opsaun ne'ebé loos"</string>
 
     <!-- Button settings -->
     <string name="next_button">Tuirmai</string>
@@ -111,7 +111,7 @@
 
     <string name="person_title">Aumenta ema foun</string>
     <string name="person_title_edit">Edit ema</string>
-    <string name="person_is_new_question">Ita entrevista ona ema ne'e ka seidauk?</string>
+    <string name="person_is_new_question">"Ita entrevista ona ema ne'e ka seidauk?"</string>
     <string name="person_title_select">Favor ida hili ema</string>
     <string name="person_name_label">Naran</string>
     <string name="person_age_label">Tinan</string>
@@ -122,13 +122,13 @@
     <string name="person_secondlanguage_label">Lian segundu</string>
     <string name="person_thirdlanguage_label">Lian terseiru</string>
     <string name="person_otherlanguages_label">Lian seluk</string>
-    <string name="person_mylocation_label">Ha'u-nia lokasaun</string>
-    <string name="person_education_label">Hetan edukasaun to'o nivel</string>
+    <string name="person_mylocation_label">"Ha'u-nia lokasaun"</string>
+    <string name="person_education_label">"Hetan edukasaun to'o nivel"</string>
     <string name="person_ok_button">Ok</string>
     <string name="person_delete_button">Hapus</string>
     <string name="person_enter_name_toast">Favór ida hatama ema nia naran</string>
-    <string name="person_updated_toast">Ema ne'e update tiha ona</string>
-    <string name="person_added_toast">Ema ne'e hatama tiha ona</string>
+    <string name="person_updated_toast">"Ema ne'e update tiha ona"</string>
+    <string name="person_added_toast">"Ema ne'e hatama tiha ona"</string>
 
     <!-- interviewer details -->
     <string name="person_mobile_phone">Numeru telefone</string>
@@ -145,7 +145,7 @@
 
     <string name="menu_cancel_interview">Hapara enttrevista</string>
     <string name="menu_upload_interview">Upload</string>
-    <string name="menu_skip_question">Lakohi hatan pergunta ne'e</string>
+    <string name="menu_skip_question">"Lakohi hatan pergunta ne'e"</string>
     <string name="interview_response_language_other">Seluk</string>
 
     <string-array name="person_languages_array">
