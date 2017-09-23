@@ -8,8 +8,6 @@ import org.rhok.linguist.activity.common.AppSettingsActivity;
 import org.rhok.linguist.R;
 import org.rhok.linguist.activity.common.BaseActivity;
 import org.rhok.linguist.activity.common.SplashActivity;
-import org.rhok.linguist.activity.old.UploadActivity;
-import org.rhok.linguist.code.LocaleHelper;
 
 /**
  * Created by lachlan on 18/06/2015.
@@ -53,11 +51,6 @@ public abstract class BaseInterviewActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        if (LocaleHelper.updateLocale(getBaseContext(), this)) {
-            this.recreate();
-        }
-
     }
 
 }
