@@ -14,12 +14,13 @@ To build the application you will need Android Studio.
 
 *To create a release*
 
+- build the apk in Android Studio by selecting Build -> Build APK
+- the app apk will be built under ~/app/build/outputs/apk/
+- tag & push the commit
 - go to [github](https://github.com/RHoKAustralia/melb-timor-leste/releases
 - click 'Draft a new release'
 - add relevant details
-- build the apk in Android Studio by selecting Build -> Build APK
-- the app apk will be built under ~/app/build/outputs/apk/
-- upload the app to the release
+- upload the apk to the release
 
 *Local Linguist Server*
 
