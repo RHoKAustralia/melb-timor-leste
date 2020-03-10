@@ -1,2 +1,1 @@
-include ':AndroidAsync', ':ion'
 include ':app'
