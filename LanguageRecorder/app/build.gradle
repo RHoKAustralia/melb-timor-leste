@@ -24,7 +24,7 @@ def supportLibVersion = '22.2.1'
 def dropBoxSdkVersion = '1.6'
 
 dependencies {
-    compile project(':ion')
+    compile 'com.koushikdutta.ion:ion:2.1.6'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:design:${supportLibVersion}"
     compile "com.android.support:appcompat-v7:${supportLibVersion}"
