@@ -20,6 +20,7 @@ import org.rhok.linguist.activity.interview.InterviewNameActivity;
 import org.rhok.linguist.activity.recording.InterviewResponseLanguageActivity;
 import org.rhok.linguist.api.OfflineStorageHelper;
 import org.rhok.linguist.api.models.Study;
+import org.rhok.linguist.application.LinguistApplication;
 import org.rhok.linguist.code.StudyDownloader;
 import org.rhok.linguist.network.BaseIonCallback;
 import org.rhok.linguist.network.IonHelper;
@@ -65,10 +66,11 @@ public class StudyListActivity extends AppCompatActivity implements AdapterView.
 
                         @Override
                         public void onError(Response<StudyList> response) {
-                            //error loading from network, load from disk if avail
+                            String msg = "Error loading new studies";
+                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                            // load previously saved studies if available
                             mStudies = helper.getSavedStudyList();
                             updateListView();
-                            super.onError(response);
                         }
                     });
         }

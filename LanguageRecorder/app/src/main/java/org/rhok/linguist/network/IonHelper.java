@@ -57,6 +57,7 @@ public class IonHelper {
     public static final String TAG = "IonHelper";
     public static final boolean LOG_REQUEST = LinguistApplication.DEBUG;
     public static final boolean LOG_RESPONSE = LinguistApplication.DEBUG;
+    private static final int TIMEOUT_MS = 3000;
     private static Ion sIon;
     private Ion ion;
 
@@ -111,6 +112,7 @@ public class IonHelper {
         if(urlPath.startsWith("/")) urlPath=urlPath.substring(1);
         String url = LinguistApplication.getWebserviceUrl()+urlPath;
         Builders.Any.B b2 = loadBuilder.load(url);
+        b2.setTimeout(TIMEOUT_MS);
         addDefaultHeaders(b2);
         return new HelperRequest<>(mConfigLoaderCallback, "GET", b2, url, responseClass);
     }
